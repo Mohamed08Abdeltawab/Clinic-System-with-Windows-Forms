@@ -1,0 +1,77 @@
+People (
+    PersonID PK,
+    FullName,
+    Phone,
+    Gender,
+    DateOfBirth
+)
+
+
+Users (
+    UserID PK,
+    PersonID FK UNIQUE → People(PersonID),
+    Username UNIQUE,
+    PasswordHash,
+    Role   -- Doctor, Cashier, Admin
+)
+
+
+
+Doctors (
+    DoctorID PK,
+    PersonID FK UNIQUE → People(PersonID),
+    Specialization
+)
+
+
+
+Patients (
+    PatientID PK,
+    PersonID FK UNIQUE → People(PersonID)
+)
+
+Appointments (
+    AppointmentID PK,
+    PatientID FK → Patients(PatientID),
+    DoctorID FK → Doctors(DoctorID),
+    AppointmentDate,
+    Status,     -- Scheduled, Completed, Cancelled
+    CreatedByUserID FK → Users(UserID)
+)
+
+
+
+Visits (
+    VisitID PK,
+    AppointmentID FK UNIQUE → Appointments(AppointmentID),
+    VisitDate,
+    Diagnosis,
+    Notes
+)
+
+
+
+Medicines (
+    MedicineID PK,
+    MedicineName,
+    Price
+)
+
+Prescriptions (
+    PrescriptionID PK,
+    VisitID FK → Visits(VisitID),
+    MedicineID FK → Medicines(MedicineID),
+    Quantity,
+    Instructions
+)
+
+
+Bills (
+    BillID PK,
+    VisitID FK UNIQUE → Visits(VisitID),
+    TotalAmount,
+    PaymentStatus,
+    PaymentDate,
+    CreatedByUserID FK → Users(UserID)
+)
+
