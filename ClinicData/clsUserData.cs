@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClinicData;
 
-namespace DVLD_DataAccess
+namespace ClinicData
 {
     public class clsUserData
     {

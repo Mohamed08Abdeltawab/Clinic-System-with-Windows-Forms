@@ -9,20 +9,21 @@ using ClinicData;
 
 namespace ClinicData
 {
-    public class clsDoctorData
+    public class clsPatientData
     {
 
-        public static bool GetDoctorInfoByID(int DoctorID, ref int PersonID, ref string Specialization)
+        public static bool GetPatientInfoByID(int PatientID, ref int PersonID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Doctors WHERE DoctorID = @DoctorID";
+            // Note: Used 'PetientID' to match the column name in the image provided
+            string query = "SELECT * FROM Patients WHERE PetientID = @PatientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
 
             try
             {
@@ -35,7 +36,6 @@ namespace ClinicData
                     isFound = true;
 
                     PersonID = (int)reader["PersonID"];
-                    Specialization = (string)reader["Specialization"];
                 }
                 else
                 {
@@ -58,13 +58,13 @@ namespace ClinicData
             return isFound;
         }
 
-        public static bool GetDoctorInfoByPersonID(int PersonID, ref int DoctorID, ref string Specialization)
+        public static bool GetPatientInfoByPersonID(int PersonID, ref int PatientID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Doctors WHERE PersonID = @PersonID";
+            string query = "SELECT * FROM Patients WHERE PersonID = @PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -80,8 +80,8 @@ namespace ClinicData
                     // The record was found
                     isFound = true;
 
-                    DoctorID = (int)reader["DoctorID"];
-                    Specialization = (string)reader["Specialization"];
+                    // Note: Casting from 'PetientID' column
+                    PatientID = (int)reader["PetientID"];
                 }
                 else
                 {
@@ -104,21 +104,20 @@ namespace ClinicData
             return isFound;
         }
 
-        public static int AddNewDoctor(int PersonID, string Specialization)
+        public static int AddNewPatient(int PersonID)
         {
-            //this function will return the new doctor id if succeeded and -1 if not.
-            int DoctorID = -1;
+            //this function will return the new patient id if succeeded and -1 if not.
+            int PatientID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Doctors (PersonID, Specialization)
-                             VALUES (@PersonID, @Specialization);
+            string query = @"INSERT INTO Patients (PersonID)
+                             VALUES (@PersonID);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Specialization", Specialization);
 
             try
             {
@@ -128,7 +127,7 @@ namespace ClinicData
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    DoctorID = insertedID;
+                    PatientID = insertedID;
                 }
             }
             catch (Exception ex)
@@ -140,24 +139,23 @@ namespace ClinicData
                 connection.Close();
             }
 
-            return DoctorID;
+            return PatientID;
         }
 
-        public static bool UpdateDoctor(int DoctorID, int PersonID, string Specialization)
+        public static bool UpdatePatient(int PatientID, int PersonID)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update Doctors  
-                             set PersonID = @PersonID,
-                                 Specialization = @Specialization
-                             where DoctorID = @DoctorID";
+            // Note: Used 'PetientID' in where clause
+            string query = @"Update Patients  
+                             set PersonID = @PersonID
+                             where PetientID = @PatientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Specialization", Specialization);
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
 
             try
             {
@@ -177,17 +175,16 @@ namespace ClinicData
             return (rowsAffected > 0);
         }
 
-        public static DataTable GetAllDoctors()
+        public static DataTable GetAllPatients()
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // عملنا Join عشان نجيب اسم الطبيب من جدول People بدل ما نعرض IDs بس
-            string query = @"SELECT Doctors.DoctorID, Doctors.PersonID,
-                             People.FullName,
-                             Doctors.Specialization
-                             FROM Doctors INNER JOIN
-                                  People ON Doctors.PersonID = People.PersonID";
+            // Using Inner Join to get Person Name as well, since Patient table only has IDs
+            string query = @"SELECT Patients.PetientID, Patients.PersonID,
+                             People.FullName
+                             FROM Patients INNER JOIN
+                                  People ON Patients.PersonID = People.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -216,18 +213,18 @@ namespace ClinicData
             return dt;
         }
 
-        public static bool DeleteDoctor(int DoctorID)
+        public static bool DeletePatient(int PatientID)
         {
             int rowsAffected = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Delete Doctors 
-                             where DoctorID = @DoctorID";
+            string query = @"Delete Patients 
+                             where PetientID = @PatientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
 
             try
             {
@@ -246,17 +243,17 @@ namespace ClinicData
             return (rowsAffected > 0);
         }
 
-        public static bool IsDoctorExist(int DoctorID)
+        public static bool IsPatientExist(int PatientID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Doctors WHERE DoctorID = @DoctorID";
+            string query = "SELECT Found=1 FROM Patients WHERE PetientID = @PatientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
 
             try
             {
@@ -280,13 +277,13 @@ namespace ClinicData
             return isFound;
         }
 
-        public static bool IsDoctorExistByPersonID(int PersonID)
+        public static bool IsPatientExistByPersonID(int PersonID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Doctors WHERE PersonID = @PersonID";
+            string query = "SELECT Found=1 FROM Patients WHERE PersonID = @PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
