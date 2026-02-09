@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsAppointment.cs" />
     <Compile Include="clsDoctor.cs" />
+    <Compile Include="clsMedicine.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="clsPatient.cs" />
     <Compile Include="clsPrescription.cs" />
