@@ -200,6 +200,62 @@ namespace ClinicData
             return dt;
         }
 
+
+        public static bool GetBillInfoByVisitID(int VisitID, ref int BillID, ref decimal TotalAmount,
+    ref byte PaymentStatus, ref DateTime PaymentDate, ref int CreatedByUserID)
+        {
+            bool isFound = false;
+
+            string query = "SELECT * FROM Bills WHERE VisitID = @VisitID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                isFound = true;
+
+                                BillID = (int)reader["BillID"];
+
+                                // smallmoney في قاعدة البيانات يتم تحويله لـ decimal في C#
+                                TotalAmount = (decimal)reader["TotalAmount"];
+
+                                // tinyint يتم تحويله لـ byte
+                                PaymentStatus = (byte)reader["PaymentStatus"];
+
+                                PaymentDate = (DateTime)reader["PaymentDate"];
+                                CreatedByUserID = (int)reader["CreatedByUserID"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // يمكنك تسجيل الخطأ هنا
+                // Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+
+            return isFound;
+        }
+
+
         public static bool DeleteBill(int BillID)
         {
             int rowsAffected = 0;
