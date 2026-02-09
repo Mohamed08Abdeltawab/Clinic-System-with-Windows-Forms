@@ -64,6 +64,9 @@ namespace ClinicData
             return isFound;
         }
 
+
+        
+
         public static int AddNewAppointment(int PatientID, int DoctorID,
             DateTime AppointmentDate, byte Status, int CreatedByUserID)
         {
@@ -199,6 +202,81 @@ namespace ClinicData
 
             return dt;
         }
+
+
+        public static DataTable GetAppointmentsByPatientID(int PatientID)
+        {
+            DataTable dt = new DataTable();
+
+            // ملاحظة: يفضل استخدام View في قاعدة البيانات لجلب الأسماء بدلاً من الأرقام
+            // لكن هنا سنستخدم الاستعلام المباشر بناءً على الجدول المرفق
+            string query = "SELECT * FROM Appointments WHERE PatientID = @PatientID ORDER BY AppointmentDate DESC";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return dt;
+        }
+
+
+
+
+        public static DataTable GetAppointmentsByDoctorID(int DoctorID)
+        {
+            DataTable dt = new DataTable();
+
+            string query = "SELECT * FROM Appointments WHERE DoctorID = @DoctorID ORDER BY AppointmentDate DESC";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@DoctorID", DoctorID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // يمكن تسجيل الخطأ هنا
+            }
+
+            return dt;
+        }
+
 
         public static bool DeleteAppointment(int AppointmentID)
         {
