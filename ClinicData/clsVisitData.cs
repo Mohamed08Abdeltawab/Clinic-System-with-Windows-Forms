@@ -208,6 +208,62 @@ namespace ClinicData
             return dt;
         }
 
+        public static bool GetVisitInfoByAppointmentID(int AppointmentID, ref int VisitID,
+                ref DateTime VisitDate, ref string Diagnosis, ref string Notes)
+        {
+            bool isFound = false;
+
+            string query = "SELECT * FROM Visits WHERE AppointmentID = @AppointmentID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                isFound = true;
+
+                                VisitID = (int)reader["VisitID"];
+                                VisitDate = (DateTime)reader["VisitDate"];
+                                Diagnosis = (string)reader["Diagnosis"];
+
+                                // معالجة القيمة Null في عمود الملاحظات
+                                if (reader["Notes"] != DBNull.Value)
+                                {
+                                    Notes = (string)reader["Notes"];
+                                }
+                                else
+                                {
+                                    Notes = "";
+                                }
+                            }
+                            else
+                            {
+                                // The record was not found
+                                isFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+
+            return isFound;
+        }
+
         public static bool DeleteVisit(int VisitID)
         {
             int rowsAffected = 0;
