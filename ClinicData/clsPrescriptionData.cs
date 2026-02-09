@@ -177,6 +177,43 @@ namespace ClinicData
             return dt;
         }
 
+
+        public static DataTable GetPrescriptionsByVisitID(int VisitID)
+        {
+            DataTable dt = new DataTable();
+
+            // استعلام لجلب الوصفات الخاصة بزيارة محددة
+            string query = "SELECT * FROM Prescriptions WHERE VisitID = @VisitID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return dt;
+        }
+
+
         public static bool DeletePrescription(int PrescriptionID)
         {
             int rowsAffected = 0;
