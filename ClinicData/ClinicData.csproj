@@ -53,11 +53,5 @@
     <Compile Include="clsVisitData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Clinicbusiness\Clinicbusiness.csproj">
-      <Project>{1d6223c5-1130-4ccf-9d70-1276ca1c1673}</Project>
-      <Name>Clinicbusiness</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

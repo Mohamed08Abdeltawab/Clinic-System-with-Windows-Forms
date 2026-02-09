@@ -12,7 +12,7 @@ namespace ClinicData
     {
 
         public static bool GetPersonInfoByID(int PersonID, ref string FullName, ref string Phone,
-            ref short Gendor, ref DateTime DateOfBirth)
+            ref byte Gendor, ref DateTime DateOfBirth)
         {
             bool isFound = false;
 

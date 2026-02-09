@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="clsPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Clinic\Clinic.csproj">
-      <Project>{a89e882b-6adc-40e3-bc0b-6535fa25e7cf}</Project>
-      <Name>Clinic</Name>
+    <ProjectReference Include="..\ClinicData\ClinicData.csproj">
+      <Project>{2382c5e8-f681-4918-9ffb-f30f5344810c}</Project>
+      <Name>ClinicData</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
