@@ -74,7 +74,7 @@ namespace Clinicbusiness
         }
 
         // دالة مهمة لتسجيل الدخول (Login)
-        public static clsUser Find(string UserName, string Password)
+        public static clsUser FindByUsernameAndPassword(string UserName, string Password)
         {
             int UserID = -1, PersonID = -1;
             string Role = "";

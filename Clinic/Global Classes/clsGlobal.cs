@@ -11,7 +11,7 @@ namespace Clinic.Global_Classes
 {
     public class clsGlobal
     {
-        public clsUser CurrentUser;
+        public static clsUser CurrentUser;
         public static bool RememberUserAndPassword(string username, string password)
         {
             try
