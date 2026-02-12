@@ -61,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +251,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\clinic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manage Applications 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manage Applications 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClinicWallpaper.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClinicWallpaper2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MedicalServices.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Financials.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Visits 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Prescription 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bill 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Payment 64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
