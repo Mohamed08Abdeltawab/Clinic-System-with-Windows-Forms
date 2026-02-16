@@ -16,45 +16,34 @@ namespace ClinicData
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT * FROM Prescriptions WHERE PrescriptionID = @PrescriptionID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    // The record was found
-                    isFound = true;
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
 
-                    VisitID = (int)reader["VisitID"];
-                    MedicineID = (int)reader["MedicineID"];
-                    Quantity = (int)reader["Quantity"];
-                    Instructions = (string)reader["Instructions"];
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                VisitID = (int)reader["VisitID"];
+                                MedicineID = (int)reader["MedicineID"];
+                                Quantity = (int)reader["Quantity"];
+                                Instructions = (string)reader["Instructions"];
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return isFound;
@@ -63,40 +52,36 @@ namespace ClinicData
         public static int AddNewPrescription(int VisitID, int MedicineID,
             int Quantity, string Instructions)
         {
-            //this function will return the new prescription id if succeeded and -1 if not.
             int PrescriptionID = -1;
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"INSERT INTO Prescriptions (VisitID, MedicineID, Quantity, Instructions)
                              VALUES (@VisitID, @MedicineID, @Quantity, @Instructions);
                              SELECT SCOPE_IDENTITY();";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VisitID", VisitID);
-            command.Parameters.AddWithValue("@MedicineID", MedicineID);
-            command.Parameters.AddWithValue("@Quantity", Quantity);
-            command.Parameters.AddWithValue("@Instructions", Instructions);
-
             try
             {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
                 {
-                    PrescriptionID = insertedID;
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        command.Parameters.AddWithValue("@MedicineID", MedicineID);
+                        command.Parameters.AddWithValue("@Quantity", Quantity);
+                        command.Parameters.AddWithValue("@Instructions", Instructions);
+
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                        {
+                            PrescriptionID = insertedID;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return PrescriptionID;
@@ -106,7 +91,6 @@ namespace ClinicData
             int Quantity, string Instructions)
         {
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"Update Prescriptions  
                              set VisitID = @VisitID,
@@ -115,27 +99,26 @@ namespace ClinicData
                                  Instructions = @Instructions
                              where PrescriptionID = @PrescriptionID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VisitID", VisitID);
-            command.Parameters.AddWithValue("@MedicineID", MedicineID);
-            command.Parameters.AddWithValue("@Quantity", Quantity);
-            command.Parameters.AddWithValue("@Instructions", Instructions);
-            command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
-
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        command.Parameters.AddWithValue("@MedicineID", MedicineID);
+                        command.Parameters.AddWithValue("@Quantity", Quantity);
+                        command.Parameters.AddWithValue("@Instructions", Instructions);
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (rowsAffected > 0);
@@ -144,46 +127,8 @@ namespace ClinicData
         public static DataTable GetAllPrescriptions()
         {
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // ملاحظة: قمت بجلب البيانات كما هي (Raw Data) لأنني لا أملك جدول Medicines لعمل Join معه لجلب اسم الدواء.
-            // يمكنك تعديل الكويري لاحقاً لعمل Inner Join مع جدول الأدوية لعرض الاسم بدلاً من الرقم.
             string query = @"SELECT * FROM Prescriptions ORDER BY PrescriptionID DESC";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            try
-            {
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
-
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                // Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return dt;
-        }
-
-
-        public static DataTable GetPrescriptionsByVisitID(int VisitID)
-        {
-            DataTable dt = new DataTable();
-
-            // استعلام لجلب الوصفات الخاصة بزيارة محددة
-            string query = "SELECT * FROM Prescriptions WHERE VisitID = @VisitID";
 
             try
             {
@@ -191,10 +136,7 @@ namespace ClinicData
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VisitID", VisitID);
-
                         connection.Open();
-
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -207,7 +149,39 @@ namespace ClinicData
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return dt;
+        }
+
+
+        public static DataTable GetPrescriptionsByVisitID(int VisitID)
+        {
+            DataTable dt = new DataTable();
+
+            string query = "SELECT * FROM Prescriptions WHERE VisitID = @VisitID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
             }
 
             return dt;
@@ -218,27 +192,23 @@ namespace ClinicData
         {
             int rowsAffected = 0;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = @"Delete Prescriptions 
                              where PrescriptionID = @PrescriptionID";
 
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
-
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return (rowsAffected > 0);
@@ -248,66 +218,55 @@ namespace ClinicData
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT Found=1 FROM Prescriptions WHERE PrescriptionID = @PrescriptionID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                isFound = reader.HasRows;
-
-                reader.Close();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            isFound = reader.HasRows;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return isFound;
         }
 
-        // دالة إضافية مفيدة للتحقق من الوصفات الخاصة بزيارة معينة
         public static bool IsPrescriptionExistByVisitID(int VisitID)
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT Found=1 FROM Prescriptions WHERE VisitID = @VisitID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@VisitID", VisitID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                isFound = reader.HasRows;
-
-                reader.Close();
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            isFound = reader.HasRows;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return isFound;
