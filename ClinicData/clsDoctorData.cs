@@ -11,8 +11,8 @@ namespace ClinicData
 {
     public class clsDoctorData
     {
-
-        public static bool GetDoctorInfoByID(int DoctorID, ref int PersonID, ref string Specialization)
+        public static bool GetDoctorInfoByID(int DoctorID, ref int PersonID, ref string Specialization,
+            ref decimal ConsultationFees, ref string WorkingDays)
         {
             bool isFound = false;
 
@@ -36,6 +36,10 @@ namespace ClinicData
 
                     PersonID = (int)reader["PersonID"];
                     Specialization = (string)reader["Specialization"];
+
+                    // smallmoney maps to decimal
+                    ConsultationFees = (decimal)reader["ConsultationFees"];
+                    WorkingDays = (string)reader["WorkingDays"];
                 }
                 else
                 {
@@ -58,7 +62,8 @@ namespace ClinicData
             return isFound;
         }
 
-        public static bool GetDoctorInfoByPersonID(int PersonID, ref int DoctorID, ref string Specialization)
+        public static bool GetDoctorInfoByPersonID(int PersonID, ref int DoctorID, ref string Specialization,
+            ref decimal ConsultationFees, ref string WorkingDays)
         {
             bool isFound = false;
 
@@ -82,6 +87,10 @@ namespace ClinicData
 
                     DoctorID = (int)reader["DoctorID"];
                     Specialization = (string)reader["Specialization"];
+
+                    // الحقول الجديدة
+                    ConsultationFees = (decimal)reader["ConsultationFees"];
+                    WorkingDays = (string)reader["WorkingDays"];
                 }
                 else
                 {
@@ -104,21 +113,23 @@ namespace ClinicData
             return isFound;
         }
 
-        public static int AddNewDoctor(int PersonID, string Specialization)
+        public static int AddNewDoctor(int PersonID, string Specialization, decimal ConsultationFees, string WorkingDays)
         {
             //this function will return the new doctor id if succeeded and -1 if not.
             int DoctorID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Doctors (PersonID, Specialization)
-                             VALUES (@PersonID, @Specialization);
+            string query = @"INSERT INTO Doctors (PersonID, Specialization, ConsultationFees, WorkingDays)
+                             VALUES (@PersonID, @Specialization, @ConsultationFees, @WorkingDays);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Specialization", Specialization);
+            command.Parameters.AddWithValue("@ConsultationFees", ConsultationFees);
+            command.Parameters.AddWithValue("@WorkingDays", WorkingDays);
 
             try
             {
@@ -143,20 +154,24 @@ namespace ClinicData
             return DoctorID;
         }
 
-        public static bool UpdateDoctor(int DoctorID, int PersonID, string Specialization)
+        public static bool UpdateDoctor(int DoctorID, int PersonID, string Specialization, decimal ConsultationFees, string WorkingDays)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"Update Doctors  
                              set PersonID = @PersonID,
-                                 Specialization = @Specialization
+                                 Specialization = @Specialization,
+                                 ConsultationFees = @ConsultationFees,
+                                 WorkingDays = @WorkingDays
                              where DoctorID = @DoctorID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Specialization", Specialization);
+            command.Parameters.AddWithValue("@ConsultationFees", ConsultationFees);
+            command.Parameters.AddWithValue("@WorkingDays", WorkingDays);
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
             try
@@ -182,10 +197,12 @@ namespace ClinicData
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // عملنا Join عشان نجيب اسم الطبيب من جدول People بدل ما نعرض IDs بس
+            // تم تحديث الاستعلام ليشمل الحقول الجديدة
             string query = @"SELECT Doctors.DoctorID, Doctors.PersonID,
                              People.FullName,
-                             Doctors.Specialization
+                             Doctors.Specialization,
+                             Doctors.ConsultationFees,
+                             Doctors.WorkingDays
                              FROM Doctors INNER JOIN
                                   People ON Doctors.PersonID = People.PersonID";
 
