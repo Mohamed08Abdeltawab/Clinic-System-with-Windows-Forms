@@ -19,8 +19,8 @@ namespace Clinicbusiness
         public int Quantity { set; get; }
         public string Instructions { set; get; }
 
-        // يمكن إضافة خاصية لاسم الدواء لاحقاً إذا كان لديك كلاس للأدوية
-        // public clsMedicine MedicineInfo; 
+        // تم إضافة كائن الدواء لجلب بياناته (مثل الاسم والسعر) مباشرة عند الحاجة
+        public clsMedicine MedicineInfo;
 
         public clsPrescription()
         {
@@ -42,12 +42,15 @@ namespace Clinicbusiness
             this.Quantity = Quantity;
             this.Instructions = Instructions;
 
+            // ربط تلقائي ببيانات الدواء عند العثور على السجل
+            this.MedicineInfo = clsMedicine.Find(MedicineID);
+
             Mode = enMode.Update;
         }
 
         private bool _AddNewPrescription()
         {
-            //call DataAccess Layer 
+            // استدعاء طبقة الوصول للبيانات لإضافة سجل جديد
             this.PrescriptionID = clsPrescriptionData.AddNewPrescription(
                 this.VisitID, this.MedicineID, this.Quantity, this.Instructions);
 
@@ -56,7 +59,7 @@ namespace Clinicbusiness
 
         private bool _UpdatePrescription()
         {
-            //call DataAccess Layer 
+            // استدعاء طبقة الوصول للبيانات لتحديث السجل الحالي
             return clsPrescriptionData.UpdatePrescription(
                 this.PrescriptionID, this.VisitID, this.MedicineID, this.Quantity, this.Instructions);
         }
@@ -112,9 +115,7 @@ namespace Clinicbusiness
             return clsPrescriptionData.IsPrescriptionExist(PrescriptionID);
         }
 
-        // --- دوال إضافية هامة ---
-
-        // جلب جميع الأدوية الموصوفة لزيارة طبية محددة
+        // جلب جميع الأدوية الموصوفة لزيارة طبية محددة لعرضها في شاشة المريض
         public static DataTable GetPrescriptionsByVisitID(int VisitID)
         {
             return clsPrescriptionData.GetPrescriptionsByVisitID(VisitID);

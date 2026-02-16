@@ -19,7 +19,6 @@ namespace Clinicbusiness
         public string Diagnosis { set; get; }
         public string Notes { set; get; }
 
-        // Composition: للوصول لبيانات الموعد (ومنها للمريض والطبيب)
         public clsAppointment AppointmentInfo;
 
         public clsVisit()
@@ -34,17 +33,14 @@ namespace Clinicbusiness
         }
 
         private clsVisit(int VisitID, int AppointmentID, DateTime VisitDate,
-                         string Diagnosis, string Notes)
+                                 string Diagnosis, string Notes)
         {
             this.VisitID = VisitID;
             this.AppointmentID = AppointmentID;
             this.VisitDate = VisitDate;
             this.Diagnosis = Diagnosis;
-
-            // التعامل مع الـ Null في الملاحظات
             this.Notes = (Notes == null) ? "" : Notes;
 
-            // تحميل بيانات الموعد المرتبط تلقائياً
             this.AppointmentInfo = clsAppointment.Find(AppointmentID);
 
             Mode = enMode.Update;
@@ -52,7 +48,6 @@ namespace Clinicbusiness
 
         private bool _AddNewVisit()
         {
-            //call DataAccess Layer 
             this.VisitID = clsVisitData.AddNewVisit(
                 this.AppointmentID, this.VisitDate, this.Diagnosis, this.Notes);
 
@@ -61,7 +56,6 @@ namespace Clinicbusiness
 
         private bool _UpdateVisit()
         {
-            //call DataAccess Layer 
             return clsVisitData.UpdateVisit(
                 this.VisitID, this.AppointmentID, this.VisitDate, this.Diagnosis, this.Notes);
         }
@@ -81,8 +75,6 @@ namespace Clinicbusiness
                 return null;
         }
 
-        // دالة للبحث عن الزيارة الخاصة بموعد معين
-        // مفيدة جداً لمنع إنشاء زيارة ثانية لنفس الموعد
         public static clsVisit FindByAppointmentID(int AppointmentID)
         {
             int VisitID = -1;
@@ -140,13 +132,27 @@ namespace Clinicbusiness
             return clsVisitData.IsVisitExistByAppointmentID(AppointmentID);
         }
 
-        // --- دوال إضافية ذكية ---
+        // --- دوال إضافية ذكية للربط مع الخدمات والوصفات ---
 
-        // دالة تجلب كل الوصفات الطبية المرتبطة بهذه الزيارة الحالية
-        // استخدامها: myVisit.GetPrescriptions();
+        // جلب كل الخدمات المقدمة في هذه الزيارة (من جدول VisitServices)
+        public DataTable GetVisitServices()
+        {
+            return clsVisitService.GetVisitServicesByVisitID(this.VisitID);
+        }
+
         public DataTable GetPrescriptions()
         {
             return clsPrescription.GetPrescriptionsByVisitID(this.VisitID);
+        }
+        
+        // دالة لإضافة خدمة لهذه الزيارة مباشرة
+        public bool AddService(int ServiceID, decimal ServiceFees)
+        {
+            clsVisitService visitService = new clsVisitService();
+            visitService.VisitID = this.VisitID;
+            visitService.ServiceID = ServiceID;
+            visitService.ServiceFees = ServiceFees;
+            return visitService.Save();
         }
     }
 }
