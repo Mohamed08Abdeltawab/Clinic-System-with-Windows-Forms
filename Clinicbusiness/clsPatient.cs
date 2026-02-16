@@ -13,25 +13,35 @@ namespace Clinicbusiness
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int PatientID { set; get; } // تقابل PetientID في قاعدة البيانات
+        public int PatientID { set; get; }
         public int PersonID { set; get; }
 
-        // خاصية Composition للوصول لبيانات الشخص (الاسم، الهاتف، الخ)
+        // الخصائص الجديدة
+        public string MedicalHistory { set; get; }
+        public string BloodType { set; get; }
+        public string EmergencyContact { set; get; } // Assuming string for simplicity (phone number)
+
         public clsPerson PersonInfo;
 
         public clsPatient()
         {
             this.PatientID = -1;
             this.PersonID = -1;
+            this.MedicalHistory = "";
+            this.BloodType = "";
+            this.EmergencyContact = "";
             Mode = enMode.AddNew;
         }
 
-        private clsPatient(int PatientID, int PersonID)
+        private clsPatient(int PatientID, int PersonID, string MedicalHistory,
+                           string BloodType, string EmergencyContact)
         {
             this.PatientID = PatientID;
             this.PersonID = PersonID;
+            this.MedicalHistory = MedicalHistory;
+            this.BloodType = BloodType;
+            this.EmergencyContact = EmergencyContact;
 
-            // تحميل بيانات الشخص المرتبط بهذا المريض تلقائياً
             this.PersonInfo = clsPerson.Find(PersonID);
 
             Mode = enMode.Update;
@@ -39,40 +49,48 @@ namespace Clinicbusiness
 
         private bool _AddNewPatient()
         {
-            //call DataAccess Layer 
-            this.PatientID = clsPatientData.AddNewPatient(this.PersonID);
+            // تمرير الحقول الجديدة للـ Data Layer
+            this.PatientID = clsPatientData.AddNewPatient(this.PersonID, this.MedicalHistory,
+                this.BloodType, this.EmergencyContact);
 
             return (this.PatientID != -1);
         }
 
         private bool _UpdatePatient()
         {
-            //call DataAccess Layer 
-            return clsPatientData.UpdatePatient(this.PatientID, this.PersonID);
+            // تمرير الحقول الجديدة للـ Data Layer
+            return clsPatientData.UpdatePatient(this.PatientID, this.PersonID,
+                this.MedicalHistory, this.BloodType, this.EmergencyContact);
         }
 
         public static clsPatient Find(int PatientID)
         {
             int PersonID = -1;
+            string MedicalHistory = "";
+            string BloodType = "";
+            string EmergencyContact = "";
 
-            bool IsFound = clsPatientData.GetPatientInfoByID(PatientID, ref PersonID);
+            bool IsFound = clsPatientData.GetPatientInfoByID(PatientID, ref PersonID,
+                ref MedicalHistory, ref BloodType, ref EmergencyContact);
 
             if (IsFound)
-                return new clsPatient(PatientID, PersonID);
+                return new clsPatient(PatientID, PersonID, MedicalHistory, BloodType, EmergencyContact);
             else
                 return null;
         }
 
-        // دالة للبحث عن المريض باستخدام PersonID
-        // مفيدة للتأكد هل هذا الشخص مسجل كمريض أم لا
         public static clsPatient FindByPersonID(int PersonID)
         {
             int PatientID = -1;
+            string MedicalHistory = "";
+            string BloodType = "";
+            string EmergencyContact = "";
 
-            bool IsFound = clsPatientData.GetPatientInfoByPersonID(PersonID, ref PatientID);
+            bool IsFound = clsPatientData.GetPatientInfoByPersonID(PersonID, ref PatientID,
+                ref MedicalHistory, ref BloodType, ref EmergencyContact);
 
             if (IsFound)
-                return new clsPatient(PatientID, PersonID);
+                return new clsPatient(PatientID, PersonID, MedicalHistory, BloodType, EmergencyContact);
             else
                 return null;
         }
@@ -114,7 +132,6 @@ namespace Clinicbusiness
             return clsPatientData.IsPatientExist(PatientID);
         }
 
-        // دالة للتأكد أن الشخص غير مضاف كمريض مسبقاً
         public static bool IsPatientExistForPersonID(int PersonID)
         {
             return clsPatientData.IsPatientExistByPersonID(PersonID);
