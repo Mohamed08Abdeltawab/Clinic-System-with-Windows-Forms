@@ -51,6 +51,7 @@
     <Compile Include="clsPrescriptionData.cs" />
     <Compile Include="clsUserData.cs" />
     <Compile Include="clsVisitData.cs" />
+    <Compile Include="clsVisitServiceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
