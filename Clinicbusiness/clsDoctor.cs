@@ -17,7 +17,10 @@ namespace Clinicbusiness
         public int PersonID { set; get; }
         public string Specialization { set; get; }
 
-        // خاصية Composition للوصول لاسم الطبيب وبياناته الشخصية
+        // الخصائص الجديدة
+        public decimal ConsultationFees { set; get; }
+        public string WorkingDays { set; get; }
+
         public clsPerson PersonInfo;
 
         public clsDoctor()
@@ -25,16 +28,20 @@ namespace Clinicbusiness
             this.DoctorID = -1;
             this.PersonID = -1;
             this.Specialization = "";
+            this.ConsultationFees = 0;
+            this.WorkingDays = "";
             Mode = enMode.AddNew;
         }
 
-        private clsDoctor(int DoctorID, int PersonID, string Specialization)
+        private clsDoctor(int DoctorID, int PersonID, string Specialization,
+                          decimal ConsultationFees, string WorkingDays)
         {
             this.DoctorID = DoctorID;
             this.PersonID = PersonID;
             this.Specialization = Specialization;
+            this.ConsultationFees = ConsultationFees;
+            this.WorkingDays = WorkingDays;
 
-            // تحميل بيانات الشخص المرتبط بهذا الطبيب تلقائياً
             this.PersonInfo = clsPerson.Find(PersonID);
 
             Mode = enMode.Update;
@@ -42,41 +49,48 @@ namespace Clinicbusiness
 
         private bool _AddNewDoctor()
         {
-            //call DataAccess Layer 
-            this.DoctorID = clsDoctorData.AddNewDoctor(this.PersonID, this.Specialization);
+            // تمرير الحقول الجديدة للـ Data Layer
+            this.DoctorID = clsDoctorData.AddNewDoctor(this.PersonID, this.Specialization,
+                this.ConsultationFees, this.WorkingDays);
 
             return (this.DoctorID != -1);
         }
 
         private bool _UpdateDoctor()
         {
-            //call DataAccess Layer 
-            return clsDoctorData.UpdateDoctor(this.DoctorID, this.PersonID, this.Specialization);
+            // تمرير الحقول الجديدة للـ Data Layer
+            return clsDoctorData.UpdateDoctor(this.DoctorID, this.PersonID, this.Specialization,
+                this.ConsultationFees, this.WorkingDays);
         }
 
         public static clsDoctor Find(int DoctorID)
         {
             int PersonID = -1;
             string Specialization = "";
+            decimal ConsultationFees = 0;
+            string WorkingDays = "";
 
-            bool IsFound = clsDoctorData.GetDoctorInfoByID(DoctorID, ref PersonID, ref Specialization);
+            bool IsFound = clsDoctorData.GetDoctorInfoByID(DoctorID, ref PersonID, ref Specialization,
+                ref ConsultationFees, ref WorkingDays);
 
             if (IsFound)
-                return new clsDoctor(DoctorID, PersonID, Specialization);
+                return new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees, WorkingDays);
             else
                 return null;
         }
 
-        // دالة للبحث عن الطبيب باستخدام PersonID (مفيدة جداً)
         public static clsDoctor FindByPersonID(int PersonID)
         {
             int DoctorID = -1;
             string Specialization = "";
+            decimal ConsultationFees = 0;
+            string WorkingDays = "";
 
-            bool IsFound = clsDoctorData.GetDoctorInfoByPersonID(PersonID, ref DoctorID, ref Specialization);
+            bool IsFound = clsDoctorData.GetDoctorInfoByPersonID(PersonID, ref DoctorID, ref Specialization,
+                ref ConsultationFees, ref WorkingDays);
 
             if (IsFound)
-                return new clsDoctor(DoctorID, PersonID, Specialization);
+                return new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees, WorkingDays);
             else
                 return null;
         }
@@ -118,7 +132,6 @@ namespace Clinicbusiness
             return clsDoctorData.IsDoctorExist(DoctorID);
         }
 
-        // دالة للتأكد أن الشخص غير مسجل كطبيب مسبقاً (لمنع التكرار)
         public static bool IsDoctorExistForPersonID(int PersonID)
         {
             return clsDoctorData.IsDoctorExistByPersonID(PersonID);
