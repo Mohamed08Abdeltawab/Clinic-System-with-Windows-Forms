@@ -17,9 +17,8 @@ namespace Clinicbusiness
         public int PersonID { set; get; }
         public string UserName { set; get; }
         public string Password { set; get; }
-        public string Role { set; get; } // تم إضافتها بناءً على الصورة
+        public string Role { set; get; }
 
-        // خاصية للوصول لبيانات الشخص المرتبط بهذا المستخدم
         public clsPerson PersonInfo;
 
         public clsUser()
@@ -40,7 +39,6 @@ namespace Clinicbusiness
             this.Password = Password;
             this.Role = Role;
 
-            // تحميل بيانات الشخص المرتبط فوراً
             this.PersonInfo = clsPerson.Find(PersonID);
 
             Mode = enMode.Update;
@@ -73,7 +71,6 @@ namespace Clinicbusiness
                 return null;
         }
 
-        // دالة مهمة لتسجيل الدخول (Login)
         public static clsUser FindByUsernameAndPassword(string UserName, string Password)
         {
             int UserID = -1, PersonID = -1;
@@ -129,7 +126,6 @@ namespace Clinicbusiness
             return clsUserData.IsUserExist(UserName);
         }
 
-        // دالة للتأكد أن الشخص ليس لديه مستخدم بالفعل (لمنع التكرار لنفس الشخص)
         public static bool isUserExistForPersonID(int PersonID)
         {
             return clsUserData.IsUserExistForPersonID(PersonID);
