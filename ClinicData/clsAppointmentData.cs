@@ -12,7 +12,7 @@ namespace ClinicData
     {
 
         public static bool GetAppointmentInfoByID(int AppointmentID, ref int PatientID, ref int DoctorID,
-            ref DateTime AppointmentDate, ref byte Status, ref int CreatedByUserID)
+            ref byte AppointmentType, ref DateTime AppointmentDate, ref byte Status, ref int CreatedByUserID)
         {
             bool isFound = false;
 
@@ -39,6 +39,7 @@ namespace ClinicData
                     AppointmentDate = (DateTime)reader["AppointmentDate"];
 
                     // tinyint in SQL maps to byte in C#
+                    AppointmentType = (byte)reader["AppointmentType"]; // New Column
                     Status = (byte)reader["Status"];
 
                     CreatedByUserID = (int)reader["CreatedByUserID"];
@@ -65,9 +66,7 @@ namespace ClinicData
         }
 
 
-        
-
-        public static int AddNewAppointment(int PatientID, int DoctorID,
+        public static int AddNewAppointment(int PatientID, int DoctorID, byte AppointmentType,
             DateTime AppointmentDate, byte Status, int CreatedByUserID)
         {
             //this function will return the new appointment id if succeeded and -1 if not.
@@ -75,14 +74,15 @@ namespace ClinicData
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Appointments (PatientID, DoctorID, AppointmentDate, Status, CreatedByUserID)
-                             VALUES (@PatientID, @DoctorID, @AppointmentDate, @Status, @CreatedByUserID);
+            string query = @"INSERT INTO Appointments (PatientID, DoctorID, AppointmentType, AppointmentDate, Status, CreatedByUserID)
+                             VALUES (@PatientID, @DoctorID, @AppointmentType, @AppointmentDate, @Status, @CreatedByUserID);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PatientID", PatientID);
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@AppointmentType", AppointmentType); // New Parameter
             command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
             command.Parameters.AddWithValue("@Status", Status);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
@@ -110,7 +110,7 @@ namespace ClinicData
             return AppointmentID;
         }
 
-        public static bool UpdateAppointment(int AppointmentID, int PatientID, int DoctorID,
+        public static bool UpdateAppointment(int AppointmentID, int PatientID, int DoctorID, byte AppointmentType,
             DateTime AppointmentDate, byte Status, int CreatedByUserID)
         {
             int rowsAffected = 0;
@@ -119,6 +119,7 @@ namespace ClinicData
             string query = @"Update Appointments  
                              set PatientID = @PatientID,
                                  DoctorID = @DoctorID,
+                                 AppointmentType = @AppointmentType,
                                  AppointmentDate = @AppointmentDate,
                                  Status = @Status,
                                  CreatedByUserID = @CreatedByUserID
@@ -128,6 +129,7 @@ namespace ClinicData
 
             command.Parameters.AddWithValue("@PatientID", PatientID);
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@AppointmentType", AppointmentType); // New Parameter
             command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
             command.Parameters.AddWithValue("@Status", Status);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
@@ -156,12 +158,17 @@ namespace ClinicData
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // تم عمل Joins لجلب الأسماء بدلاً من الأرقام ليكون الجدول مفهوماً عند العرض
-            // ملاحظة: استخدمت PetientID بناءً على الاسم الموجود في الصورة السابقة لجدول المرضى
+            // تم تحديث الاستعلام ليشمل نوع الموعد (AppointmentType)
             string query = @"SELECT Appointments.AppointmentID, 
                              Appointments.AppointmentDate,
                              PatientName = PeoplePat.FullName,
                              DoctorName = PeopleDoc.FullName,
+                             Appointments.AppointmentType,
+                             CASE 
+                                WHEN Appointments.AppointmentType = 1 THEN 'Checkup'
+                                WHEN Appointments.AppointmentType = 2 THEN 'Consultation'
+                                ELSE 'Unknown'
+                             END as AppointmentTypeCaption,
                              Appointments.Status,
                              CASE 
                                 WHEN Appointments.Status = 1 THEN 'Scheduled'
@@ -208,8 +215,6 @@ namespace ClinicData
         {
             DataTable dt = new DataTable();
 
-            // ملاحظة: يفضل استخدام View في قاعدة البيانات لجلب الأسماء بدلاً من الأرقام
-            // لكن هنا سنستخدم الاستعلام المباشر بناءً على الجدول المرفق
             string query = "SELECT * FROM Appointments WHERE PatientID = @PatientID ORDER BY AppointmentDate DESC";
 
             try
@@ -239,8 +244,6 @@ namespace ClinicData
 
             return dt;
         }
-
-
 
 
         public static DataTable GetAppointmentsByDoctorID(int DoctorID)
