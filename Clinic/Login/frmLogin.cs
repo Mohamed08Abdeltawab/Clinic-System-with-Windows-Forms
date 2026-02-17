@@ -48,6 +48,7 @@ namespace Clinic.Login
             {
                 txtUserName.Focus();
                 MessageBox.Show("Invalid username or password, please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (chkRememberMe.Checked)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Global_Classes;
+using Clinic.Properties;
 using Clinicbusiness;
 
 namespace Clinic.People
@@ -41,7 +42,18 @@ namespace Clinic.People
         private void frmAddUpdatePerson_Load(object sender, EventArgs e)
         {
             //
-            _Person.Mode = clsPerson.enMode.AddNew;
+            
+        }
+
+        private void _LoadInfo()
+        {
+            //change photo to default if no image path is set
+            if (rbMale.Checked)
+                pbPersonImage.Image = Resources.Male_512;
+            else
+                pbPersonImage.Image = Resources.Female_512;
+
+            llRemoveImage.Visible = (_Person.ImagePath != "");//show remove image link only if there is an image to remove
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -87,32 +99,53 @@ namespace Clinic.People
 
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //open file dialog to select an image
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //get the selected image path
+                string imagePath = openFileDialog1.FileName;
+                //set the image to the picture box
+                pbPersonImage.Image = Image.FromFile(imagePath);
+                //store the image path in the person object
+                _Person.ImagePath = imagePath;
+            }
+
+            llRemoveImage.Visible = true; //show the remove image link since we now have an image to remove
         }
 
         private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (rbMale.Checked)
+                pbPersonImage.Image = Resources.Male_512;
+            else
+                pbPersonImage.Image = Resources.Female_512;
 
+            llRemoveImage.Visible = false; //hide the remove image link since there is no image to remove
         }
 
         private void ValidateEmptyTextBox(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(sender.ToString().Trim()))
+            //initialize temp from textbox text to avoid multiple calls 
+            TextBox temp = ((TextBox)sender);
+
+            if (string.IsNullOrEmpty(temp.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider1.SetError((Control)sender, "This field is required.");
+                errorProvider1.SetError((Control)temp, "This field is required.");
             }
             else
             {
-                e.Cancel = false;
-                errorProvider1.SetError((Control)sender, "");
+                //e.Cancel = false;
+                errorProvider1.SetError((Control)temp, "");
             }
         }
 
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
             //Email can be optional, but if provided, it must be valid
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !IsValidEmail(txtEmail.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text.Trim()) && !clsValidation.ValidateEmail(txtEmail.Text))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtEmail, "Please enter a valid email address.");
@@ -124,6 +157,20 @@ namespace Clinic.People
             }
         }
 
+        private void rbMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if(pbPersonImage.ImageLocation == null)
+            {
+                pbPersonImage.Image = Resources.Male_512;
+            }
+        }
 
+        private void rbFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pbPersonImage.ImageLocation == null)
+            {
+                pbPersonImage.Image = Resources.Female_512;
+            }
+        }
     }
 }
