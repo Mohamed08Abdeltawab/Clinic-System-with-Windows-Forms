@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.People;
 
 namespace Clinic
 {
@@ -19,7 +20,9 @@ namespace Clinic
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //temporary
+            frmAddUpdatePerson frm = new frmAddUpdatePerson();
+            frm.ShowDialog();
         }
     }
 }

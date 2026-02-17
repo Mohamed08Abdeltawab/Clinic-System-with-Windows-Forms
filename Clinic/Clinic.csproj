@@ -52,6 +52,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global Classes\clsFormat.cs" />
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
