@@ -58,7 +58,7 @@ namespace Clinic.Global_Classes
         }
 
 
-        public static bool CopyImageToProjectImages(string sourceFile)
+        public static bool CopyImageToProjectImages(ref string sourceFile)
         {
             //define the FolderDestination to save the image in the project folder
             string FolderDestination = @"C:\ClinicSystem-People-Images\";

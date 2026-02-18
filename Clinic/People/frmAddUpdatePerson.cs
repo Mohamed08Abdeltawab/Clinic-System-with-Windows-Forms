@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,13 @@ namespace Clinic.People
 {
     public partial class frmAddUpdatePerson : Form
     {
+        //declare a delegate to return databack to the calling form after saving the person
+
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        //declare an event of delegate type to be raised after saving the person
+        public event DataBackEventHandler DataBack;
+
         clsPerson _Person;
         private int _PersonID = -1;
 
@@ -39,10 +47,115 @@ namespace Clinic.People
             _PersonID = PersonID;
         }
 
+        //reset default values to the controls when the form loads
+        private void _ResetDefaultValues()
+        {
+            if(_Mode == enMode.AddNew)
+            {
+                lblTitle.Text = "Add New Person";
+                _Person = new clsPerson(); //initialize a new person object for add new mode
+            }
+            else
+            {
+                lblTitle.Text = "Update Person";
+            }
+
+            if (rbMale.Checked)
+                pbPersonImage.Image = Resources.Male_512;
+            else
+                pbPersonImage.Image = Resources.Female_512;
+
+            llRemoveImage.Visible = (pbPersonImage.ImageLocation != null); //show remove image link only if there is an image to remove
+
+            dtpDateOfBirth.Value = DateTime.Now;
+            dtpDateOfBirth.MinDate = DateTime.Now.AddYears(-150);
+
+            txtFullName.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            txtEmail.Text = "";
+            rbMale.Checked = true;
+            
+        }
+
+        private void _LoadData()
+        {
+            //just will called on update mode 
+            _Person = clsPerson.Find(_PersonID);
+
+            if(_Person == null)
+            {
+                MessageBox.Show("Person not found. The form will now close.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            lblPersonID.Text = _Person.PersonID.ToString();
+            txtFullName.Text = _Person.FullName;
+            txtPhone.Text = _Person.Phone;
+            dtpDateOfBirth.Value = _Person.DateOfBirth;
+
+            txtAddress.Text = _Person.Address ?? "";//if null take ""
+            txtEmail.Text = _Person.Email ?? "";
+            if(!string.IsNullOrEmpty(pbPersonImage.ImageLocation))
+            pbPersonImage.ImageLocation = _Person.ImagePath ;
+
+            if (_Person.Gendor == 0)
+                rbMale.Checked = true;
+            else
+                rbFemale.Checked = true;
+
+
+            llRemoveImage.Visible = (!string.IsNullOrEmpty(_Person.ImagePath));
+
+        }
+
         private void frmAddUpdatePerson_Load(object sender, EventArgs e)
         {
-            //
-            
+            _ResetDefaultValues();
+            if (_Mode == enMode.Update)
+                _LoadData();
+        }
+
+        //handel image person
+        private bool _HandlePersonImage()
+        {
+            //step1: check if the new image is same image will be true don't compelete
+            if(pbPersonImage.ImageLocation != _Person.ImagePath)
+            {
+                //step2: we need to delete the image check if exist
+                if(_Person.ImagePath != "")
+                {
+                    try
+                    {
+                        File.Delete(_Person.ImagePath);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+
+                //step3: update new image 
+                if(pbPersonImage.ImageLocation != null)
+                {
+                    //assign source file path to equal the imagelocation
+                    string sourceFilePath = pbPersonImage.ImageLocation.ToString();
+
+                    if(util.CopyImageToProjectImages(ref sourceFilePath))
+                    {
+                        pbPersonImage.ImageLocation = sourceFilePath;
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Copying Image File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void _LoadInfo()
@@ -59,8 +172,12 @@ namespace Clinic.People
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren())
+                return;
+
+            if(!this._HandlePersonImage())
             {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Here we dont continue becuase the form is not valid
+                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -83,12 +200,16 @@ namespace Clinic.People
             {
                 lblTitle.Text = "Update Person"; // Change title to indicate we're now in edit mode
                 lblPersonID.Text = _Person.PersonID.ToString(); // Get the assigned PersonID after saving
+                _Mode = enMode.Update; // Switch to update mode after saving
                 MessageBox.Show("Person saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                // Raise the DataBack event to notify the calling form that a person has been saved
+                DataBack?.Invoke(this, _Person.PersonID);
             }
             else
             {
                 MessageBox.Show("An error occurred while saving the person. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
             }
         }
 
@@ -99,24 +220,24 @@ namespace Clinic.People
 
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //open file dialog to select an image
-            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //get the selected image path
-                string imagePath = openFileDialog1.FileName;
-                //set the image to the picture box
-                pbPersonImage.Image = Image.FromFile(imagePath);
-                //store the image path in the person object
-                _Person.ImagePath = imagePath;
+                // Process the selected file
+                string selectedFilePath = openFileDialog1.FileName;
+                pbPersonImage.Load(selectedFilePath);
+                llRemoveImage.Visible = true;
+                // ...
             }
-
-            llRemoveImage.Visible = true; //show the remove image link since we now have an image to remove
         }
 
         private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            pbPersonImage.ImageLocation = null;
+
             if (rbMale.Checked)
                 pbPersonImage.Image = Resources.Male_512;
             else
