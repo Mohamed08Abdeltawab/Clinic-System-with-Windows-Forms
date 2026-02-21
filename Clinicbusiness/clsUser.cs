@@ -13,11 +13,32 @@ namespace Clinicbusiness
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        // تم إضافة الـ enum هنا
+        public enum enRole { Admin = 0, Doctor = 1, Receptionist = 2 };
+
         public int UserID { set; get; }
         public int PersonID { set; get; }
         public string UserName { set; get; }
         public string Password { set; get; }
-        public string Role { set; get; }
+
+        public enRole Role { set; get; }
+        public string RoleName
+        {
+            get
+            {
+                switch(Role)
+                {
+                    case enRole.Admin:
+                        return "Admin";
+                    case enRole.Doctor:
+                        return "Doctor";
+                    case enRole.Receptionist:
+                        return "Receptionist";
+                    default:
+                        return "Unknown";
+                }
+            }
+        }
 
         public clsPerson PersonInfo;
 
@@ -27,11 +48,12 @@ namespace Clinicbusiness
             this.PersonID = -1;
             this.UserName = "";
             this.Password = "";
-            this.Role = "";
+            this.Role = enRole.Receptionist;
             Mode = enMode.AddNew;
         }
 
-        private clsUser(int UserID, int PersonID, string UserName, string Password, string Role)
+        // تم تعديل البراميتر Role ليكون من نوع enRole
+        private clsUser(int UserID, int PersonID, string UserName, string Password, enRole Role)
         {
             this.UserID = UserID;
             this.PersonID = PersonID;
@@ -46,27 +68,31 @@ namespace Clinicbusiness
 
         private bool _AddNewUser()
         {
-            //call DataAccess Layer 
-            this.UserID = clsUserData.AddNewUser(this.PersonID, this.UserName, this.Password, this.Role);
+            // تم تحويل الـ enum إلى رقم (int) ليتم إرساله لقاعدة البيانات
+            this.UserID = clsUserData.AddNewUser(this.PersonID, this.UserName, this.Password, (byte)this.Role);
 
             return (this.UserID != -1);
         }
 
         private bool _UpdateUser()
         {
-            //call DataAccess Layer 
-            return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, this.Role);
+            // تم تحويل الـ enum إلى رقم (int) ليتم إرساله لقاعدة البيانات
+            return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, (byte)this.Role);
         }
 
         public static clsUser Find(int UserID)
         {
             int PersonID = -1;
-            string UserName = "", Password = "", Role = "";
+            string UserName = "", Password = "";
 
-            bool IsFound = clsUserData.GetUserInfoByUserID(UserID, ref PersonID, ref UserName, ref Password, ref Role);
+            // تم تغيير متغير الـ Role ليكون int ليتوافق مع قاعدة البيانات
+            byte RoleValue = 0;
+
+            bool IsFound = clsUserData.GetUserInfoByUserID(UserID, ref PersonID, ref UserName, ref Password, ref RoleValue);
 
             if (IsFound)
-                return new clsUser(UserID, PersonID, UserName, Password, Role);
+                // تم تحويل الرقم القادم من قاعدة البيانات إلى enRole
+                return new clsUser(UserID, PersonID, UserName, Password, (enRole)RoleValue);
             else
                 return null;
         }
@@ -74,12 +100,15 @@ namespace Clinicbusiness
         public static clsUser FindByUsernameAndPassword(string UserName, string Password)
         {
             int UserID = -1, PersonID = -1;
-            string Role = "";
 
-            bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(UserName, Password, ref UserID, ref PersonID, ref Role);
+            // تم تغيير متغير الـ Role ليكون int ليتوافق مع قاعدة البيانات
+            byte RoleValue = 0;
+
+            bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(UserName, Password, ref UserID, ref PersonID, ref RoleValue);
 
             if (IsFound)
-                return new clsUser(UserID, PersonID, UserName, Password, Role);
+                // تم تحويل الرقم القادم من قاعدة البيانات إلى enRole
+                return new clsUser(UserID, PersonID, UserName, Password, (enRole)RoleValue);
             else
                 return null;
         }

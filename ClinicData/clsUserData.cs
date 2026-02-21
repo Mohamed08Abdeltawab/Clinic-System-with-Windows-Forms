@@ -11,8 +11,9 @@ namespace ClinicData
     public class clsUserData
     {
 
+        // تم تغيير نوع Role إلى byte
         public static bool GetUserInfoByUserID(int UserID, ref int PersonID, ref string UserName,
-            ref string Password, ref string Role)
+            ref string Password, ref byte Role)
         {
             bool isFound = false;
 
@@ -35,7 +36,9 @@ namespace ClinicData
                                 PersonID = (int)reader["PersonID"];
                                 UserName = (string)reader["UserName"];
                                 Password = (string)reader["Password"];
-                                Role = (string)reader["Role"];
+                                
+                                // تم تحويل القراءة لتكون byte بدلاً من string
+                                Role = (byte)reader["Role"];
                             }
                         }
                     }
@@ -49,8 +52,9 @@ namespace ClinicData
             return isFound;
         }
 
+        // تم تغيير نوع Role إلى byte
         public static bool GetUserInfoByPersonID(int PersonID, ref int UserID, ref string UserName,
-          ref string Password, ref string Role)
+          ref string Password, ref byte Role)
         {
             bool isFound = false;
 
@@ -73,7 +77,9 @@ namespace ClinicData
                                 UserID = (int)reader["UserID"];
                                 UserName = (string)reader["UserName"];
                                 Password = (string)reader["Password"];
-                                Role = (string)reader["Role"];
+                                
+                                // تم تحويل القراءة لتكون byte
+                                Role = (byte)reader["Role"];
                             }
                         }
                     }
@@ -87,8 +93,9 @@ namespace ClinicData
             return isFound;
         }
 
+        // تم تغيير نوع Role إلى byte
         public static bool GetUserInfoByUsernameAndPassword(string UserName, string Password,
-            ref int UserID, ref int PersonID, ref string Role)
+            ref int UserID, ref int PersonID, ref byte Role)
         {
             bool isFound = false;
 
@@ -111,7 +118,9 @@ namespace ClinicData
                                 isFound = true;
                                 UserID = (int)reader["UserID"];
                                 PersonID = (int)reader["PersonID"];
-                                Role = (string)reader["Role"];
+                                
+                                // تم تحويل القراءة لتكون byte
+                                Role = (byte)reader["Role"];
                             }
                         }
                     }
@@ -125,8 +134,9 @@ namespace ClinicData
             return isFound;
         }
 
+        // تم تغيير نوع Role إلى byte
         public static int AddNewUser(int PersonID, string UserName,
-             string Password, string Role)
+             string Password, byte Role)
         {
             int UserID = -1;
 
@@ -163,8 +173,9 @@ namespace ClinicData
             return UserID;
         }
 
+        // تم تغيير نوع Role إلى byte
         public static bool UpdateUser(int UserID, int PersonID, string UserName,
-             string Password, string Role)
+             string Password, byte Role)
         {
             int rowsAffected = 0;
 
