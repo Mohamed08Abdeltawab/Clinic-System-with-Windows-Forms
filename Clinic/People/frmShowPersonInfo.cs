@@ -12,14 +12,15 @@ namespace Clinic.People
 {
     public partial class frmShowPersonInfo : Form
     {
-        public frmShowPersonInfo()
+        public frmShowPersonInfo(int personID)
         {
             InitializeComponent();
+            ctrlPersonCard1.LoadInfo(personID);
         }
 
-        private void frmShowPersonInfo_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            ctrlPersonCard1.LoadInfo(1);
+            this.Close();
         }
     }
 }
