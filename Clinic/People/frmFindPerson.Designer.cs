@@ -67,7 +67,7 @@
             this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
             this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(837, 379);
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(829, 379);
             this.ctrlPersonCardWithFilter1.TabIndex = 118;
             // 
             // frmFindPerson
