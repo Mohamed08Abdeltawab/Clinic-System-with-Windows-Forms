@@ -17,7 +17,7 @@ namespace Clinic.People.Controls
 {
     public partial class ctrlPersonCard : UserControl
     {
-        private int _PersonID;
+        private int _PersonID = -1;
         private clsPerson _Person;
 
         public int PersonID
@@ -40,7 +40,7 @@ namespace Clinic.People.Controls
             _Person = clsPerson.Find(PersonID);
             if(_Person == null)
             {
-                _ResetPersonInfo();
+                ResetPersonInfo();
                 MessageBox.Show("No Person with PersonID = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -84,7 +84,7 @@ namespace Clinic.People.Controls
             }
         }
 
-        private void _ResetPersonInfo()
+        public void ResetPersonInfo()
         {
             _PersonID = -1;
             lblPersonID.Text = "[????]";

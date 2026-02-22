@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Login;
 using Clinic.People;
+using Clinic.User;
 
 namespace Clinic
 {
@@ -18,7 +19,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListPeople());
+            Application.Run(new frmAddUpdateUser());
         }
     }
 }

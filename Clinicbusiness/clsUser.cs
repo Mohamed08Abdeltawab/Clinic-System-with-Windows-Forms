@@ -80,7 +80,7 @@ namespace Clinicbusiness
             return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, (byte)this.Role);
         }
 
-        public static clsUser Find(int UserID)
+        public static clsUser FindByUserID(int UserID)
         {
             int PersonID = -1;
             string UserName = "", Password = "";
@@ -89,6 +89,24 @@ namespace Clinicbusiness
             byte RoleValue = 0;
 
             bool IsFound = clsUserData.GetUserInfoByUserID(UserID, ref PersonID, ref UserName, ref Password, ref RoleValue);
+
+            if (IsFound)
+                // تم تحويل الرقم القادم من قاعدة البيانات إلى enRole
+                return new clsUser(UserID, PersonID, UserName, Password, (enRole)RoleValue);
+            else
+                return null;
+        }
+
+
+        public static clsUser FindByPersonID(int PersonID)
+        {
+            int UserID = -1;
+            string UserName = "", Password = "";
+
+            // تم تغيير متغير الـ Role ليكون int ليتوافق مع قاعدة البيانات
+            byte RoleValue = 0;
+
+            bool IsFound = clsUserData.GetUserInfoByPersonID(PersonID, ref UserID, ref UserName, ref Password, ref RoleValue);
 
             if (IsFound)
                 // تم تحويل الرقم القادم من قاعدة البيانات إلى enRole
