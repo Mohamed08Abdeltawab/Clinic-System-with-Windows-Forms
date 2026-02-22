@@ -19,7 +19,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmUserInfo(1));
+            Application.Run(new frmChangePassword(1));
         }
     }
 }
