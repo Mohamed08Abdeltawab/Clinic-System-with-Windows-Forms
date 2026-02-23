@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Global_Classes;
 using Clinicbusiness;
 
 namespace Clinic.People

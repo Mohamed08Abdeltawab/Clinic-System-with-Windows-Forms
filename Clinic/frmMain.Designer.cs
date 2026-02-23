@@ -134,7 +134,7 @@
             this.manageBillsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Bill_64;
             this.manageBillsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.manageBillsToolStripMenuItem.Name = "manageBillsToolStripMenuItem";
-            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.manageBillsToolStripMenuItem.Text = "Manage Bills";
             // 
             // paymentsToolStripMenuItem
@@ -142,7 +142,7 @@
             this.paymentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Payment_64;
             this.paymentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.paymentsToolStripMenuItem.Text = "Payments";
             // 
             // peopleToolStripMenuItem
@@ -161,6 +161,7 @@
             this.driversToolStripMenuItem.Name = "driversToolStripMenuItem";
             this.driversToolStripMenuItem.Size = new System.Drawing.Size(148, 68);
             this.driversToolStripMenuItem.Text = "Patients";
+            this.driversToolStripMenuItem.Click += new System.EventHandler(this.driversToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -177,6 +178,7 @@
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
             this.employeesToolStripMenuItem.Size = new System.Drawing.Size(127, 68);
             this.employeesToolStripMenuItem.Text = "Users";
+            this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -193,29 +195,35 @@
             // 
             // currentUserInfoToolStripMenuItem
             // 
+            this.currentUserInfoToolStripMenuItem.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.currentUserInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
-            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.currentUserInfoToolStripMenuItem.Text = "&Current User Info";
+            this.currentUserInfoToolStripMenuItem.Click += new System.EventHandler(this.currentUserInfoToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
+            this.changePasswordToolStripMenuItem.Image = global::Clinic.Properties.Resources.Password_32;
             this.changePasswordToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(211, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(227, 6);
             // 
             // signOutToolStripMenuItem
             // 
+            this.signOutToolStripMenuItem.Image = global::Clinic.Properties.Resources.sign_out_32__2;
             this.signOutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.signOutToolStripMenuItem.Text = "Sign &Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 

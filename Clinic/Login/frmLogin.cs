@@ -62,7 +62,7 @@ namespace Clinic.Login
             clsGlobal.CurrentUser = _User;
             this.Hide();
 
-            frmMain frm = new frmMain();
+            frmMain frm = new frmMain(this);
             frm.ShowDialog();
         }
     }

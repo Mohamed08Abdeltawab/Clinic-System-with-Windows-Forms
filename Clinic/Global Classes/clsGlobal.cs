@@ -85,7 +85,37 @@ namespace Clinic.Global_Classes
                 return false;
             }
         }
-        
-        
+
+
+
+        public static bool CheckIsAdmin()
+        {
+            if (clsGlobal.CurrentUser.Role != clsUser.enRole.Admin)
+            {
+                MessageBox.Show("Error, This Username not have Access, must be an Admin!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool CheckIsDoctor()
+        {
+            if (clsGlobal.CurrentUser.Role != clsUser.enRole.Doctor)
+            {
+                MessageBox.Show("Error, This Username not have Access, must be a Doctor!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool CheckIsReceptionist()
+        {
+            if (clsGlobal.CurrentUser.Role != clsUser.enRole.Receptionist)
+            {
+                MessageBox.Show("Error, This Username not have Access, must be a Receptionist!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -7,22 +7,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Global_Classes;
+using Clinic.Login;
 using Clinic.People;
+using Clinic.User;
+using Clinicbusiness;
 
 namespace Clinic
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        frmLogin _frmLogin;
+        public frmMain(frmLogin frmLogin)
         {
             InitializeComponent();
+            _frmLogin = frmLogin;
         }
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //temporary
-            frmAddUpdatePerson frm = new frmAddUpdatePerson();
+            if (clsGlobal.CheckIsAdmin())
+            {
+                frmListPeople frm = new frmListPeople();
+                frm.ShowDialog();
+            }
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInfo frm = new frmUserInfo(clsGlobal.CurrentUser.UserID);
             frm.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword(clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsGlobal.CurrentUser = null;
+            _frmLogin.Show();
+            this.Close();
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clsGlobal.CheckIsAdmin())
+            {
+                frmListUsers frm = new frmListUsers();
+                frm.ShowDialog();
+            }
         }
     }
 }
