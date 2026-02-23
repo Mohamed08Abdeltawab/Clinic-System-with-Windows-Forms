@@ -215,11 +215,18 @@ namespace ClinicData
         {
             DataTable dt = new DataTable();
 
-            string query = @"SELECT Users.UserID, Users.PersonID,
-                             People.FullName,
-                             Users.UserName, Users.Role
-                             FROM Users INNER JOIN
-                                  People ON Users.PersonID = People.PersonID";
+            string query = @"SELECT Users.UserID, 
+                        Users.PersonID,
+                        People.FullName,
+                        Users.UserName, 
+                        CASE 
+                            WHEN Users.Role = 0 THEN 'Admin'
+                            WHEN Users.Role = 1 THEN 'Doctor'
+                            WHEN Users.Role = 2 THEN 'Receptionist'
+                            ELSE 'Unknown' 
+                        END AS RoleName
+                 FROM Users 
+                 INNER JOIN People ON Users.PersonID = People.PersonID";
 
             try
             {
