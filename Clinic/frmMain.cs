@@ -65,5 +65,10 @@ namespace Clinic
                 frm.ShowDialog();
             }
         }
+
+        private void mangeServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }

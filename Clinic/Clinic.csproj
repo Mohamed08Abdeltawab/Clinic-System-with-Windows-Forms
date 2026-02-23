@@ -411,5 +411,14 @@
   <ItemGroup>
     <None Include="Resources\role2 32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Services 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mange Services 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Services2 64.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
