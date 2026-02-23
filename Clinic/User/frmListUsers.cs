@@ -122,6 +122,8 @@ namespace Clinic.User
 
             switch (FilterValue)
             {
+                case "All":
+                    break;
                 case "Admin":
                     FilterValue = "Admin";
                     break;
@@ -134,8 +136,11 @@ namespace Clinic.User
             }
 
 
-            //in this case we deal with numbers not string.
-            _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", FilterColumn, FilterValue);
+            if (FilterValue == "All")
+                _dtAllUsers.DefaultView.RowFilter = "";
+            else
+                //in this case we deal with numbers not string.
+                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", FilterColumn, FilterValue);
 
             lblRecordsCount.Text = _dtAllUsers.Rows.Count.ToString();
         }
