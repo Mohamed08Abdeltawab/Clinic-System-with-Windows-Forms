@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Doctor;
 using Clinic.Global_Classes;
 using Clinic.Login;
 using Clinic.Medical_Services.Mange_Services;
@@ -83,7 +84,8 @@ namespace Clinic
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //
+            frmListDoctors frm = new frmListDoctors();
+            frm.ShowDialog();
         }
     }
 }
