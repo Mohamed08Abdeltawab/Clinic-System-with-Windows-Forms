@@ -122,7 +122,7 @@
             // 
             // mangeServicesToolStripMenuItem
             // 
-            this.mangeServicesToolStripMenuItem.Image = global::Clinic.Properties.Resources.Services2_64;
+            this.mangeServicesToolStripMenuItem.Image = global::Clinic.Properties.Resources.Mange_Services3_64;
             this.mangeServicesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mangeServicesToolStripMenuItem.Name = "mangeServicesToolStripMenuItem";
             this.mangeServicesToolStripMenuItem.Size = new System.Drawing.Size(294, 70);

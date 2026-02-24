@@ -68,6 +68,12 @@
     <Compile Include="Medical Services\Mange Services\frmEditServices.Designer.cs">
       <DependentUpon>frmEditServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medical Services\Mange Services\frmListServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Mange Services\frmListServices.Designer.cs">
+      <DependentUpon>frmListServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="People\Controls\ctrlPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Mange Services\frmEditServices.resx">
       <DependentUpon>frmEditServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Mange Services\frmListServices.resx">
+      <DependentUpon>frmListServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\Controls\ctrlPersonCard.resx">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
@@ -431,6 +440,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ApplicationTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListServices2 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List Services 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mange Services3 64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -413,6 +413,26 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap List_Services_512 {
+            get {
+                object obj = ResourceManager.GetObject("List Services 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ListServices2_512 {
+            get {
+                object obj = ResourceManager.GetObject("ListServices2 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Male_512 {
             get {
                 object obj = ResourceManager.GetObject("Male 512", resourceCulture);
@@ -466,6 +486,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Mange_Services_64 {
             get {
                 object obj = ResourceManager.GetObject("Mange Services 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Mange_Services3_64 {
+            get {
+                object obj = ResourceManager.GetObject("Mange Services3 64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -716,6 +746,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Services2_64 {
             get {
                 object obj = ResourceManager.GetObject("Services2 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Services2_641 {
+            get {
+                object obj = ResourceManager.GetObject("Services2 641", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
