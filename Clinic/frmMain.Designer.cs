@@ -101,32 +101,32 @@
             this.appointmentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.appointment_64;
             this.appointmentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
-            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(294, 70);
-            this.appointmentsToolStripMenuItem.Text = "Mange Appointments";
+            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
+            this.appointmentsToolStripMenuItem.Text = "Manage Appointments";
             // 
             // visitsToolStripMenuItem
             // 
             this.visitsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Visits_64;
             this.visitsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.visitsToolStripMenuItem.Name = "visitsToolStripMenuItem";
-            this.visitsToolStripMenuItem.Size = new System.Drawing.Size(294, 70);
-            this.visitsToolStripMenuItem.Text = "Mange Visits";
+            this.visitsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
+            this.visitsToolStripMenuItem.Text = "Manage Visits";
             // 
             // prescriptionsToolStripMenuItem
             // 
             this.prescriptionsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Prescription_64;
             this.prescriptionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.prescriptionsToolStripMenuItem.Name = "prescriptionsToolStripMenuItem";
-            this.prescriptionsToolStripMenuItem.Size = new System.Drawing.Size(294, 70);
-            this.prescriptionsToolStripMenuItem.Text = "Mange Prescriptions";
+            this.prescriptionsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
+            this.prescriptionsToolStripMenuItem.Text = "Manage Prescriptions";
             // 
             // mangeServicesToolStripMenuItem
             // 
             this.mangeServicesToolStripMenuItem.Image = global::Clinic.Properties.Resources.Mange_Services3_64;
             this.mangeServicesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mangeServicesToolStripMenuItem.Name = "mangeServicesToolStripMenuItem";
-            this.mangeServicesToolStripMenuItem.Size = new System.Drawing.Size(294, 70);
-            this.mangeServicesToolStripMenuItem.Text = "Mange Services";
+            this.mangeServicesToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
+            this.mangeServicesToolStripMenuItem.Text = "Manage Services";
             this.mangeServicesToolStripMenuItem.Click += new System.EventHandler(this.mangeServicesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
@@ -181,6 +181,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 68);
             this.toolStripMenuItem1.Text = "Doctors";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // employeesToolStripMenuItem
             // 
@@ -261,6 +262,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMain";
             this.Text = "frmMain";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.msMainMenue.ResumeLayout(false);
             this.msMainMenue.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

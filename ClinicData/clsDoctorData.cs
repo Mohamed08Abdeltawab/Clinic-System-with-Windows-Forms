@@ -197,7 +197,6 @@ namespace ClinicData
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // تم تحديث الاستعلام ليشمل الحقول الجديدة
             string query = @"SELECT Doctors.DoctorID, Doctors.PersonID,
                              People.FullName,
                              Doctors.Specialization,

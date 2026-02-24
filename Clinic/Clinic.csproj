@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Doctor\frmListDoctors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doctor\frmListDoctors.Designer.cs">
+      <DependentUpon>frmListDoctors.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,16 +68,16 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medical Services\Mange Services\frmEditServices.cs">
+    <Compile Include="Medical Services\Manage Services\frmEditServices.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Medical Services\Mange Services\frmEditServices.Designer.cs">
+    <Compile Include="Medical Services\Manage Services\frmEditServices.Designer.cs">
       <DependentUpon>frmEditServices.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medical Services\Mange Services\frmListServices.cs">
+    <Compile Include="Medical Services\Manage Services\frmListServices.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Medical Services\Mange Services\frmListServices.Designer.cs">
+    <Compile Include="Medical Services\Manage Services\frmListServices.Designer.cs">
       <DependentUpon>frmListServices.cs</DependentUpon>
     </Compile>
     <Compile Include="People\Controls\ctrlPersonCard.cs">
@@ -142,16 +148,19 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Doctor\frmListDoctors.resx">
+      <DependentUpon>frmListDoctors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medical Services\Mange Services\frmEditServices.resx">
+    <EmbeddedResource Include="Medical Services\Manage Services\frmEditServices.resx">
       <DependentUpon>frmEditServices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medical Services\Mange Services\frmListServices.resx">
+    <EmbeddedResource Include="Medical Services\Manage Services\frmListServices.resx">
       <DependentUpon>frmListServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\Controls\ctrlPersonCard.resx">
@@ -449,6 +458,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Mange Services3 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Doctors 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor2 64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

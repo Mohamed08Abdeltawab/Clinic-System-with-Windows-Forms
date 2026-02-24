@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Global_Classes;
 using Clinic.Login;
+using Clinic.Medical_Services.Mange_Services;
 using Clinic.People;
 using Clinic.User;
 using Clinicbusiness;
@@ -67,6 +68,20 @@ namespace Clinic
         }
 
         private void mangeServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clsGlobal.CheckIsAdmin())
+            {
+                frmListServices frm = new frmListServices();
+                frm.ShowDialog();
+            }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //
         }
