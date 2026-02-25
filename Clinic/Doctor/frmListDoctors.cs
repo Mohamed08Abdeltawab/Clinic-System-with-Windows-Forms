@@ -7,14 +7,147 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinicbusiness;
 
 namespace Clinic.Doctor
 {
     public partial class frmListDoctors : Form
     {
+        private DataTable _dtDoctors;
         public frmListDoctors()
         {
             InitializeComponent();
+        }
+
+        private void frmListDoctors_Load(object sender, EventArgs e)
+        {
+            _dtDoctors = clsDoctor.GetAllDoctors();
+            dgvDoctors.DataSource = _dtDoctors;
+            cbFilterBy.SelectedIndex = 0;
+            lblRecordsCount.Text = dgvDoctors.Rows.Count.ToString();
+
+
+            if(dgvDoctors.Rows.Count > 0 )
+            {
+                dgvDoctors.Columns[0].HeaderText = "Docotr ID";
+                dgvDoctors.Columns[0].Width = 110;
+                
+                dgvDoctors.Columns[1].HeaderText = "Person ID";
+                dgvDoctors.Columns[1].Width = 110;
+                
+                
+                dgvDoctors.Columns[2].HeaderText = "Full Name";
+                dgvDoctors.Columns[2].Width = 320;
+                
+                dgvDoctors.Columns[3].HeaderText = "Specialization";
+                dgvDoctors.Columns[3].Width = 170;
+                
+                
+                dgvDoctors.Columns[4].HeaderText = "Consultation Fees";
+                dgvDoctors.Columns[4].Width = 130;
+                
+                dgvDoctors.Columns[5].HeaderText = "WorkingDays";
+                dgvDoctors.Columns[5].Width = 200;
+                
+                
+            }
+        }
+
+        private void txtFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            string FilterColumn = "";
+            //Map Selected Filter to real Column name 
+            switch (cbFilterBy.Text)
+            {
+                case "Doctor ID":
+                    FilterColumn = "DoctorID";
+                    break;
+
+                case "Person ID":
+                    FilterColumn = "PersonID";
+                    break;
+                
+
+                case "Full Name":
+                    FilterColumn = "FullName";
+                    break;
+
+                case "Specialization":
+                    FilterColumn = "Specialization";
+                    break;
+
+                case "Consultation Fees":
+                    FilterColumn = "ConsultationFees";
+                    break;
+
+                case "Working Days":
+                    FilterColumn = "WorkingDays";
+                    break;
+
+
+                default:
+                    FilterColumn = "None";
+                    break;
+
+            }
+
+            //Reset the filters in case nothing selected or filter value conains nothing.
+            if (txtFilterValue.Text.Trim() == "" || FilterColumn == "None")
+            {
+                _dtDoctors.DefaultView.RowFilter = "";
+                lblRecordsCount.Text = dgvDoctors.Rows.Count.ToString();
+                return;
+            }
+
+
+            if (FilterColumn == "PersonID" || FilterColumn == "DoctorID")
+                //in this case we deal with integer not string.
+                _dtDoctors.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
+            else
+                _dtDoctors.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
+
+            lblRecordsCount.Text = dgvDoctors.Rows.Count.ToString();
+        }
+
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtFilterValue.Visible = (cbFilterBy.Text != "None");
+
+            if (txtFilterValue.Visible)
+            {
+                txtFilterValue.Text = "";
+                txtFilterValue.Focus();
+            }
+        }
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }
