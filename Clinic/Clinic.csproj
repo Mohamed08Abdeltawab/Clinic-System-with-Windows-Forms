@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Doctor\ctrlDoctorInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Doctor\ctrlDoctorInfo.Designer.cs">
+      <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\frmListDoctors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Doctor\ctrlDoctorInfo.resx">
+      <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Doctor\frmListDoctors.resx">
       <DependentUpon>frmListDoctors.cs</DependentUpon>
     </EmbeddedResource>
@@ -467,6 +476,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\doctor2 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ID 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Specialization 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Consultation Fees 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WorkingDays 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

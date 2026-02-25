@@ -136,14 +136,17 @@
   <data name="Number 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Number 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Visits 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Visits 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Services2 641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Services2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sign_out 32 -2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign_out 32 -2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Add New User 72" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add New User 72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Services2 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Services2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Password 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Password 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -156,6 +159,9 @@
   </data>
   <data name="ListServices2 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ListServices2 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doctor 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\doctor 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ClinicWallpaper2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ClinicWallpaper2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,6 +177,9 @@
   </data>
   <data name="Applications 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Applications 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Visits 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Visits 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cross 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cross 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,6 +205,9 @@
   <data name="clinic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clinic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ID 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ID 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Save 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -207,9 +219,6 @@
   </data>
   <data name="List Services 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\List Services 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Female 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Female 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Users 2 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Users 2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,8 +259,8 @@
   <data name="Prescription 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Prescription 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Services2 641" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Services2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Specialization 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Specialization 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cross 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cross 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,6 +283,9 @@
   <data name="Users 2 400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Users 2 400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Consultation Fees 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Consultation Fees 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Doctors 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Doctors 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -286,8 +298,8 @@
   <data name="edit 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Services2 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Services2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Female 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Female 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Services 64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Services 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -364,7 +376,7 @@
   <data name="SearchPerson" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SearchPerson.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="doctor 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\doctor 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WorkingDays 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WorkingDays 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
