@@ -104,7 +104,7 @@ namespace Clinic.Doctor
                 //in this case we deal with integer not string.
                 _dtDoctors.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
             else
-                _dtDoctors.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
+                _dtDoctors.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", FilterColumn, txtFilterValue.Text.Trim());
 
             lblRecordsCount.Text = dgvDoctors.Rows.Count.ToString();
         }
@@ -148,6 +148,14 @@ namespace Clinic.Doctor
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cbFilterBy.SelectedIndex == 0 ||  cbFilterBy.SelectedIndex == 1)
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
         }
     }
 }
