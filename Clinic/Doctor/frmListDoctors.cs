@@ -152,7 +152,7 @@ namespace Clinic.Doctor
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(cbFilterBy.SelectedIndex == 0 ||  cbFilterBy.SelectedIndex == 1)
+            if(cbFilterBy.SelectedIndex == 1 ||  cbFilterBy.SelectedIndex == 2)//1 -> person id , 2 -> doctor id
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
