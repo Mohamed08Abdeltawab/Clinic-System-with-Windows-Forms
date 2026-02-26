@@ -43,7 +43,7 @@ namespace Clinic.People.Controls
             set
             {
                 _FilterEnabled = value;
-                gbFilters.Visible = _FilterEnabled;
+                gbFilters.Enabled = _FilterEnabled;
             }
         }
 

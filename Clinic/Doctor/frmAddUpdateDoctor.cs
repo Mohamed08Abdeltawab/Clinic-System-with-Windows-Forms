@@ -48,7 +48,6 @@ namespace Clinic.Doctor
                 _Doctor = new clsDoctor();
                 ctrlPersonCardWithFilter1.FilterFocus();
                 tpDoctorInfo.Enabled = false;
-                chkWorkingDays.ClearSelected();
                 
             }
             else
@@ -65,15 +64,19 @@ namespace Clinic.Doctor
 
         public void ReadSelectedDays()
         {
-            if (_Doctor.WorkingDays == "Not Avilable")
+            // 1. حماية من الـ Null عشان البرنامج ميعملش كراش
+            if (string.IsNullOrEmpty(_Doctor.WorkingDays) || _Doctor.WorkingDays == "Not Avilable")
                 return;
-            string[] SelectedDays = _Doctor.WorkingDays.ToString()
-                                .Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0;i<chkWorkingDays.Items.Count;i++)
+            // شلنا ToString لأننا تأكدنا إنه مش Null
+            string[] SelectedDays = _Doctor.WorkingDays.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < chkWorkingDays.Items.Count; i++)
             {
-                string shortDayName = chkWorkingDays.Items[i].ToString();
-                if(SelectedDays.Contains(shortDayName))
+                // 2. هنا صلحنا البج: بناخد أول 3 حروف عشان المقارنة تنجح
+                string shortDayName = chkWorkingDays.Items[i].ToString().Substring(0, 3);
+
+                if (SelectedDays.Contains(shortDayName))
                 {
                     chkWorkingDays.SetItemChecked(i, true);
                 }
@@ -251,7 +254,17 @@ namespace Clinic.Doctor
 
         private void txtConsultationFees_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            // السماح بالأرقام، وأزرار التحكم (زي الباك سبيس)، والعلامة العشرية
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // منع كتابة العلامة العشرية أكتر من مرة في نفس المربع
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
