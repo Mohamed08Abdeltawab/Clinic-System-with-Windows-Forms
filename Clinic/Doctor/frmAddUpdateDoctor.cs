@@ -65,6 +65,8 @@ namespace Clinic.Doctor
 
         public void ReadSelectedDays()
         {
+            if (_Doctor.WorkingDays == "Not Avilable")
+                return;
             string[] SelectedDays = _Doctor.WorkingDays.ToString()
                                 .Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -126,7 +128,7 @@ namespace Clinic.Doctor
             if (ctrlPersonCardWithFilter1.PersonID != -1)
             {
 
-                if (clsUser.isUserExistForPersonID(ctrlPersonCardWithFilter1.PersonID))
+                if (clsDoctor.IsDoctorExistForPersonID(ctrlPersonCardWithFilter1.PersonID))
                 {
 
                     MessageBox.Show("Selected Person already a Doctor, choose another one.", "Select another Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -160,8 +162,12 @@ namespace Clinic.Doctor
                 string shortName = item.ToString().Substring(0, 3);
                 shortDays.Add(shortName);
             }
-
-            return string.Join(", ", shortDays);
+            if(chkWorkingDays.CheckedItems.Count > 0)
+            {
+                return string.Join(", ", shortDays);
+            }
+            else
+                { return "Not Avilable"; }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -178,6 +184,15 @@ namespace Clinic.Doctor
             _Doctor.PersonID = ctrlPersonCardWithFilter1.PersonID;
             _Doctor.Specialization = txtSpecialization.Text.Trim();
             _Doctor.ConsultationFees = Convert.ToDecimal(txtConsultationFees.Text.Trim());
+
+            if (chkWorkingDays.CheckedItems.Count < 1)
+            {
+                chkWorkingDays.Focus();
+                if (MessageBox.Show("Do you want to complete without giving a Working Days for this Doctor!", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                {
+                    return; 
+                }
+            }
             _Doctor.WorkingDays = SelectedDays();
 
 
@@ -236,7 +251,7 @@ namespace Clinic.Doctor
 
         private void txtConsultationFees_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
