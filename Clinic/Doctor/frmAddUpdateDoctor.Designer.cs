@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnApplicationInfoNext = new System.Windows.Forms.Button();
+            this.btnDoctorNext = new System.Windows.Forms.Button();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
             this.lblTitle = new System.Windows.Forms.Label();
             this.tcDoctorInfo = new System.Windows.Forms.TabControl();
-            this.tpApplicationInfo = new System.Windows.Forms.TabPage();
+            this.tpDoctorInfo = new System.Windows.Forms.TabPage();
+            this.txtConsultationFees = new System.Windows.Forms.TextBox();
+            this.txtSpecialization = new System.Windows.Forms.TextBox();
+            this.chkWorkingDays = new System.Windows.Forms.CheckedListBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblDoctorID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chkWorkingDays = new System.Windows.Forms.CheckedListBox();
-            this.txtSpecialization = new System.Windows.Forms.TextBox();
-            this.txtConsultationFees = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.ctrlPersonCardWithFilter1 = new Clinic.People.Controls.ctrlPersonCardWithFilter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tpPersonalInfo.SuspendLayout();
             this.tcDoctorInfo.SuspendLayout();
-            this.tpApplicationInfo.SuspendLayout();
+            this.tpDoctorInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -63,13 +66,14 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(599, 598);
+            this.btnClose.Location = new System.Drawing.Point(604, 589);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 37);
             this.btnClose.TabIndex = 124;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -77,13 +81,14 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Image = global::Clinic.Properties.Resources.Save_32;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(733, 598);
+            this.btnSave.Location = new System.Drawing.Point(738, 589);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 37);
             this.btnSave.TabIndex = 123;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // pictureBox2
             // 
@@ -95,23 +100,24 @@
             this.pictureBox2.TabIndex = 144;
             this.pictureBox2.TabStop = false;
             // 
-            // btnApplicationInfoNext
+            // btnDoctorNext
             // 
-            this.btnApplicationInfoNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnApplicationInfoNext.Image = global::Clinic.Properties.Resources.Next_32;
-            this.btnApplicationInfoNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnApplicationInfoNext.Location = new System.Drawing.Point(705, 395);
-            this.btnApplicationInfoNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnApplicationInfoNext.Name = "btnApplicationInfoNext";
-            this.btnApplicationInfoNext.Size = new System.Drawing.Size(126, 37);
-            this.btnApplicationInfoNext.TabIndex = 119;
-            this.btnApplicationInfoNext.Text = "Next";
-            this.btnApplicationInfoNext.UseVisualStyleBackColor = true;
+            this.btnDoctorNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDoctorNext.Image = global::Clinic.Properties.Resources.Next_32;
+            this.btnDoctorNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDoctorNext.Location = new System.Drawing.Point(705, 395);
+            this.btnDoctorNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDoctorNext.Name = "btnDoctorNext";
+            this.btnDoctorNext.Size = new System.Drawing.Size(126, 37);
+            this.btnDoctorNext.TabIndex = 119;
+            this.btnDoctorNext.Text = "Next";
+            this.btnDoctorNext.UseVisualStyleBackColor = true;
+            this.btnDoctorNext.Click += new System.EventHandler(this.btnDoctorNext_Click);
             // 
             // tpPersonalInfo
             // 
             this.tpPersonalInfo.Controls.Add(this.ctrlPersonCardWithFilter1);
-            this.tpPersonalInfo.Controls.Add(this.btnApplicationInfoNext);
+            this.tpPersonalInfo.Controls.Add(this.btnDoctorNext);
             this.tpPersonalInfo.Location = new System.Drawing.Point(4, 29);
             this.tpPersonalInfo.Name = "tpPersonalInfo";
             this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -128,40 +134,104 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(869, 39);
             this.lblTitle.TabIndex = 126;
-            this.lblTitle.Text = "Local Driving License Application";
+            this.lblTitle.Text = "Add New Doctor";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tcDoctorInfo
             // 
             this.tcDoctorInfo.Controls.Add(this.tpPersonalInfo);
-            this.tcDoctorInfo.Controls.Add(this.tpApplicationInfo);
-            this.tcDoctorInfo.Location = new System.Drawing.Point(6, 92);
+            this.tcDoctorInfo.Controls.Add(this.tpDoctorInfo);
+            this.tcDoctorInfo.Location = new System.Drawing.Point(12, 83);
             this.tcDoctorInfo.Name = "tcDoctorInfo";
             this.tcDoctorInfo.SelectedIndex = 0;
             this.tcDoctorInfo.Size = new System.Drawing.Size(856, 498);
             this.tcDoctorInfo.TabIndex = 125;
             // 
-            // tpApplicationInfo
+            // tpDoctorInfo
             // 
-            this.tpApplicationInfo.Controls.Add(this.txtConsultationFees);
-            this.tpApplicationInfo.Controls.Add(this.txtSpecialization);
-            this.tpApplicationInfo.Controls.Add(this.chkWorkingDays);
-            this.tpApplicationInfo.Controls.Add(this.pictureBox3);
-            this.tpApplicationInfo.Controls.Add(this.label6);
-            this.tpApplicationInfo.Controls.Add(this.pictureBox2);
-            this.tpApplicationInfo.Controls.Add(this.pictureBox6);
-            this.tpApplicationInfo.Controls.Add(this.label15);
-            this.tpApplicationInfo.Controls.Add(this.pictureBox4);
-            this.tpApplicationInfo.Controls.Add(this.label5);
-            this.tpApplicationInfo.Controls.Add(this.lblDoctorID);
-            this.tpApplicationInfo.Controls.Add(this.label4);
-            this.tpApplicationInfo.Location = new System.Drawing.Point(4, 29);
-            this.tpApplicationInfo.Name = "tpApplicationInfo";
-            this.tpApplicationInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpApplicationInfo.Size = new System.Drawing.Size(848, 465);
-            this.tpApplicationInfo.TabIndex = 1;
-            this.tpApplicationInfo.Text = "Doctor Info.";
-            this.tpApplicationInfo.UseVisualStyleBackColor = true;
+            this.tpDoctorInfo.Controls.Add(this.txtConsultationFees);
+            this.tpDoctorInfo.Controls.Add(this.txtSpecialization);
+            this.tpDoctorInfo.Controls.Add(this.chkWorkingDays);
+            this.tpDoctorInfo.Controls.Add(this.pictureBox3);
+            this.tpDoctorInfo.Controls.Add(this.label6);
+            this.tpDoctorInfo.Controls.Add(this.pictureBox2);
+            this.tpDoctorInfo.Controls.Add(this.pictureBox6);
+            this.tpDoctorInfo.Controls.Add(this.label15);
+            this.tpDoctorInfo.Controls.Add(this.pictureBox4);
+            this.tpDoctorInfo.Controls.Add(this.label5);
+            this.tpDoctorInfo.Controls.Add(this.lblDoctorID);
+            this.tpDoctorInfo.Controls.Add(this.label4);
+            this.tpDoctorInfo.Location = new System.Drawing.Point(4, 29);
+            this.tpDoctorInfo.Name = "tpDoctorInfo";
+            this.tpDoctorInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpDoctorInfo.Size = new System.Drawing.Size(848, 465);
+            this.tpDoctorInfo.TabIndex = 1;
+            this.tpDoctorInfo.Text = "tpDoctorInfo";
+            this.tpDoctorInfo.UseVisualStyleBackColor = true;
+            // 
+            // txtConsultationFees
+            // 
+            this.txtConsultationFees.Location = new System.Drawing.Point(271, 180);
+            this.txtConsultationFees.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtConsultationFees.MaxLength = 50;
+            this.txtConsultationFees.Name = "txtConsultationFees";
+            this.txtConsultationFees.Size = new System.Drawing.Size(223, 26);
+            this.txtConsultationFees.TabIndex = 151;
+            this.txtConsultationFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConsultationFees_KeyPress);
+            this.txtConsultationFees.Validating += new System.ComponentModel.CancelEventHandler(this.txtConsultationFees_Validating);
+            // 
+            // txtSpecialization
+            // 
+            this.txtSpecialization.Location = new System.Drawing.Point(271, 121);
+            this.txtSpecialization.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSpecialization.MaxLength = 50;
+            this.txtSpecialization.Name = "txtSpecialization";
+            this.txtSpecialization.Size = new System.Drawing.Size(223, 26);
+            this.txtSpecialization.TabIndex = 150;
+            this.txtSpecialization.Validating += new System.ComponentModel.CancelEventHandler(this.txtSpecialization_Validating);
+            // 
+            // chkWorkingDays
+            // 
+            this.chkWorkingDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chkWorkingDays.CheckOnClick = true;
+            this.chkWorkingDays.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWorkingDays.FormattingEnabled = true;
+            this.chkWorkingDays.IntegralHeight = false;
+            this.chkWorkingDays.Items.AddRange(new object[] {
+            "Saturday",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"});
+            this.chkWorkingDays.Location = new System.Drawing.Point(589, 100);
+            this.chkWorkingDays.Name = "chkWorkingDays";
+            this.chkWorkingDays.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chkWorkingDays.Size = new System.Drawing.Size(165, 212);
+            this.chkWorkingDays.TabIndex = 149;
+            this.chkWorkingDays.SelectedIndexChanged += new System.EventHandler(this.chkWorkingDays_SelectedIndexChanged);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Clinic.Properties.Resources.WorkingDays_32;
+            this.pictureBox3.Location = new System.Drawing.Point(723, 52);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 147;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(588, 58);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 20);
+            this.label6.TabIndex = 146;
+            this.label6.Text = "Working Days:";
             // 
             // pictureBox6
             // 
@@ -227,68 +297,9 @@
             this.label4.TabIndex = 128;
             this.label4.Text = "Doctor ID:";
             // 
-            // pictureBox3
+            // errorProvider1
             // 
-            this.pictureBox3.Image = global::Clinic.Properties.Resources.WorkingDays_32;
-            this.pictureBox3.Location = new System.Drawing.Point(723, 52);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 147;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(588, 58);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 20);
-            this.label6.TabIndex = 146;
-            this.label6.Text = "Working Days:";
-            // 
-            // chkWorkingDays
-            // 
-            this.chkWorkingDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chkWorkingDays.CheckOnClick = true;
-            this.chkWorkingDays.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkWorkingDays.FormattingEnabled = true;
-            this.chkWorkingDays.IntegralHeight = false;
-            this.chkWorkingDays.Items.AddRange(new object[] {
-            "Saturday",
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"});
-            this.chkWorkingDays.Location = new System.Drawing.Point(589, 100);
-            this.chkWorkingDays.Name = "chkWorkingDays";
-            this.chkWorkingDays.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkWorkingDays.Size = new System.Drawing.Size(165, 212);
-            this.chkWorkingDays.TabIndex = 149;
-            this.chkWorkingDays.SelectedIndexChanged += new System.EventHandler(this.chkWorkingDays_SelectedIndexChanged);
-            // 
-            // txtSpecialization
-            // 
-            this.txtSpecialization.Location = new System.Drawing.Point(271, 121);
-            this.txtSpecialization.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtSpecialization.MaxLength = 50;
-            this.txtSpecialization.Name = "txtSpecialization";
-            this.txtSpecialization.Size = new System.Drawing.Size(223, 26);
-            this.txtSpecialization.TabIndex = 150;
-            this.txtSpecialization.Validating += new System.ComponentModel.CancelEventHandler(this.txtSpecialization_Validating);
-            // 
-            // txtConsultationFees
-            // 
-            this.txtConsultationFees.Location = new System.Drawing.Point(271, 180);
-            this.txtConsultationFees.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtConsultationFees.MaxLength = 50;
-            this.txtConsultationFees.Name = "txtConsultationFees";
-            this.txtConsultationFees.Size = new System.Drawing.Size(223, 26);
-            this.txtConsultationFees.TabIndex = 151;
-            this.txtConsultationFees.Validating += new System.ComponentModel.CancelEventHandler(this.txtConsultationFees_Validating);
+            this.errorProvider1.ContainerControl = this;
             // 
             // ctrlPersonCardWithFilter1
             // 
@@ -305,7 +316,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 665);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ClientSize = new System.Drawing.Size(881, 649);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTitle);
@@ -314,14 +326,16 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAddUpdateDoctor";
             this.Text = "frmAddUpdateDoctor";
+            this.Load += new System.EventHandler(this.frmAddUpdateDoctor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tpPersonalInfo.ResumeLayout(false);
             this.tcDoctorInfo.ResumeLayout(false);
-            this.tpApplicationInfo.ResumeLayout(false);
-            this.tpApplicationInfo.PerformLayout();
+            this.tpDoctorInfo.ResumeLayout(false);
+            this.tpDoctorInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -331,12 +345,12 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btnApplicationInfoNext;
+        private System.Windows.Forms.Button btnDoctorNext;
         private System.Windows.Forms.TabPage tpPersonalInfo;
         private People.Controls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TabControl tcDoctorInfo;
-        private System.Windows.Forms.TabPage tpApplicationInfo;
+        private System.Windows.Forms.TabPage tpDoctorInfo;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -348,5 +362,6 @@
         private System.Windows.Forms.CheckedListBox chkWorkingDays;
         private System.Windows.Forms.TextBox txtConsultationFees;
         private System.Windows.Forms.TextBox txtSpecialization;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
