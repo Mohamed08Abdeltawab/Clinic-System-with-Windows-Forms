@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Clinic.Doctor
 {
-    public partial class frmFindDoctor : Form
+    public partial class frmDoctorInfo : Form
     {
         private int _DoctorID;
-        public frmFindDoctor(int DoctorID)
+        public frmDoctorInfo(int DoctorID)
         {
             InitializeComponent();
             _DoctorID = DoctorID;

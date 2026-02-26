@@ -84,8 +84,11 @@ namespace Clinic
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmListDoctors frm = new frmListDoctors();
-            frm.ShowDialog();
+            if (clsGlobal.CheckIsAdmin())
+            {
+                frmListDoctors frm = new frmListDoctors();
+                frm.ShowDialog();
+            }
         }
     }
 }

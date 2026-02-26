@@ -1,6 +1,6 @@
 ﻿namespace Clinic.Doctor
 {
-    partial class frmFindDoctor
+    partial class frmDoctorInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlDoctorInfo1 = new Clinic.Doctor.ctrlDoctorInfo();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlDoctorInfo1 = new Clinic.Doctor.ctrlDoctorInfo();
             this.SuspendLayout();
-            // 
-            // ctrlDoctorInfo1
-            // 
-            this.ctrlDoctorInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlDoctorInfo1.Location = new System.Drawing.Point(4, 14);
-            this.ctrlDoctorInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlDoctorInfo1.Name = "ctrlDoctorInfo1";
-            this.ctrlDoctorInfo1.Size = new System.Drawing.Size(842, 453);
-            this.ctrlDoctorInfo1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -55,6 +46,15 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // ctrlDoctorInfo1
+            // 
+            this.ctrlDoctorInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlDoctorInfo1.Location = new System.Drawing.Point(4, 14);
+            this.ctrlDoctorInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlDoctorInfo1.Name = "ctrlDoctorInfo1";
+            this.ctrlDoctorInfo1.Size = new System.Drawing.Size(842, 445);
+            this.ctrlDoctorInfo1.TabIndex = 0;
             // 
             // frmFindDoctor
             // 

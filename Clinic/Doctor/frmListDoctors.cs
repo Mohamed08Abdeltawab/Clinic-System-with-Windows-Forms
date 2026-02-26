@@ -120,9 +120,11 @@ namespace Clinic.Doctor
             }
         }
 
-        private void btnAddPerson_Click(object sender, EventArgs e)
+        private void btnAddDoctor_Click(object sender, EventArgs e)
         {
-            //
+            frmAddUpdateDoctor frm = new frmAddUpdateDoctor();
+            frm.ShowDialog();
+            frmListDoctors_Load(null, null);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -132,22 +134,41 @@ namespace Clinic.Doctor
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            int PersonID = (int)dgvDoctors.CurrentRow.Cells[0].Value;
+            frmDoctorInfo frm = new frmDoctorInfo(PersonID);
+            frm.ShowDialog();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //
+            frmAddUpdateDoctor frm = new frmAddUpdateDoctor();
+            frm.ShowDialog();
+            frmListDoctors_Load(null, null);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            int PersonID = (int)dgvDoctors.CurrentRow.Cells[0].Value;
+            frmAddUpdateDoctor frm = new frmAddUpdateDoctor(PersonID);
+            frm.ShowDialog();
+            frmListDoctors_Load(null, null);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //
+            int DoctorID = (int)dgvDoctors.CurrentRow.Cells[0].Value;
+            if(MessageBox.Show("Are you sure you want delete this Doctor!","Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (clsDoctor.DeleteDoctor(DoctorID))
+                {
+                    MessageBox.Show("Doctor has been deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmListDoctors_Load(null, null);
+                }
+
+                else
+                    MessageBox.Show("Doctor is not delted due to data connected to it.", "Faild", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -157,5 +178,7 @@ namespace Clinic.Doctor
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
         }
+
+        
     }
 }
