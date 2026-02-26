@@ -52,6 +52,12 @@
     <Compile Include="Doctor\ctrlDoctorInfo.Designer.cs">
       <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Doctor\frmAddUpdateDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doctor\frmAddUpdateDoctor.Designer.cs">
+      <DependentUpon>frmAddUpdateDoctor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\frmFindDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </Compile>
     <EmbeddedResource Include="Doctor\ctrlDoctorInfo.resx">
       <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\frmAddUpdateDoctor.resx">
+      <DependentUpon>frmAddUpdateDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Doctor\frmFindDoctor.resx">
       <DependentUpon>frmFindDoctor.cs</DependentUpon>
