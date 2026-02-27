@@ -16,10 +16,10 @@ namespace Clinicbusiness
         public int DoctorID { set; get; }
         public int PersonID { set; get; }
         public string Specialization { set; get; }
-
-        // الخصائص الجديدة
         public decimal ConsultationFees { set; get; }
-        public string WorkingDays { set; get; }
+
+        // 🌟 الخاصية الجديدة للتعامل مع أيام العمل كقائمة من الأرقام
+        public List<byte> WorkingDaysIDs { set; get; }
 
         public clsPerson PersonInfo;
 
@@ -29,38 +29,61 @@ namespace Clinicbusiness
             this.PersonID = -1;
             this.Specialization = "";
             this.ConsultationFees = 0;
-            this.WorkingDays = "";
+
+            // تهيئة القائمة لتجنب خطأ NullReferenceException
+            this.WorkingDaysIDs = new List<byte>();
+
             Mode = enMode.AddNew;
         }
 
-        private clsDoctor(int DoctorID, int PersonID, string Specialization,
-                          decimal ConsultationFees, string WorkingDays)
+        private clsDoctor(int DoctorID, int PersonID, string Specialization, decimal ConsultationFees)
         {
             this.DoctorID = DoctorID;
             this.PersonID = PersonID;
             this.Specialization = Specialization;
             this.ConsultationFees = ConsultationFees;
-            this.WorkingDays = WorkingDays;
+
+            this.WorkingDaysIDs = new List<byte>();
 
             this.PersonInfo = clsPerson.Find(PersonID);
-
             Mode = enMode.Update;
         }
 
         private bool _AddNewDoctor()
         {
-            // تمرير الحقول الجديدة للـ Data Layer
-            this.DoctorID = clsDoctorData.AddNewDoctor(this.PersonID, this.Specialization,
-                this.ConsultationFees, this.WorkingDays);
+            // 1. إضافة الطبيب الأساسي أولاً للحصول على الـ ID الخاص به
+            this.DoctorID = clsDoctorData.AddNewDoctor(this.PersonID, this.Specialization, this.ConsultationFees);
 
-            return (this.DoctorID != -1);
+            if (this.DoctorID != -1)
+            {
+                // 2. بعد نجاح إضافة الطبيب، نحفظ أيام عمله في الجدول الوسيط
+                foreach (byte DayID in this.WorkingDaysIDs)
+                {
+                    clsDoctorData.AddDoctorWorkingDay(this.DoctorID, DayID);
+                }
+                return true;
+            }
+            return false;
         }
 
         private bool _UpdateDoctor()
         {
-            // تمرير الحقول الجديدة للـ Data Layer
-            return clsDoctorData.UpdateDoctor(this.DoctorID, this.PersonID, this.Specialization,
-                this.ConsultationFees, this.WorkingDays);
+            // 1. تحديث بيانات الطبيب الأساسية
+            bool isUpdated = clsDoctorData.UpdateDoctor(this.DoctorID, this.PersonID, this.Specialization, this.ConsultationFees);
+
+            if (isUpdated)
+            {
+                // 2. مسح كل الأيام القديمة لهذا الطبيب من الجدول الوسيط
+                clsDoctorData.DeleteDoctorWorkingDays(this.DoctorID);
+
+                // 3. إدخال الأيام الجديدة الموجودة في القائمة الحالية
+                foreach (byte DayID in this.WorkingDaysIDs)
+                {
+                    clsDoctorData.AddDoctorWorkingDay(this.DoctorID, DayID);
+                }
+                return true;
+            }
+            return false;
         }
 
         public static clsDoctor Find(int DoctorID)
@@ -68,13 +91,22 @@ namespace Clinicbusiness
             int PersonID = -1;
             string Specialization = "";
             decimal ConsultationFees = 0;
-            string WorkingDays = "";
 
-            bool IsFound = clsDoctorData.GetDoctorInfoByID(DoctorID, ref PersonID, ref Specialization,
-                ref ConsultationFees, ref WorkingDays);
+            bool IsFound = clsDoctorData.GetDoctorInfoByID(DoctorID, ref PersonID, ref Specialization, ref ConsultationFees);
 
             if (IsFound)
-                return new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees, WorkingDays);
+            {
+                clsDoctor doctor = new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees);
+
+                // 🌟 جلب أيام العمل وتعبئتها في القائمة
+                DataTable dtDays = clsDoctorData.GetDoctorWorkingDays(DoctorID);
+                foreach (DataRow row in dtDays.Rows)
+                {
+                    doctor.WorkingDaysIDs.Add((byte)row["DayID"]);
+                }
+
+                return doctor;
+            }
             else
                 return null;
         }
@@ -84,13 +116,22 @@ namespace Clinicbusiness
             int DoctorID = -1;
             string Specialization = "";
             decimal ConsultationFees = 0;
-            string WorkingDays = "";
 
-            bool IsFound = clsDoctorData.GetDoctorInfoByPersonID(PersonID, ref DoctorID, ref Specialization,
-                ref ConsultationFees, ref WorkingDays);
+            bool IsFound = clsDoctorData.GetDoctorInfoByPersonID(PersonID, ref DoctorID, ref Specialization, ref ConsultationFees);
 
             if (IsFound)
-                return new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees, WorkingDays);
+            {
+                clsDoctor doctor = new clsDoctor(DoctorID, PersonID, Specialization, ConsultationFees);
+
+                // 🌟 جلب أيام العمل وتعبئتها في القائمة
+                DataTable dtDays = clsDoctorData.GetDoctorWorkingDays(DoctorID);
+                foreach (DataRow row in dtDays.Rows)
+                {
+                    doctor.WorkingDaysIDs.Add((byte)row["DayID"]);
+                }
+
+                return doctor;
+            }
             else
                 return null;
         }

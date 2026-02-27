@@ -5,23 +5,18 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClinicData;
 
 namespace ClinicData
 {
     public class clsDoctorData
     {
         public static bool GetDoctorInfoByID(int DoctorID, ref int PersonID, ref string Specialization,
-            ref decimal ConsultationFees, ref string WorkingDays)
+            ref decimal ConsultationFees)
         {
             bool isFound = false;
-
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT * FROM Doctors WHERE DoctorID = @DoctorID";
-
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
             try
@@ -31,27 +26,16 @@ namespace ClinicData
 
                 if (reader.Read())
                 {
-                    // The record was found
                     isFound = true;
-
                     PersonID = (int)reader["PersonID"];
                     Specialization = (string)reader["Specialization"];
-
-                    // smallmoney maps to decimal
                     ConsultationFees = (decimal)reader["ConsultationFees"];
-                    WorkingDays = (string)reader["WorkingDays"];
+                    // تم إزالة WorkingDays من هنا
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -63,16 +47,12 @@ namespace ClinicData
         }
 
         public static bool GetDoctorInfoByPersonID(int PersonID, ref int DoctorID, ref string Specialization,
-            ref decimal ConsultationFees, ref string WorkingDays)
+            ref decimal ConsultationFees)
         {
             bool isFound = false;
-
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT * FROM Doctors WHERE PersonID = @PersonID";
-
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@PersonID", PersonID);
 
             try
@@ -82,27 +62,16 @@ namespace ClinicData
 
                 if (reader.Read())
                 {
-                    // The record was found
                     isFound = true;
-
                     DoctorID = (int)reader["DoctorID"];
                     Specialization = (string)reader["Specialization"];
-
-                    // الحقول الجديدة
                     ConsultationFees = (decimal)reader["ConsultationFees"];
-                    WorkingDays = (string)reader["WorkingDays"];
+                    // تم إزالة WorkingDays من هنا
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -113,15 +82,13 @@ namespace ClinicData
             return isFound;
         }
 
-        public static int AddNewDoctor(int PersonID, string Specialization, decimal ConsultationFees, string WorkingDays)
+        public static int AddNewDoctor(int PersonID, string Specialization, decimal ConsultationFees)
         {
-            //this function will return the new doctor id if succeeded and -1 if not.
             int DoctorID = -1;
-
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Doctors (PersonID, Specialization, ConsultationFees, WorkingDays)
-                             VALUES (@PersonID, @Specialization, @ConsultationFees, @WorkingDays);
+            string query = @"INSERT INTO Doctors (PersonID, Specialization, ConsultationFees)
+                             VALUES (@PersonID, @Specialization, @ConsultationFees);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -129,12 +96,10 @@ namespace ClinicData
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Specialization", Specialization);
             command.Parameters.AddWithValue("@ConsultationFees", ConsultationFees);
-            command.Parameters.AddWithValue("@WorkingDays", WorkingDays);
 
             try
             {
                 connection.Open();
-
                 object result = command.ExecuteScalar();
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
@@ -144,7 +109,6 @@ namespace ClinicData
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -154,7 +118,7 @@ namespace ClinicData
             return DoctorID;
         }
 
-        public static bool UpdateDoctor(int DoctorID, int PersonID, string Specialization, decimal ConsultationFees, string WorkingDays)
+        public static bool UpdateDoctor(int DoctorID, int PersonID, string Specialization, decimal ConsultationFees)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -162,8 +126,7 @@ namespace ClinicData
             string query = @"Update Doctors  
                              set PersonID = @PersonID,
                                  Specialization = @Specialization,
-                                 ConsultationFees = @ConsultationFees,
-                                 WorkingDays = @WorkingDays
+                                 ConsultationFees = @ConsultationFees
                              where DoctorID = @DoctorID";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -171,7 +134,6 @@ namespace ClinicData
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Specialization", Specialization);
             command.Parameters.AddWithValue("@ConsultationFees", ConsultationFees);
-            command.Parameters.AddWithValue("@WorkingDays", WorkingDays);
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
             try
@@ -181,7 +143,6 @@ namespace ClinicData
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -197,11 +158,11 @@ namespace ClinicData
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
+            // تم إزالة عمود WorkingDays من الاستعلام
             string query = @"SELECT Doctors.DoctorID, Doctors.PersonID,
                              People.FullName,
                              Doctors.Specialization,
-                             Doctors.ConsultationFees,
-                             Doctors.WorkingDays
+                             Doctors.ConsultationFees
                              FROM Doctors INNER JOIN
                                   People ON Doctors.PersonID = People.PersonID";
 
@@ -210,19 +171,16 @@ namespace ClinicData
             try
             {
                 connection.Open();
-
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     dt.Load(reader);
                 }
-
                 reader.Close();
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -236,13 +194,12 @@ namespace ClinicData
         {
             int rowsAffected = 0;
 
+            // 🌟 خطوة هامة جداً: مسح أيام عمل الطبيب أولاً من الجدول الوسيط لمنع خطأ الـ Foreign Key
+            DeleteDoctorWorkingDays(DoctorID);
+
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"Delete Doctors 
-                             where DoctorID = @DoctorID";
-
+            string query = @"Delete Doctors where DoctorID = @DoctorID";
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
             try
@@ -252,7 +209,6 @@ namespace ClinicData
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -265,11 +221,85 @@ namespace ClinicData
         public static bool IsDoctorExist(int DoctorID)
         {
             bool isFound = false;
-
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
             string query = "SELECT Found=1 FROM Doctors WHERE DoctorID = @DoctorID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                isFound = reader.HasRows;
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
+        public static bool IsDoctorExistByPersonID(int PersonID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Doctors WHERE PersonID = @PersonID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                isFound = reader.HasRows;
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
+        // ===================================================================
+        // 🌟 الدوال الجديدة الخاصة بجدول أيام عمل الأطباء (DoctorWorkingDays)
+        // ===================================================================
+
+        public static bool AddDoctorWorkingDay(int DoctorID, byte DayID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "INSERT INTO DoctorWorkingDays (DoctorID, DayID) VALUES (@DoctorID, @DayID)";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+            command.Parameters.AddWithValue("@DayID", DayID);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex) { return false; }
+            finally { connection.Close(); }
+
+            return (rowsAffected > 0);
+        }
+
+        public static bool DeleteDoctorWorkingDays(int DoctorID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "DELETE FROM DoctorWorkingDays WHERE DoctorID = @DoctorID";
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@DoctorID", DoctorID);
@@ -277,57 +307,42 @@ namespace ClinicData
             try
             {
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                isFound = reader.HasRows;
-
-                reader.Close();
+                rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            catch (Exception ex) { return false; }
+            finally { connection.Close(); }
 
-            return isFound;
+            return (rowsAffected > 0);
         }
 
-        public static bool IsDoctorExistByPersonID(int PersonID)
+        public static DataTable GetDoctorWorkingDays(int DoctorID)
         {
-            bool isFound = false;
-
+            DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Doctors WHERE PersonID = @PersonID";
+            // نجلب بيانات الأيام المرتبطة بهذا الطبيب
+            string query = @"SELECT DaysOfWeek.DayID, DaysOfWeek.DayName 
+                             FROM DoctorWorkingDays 
+                             INNER JOIN DaysOfWeek ON DoctorWorkingDays.DayID = DaysOfWeek.DayID
+                             WHERE DoctorID = @DoctorID";
 
             SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
 
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
-                isFound = reader.HasRows;
-
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
                 reader.Close();
             }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            catch (Exception ex) { }
+            finally { connection.Close(); }
 
-            return isFound;
+            return dt;
         }
     }
 }
