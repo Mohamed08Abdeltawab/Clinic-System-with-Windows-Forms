@@ -44,6 +44,9 @@ namespace Clinic.Doctor
                 dgvDoctors.Columns[4].HeaderText = "Consultation Fees";
                 dgvDoctors.Columns[4].Width = 130;
 
+                dgvDoctors.Columns[5].HeaderText = "Working Days";
+                dgvDoctors.Columns[5].Width = 200;
+
                 // تم إزالة عمود WorkingDays من هنا لأنه لم يعد موجوداً في الـ DataTable الأساسي
             }
         }
@@ -68,10 +71,6 @@ namespace Clinic.Doctor
 
                 case "Specialization":
                     FilterColumn = "Specialization";
-                    break;
-
-                case "Consultation Fees":
-                    FilterColumn = "ConsultationFees";
                     break;
 
                 // تم إزالة فلتر WorkingDays لأنه يحتاج Query خاص بسبب الجدول الوسيط
@@ -100,12 +99,19 @@ namespace Clinic.Doctor
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFilterValue.Visible = (cbFilterBy.Text != "None");
+            txtFilterValue.Visible = (cbFilterBy.Text != "None" || cbFilterBy.Text != "Working Days");
 
             if (txtFilterValue.Visible)
             {
+                cbWorkingDay.Visible = false;
                 txtFilterValue.Text = "";
                 txtFilterValue.Focus();
+            }
+            if(cbFilterBy.Text == "Working Days")
+            {
+                cbWorkingDay.SelectedIndex = 0;
+                cbWorkingDay.Visible = true;
+                txtFilterValue.Visible = false;
             }
         }
 
@@ -166,10 +172,25 @@ namespace Clinic.Doctor
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cbFilterBy.SelectedIndex == 1 || cbFilterBy.SelectedIndex == 2)//1 -> Doctor ID , 2 -> Person ID
+            if (cbFilterBy.Text == "Doctor ID" || cbFilterBy.Text == "Person ID")//
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
+        }
+
+        private void cbWorkingDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string FilterValue = cbWorkingDay.Text;
+            
+            if (FilterValue == "All")
+            {
+                _dtDoctors.DefaultView.RowFilter = "";
+            }
+            else
+                _dtDoctors.DefaultView.RowFilter = string.Format("[WorkingDays] LIKE '%{0}%'", FilterValue);
+
+            lblRecordsCount.Text = dgvDoctors.Rows.Count.ToString();
+
         }
     }
 }

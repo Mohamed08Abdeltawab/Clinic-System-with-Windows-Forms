@@ -107,7 +107,7 @@ namespace Clinic.Doctor
                 //this.Close();
                 return;
             }
-
+            lblDoctorID.Text = _Doctor.DoctorID.ToString();
             ctrlPersonCardWithFilter1.LoadPersonData(_Doctor.PersonID);
             txtSpecialization.Text = _Doctor.Specialization.ToString();
             txtConsultationFees.Text = _Doctor.ConsultationFees.ToString();

@@ -159,12 +159,24 @@ namespace ClinicData
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             // تم إزالة عمود WorkingDays من الاستعلام
-            string query = @"SELECT Doctors.DoctorID, Doctors.PersonID,
-                             People.FullName,
-                             Doctors.Specialization,
-                             Doctors.ConsultationFees
-                             FROM Doctors INNER JOIN
-                                  People ON Doctors.PersonID = People.PersonID";
+            string query = @"
+                            SELECT 
+                                Doctors.DoctorID, 
+                                Doctors.PersonID,
+                                People.FullName,
+                                Doctors.Specialization,
+                                Doctors.ConsultationFees,
+                                ISNULL(STRING_AGG(DaysOfWeek.DayName, ', '), 'Not Available') AS WorkingDays
+                            FROM Doctors 
+                            INNER JOIN People ON Doctors.PersonID = People.PersonID
+                            LEFT JOIN DoctorWorkingDays ON Doctors.DoctorID = DoctorWorkingDays.DoctorID
+                            LEFT JOIN DaysOfWeek ON DoctorWorkingDays.DayID = DaysOfWeek.DayID
+                            GROUP BY 
+                                Doctors.DoctorID, 
+                                Doctors.PersonID,
+                                People.FullName,
+                                Doctors.Specialization,
+                                Doctors.ConsultationFees";
 
             SqlCommand command = new SqlCommand(query, connection);
 
