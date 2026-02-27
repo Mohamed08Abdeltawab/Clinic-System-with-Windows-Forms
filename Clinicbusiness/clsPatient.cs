@@ -13,13 +13,48 @@ namespace Clinicbusiness
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        // إضافة Enum فصائل الدم هنا ليكون متاحاً لطبقة الواجهة (UI)
+        public enum enBloodType : byte
+        {
+            Unknown = 0,
+            A_Plus = 1,
+            A_Minus = 2,
+            B_Plus = 3,
+            B_Minus = 4,
+            AB_Plus = 5,
+            AB_Minus = 6,
+            O_Plus = 7,
+            O_Minus = 8
+        }
+
         public int PatientID { set; get; }
         public int PersonID { set; get; }
 
-        // الخصائص الجديدة
         public string MedicalHistory { set; get; }
-        public string BloodType { set; get; }
-        public string EmergencyContact { set; get; } // Assuming string for simplicity (phone number)
+
+        // تعديل نوع BloodType إلى byte ليتوافق مع Data Layer
+        public byte BloodType { set; get; }
+
+        public string BloodTypeName
+        {
+            get
+            {
+                switch ((enBloodType)this.BloodType)
+                {
+                    case enBloodType.A_Plus: return "A+";
+                    case enBloodType.A_Minus: return "A-";
+                    case enBloodType.B_Plus: return "B+";
+                    case enBloodType.B_Minus: return "B-";
+                    case enBloodType.AB_Plus: return "AB+";
+                    case enBloodType.AB_Minus: return "AB-";
+                    case enBloodType.O_Plus: return "O+";
+                    case enBloodType.O_Minus: return "O-";
+                    default: return "Unknown";
+                }
+            }
+        }
+
+        public string EmergencyContact { set; get; }
 
         public clsPerson PersonInfo;
 
@@ -28,13 +63,14 @@ namespace Clinicbusiness
             this.PatientID = -1;
             this.PersonID = -1;
             this.MedicalHistory = "";
-            this.BloodType = "";
+            this.BloodType = 0; // 0 تعني Unknown كقيمة افتراضية
             this.EmergencyContact = "";
             Mode = enMode.AddNew;
         }
 
+        // تعديل باراميتر BloodType إلى byte
         private clsPatient(int PatientID, int PersonID, string MedicalHistory,
-                           string BloodType, string EmergencyContact)
+                           byte BloodType, string EmergencyContact)
         {
             this.PatientID = PatientID;
             this.PersonID = PersonID;
@@ -49,7 +85,6 @@ namespace Clinicbusiness
 
         private bool _AddNewPatient()
         {
-            // تمرير الحقول الجديدة للـ Data Layer
             this.PatientID = clsPatientData.AddNewPatient(this.PersonID, this.MedicalHistory,
                 this.BloodType, this.EmergencyContact);
 
@@ -58,7 +93,6 @@ namespace Clinicbusiness
 
         private bool _UpdatePatient()
         {
-            // تمرير الحقول الجديدة للـ Data Layer
             return clsPatientData.UpdatePatient(this.PatientID, this.PersonID,
                 this.MedicalHistory, this.BloodType, this.EmergencyContact);
         }
@@ -67,7 +101,7 @@ namespace Clinicbusiness
         {
             int PersonID = -1;
             string MedicalHistory = "";
-            string BloodType = "";
+            byte BloodType = 0; // تعديل إلى byte
             string EmergencyContact = "";
 
             bool IsFound = clsPatientData.GetPatientInfoByID(PatientID, ref PersonID,
@@ -83,7 +117,7 @@ namespace Clinicbusiness
         {
             int PatientID = -1;
             string MedicalHistory = "";
-            string BloodType = "";
+            byte BloodType = 0; // تعديل إلى byte
             string EmergencyContact = "";
 
             bool IsFound = clsPatientData.GetPatientInfoByPersonID(PersonID, ref PatientID,
