@@ -27,19 +27,19 @@ namespace Clinic.Patient
         }
 
 
-        public void LoadDoctorInfo(int PatientID)
+        public void LoadPatientInfo(int PatientID)
         {
             _Patient = clsPatient.Find(PatientID);
             if (_Patient == null)
             {
-                _ResetPersonInfo();
+                _ResetPatientInfo();
                 MessageBox.Show($"No Patient with ID: {PatientID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            _FillDoctorInfo();
+            _FillPatientInfo();
         }
 
-        private void _FillDoctorInfo()
+        private void _FillPatientInfo()
         {
 
             ctrlPersonCard1.LoadInfo(_Patient.PersonID);
@@ -50,7 +50,7 @@ namespace Clinic.Patient
 
         }
 
-        private void _ResetPersonInfo()
+        private void _ResetPatientInfo()
         {
 
             ctrlPersonCard1.ResetPersonInfo();

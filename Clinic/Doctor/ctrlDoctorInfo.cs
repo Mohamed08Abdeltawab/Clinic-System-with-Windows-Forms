@@ -31,7 +31,7 @@ namespace Clinic.Doctor
             _Doctor = clsDoctor.Find(DoctorID);
             if( _Doctor == null )
             {
-                _ResetPersonInfo();
+                _ResetDoctorInfo();
                 MessageBox.Show($"No Doctor with ID: {DoctorID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -49,7 +49,7 @@ namespace Clinic.Doctor
 
         }
 
-        private void _ResetPersonInfo()
+        private void _ResetDoctorInfo()
         {
 
             ctrlPersonCard1.ResetPersonInfo();

@@ -104,6 +104,12 @@
     <Compile Include="Patient\ctrlPatientInfo.Designer.cs">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patient\frmPatientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient\frmPatientInfo.Designer.cs">
+      <DependentUpon>frmPatientInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="People\Controls\ctrlPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Patient\ctrlPatientInfo.resx">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient\frmPatientInfo.resx">
+      <DependentUpon>frmPatientInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\Controls\ctrlPersonCard.resx">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
