@@ -193,6 +193,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BloodType_32 {
+            get {
+                object obj = ResourceManager.GetObject("BloodType 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Calendar_32 {
             get {
                 object obj = ResourceManager.GetObject("Calendar 32", resourceCulture);
@@ -433,6 +443,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Emergency_Contact_32 {
+            get {
+                object obj = ResourceManager.GetObject("Emergency Contact 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Female_512 {
             get {
                 object obj = ResourceManager.GetObject("Female 512", resourceCulture);
@@ -556,6 +576,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Mange_Services3_64 {
             get {
                 object obj = ResourceManager.GetObject("Mange Services3 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Medical_History_32 {
+            get {
+                object obj = ResourceManager.GetObject("Medical History 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
