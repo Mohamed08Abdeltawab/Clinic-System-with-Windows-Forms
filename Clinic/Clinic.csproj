@@ -104,6 +104,12 @@
     <Compile Include="Patient\ctrlPatientInfo.Designer.cs">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patient\frmAddUpdatePatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient\frmAddUpdatePatient.Designer.cs">
+      <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Patient\frmPatientInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Patient\ctrlPatientInfo.resx">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient\frmAddUpdatePatient.resx">
+      <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Patient\frmPatientInfo.resx">
       <DependentUpon>frmPatientInfo.cs</DependentUpon>
