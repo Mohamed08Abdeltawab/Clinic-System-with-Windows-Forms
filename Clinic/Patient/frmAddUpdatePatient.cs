@@ -18,6 +18,13 @@ namespace Clinic.Patient
         private enMode _Mode;
         private int _PatientID = -1;
         clsPatient _Patient;
+
+        public frmAddUpdatePatient()
+        {
+            InitializeComponent();
+            _Mode = enMode.AddNew;
+        }
+
         public frmAddUpdatePatient(int PatientID)
         {
             InitializeComponent();
@@ -79,7 +86,7 @@ namespace Clinic.Patient
             {
                 btnSave.Enabled = true;
                 tpPatientInfo.Enabled = true;
-                tcPatientInfo.SelectedTab = tcPatientInfo.TabPages["tpDoctorInfo"];
+                tcPatientInfo.SelectedTab = tcPatientInfo.TabPages["tpPatientInfo"];
                 return;
             }
 
@@ -95,7 +102,7 @@ namespace Clinic.Patient
                 {
                     btnSave.Enabled = true;
                     tpPatientInfo.Enabled = true;
-                    tcPatientInfo.SelectedTab = tcPatientInfo.TabPages["tpDoctorInfo"];
+                    tcPatientInfo.SelectedTab = tcPatientInfo.TabPages["tpPatientInfo"];
                 }
             }
             else
