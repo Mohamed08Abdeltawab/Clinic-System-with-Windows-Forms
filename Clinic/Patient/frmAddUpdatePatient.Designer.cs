@@ -295,6 +295,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAddUpdatePatient";
             this.Text = "frmAddUpdatePatient";
+            this.Load += new System.EventHandler(this.frmAddUpdatePatient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tpPatientInfo.ResumeLayout(false);
             this.tpPatientInfo.PerformLayout();

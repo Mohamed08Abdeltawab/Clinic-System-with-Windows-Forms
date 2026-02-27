@@ -16,5 +16,10 @@ namespace Clinic.Patient
         {
             InitializeComponent();
         }
+
+        private void frmAddUpdatePatient_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
