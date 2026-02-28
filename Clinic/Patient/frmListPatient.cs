@@ -35,10 +35,10 @@ namespace Clinic.Patient
                 dgvPatient.Columns[1].Width = 110;
 
                 dgvPatient.Columns[2].HeaderText = "Full Name";
-                dgvPatient.Columns[2].Width = 320;
+                dgvPatient.Columns[2].Width = 280;
 
                 dgvPatient.Columns[3].HeaderText = "MedicalHistory";
-                dgvPatient.Columns[3].Width = 240;
+                dgvPatient.Columns[3].Width = 280;
 
                 dgvPatient.Columns[4].HeaderText = "Blood Type Name";
                 dgvPatient.Columns[4].Width = 110;
@@ -145,7 +145,7 @@ namespace Clinic.Patient
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int PatientID = (int)dgvPatient.CurrentRow.Cells[0].Value;
-            frmAddUpdatePatient frm = new frmAddUpdatePatient(PatientID);
+            frmPatientInfo frm = new frmPatientInfo(PatientID);
             frm.ShowDialog();
         }
 
@@ -178,6 +178,13 @@ namespace Clinic.Patient
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAddUpdatePatient frm = new frmAddUpdatePatient();
+            frm.ShowDialog();
+            frmListPatient_Load(null, null);
         }
     }
 }
