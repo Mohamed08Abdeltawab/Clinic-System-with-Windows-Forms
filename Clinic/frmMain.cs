@@ -11,6 +11,7 @@ using Clinic.Doctor;
 using Clinic.Global_Classes;
 using Clinic.Login;
 using Clinic.Medical_Services.Mange_Services;
+using Clinic.Patient;
 using Clinic.People;
 using Clinic.User;
 using Clinicbusiness;
@@ -56,7 +57,8 @@ namespace Clinic
 
         private void driversToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            frmListPatient frm = new frmListPatient();
+            frm.ShowDialog();
         }
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)

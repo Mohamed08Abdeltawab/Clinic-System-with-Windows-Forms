@@ -187,12 +187,22 @@ namespace ClinicData
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"SELECT Patients.PatientID, Patients.PersonID,
-                             People.FullName,
-                             Patients.MedicalHistory,
-                             Patients.BloodType,
-                             Patients.EmergencyContact
-                             FROM Patients INNER JOIN
-                                  People ON Patients.PersonID = People.PersonID";
+                  People.FullName,
+                  Patients.MedicalHistory,
+                  CASE Patients.BloodType
+                      WHEN 1 THEN 'A+'
+                      WHEN 2 THEN 'A-'
+                      WHEN 3 THEN 'B+'
+                      WHEN 4 THEN 'B-'
+                      WHEN 5 THEN 'AB+'
+                      WHEN 6 THEN 'AB-'
+                      WHEN 7 THEN 'O+'
+                      WHEN 8 THEN 'O-'
+                      ELSE 'Unknown'
+                  END AS BloodTypeName,
+                  Patients.EmergencyContact
+                  FROM Patients INNER JOIN
+                       People ON Patients.PersonID = People.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 

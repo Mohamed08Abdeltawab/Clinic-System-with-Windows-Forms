@@ -163,7 +163,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Clinic.Properties.Resources.BloodType_32;
-            this.pictureBox3.Location = new System.Drawing.Point(228, 233);
+            this.pictureBox3.Location = new System.Drawing.Point(228, 238);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(31, 26);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -291,7 +291,7 @@
             "AB-",
             "O+",
             "O-"});
-            this.cbBloodType.Location = new System.Drawing.Point(271, 231);
+            this.cbBloodType.Location = new System.Drawing.Point(271, 236);
             this.cbBloodType.Name = "cbBloodType";
             this.cbBloodType.Size = new System.Drawing.Size(223, 28);
             this.cbBloodType.TabIndex = 152;

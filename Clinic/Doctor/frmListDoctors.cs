@@ -99,7 +99,7 @@ namespace Clinic.Doctor
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFilterValue.Visible = (cbFilterBy.Text != "None" || cbFilterBy.Text != "Working Days");
+            txtFilterValue.Visible = (cbFilterBy.Text != "None" && cbFilterBy.Text != "Working Days");
 
             if (txtFilterValue.Visible)
             {
@@ -129,13 +129,9 @@ namespace Clinic.Doctor
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // تم التصحيح: استخراج الـ DoctorID إذا كان الفورم يحتاجه، أو الـ PersonID من العمود الصحيح
             int DoctorID = (int)dgvDoctors.CurrentRow.Cells[0].Value;
-            // إذا كان فورم التفاصيل يأخذ PersonID، يجب قراءته من العمود 1
-            int PersonID = (int)dgvDoctors.CurrentRow.Cells[1].Value;
 
-            // تأكد من الباراميتر الذي يتوقعه فورم التفاصيل
-            frmDoctorInfo frm = new frmDoctorInfo(PersonID);
+            frmDoctorInfo frm = new frmDoctorInfo(DoctorID);
             frm.ShowDialog();
         }
 
@@ -148,7 +144,6 @@ namespace Clinic.Doctor
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // تم التصحيح: العمود 0 هو DoctorID
             int DoctorID = (int)dgvDoctors.CurrentRow.Cells[0].Value;
             frmAddUpdateDoctor frm = new frmAddUpdateDoctor(DoctorID);
             frm.ShowDialog();
