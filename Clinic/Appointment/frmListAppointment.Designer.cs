@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbAppointmentType = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,6 +68,7 @@
             this.cbAppointmentType.Name = "cbAppointmentType";
             this.cbAppointmentType.Size = new System.Drawing.Size(152, 28);
             this.cbAppointmentType.TabIndex = 114;
+            this.cbAppointmentType.SelectedIndexChanged += new System.EventHandler(this.cbAppointmentType_SelectedIndexChanged);
             // 
             // lblTitle
             // 
@@ -111,14 +112,15 @@
             this.cbFilterBy.Items.AddRange(new object[] {
             "None",
             "Appointment ID",
-            "Patient ID",
-            "Doctor ID",
+            "Patient Name",
+            "Doctor Name",
             "Appointment Type",
             "Status"});
             this.cbFilterBy.Location = new System.Drawing.Point(90, 270);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(210, 28);
             this.cbFilterBy.TabIndex = 107;
+            this.cbFilterBy.SelectedIndexChanged += new System.EventHandler(this.cbFilterBy_SelectedIndexChanged);
             // 
             // txtFilterValue
             // 
@@ -128,6 +130,8 @@
             this.txtFilterValue.Name = "txtFilterValue";
             this.txtFilterValue.Size = new System.Drawing.Size(256, 26);
             this.txtFilterValue.TabIndex = 106;
+            this.txtFilterValue.TextChanged += new System.EventHandler(this.txtFilterValue_TextChanged);
+            this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
             // 
             // label1
             // 
@@ -166,14 +170,14 @@
             this.dgvAppointment.MultiSelect = false;
             this.dgvAppointment.Name = "dgvAppointment";
             this.dgvAppointment.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAppointment.Size = new System.Drawing.Size(1339, 371);
             this.dgvAppointment.TabIndex = 104;
@@ -191,6 +195,7 @@
             this.btnClose.TabIndex = 113;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnAddAppointment
             // 
@@ -201,6 +206,7 @@
             this.btnAddAppointment.Size = new System.Drawing.Size(88, 75);
             this.btnAddAppointment.TabIndex = 112;
             this.btnAddAppointment.UseVisualStyleBackColor = true;
+            this.btnAddAppointment.Click += new System.EventHandler(this.btnAddAppointment_Click);
             // 
             // pbPersonImage
             // 
@@ -222,6 +228,7 @@
             this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
             this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.showDetailsToolStripMenuItem.Text = "&Show Details";
+            this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
             // 
             // startVisitToolStripMenuItem
             // 
@@ -230,6 +237,7 @@
             this.startVisitToolStripMenuItem.Name = "startVisitToolStripMenuItem";
             this.startVisitToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.startVisitToolStripMenuItem.Text = "&Start Visit";
+            this.startVisitToolStripMenuItem.Click += new System.EventHandler(this.startVisitToolStripMenuItem_Click);
             // 
             // rescheduleToolStripMenuItem
             // 
@@ -238,6 +246,7 @@
             this.rescheduleToolStripMenuItem.Name = "rescheduleToolStripMenuItem";
             this.rescheduleToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.rescheduleToolStripMenuItem.Text = "Reschedule";
+            this.rescheduleToolStripMenuItem.Click += new System.EventHandler(this.rescheduleToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -246,6 +255,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 38);
             this.toolStripMenuItem1.Text = "Add &New Appointment";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -254,6 +264,7 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -262,6 +273,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // cbStatus
             // 
@@ -272,10 +284,11 @@
             "Scheduled",
             "Cancelled",
             "Completed"});
-            this.cbStatus.Location = new System.Drawing.Point(307, 288);
+            this.cbStatus.Location = new System.Drawing.Point(307, 269);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(152, 28);
             this.cbStatus.TabIndex = 115;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             // 
             // frmListAppointment
             // 
