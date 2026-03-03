@@ -57,8 +57,11 @@ namespace Clinic
 
         private void driversToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmListPatient frm = new frmListPatient();
-            frm.ShowDialog();
+            if(clsGlobal.CheckIsAdmin() || clsGlobal.CheckIsReceptionist())
+            {
+                frmListPatient frm = new frmListPatient();
+                frm.ShowDialog();
+            }
         }
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,6 +94,11 @@ namespace Clinic
                 frmListDoctors frm = new frmListDoctors();
                 frm.ShowDialog();
             }
+        }
+
+        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

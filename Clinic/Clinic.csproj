@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\frmListAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointment\frmListAppointment.Designer.cs">
+      <DependentUpon>frmListAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\ctrlDoctorInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Appointment\frmListAppointment.resx">
+      <DependentUpon>frmListAppointment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Doctor\ctrlDoctorInfo.resx">
       <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -560,6 +569,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add Patient 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Appointment 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Appointment 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start visit 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reschedule 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment 512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
