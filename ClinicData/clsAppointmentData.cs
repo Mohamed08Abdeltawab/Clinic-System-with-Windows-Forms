@@ -160,6 +160,8 @@ namespace ClinicData
 
             string query = @"SELECT 
                  Appointments.AppointmentID, 
+                 Appointments.PatientID,   -- Index 1
+                 Appointments.DoctorID,    -- Index 2
                  PatientName = PeoplePat.FullName, 
                  DoctorName = PeopleDoc.FullName,
                  AppointmentType = CASE 

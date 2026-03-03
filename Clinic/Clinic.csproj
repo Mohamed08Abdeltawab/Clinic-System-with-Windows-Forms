@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\ctrlAppointmentInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Appointment\ctrlAppointmentInfo.Designer.cs">
+      <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Appointment\frmListAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Appointment\ctrlAppointmentInfo.resx">
+      <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Appointment\frmListAppointment.resx">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -584,6 +593,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appointment 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\details 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor1 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

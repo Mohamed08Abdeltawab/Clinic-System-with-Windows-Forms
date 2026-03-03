@@ -45,7 +45,7 @@ namespace Clinic.Patient
             ctrlPersonCard1.LoadInfo(_Patient.PersonID);
             lblPatientID.Text = _Patient.PatientID.ToString();
             lblMedicalHistory.Text = _Patient.MedicalHistory.ToString();
-            lblBloodType.Text = _Patient.BloodType.ToString();
+            lblBloodType.Text = _Patient.BloodTypeName.ToString();
             lblEmergencyContact.Text = _Patient.EmergencyContact.ToString();
 
         }

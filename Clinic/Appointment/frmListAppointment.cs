@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Doctor;
+using Clinic.Patient;
 using Clinicbusiness;
 
 namespace Clinic.Appointment
@@ -31,23 +33,27 @@ namespace Clinic.Appointment
                 dgvAppointment.Columns[0].HeaderText = "Appointment ID";
                 dgvAppointment.Columns[0].Width = 110;
 
-                dgvAppointment.Columns[1].HeaderText = "Patient Name"; // تعديل من ID لـ Name
-                dgvAppointment.Columns[1].Width = 220;
+                dgvAppointment.Columns[1].Visible = false;
+                dgvAppointment.Columns[2].Visible = false;
 
-                dgvAppointment.Columns[2].HeaderText = "Doctor Name"; // تعديل من ID لـ Name
-                dgvAppointment.Columns[2].Width = 220;
+                dgvAppointment.Columns[3].HeaderText = "Patient Name"; // تعديل من ID لـ Name
+                dgvAppointment.Columns[3].Width = 220;
 
-                dgvAppointment.Columns[3].HeaderText = "Type";
-                dgvAppointment.Columns[3].Width = 170;
-
-                dgvAppointment.Columns[4].HeaderText = "Appointment Date";
+                dgvAppointment.Columns[4].HeaderText = "Doctor Name"; // تعديل من ID لـ Name
                 dgvAppointment.Columns[4].Width = 220;
 
-                dgvAppointment.Columns[5].HeaderText = "Status";
+                dgvAppointment.Columns[5].HeaderText = "Type";
                 dgvAppointment.Columns[5].Width = 170;
 
-                dgvAppointment.Columns[6].HeaderText = "Created By UserID";
-                dgvAppointment.Columns[6].Width = 110;
+                dgvAppointment.Columns[6].HeaderText = "Appointment Date";
+                dgvAppointment.Columns[6].Width = 220;
+
+                dgvAppointment.Columns[7].HeaderText = "Status";
+                dgvAppointment.Columns[7].Width = 170;
+
+                dgvAppointment.Columns[8].HeaderText = "Created By UserID";
+                dgvAppointment.Columns[8].Width = 110;
+                
             }
         }
 
@@ -165,11 +171,6 @@ namespace Clinic.Appointment
             //
         }
 
-        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //details of patient and some of doctor
-        }
-
         private void startVisitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //show visit form 
@@ -201,6 +202,20 @@ namespace Clinic.Appointment
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
+        }
+
+        private void showPatientDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PatientID = (int)dgvAppointment.CurrentRow.Cells[1].Value;
+            frmPatientInfo frm = new frmPatientInfo(PatientID);
+            frm.ShowDialog();
+        }
+
+        private void showDoctorDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int DoctorID = (int)dgvAppointment.CurrentRow.Cells[2].Value;
+            frmDoctorInfo frm = new frmDoctorInfo(DoctorID);
+            frm.ShowDialog();
         }
     }
 }
