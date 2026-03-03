@@ -158,30 +158,31 @@ namespace ClinicData
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            // تم تحديث الاستعلام ليشمل نوع الموعد (AppointmentType)
-            string query = @"SELECT Appointments.AppointmentID, 
-                             Appointments.AppointmentDate,
-                             PatientName = PeoplePat.FullName,
-                             DoctorName = PeopleDoc.FullName,
-                             Appointments.AppointmentType,
-                             CASE 
-                                WHEN Appointments.AppointmentType = 1 THEN 'Checkup'
-                                WHEN Appointments.AppointmentType = 2 THEN 'Consultation'
-                                ELSE 'Unknown'
-                             END as AppointmentTypeCaption,
-                             Appointments.Status,
-                             CASE 
-                                WHEN Appointments.Status = 1 THEN 'Scheduled'
-                                WHEN Appointments.Status = 2 THEN 'Cancelled'
-                                WHEN Appointments.Status = 3 THEN 'Completed'
-                                ELSE 'Unknown'
-                             END as StatusCaption
-                             FROM Appointments 
-                             INNER JOIN Patients ON Appointments.PatientID = Patients.PetientID
-                             INNER JOIN People PeoplePat ON Patients.PersonID = PeoplePat.PersonID
-                             INNER JOIN Doctors ON Appointments.DoctorID = Doctors.DoctorID
-                             INNER JOIN People PeopleDoc ON Doctors.PersonID = PeopleDoc.PersonID
-                             ORDER BY Appointments.AppointmentDate DESC";
+            string query = @"SELECT 
+                 Appointments.AppointmentID, 
+                 PatientName = PeoplePat.FullName, 
+                 DoctorName = PeopleDoc.FullName,
+                 AppointmentType = CASE 
+                    WHEN Appointments.AppointmentType = 1 THEN 'Normal Visit'
+                    WHEN Appointments.AppointmentType = 2 THEN 'Follow Up'
+                    WHEN Appointments.AppointmentType = 3 THEN 'Urgent'
+                    ELSE 'Unknown'
+                 END,
+                 Appointments.AppointmentDate,
+                 Status = CASE 
+                    WHEN Appointments.Status = 1 THEN 'Scheduled'
+                    WHEN Appointments.Status = 2 THEN 'Cancelled'
+                    WHEN Appointments.Status = 3 THEN 'Completed'
+                    ELSE 'Unknown'
+                 END,
+                 Appointments.CreatedByUserID
+                 FROM Appointments 
+                 INNER JOIN Patients ON Appointments.PatientID = Patients.PatientID
+                 INNER JOIN People PeoplePat ON Patients.PersonID = PeoplePat.PersonID
+                 INNER JOIN Doctors ON Appointments.DoctorID = Doctors.DoctorID
+                 INNER JOIN People PeopleDoc ON Doctors.PersonID = PeopleDoc.PersonID
+                 ORDER BY Appointments.AppointmentDate DESC";
+
 
             SqlCommand command = new SqlCommand(query, connection);
 
