@@ -52,6 +52,12 @@
     <Compile Include="Appointment\ctrlAppointmentInfo.Designer.cs">
       <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Appointment\frmAddUpdateAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointment\frmAddUpdateAppointment.Designer.cs">
+      <DependentUpon>frmAddUpdateAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Appointment\frmListAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,10 +116,10 @@
     <Compile Include="Medical Services\Manage Services\frmListServices.Designer.cs">
       <DependentUpon>frmListServices.cs</DependentUpon>
     </Compile>
-    <Compile Include="Patient\ctrlPatientInfo.cs">
+    <Compile Include="Patient\Controls\ctrlPatientInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Patient\ctrlPatientInfo.Designer.cs">
+    <Compile Include="Patient\Controls\ctrlPatientInfo.Designer.cs">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Patient\frmAddUpdatePatient.cs">
@@ -122,11 +128,23 @@
     <Compile Include="Patient\frmAddUpdatePatient.Designer.cs">
       <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patient\frmFindPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient\frmFindPatient.Designer.cs">
+      <DependentUpon>frmFindPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Patient\frmListPatient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Patient\frmListPatient.Designer.cs">
       <DependentUpon>frmListPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Patient\Controls\ctrlPatientCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Patient\Controls\ctrlPatientCardWithFilter.Designer.cs">
+      <DependentUpon>ctrlPatientCardWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Patient\frmPatientInfo.cs">
       <SubType>Form</SubType>
@@ -210,6 +228,9 @@
     <EmbeddedResource Include="Appointment\ctrlAppointmentInfo.resx">
       <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Appointment\frmAddUpdateAppointment.resx">
+      <DependentUpon>frmAddUpdateAppointment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Appointment\frmListAppointment.resx">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,8 +258,11 @@
     <EmbeddedResource Include="Medical Services\Manage Services\frmListServices.resx">
       <DependentUpon>frmListServices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Patient\ctrlPatientInfo.resx">
+    <EmbeddedResource Include="Patient\Controls\ctrlPatientInfo.resx">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient\Controls\ctrlPatientCardWithFilter.resx">
+      <DependentUpon>ctrlPatientCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Patient\frmAddUpdatePatient.resx">
       <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
@@ -572,9 +596,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Patients 512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Add Patient 64.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add Patient 32.png" />

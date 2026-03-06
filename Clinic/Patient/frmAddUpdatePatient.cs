@@ -13,6 +13,13 @@ namespace Clinic.Patient
 {
     public partial class frmAddUpdatePatient : Form
     {
+
+        public delegate void DataBackEventHandler(object sender, int PatientID);
+
+        //declare an event of delegate type to be raised after saving the person
+        public event DataBackEventHandler DataBack;
+
+
         public enum enMode { AddNew = 0, Update = 1 };
 
         private enMode _Mode;
@@ -137,6 +144,8 @@ namespace Clinic.Patient
                 this.Text = "Update Patient";
 
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                DataBack.Invoke(this, _Patient.PatientID);
             }
             else
                 MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

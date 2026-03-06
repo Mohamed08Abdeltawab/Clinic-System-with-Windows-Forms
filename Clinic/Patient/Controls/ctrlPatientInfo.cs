@@ -21,6 +21,11 @@ namespace Clinic.Patient
         {
             get { return _PatientID; }
         }
+
+        public clsPatient SelectedPatientInfo
+        {
+            get { return _Patient; }
+        }
         public ctrlPatientInfo()
         {
             InitializeComponent();

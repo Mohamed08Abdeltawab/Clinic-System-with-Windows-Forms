@@ -139,6 +139,11 @@ namespace Clinicbusiness
             return clsAppointmentData.IsAppointmentExist(AppointmentID);
         }
 
+        public static bool IsAppointmentExistByPatientID(int PatientID)
+        {
+            return clsAppointment.IsAppointmentExistByPatientID(PatientID);
+        }
+
         public static DataTable GetAppointmentsByPatientID(int PatientID)
         {
             return clsAppointmentData.GetAppointmentsByPatientID(PatientID);
