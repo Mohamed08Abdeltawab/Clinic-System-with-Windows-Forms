@@ -22,6 +22,11 @@ namespace Clinic.Doctor
             get { return _DoctorID; }
         }
 
+        public clsDoctor SelectedDoctorInfo
+        {
+            get {return _Doctor; }
+        }
+
         public ctrlDoctorInfo()
         {
             InitializeComponent();

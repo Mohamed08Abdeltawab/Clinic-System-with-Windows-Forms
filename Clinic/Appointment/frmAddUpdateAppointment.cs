@@ -38,8 +38,9 @@ namespace Clinic.Appointment
                 lblTitle.Text = "New Appointment";
                 this.Text = "New Appointment";
                 _Appointment = new clsAppointment();
-                ctrlPersonCardWithFilter1.FilterFocus();
+                ctrlPatientCardWithFilter1.FilterFocus();
                 tpAppointmentInfo.Enabled = false;
+                tpDoctorInfo.Enabled = false;
             }
             else
             {
@@ -47,6 +48,7 @@ namespace Clinic.Appointment
                 this.Text = "Update Appointment";
 
                 tpAppointmentInfo.Enabled = true;
+                tpDoctorInfo.Enabled = true;
                 btnSave.Enabled = true;
             }
         }
@@ -55,13 +57,12 @@ namespace Clinic.Appointment
 
         private void _LoadData()
         {
-            ctrlPersonCardWithFilter1.FilterEnabled = false;
+            ctrlPatientCardWithFilter1.FilterEnabled = false;
             _Appointment = clsAppointment.Find(_AppointmentID);
 
-            if (_AppointmentID == null)
+            if (_Appointment == null)
             {
-                MessageBox.Show("No Doctor with ID = " + _AppointmentID, "Doctor Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //this.Close();
+                MessageBox.Show("No Appointment with ID = " + _AppointmentID, "Appointment Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             //lblDoctorID.Text = _Appointment.DoctorID.ToString();
@@ -92,16 +93,6 @@ namespace Clinic.Appointment
             //_Doctor.PersonID = ctrlPersonCardWithFilter1.PersonID;
             //_Doctor.Specialization = txtSpecialization.Text.Trim();
             //_Doctor.ConsultationFees = Convert.ToDecimal(txtConsultationFees.Text.Trim());
-
-            // التأكد من اختيار يوم عمل واحد على الأقل
-            if (chkWorkingDays.CheckedItems.Count < 1)
-            {
-                chkWorkingDays.Focus();
-                if (MessageBox.Show("Do you want to complete without giving Working Days for this Doctor?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
-                {
-                    return;
-                }
-            }
 
             // 🌟 استدعاء الدالة لتعبئة List<byte> قبل الحفظ
             //FillDoctorWorkingDaysList();
@@ -139,12 +130,12 @@ namespace Clinic.Appointment
             }
 
             // incase of add new mode.
-            if (ctrlPersonCardWithFilter1.PersonID != -1)
+            if (ctrlPatientCardWithFilter1.PatientID != -1)
             {
-                if (clsAppointment.IsAppointmentExistByPatientID(ctrlPersonCardWithFilter1.PersonID))
+                if (clsAppointment.IsAppointmentExistByPatientID(ctrlPatientCardWithFilter1.PatientID))
                 {
                     MessageBox.Show("Selected Patient already a Appointment, choose another one.", "Select another Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ctrlPersonCardWithFilter1.FilterFocus();
+                    ctrlPatientCardWithFilter1.FilterFocus();
                 }
                 else
                 {
@@ -155,8 +146,8 @@ namespace Clinic.Appointment
             }
             else
             {
-                MessageBox.Show("Please Select a Person", "Select a Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ctrlPersonCardWithFilter1.FilterFocus();
+                MessageBox.Show("Please Select a Appointment", "Select a Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ctrlPatientCardWithFilter1.FilterFocus();
             }
         }
     }

@@ -14,6 +14,12 @@ namespace Clinic.Doctor
 {
     public partial class frmAddUpdateDoctor : Form
     {
+
+        public delegate void DataBackEventHandler(object sender, int PatientID);
+
+        //declare an event of delegate type to be raised after saving the person
+        public event DataBackEventHandler DataBack;
+
         public enum enMode { AddNew = 0, Update = 1 };
 
         private enMode _Mode;
@@ -189,10 +195,9 @@ namespace Clinic.Doctor
                 lblTitle.Text = "Update Doctor";
                 this.Text = "Update Doctor";
 
-                // تحديث الـ UI بدلاً من تعطيل زر الحفظ لتشجيع التعديلات اللاحقة لو لزم الأمر
-                // btnSave.Enabled = false; 
-
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                DataBack.Invoke(this, _Doctor.DoctorID);
             }
             else
                 MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

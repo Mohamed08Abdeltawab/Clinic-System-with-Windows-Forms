@@ -64,6 +64,12 @@
     <Compile Include="Appointment\frmListAppointment.Designer.cs">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Doctor\ctrlDoctorCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Doctor\ctrlDoctorCardWithFilter.Designer.cs">
+      <DependentUpon>ctrlDoctorCardWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\ctrlDoctorInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Appointment\frmListAppointment.resx">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor\ctrlDoctorCardWithFilter.resx">
+      <DependentUpon>ctrlDoctorCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Doctor\ctrlDoctorInfo.resx">
       <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
