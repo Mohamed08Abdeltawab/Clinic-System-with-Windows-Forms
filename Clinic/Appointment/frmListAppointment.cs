@@ -168,7 +168,9 @@ namespace Clinic.Appointment
 
         private void btnAddAppointment_Click(object sender, EventArgs e)
         {
-            //
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            frmListAppointment_Load(null, null);
         }
 
         private void startVisitToolStripMenuItem_Click(object sender, EventArgs e)

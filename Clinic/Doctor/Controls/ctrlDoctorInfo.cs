@@ -14,7 +14,7 @@ namespace Clinic.Doctor
     public partial class ctrlDoctorInfo : UserControl
     {
         private clsDoctor _Doctor;
-        private int _DoctorID;
+        private int _DoctorID = -1;
 
         // need public id
         public int DoctorID
@@ -29,7 +29,7 @@ namespace Clinic.Doctor
 
         public string DoctorWorkingDays
         {
-            get { return GetWorkingDaysNames(_Doctor); }
+            get { return GetWorkingDaysNames(SelectedDoctorInfo); }
         }
 
         public ctrlDoctorInfo()

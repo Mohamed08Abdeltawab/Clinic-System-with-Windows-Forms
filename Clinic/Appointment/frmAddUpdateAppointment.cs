@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Global_Classes;
 using Clinicbusiness;
 
 namespace Clinic.Appointment
@@ -41,6 +42,11 @@ namespace Clinic.Appointment
                 ctrlPatientCardWithFilter1.FilterFocus();
                 tpAppointmentInfo.Enabled = false;
                 tpDoctorInfo.Enabled = false;
+                dtpAppointmentDate.MinDate = DateTime.Now;
+                cbAppointmentType.SelectedIndex = 0;
+                cbStatus.SelectedIndex = 0;
+                lblCreatedByUserID.Text = clsGlobal.CurrentUser.UserID.ToString();
+                cbStatus.Enabled = false;
             }
             else
             {
@@ -84,6 +90,24 @@ namespace Clinic.Appointment
                 _LoadData();
         }
 
+
+        private bool IsDoctorWorkingInThatDay()
+        {
+            int doctorID = ctrlDoctorCardWithFilter1.DoctorID;
+
+            // 2. حول اليوم المختار لرقم (0 = Sunday, 1 = Monday, etc.)
+            byte selectedDay = (byte)(dtpAppointmentDate.Value.DayOfWeek + 1);
+
+            // 3. افحص هل الدكتور شغال في اليوم ده؟
+            if (!clsDoctor.IsWorkingOnDay(doctorID, selectedDay))
+            {
+                MessageBox.Show("Doctor not Working in that day, Select another one.", "Wrong Day", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpAppointmentDate.Value = DateTime.Now;
+                return false;
+            }
+            return true;
+        }
         
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -95,27 +119,31 @@ namespace Clinic.Appointment
                 return;
             }
 
-            //_Doctor.PersonID = ctrlPersonCardWithFilter1.PersonID;
-            //_Doctor.Specialization = txtSpecialization.Text.Trim();
-            //_Doctor.ConsultationFees = Convert.ToDecimal(txtConsultationFees.Text.Trim());
+            _Appointment.PatientID = Convert.ToInt32(lblPatientID.Text);
+            _Appointment.DoctorID =Convert.ToInt32(lblDoctorID.Text);
+            _Appointment.CreatedByUserID = Convert.ToInt32(lblCreatedByUserID.Text);
+            _Appointment.AppointmentType = (byte)(cbAppointmentType.SelectedIndex + 1);
+            _Appointment.Status = (byte)(cbStatus.SelectedIndex + 1);
 
-            // 🌟 استدعاء الدالة لتعبئة List<byte> قبل الحفظ
-            //FillDoctorWorkingDaysList();
+            //validation of working days of doctor
+            if (!IsDoctorWorkingInThatDay())
+                return;
 
-            //if (_Doctor.Save())
-            //{
-            //    lblDoctorID.Text = _Doctor.DoctorID.ToString();
-            //    // change form mode to update.
-            //    _Mode = enMode.Update;
-            //    lblTitle.Text = "Update Doctor";
-            //    this.Text = "Update Doctor";
+            _Appointment.AppointmentDate = dtpAppointmentDate.Value;
+            
 
-                
+            if (_Appointment.Save())
+            {
+                lblAppointmentID.Text = _Appointment.AppointmentID.ToString();
+                // change form mode to update.
+                _Mode = enMode.Update;
+                lblTitle.Text = "Update Appointment";
+                this.Text = "Update Appointment";
 
-            //    MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //else
-            //    MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 
@@ -137,18 +165,10 @@ namespace Clinic.Appointment
             // incase of add new mode.
             if (ctrlPatientCardWithFilter1.PatientID != -1)
             {
-                //if (clsAppointment.IsAppointmentExistByPatientID(ctrlPatientCardWithFilter1.PatientID))
-                //{
-                //    MessageBox.Show("Selected Doctor already a Appointment, choose another one.", "Select another Doctor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    ctrlPatientCardWithFilter1.FilterFocus();
-                //}
-                //else
-                //{
-                //btnSave.Enabled = true;
-                    ctrlDoctorCardWithFilter1.FilterFocus();
-                    tpDoctorInfo.Enabled = true;
-                    tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpDoctorInfo"];
-                //}
+                ctrlDoctorCardWithFilter1.FilterFocus();
+                tpDoctorInfo.Enabled = true;
+                tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpDoctorInfo"];
+                lblPatientID.Text = ctrlPatientCardWithFilter1.PatientID.ToString();
             }
             else
             {
@@ -180,6 +200,9 @@ namespace Clinic.Appointment
                     btnSave.Enabled = true;
                     tpAppointmentInfo.Enabled = true;
                     tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpAppointmentInfo"];
+                    lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
+                    lblDoctorID.Text = ctrlDoctorCardWithFilter1.DoctorID.ToString();
+
                 }
             }
             else
@@ -189,6 +212,5 @@ namespace Clinic.Appointment
             }
         }
 
-        
     }
 }

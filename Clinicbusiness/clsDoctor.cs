@@ -177,5 +177,11 @@ namespace Clinicbusiness
         {
             return clsDoctorData.IsDoctorExistByPersonID(PersonID);
         }
+
+        public static bool IsWorkingOnDay(int DoctorID, byte DayID)
+        {
+            // استدعاء دالة الـ Data Access
+            return clsDoctorData.IsDoctorWorkingOnDay(DoctorID, DayID);
+        }
     }
 }

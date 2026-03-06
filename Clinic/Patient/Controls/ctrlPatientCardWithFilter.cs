@@ -53,7 +53,7 @@ namespace Clinic.Patient
         }
 
 
-        private int _PatientID;
+        private int _PatientID = -1;
         public int PatientID
         {
             get { return ctrlPatientInfo1.PatientID; }

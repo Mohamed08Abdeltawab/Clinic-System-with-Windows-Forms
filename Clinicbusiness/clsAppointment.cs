@@ -181,5 +181,7 @@ namespace Clinicbusiness
         {
             return clsAppointmentData.GetAppointmentsByDoctorID(DoctorID);
         }
+
+
     }
 }

@@ -356,5 +356,38 @@ namespace ClinicData
 
             return dt;
         }
+
+
+
+        public static bool IsDoctorWorkingOnDay(int DoctorID, byte DayID)
+        {
+            bool isFound = false;
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                // الكويري بيتأكد لو في صف بيجمع الدكتور باليوم ده
+                string query = "SELECT Found=1 FROM DoctorWorkingDays WHERE DoctorID = @DoctorID AND DayID = @DayID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@DoctorID", DoctorID);
+                    command.Parameters.AddWithValue("@DayID", DayID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            isFound = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+            return isFound;
+        }
     }
 }

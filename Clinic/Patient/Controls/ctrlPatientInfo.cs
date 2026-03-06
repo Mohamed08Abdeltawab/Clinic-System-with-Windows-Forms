@@ -14,7 +14,7 @@ namespace Clinic.Patient
     public partial class ctrlPatientInfo : UserControl
     {
         private clsPatient _Patient;
-        private int _PatientID;
+        private int _PatientID = -1;
 
         //need public id
         public int PatientID

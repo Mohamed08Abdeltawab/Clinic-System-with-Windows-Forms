@@ -58,7 +58,7 @@ namespace Clinic.Doctor
             InitializeComponent();
         }
 
-        private int _DoctorID;
+        private int _DoctorID = -1;
         public int DoctorID
         {
             get { return ctrlDoctorInfo1.DoctorID; }
