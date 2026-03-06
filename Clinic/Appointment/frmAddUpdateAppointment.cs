@@ -66,10 +66,14 @@ namespace Clinic.Appointment
                 MessageBox.Show("No Appointment with ID = " + _AppointmentID, "Appointment Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            //lblDoctorID.Text = _Appointment.DoctorID.ToString();
-            //ctrlPersonCardWithFilter1.LoadPersonData(_Doctor.PersonID);
-            //txtSpecialization.Text = _Doctor.Specialization.ToString();
-            //txtConsultationFees.Text = _Doctor.ConsultationFees.ToString();
+            lblAppointmentID.Text = _Appointment.AppointmentID.ToString();
+            lblDoctorID.Text = _Appointment.DoctorID.ToString();
+            lblPatientID.Text = _Appointment.PatientID.ToString();
+            lblCreatedByUserID.Text = _Appointment.CreatedByUserID.ToString();
+            cbAppointmentType.SelectedIndex = _Appointment.AppointmentType - 1;
+            cbStatus.SelectedIndex = _Appointment.Status - 1;
+            dtpAppointmentDate.Value = _Appointment.AppointmentDate;
+            lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
 
         }
 
@@ -140,7 +144,8 @@ namespace Clinic.Appointment
                 //}
                 //else
                 //{
-                    //btnSave.Enabled = true;
+                //btnSave.Enabled = true;
+                    ctrlDoctorCardWithFilter1.FilterFocus();
                     tpDoctorInfo.Enabled = true;
                     tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpDoctorInfo"];
                 //}

@@ -642,5 +642,14 @@
   <ItemGroup>
     <None Include="Resources\doctor1 32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appoint date 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appoint type 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status 32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,6 +27,11 @@ namespace Clinic.Doctor
             get {return _Doctor; }
         }
 
+        public string DoctorWorkingDays
+        {
+            get { return GetWorkingDaysNames(_Doctor); }
+        }
+
         public ctrlDoctorInfo()
         {
             InitializeComponent();
@@ -48,9 +53,9 @@ namespace Clinic.Doctor
         }
 
         // 🌟 دالة مساعدة جديدة لتحويل أرقام الأيام إلى نص مقروء
-        private string _GetWorkingDaysNames()
+        public string GetWorkingDaysNames(clsDoctor DoctorInfo)
         {
-            if (_Doctor.WorkingDaysIDs == null || _Doctor.WorkingDaysIDs.Count == 0)
+            if (DoctorInfo.WorkingDaysIDs == null || DoctorInfo.WorkingDaysIDs.Count == 0)
                 return "Not Available";
 
             // مصفوفة بأسماء الأيام (المكان رقم 0 فارغ عشان رقم 1 يقابله الأحد مباشرة)
@@ -78,8 +83,9 @@ namespace Clinic.Doctor
             lblSpecialization.Text = _Doctor.Specialization.ToString();
 
             // 🌟 استخدام الدالة الجديدة لعرض الأيام
-            lblWorkingDays.Text = _GetWorkingDaysNames();
+            lblWorkingDays.Text = DoctorWorkingDays;
         }
+
 
         private void _ResetDoctorInfo()
         {

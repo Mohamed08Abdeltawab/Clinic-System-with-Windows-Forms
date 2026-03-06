@@ -47,6 +47,12 @@ namespace Clinic.Doctor
             }
         }
 
+
+        public string DoctorWorkingDays
+        {
+            get { return ctrlDoctorInfo1.DoctorWorkingDays; }
+        }
+
         public ctrlDoctorCardWithFilter()
         {
             InitializeComponent();
@@ -129,5 +135,6 @@ namespace Clinic.Doctor
             txtFilterValue.Text = DoctorID.ToString();
             ctrlDoctorInfo1.LoadDoctorInfo(DoctorID);
         }
+
     }
 }

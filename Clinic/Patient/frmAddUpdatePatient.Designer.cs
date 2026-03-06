@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tpPatientInfo = new System.Windows.Forms.TabPage();
+            this.cbBloodType = new System.Windows.Forms.ComboBox();
             this.txtEmergencyContact = new System.Windows.Forms.TextBox();
-            this.txtMedicalHistory = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,11 +45,11 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.tcPatientInfo = new System.Windows.Forms.TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.ctrlPersonCardWithFilter1 = new Clinic.People.Controls.ctrlPersonCardWithFilter();
             this.btnPatientNext = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbBloodType = new System.Windows.Forms.ComboBox();
-            this.ctrlPersonCardWithFilter1 = new Clinic.People.Controls.ctrlPersonCardWithFilter();
+            this.txtMedicalHistory = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tpPatientInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -66,9 +66,9 @@
             // 
             // tpPatientInfo
             // 
+            this.tpPatientInfo.Controls.Add(this.txtMedicalHistory);
             this.tpPatientInfo.Controls.Add(this.cbBloodType);
             this.tpPatientInfo.Controls.Add(this.txtEmergencyContact);
-            this.tpPatientInfo.Controls.Add(this.txtMedicalHistory);
             this.tpPatientInfo.Controls.Add(this.label6);
             this.tpPatientInfo.Controls.Add(this.label15);
             this.tpPatientInfo.Controls.Add(this.label5);
@@ -86,9 +86,28 @@
             this.tpPatientInfo.Text = "tpPatientInfo";
             this.tpPatientInfo.UseVisualStyleBackColor = true;
             // 
+            // cbBloodType
+            // 
+            this.cbBloodType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBloodType.FormattingEnabled = true;
+            this.cbBloodType.Items.AddRange(new object[] {
+            "Unknown",
+            "A+",
+            "A-",
+            "B+",
+            "B-",
+            "AB+",
+            "AB-",
+            "O+",
+            "O-"});
+            this.cbBloodType.Location = new System.Drawing.Point(271, 177);
+            this.cbBloodType.Name = "cbBloodType";
+            this.cbBloodType.Size = new System.Drawing.Size(223, 28);
+            this.cbBloodType.TabIndex = 152;
+            // 
             // txtEmergencyContact
             // 
-            this.txtEmergencyContact.Location = new System.Drawing.Point(271, 180);
+            this.txtEmergencyContact.Location = new System.Drawing.Point(271, 120);
             this.txtEmergencyContact.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmergencyContact.MaxLength = 50;
             this.txtEmergencyContact.Name = "txtEmergencyContact";
@@ -96,20 +115,11 @@
             this.txtEmergencyContact.TabIndex = 151;
             this.txtEmergencyContact.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmergencyContact_Validating);
             // 
-            // txtMedicalHistory
-            // 
-            this.txtMedicalHistory.Location = new System.Drawing.Point(271, 121);
-            this.txtMedicalHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMedicalHistory.MaxLength = 50;
-            this.txtMedicalHistory.Name = "txtMedicalHistory";
-            this.txtMedicalHistory.Size = new System.Drawing.Size(223, 26);
-            this.txtMedicalHistory.TabIndex = 150;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(50, 239);
+            this.label6.Location = new System.Drawing.Point(50, 180);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 20);
@@ -120,7 +130,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(50, 180);
+            this.label15.Location = new System.Drawing.Point(50, 120);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(171, 20);
@@ -131,7 +141,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(50, 121);
+            this.label5.Location = new System.Drawing.Point(50, 242);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 20);
@@ -163,7 +173,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Clinic.Properties.Resources.BloodType_32;
-            this.pictureBox3.Location = new System.Drawing.Point(228, 238);
+            this.pictureBox3.Location = new System.Drawing.Point(228, 179);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(31, 26);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -183,7 +193,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::Clinic.Properties.Resources.Emergency_Contact_32;
-            this.pictureBox6.Location = new System.Drawing.Point(228, 180);
+            this.pictureBox6.Location = new System.Drawing.Point(228, 120);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(31, 26);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -193,7 +203,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Clinic.Properties.Resources.Medical_History_32;
-            this.pictureBox4.Location = new System.Drawing.Point(229, 121);
+            this.pictureBox4.Location = new System.Drawing.Point(229, 242);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(31, 26);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -232,6 +242,17 @@
             this.tpPersonalInfo.TabIndex = 0;
             this.tpPersonalInfo.Text = "Personal Info";
             this.tpPersonalInfo.UseVisualStyleBackColor = true;
+            // 
+            // ctrlPersonCardWithFilter1
+            // 
+            this.ctrlPersonCardWithFilter1.FilterEnabled = true;
+            this.ctrlPersonCardWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(3, 8);
+            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(837, 387);
+            this.ctrlPersonCardWithFilter1.TabIndex = 120;
             // 
             // btnPatientNext
             // 
@@ -277,35 +298,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
-            // cbBloodType
+            // txtMedicalHistory
             // 
-            this.cbBloodType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBloodType.FormattingEnabled = true;
-            this.cbBloodType.Items.AddRange(new object[] {
-            "Unknown",
-            "A+",
-            "A-",
-            "B+",
-            "B-",
-            "AB+",
-            "AB-",
-            "O+",
-            "O-"});
-            this.cbBloodType.Location = new System.Drawing.Point(271, 236);
-            this.cbBloodType.Name = "cbBloodType";
-            this.cbBloodType.Size = new System.Drawing.Size(223, 28);
-            this.cbBloodType.TabIndex = 152;
-            // 
-            // ctrlPersonCardWithFilter1
-            // 
-            this.ctrlPersonCardWithFilter1.FilterEnabled = true;
-            this.ctrlPersonCardWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(3, 8);
-            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(837, 387);
-            this.ctrlPersonCardWithFilter1.TabIndex = 120;
+            this.txtMedicalHistory.Location = new System.Drawing.Point(271, 239);
+            this.txtMedicalHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMedicalHistory.MaxLength = 50;
+            this.txtMedicalHistory.Multiline = true;
+            this.txtMedicalHistory.Name = "txtMedicalHistory";
+            this.txtMedicalHistory.Size = new System.Drawing.Size(443, 101);
+            this.txtMedicalHistory.TabIndex = 153;
             // 
             // frmAddUpdatePatient
             // 
@@ -345,7 +346,6 @@
         private System.Windows.Forms.Button btnPatientNext;
         private System.Windows.Forms.TabPage tpPatientInfo;
         private System.Windows.Forms.TextBox txtEmergencyContact;
-        private System.Windows.Forms.TextBox txtMedicalHistory;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -358,5 +358,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbBloodType;
+        private System.Windows.Forms.TextBox txtMedicalHistory;
     }
 }

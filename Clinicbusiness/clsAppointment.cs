@@ -14,8 +14,7 @@ namespace Clinicbusiness
 
         public enum enStatus { Scheduled = 1, Cancelled = 2, Completed = 3 };
 
-        // 1. إضافة Enum لنوع الموعد لتسهيل استخدامه في الواجهة
-        public enum enAppointmentType { Checkup = 1, Consultation = 2 };
+        public enum enAppointmentType { NormalVisit = 1, FollowUp = 2, Urgent =3 };
 
         public enMode Mode = enMode.AddNew;
 
@@ -25,9 +24,37 @@ namespace Clinicbusiness
 
         // 2. الخاصية الجديدة
         public byte AppointmentType { set; get; }
+        public string AppointmentTypeName
+        {
+            get
+            {
+                switch (AppointmentType)
+                {
+                    case 1: return "Normal Visit";
+                    case 2: return "Follow Up";
+                    case 3: return "Urgent";
+
+                    default: return "Normal Visit";
+                }
+            }
+        }
 
         public DateTime AppointmentDate { set; get; }
         public byte Status { set; get; }
+        public string StatusName
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case 1: return "Scheduled";
+                    case 2: return "Cancelled";
+                    case 3: return "Completed";
+
+                    default: return "Scheduled";
+                }
+            }
+        }
         public int CreatedByUserID { set; get; }
 
         public clsPatient PatientInfo;
@@ -38,7 +65,7 @@ namespace Clinicbusiness
             this.AppointmentID = -1;
             this.PatientID = -1;
             this.DoctorID = -1;
-            this.AppointmentType = (byte)enAppointmentType.Checkup; // القيمة الافتراضية
+            this.AppointmentType = (byte)enAppointmentType.NormalVisit; 
             this.AppointmentDate = DateTime.Now;
             this.Status = (byte)enStatus.Scheduled;
             this.CreatedByUserID = -1;
