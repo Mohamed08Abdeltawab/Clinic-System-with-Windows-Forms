@@ -23,7 +23,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListAppointment());
+            Application.Run(new frmAddUpdateAppointment());
         }
     }
 }

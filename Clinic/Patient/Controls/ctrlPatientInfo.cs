@@ -34,6 +34,7 @@ namespace Clinic.Patient
 
         public void LoadPatientInfo(int PatientID)
         {
+            _PatientID = PatientID;
             _Patient = clsPatient.Find(PatientID);
             if (_Patient == null)
             {

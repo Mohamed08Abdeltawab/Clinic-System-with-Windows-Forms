@@ -34,6 +34,7 @@ namespace Clinic.Doctor
 
         public void LoadDoctorInfo(int DoctorID)
         {
+            _DoctorID = DoctorID;
             _Doctor = clsDoctor.Find(DoctorID);
             if (_Doctor == null)
             {
