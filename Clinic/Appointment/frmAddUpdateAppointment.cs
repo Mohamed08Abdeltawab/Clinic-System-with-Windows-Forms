@@ -89,9 +89,9 @@ namespace Clinic.Appointment
                 return;
             }
 
-            _Doctor.PersonID = ctrlPersonCardWithFilter1.PersonID;
-            _Doctor.Specialization = txtSpecialization.Text.Trim();
-            _Doctor.ConsultationFees = Convert.ToDecimal(txtConsultationFees.Text.Trim());
+            //_Doctor.PersonID = ctrlPersonCardWithFilter1.PersonID;
+            //_Doctor.Specialization = txtSpecialization.Text.Trim();
+            //_Doctor.ConsultationFees = Convert.ToDecimal(txtConsultationFees.Text.Trim());
 
             // التأكد من اختيار يوم عمل واحد على الأقل
             if (chkWorkingDays.CheckedItems.Count < 1)
@@ -104,22 +104,22 @@ namespace Clinic.Appointment
             }
 
             // 🌟 استدعاء الدالة لتعبئة List<byte> قبل الحفظ
-            FillDoctorWorkingDaysList();
+            //FillDoctorWorkingDaysList();
 
-            if (_Doctor.Save())
-            {
-                lblDoctorID.Text = _Doctor.DoctorID.ToString();
-                // change form mode to update.
-                _Mode = enMode.Update;
-                lblTitle.Text = "Update Doctor";
-                this.Text = "Update Doctor";
+            //if (_Doctor.Save())
+            //{
+            //    lblDoctorID.Text = _Doctor.DoctorID.ToString();
+            //    // change form mode to update.
+            //    _Mode = enMode.Update;
+            //    lblTitle.Text = "Update Doctor";
+            //    this.Text = "Update Doctor";
 
                 
 
-                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //    MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 

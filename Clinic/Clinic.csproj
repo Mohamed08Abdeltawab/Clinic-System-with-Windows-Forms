@@ -267,6 +267,9 @@
     <EmbeddedResource Include="Patient\frmAddUpdatePatient.resx">
       <DependentUpon>frmAddUpdatePatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Patient\frmFindPatient.resx">
+      <DependentUpon>frmFindPatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Patient\frmListPatient.resx">
       <DependentUpon>frmListPatient.cs</DependentUpon>
     </EmbeddedResource>

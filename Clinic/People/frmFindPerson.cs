@@ -26,5 +26,6 @@ namespace Clinic.People
             DataBack?.Invoke(this, ctrlPersonCardWithFilter1.PersonID);
             this.Close();
         }
+
     }
 }
