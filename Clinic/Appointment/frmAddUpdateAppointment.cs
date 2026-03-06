@@ -119,6 +119,38 @@ namespace Clinic.Appointment
             this.Close();
         }
 
+        private void btnDoctorNext_Click(object sender, EventArgs e)
+        {
+            if (_Mode == enMode.Update)
+            {
+                //btnSave.Enabled = true;
+                tpDoctorInfo.Enabled = true;
+                tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpDoctorInfo"];
+                return;
+            }
+
+            // incase of add new mode.
+            if (ctrlPatientCardWithFilter1.PatientID != -1)
+            {
+                if (clsAppointment.IsAppointmentExistByDoctorID(ctrlPatientCardWithFilter1.PatientID))
+                {
+                    MessageBox.Show("Selected Doctor already a Appointment, choose another one.", "Select another Doctor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ctrlPatientCardWithFilter1.FilterFocus();
+                }
+                else
+                {
+                    //btnSave.Enabled = true;
+                    tpDoctorInfo.Enabled = true;
+                    tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpDoctorInfo"];
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select a Appointment", "Select a Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ctrlPatientCardWithFilter1.FilterFocus();
+            }
+        }
+
         private void btnAppointmentNext_Click(object sender, EventArgs e)
         {
             if (_Mode == enMode.Update)
@@ -130,12 +162,12 @@ namespace Clinic.Appointment
             }
 
             // incase of add new mode.
-            if (ctrlPatientCardWithFilter1.PatientID != -1)
+            if (ctrlDoctorCardWithFilter1.DoctorID != -1)
             {
-                if (clsAppointment.IsAppointmentExistByPatientID(ctrlPatientCardWithFilter1.PatientID))
+                if (clsAppointment.IsAppointmentExistByPatientID(ctrlDoctorCardWithFilter1.DoctorID))
                 {
                     MessageBox.Show("Selected Patient already a Appointment, choose another one.", "Select another Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ctrlPatientCardWithFilter1.FilterFocus();
+                    ctrlDoctorCardWithFilter1.FilterFocus();
                 }
                 else
                 {
@@ -147,8 +179,10 @@ namespace Clinic.Appointment
             else
             {
                 MessageBox.Show("Please Select a Appointment", "Select a Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ctrlPatientCardWithFilter1.FilterFocus();
+                ctrlDoctorCardWithFilter1.FilterFocus();
             }
         }
+
+        
     }
 }

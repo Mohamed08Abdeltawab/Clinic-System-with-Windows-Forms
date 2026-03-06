@@ -374,5 +374,31 @@ namespace ClinicData
             return isFound;
         }
 
+        public static bool IsAppointmentExistByDoctorID(int DoctorID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Doctors WHERE DoctorID = @DoctorID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                isFound = reader.HasRows;
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
     }
 }

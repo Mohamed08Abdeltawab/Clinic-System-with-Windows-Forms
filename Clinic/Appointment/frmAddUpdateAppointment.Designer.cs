@@ -46,11 +46,13 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.tcAppointmentInfo = new System.Windows.Forms.TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.ctrlPatientCardWithFilter1 = new Clinic.Patient.ctrlPatientCardWithFilter();
+            this.btnDoctorNext = new System.Windows.Forms.Button();
+            this.tpDoctorInfo = new System.Windows.Forms.TabPage();
             this.btnAppointmentNext = new System.Windows.Forms.Button();
+            this.ctrlDoctorCardWithFilter1 = new Clinic.Doctor.ctrlDoctorCardWithFilter();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ctrlPatientCardWithFilter1 = new Clinic.Patient.ctrlPatientCardWithFilter();
-            this.tpDoctorInfo = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tpAppointmentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tcAppointmentInfo.SuspendLayout();
             this.tpPersonalInfo.SuspendLayout();
+            this.tpDoctorInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -246,7 +249,7 @@
             // tpPersonalInfo
             // 
             this.tpPersonalInfo.Controls.Add(this.ctrlPatientCardWithFilter1);
-            this.tpPersonalInfo.Controls.Add(this.btnAppointmentNext);
+            this.tpPersonalInfo.Controls.Add(this.btnDoctorNext);
             this.tpPersonalInfo.Location = new System.Drawing.Point(4, 29);
             this.tpPersonalInfo.Name = "tpPersonalInfo";
             this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -255,19 +258,66 @@
             this.tpPersonalInfo.Text = "Personal Info";
             this.tpPersonalInfo.UseVisualStyleBackColor = true;
             // 
+            // ctrlPatientCardWithFilter1
+            // 
+            this.ctrlPatientCardWithFilter1.FilterEnabled = true;
+            this.ctrlPatientCardWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPatientCardWithFilter1.Location = new System.Drawing.Point(2, 5);
+            this.ctrlPatientCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPatientCardWithFilter1.Name = "ctrlPatientCardWithFilter1";
+            this.ctrlPatientCardWithFilter1.ShowAddPatient = true;
+            this.ctrlPatientCardWithFilter1.Size = new System.Drawing.Size(842, 548);
+            this.ctrlPatientCardWithFilter1.TabIndex = 120;
+            // 
+            // btnDoctorNext
+            // 
+            this.btnDoctorNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDoctorNext.Image = global::Clinic.Properties.Resources.Next_32;
+            this.btnDoctorNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDoctorNext.Location = new System.Drawing.Point(715, 563);
+            this.btnDoctorNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDoctorNext.Name = "btnDoctorNext";
+            this.btnDoctorNext.Size = new System.Drawing.Size(126, 37);
+            this.btnDoctorNext.TabIndex = 119;
+            this.btnDoctorNext.Text = "Next";
+            this.btnDoctorNext.UseVisualStyleBackColor = true;
+            this.btnDoctorNext.Click += new System.EventHandler(this.btnDoctorNext_Click);
+            // 
+            // tpDoctorInfo
+            // 
+            this.tpDoctorInfo.Controls.Add(this.btnAppointmentNext);
+            this.tpDoctorInfo.Controls.Add(this.ctrlDoctorCardWithFilter1);
+            this.tpDoctorInfo.Location = new System.Drawing.Point(4, 29);
+            this.tpDoctorInfo.Name = "tpDoctorInfo";
+            this.tpDoctorInfo.Size = new System.Drawing.Size(848, 624);
+            this.tpDoctorInfo.TabIndex = 2;
+            this.tpDoctorInfo.Text = "tpDoctorInfo";
+            this.tpDoctorInfo.UseVisualStyleBackColor = true;
+            // 
             // btnAppointmentNext
             // 
             this.btnAppointmentNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAppointmentNext.Image = global::Clinic.Properties.Resources.Next_32;
             this.btnAppointmentNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAppointmentNext.Location = new System.Drawing.Point(715, 563);
+            this.btnAppointmentNext.Location = new System.Drawing.Point(715, 546);
             this.btnAppointmentNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAppointmentNext.Name = "btnAppointmentNext";
             this.btnAppointmentNext.Size = new System.Drawing.Size(126, 37);
-            this.btnAppointmentNext.TabIndex = 119;
+            this.btnAppointmentNext.TabIndex = 120;
             this.btnAppointmentNext.Text = "Next";
             this.btnAppointmentNext.UseVisualStyleBackColor = true;
             this.btnAppointmentNext.Click += new System.EventHandler(this.btnAppointmentNext_Click);
+            // 
+            // ctrlDoctorCardWithFilter1
+            // 
+            this.ctrlDoctorCardWithFilter1.FilterEnabled = true;
+            this.ctrlDoctorCardWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlDoctorCardWithFilter1.Location = new System.Drawing.Point(4, 5);
+            this.ctrlDoctorCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlDoctorCardWithFilter1.Name = "ctrlDoctorCardWithFilter1";
+            this.ctrlDoctorCardWithFilter1.ShowAddDoctor = true;
+            this.ctrlDoctorCardWithFilter1.Size = new System.Drawing.Size(842, 531);
+            this.ctrlDoctorCardWithFilter1.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -299,30 +349,11 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // ctrlPatientCardWithFilter1
-            // 
-            this.ctrlPatientCardWithFilter1.FilterEnabled = true;
-            this.ctrlPatientCardWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPatientCardWithFilter1.Location = new System.Drawing.Point(2, 5);
-            this.ctrlPatientCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPatientCardWithFilter1.Name = "ctrlPatientCardWithFilter1";
-            this.ctrlPatientCardWithFilter1.ShowAddPatient = true;
-            this.ctrlPatientCardWithFilter1.Size = new System.Drawing.Size(842, 548);
-            this.ctrlPatientCardWithFilter1.TabIndex = 120;
-            // 
-            // tpDoctorInfo
-            // 
-            this.tpDoctorInfo.Location = new System.Drawing.Point(4, 29);
-            this.tpDoctorInfo.Name = "tpDoctorInfo";
-            this.tpDoctorInfo.Size = new System.Drawing.Size(848, 624);
-            this.tpDoctorInfo.TabIndex = 2;
-            this.tpDoctorInfo.Text = "tpDoctorInfo";
-            this.tpDoctorInfo.UseVisualStyleBackColor = true;
-            // 
             // frmAddUpdateAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(881, 793);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tcAppointmentInfo);
@@ -342,6 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tcAppointmentInfo.ResumeLayout(false);
             this.tpPersonalInfo.ResumeLayout(false);
+            this.tpDoctorInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -352,7 +384,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TabControl tcAppointmentInfo;
         private System.Windows.Forms.TabPage tpPersonalInfo;
-        private System.Windows.Forms.Button btnAppointmentNext;
+        private System.Windows.Forms.Button btnDoctorNext;
         private System.Windows.Forms.TabPage tpAppointmentInfo;
         private System.Windows.Forms.TextBox txtConsultationFees;
         private System.Windows.Forms.TextBox txtSpecialization;
@@ -370,5 +402,7 @@
         private System.Windows.Forms.Button btnClose;
         private Patient.ctrlPatientCardWithFilter ctrlPatientCardWithFilter1;
         private System.Windows.Forms.TabPage tpDoctorInfo;
+        private System.Windows.Forms.Button btnAppointmentNext;
+        private Doctor.ctrlDoctorCardWithFilter ctrlDoctorCardWithFilter1;
     }
 }
