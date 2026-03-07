@@ -85,6 +85,7 @@ namespace Clinic.Appointment
 
         private void frmAddUpdateAppointment_Load(object sender, EventArgs e)
         {
+            _FillAppointmentTypes();
             _ResetDefualtValues();
             if (_Mode == enMode.Update)
                 _LoadData();
@@ -122,7 +123,7 @@ namespace Clinic.Appointment
             _Appointment.PatientID = Convert.ToInt32(lblPatientID.Text);
             _Appointment.DoctorID =Convert.ToInt32(lblDoctorID.Text);
             _Appointment.CreatedByUserID = Convert.ToInt32(lblCreatedByUserID.Text);
-            _Appointment.AppointmentTypeInfo.ID = cbAppointmentType.SelectedIndex + 1;
+            _Appointment.AppointmentTypeInfo.ID = (int)cbAppointmentType.SelectedValue;
             _Appointment.Status = (byte)(cbStatus.SelectedIndex + 1);
             _Appointment.AppointmentFees = Convert.ToDecimal(lblAppointmentTypeFees.Text);
 
@@ -201,12 +202,21 @@ namespace Clinic.Appointment
                     btnSave.Enabled = true;
                     tpAppointmentInfo.Enabled = true;
                     tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpAppointmentInfo"];
+
                     lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
                     lblDoctorID.Text = ctrlDoctorCardWithFilter1.DoctorID.ToString();
                     lblDoctorConsaltantFees.Text = ctrlDoctorCardWithFilter1.DoctorConsultationFees;
-                    lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString();
 
-                    lblTotalAppointmentFees.Text = (Convert.ToDecimal(lblDoctorConsaltantFees.Text) + Convert.ToDecimal(lblAppointmentTypeFees.Text)).ToString();
+                    // تأكد من جلب بيانات النوع المختار حالياً في الكومبو بوكس
+                    int currentTypeID = (int)cbAppointmentType.SelectedValue;
+                    _Appointment.AppointmentTypeInfo = clsAppointmentType.Find(currentTypeID);
+
+                    if (_Appointment.AppointmentTypeInfo != null)
+                    {
+                        lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString("0.00");
+                        decimal docFees = Convert.ToDecimal(lblDoctorConsaltantFees.Text);
+                        lblTotalAppointmentFees.Text = (docFees + _Appointment.AppointmentTypeInfo.Fees).ToString("0.00");
+                    }
                 }
             }
             else
@@ -216,15 +226,43 @@ namespace Clinic.Appointment
             }
         }
 
+
+        private void _FillAppointmentTypes()
+        {
+            DataTable dt = clsAppointmentType.GetAllAppointmentTypes();
+            cbAppointmentType.DataSource = dt;
+            cbAppointmentType.DisplayMember = "AppointmentTypeName";
+            cbAppointmentType.ValueMember = "AppointmentTypeID";
+        }
+
         private void cbAppointmentType_SelectedIndexChanged(object sender, EventArgs e)
         {
-             lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString();
+            // 1. التحقق من الاختيار والنوع لضمان عدم هروب الكود أو حدوث Null
+            if (cbAppointmentType.SelectedIndex == -1 || cbAppointmentType.SelectedValue == null || cbAppointmentType.SelectedValue is DataRowView)
+                return;
 
-             decimal doctorFees = Convert.ToDecimal(ctrlDoctorCardWithFilter1.DoctorConsultationFees);
+            // 2. التحقق من وجود كائن الموعد وسعر الدكتور
+            if (_Appointment == null || string.IsNullOrEmpty(ctrlDoctorCardWithFilter1.DoctorConsultationFees))
+                return;
 
-             _Appointment.AppointmentFees = doctorFees + _Appointment.AppointmentTypeInfo.Fees;
+            if (int.TryParse(cbAppointmentType.SelectedValue.ToString(), out int selectedID))
+            {
+                // استخدام الـ ID المختار مباشرة من الـ ValueMember
+                _Appointment.AppointmentTypeInfo = clsAppointmentType.Find(selectedID);
 
-             lblTotalAppointmentFees.Text = _Appointment.AppointmentFees.ToString() + " $";
+                if (_Appointment.AppointmentTypeInfo != null)
+                {
+                    lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString("0.00");
+
+                    if (decimal.TryParse(ctrlDoctorCardWithFilter1.DoctorConsultationFees, out decimal doctorFees))
+                    {
+                        _Appointment.AppointmentFees = doctorFees + _Appointment.AppointmentTypeInfo.Fees;
+                        lblTotalAppointmentFees.Text = _Appointment.AppointmentFees.ToString("0.00") + " $";
+                    }
+                }
+            }
+
+
         }
 
     }
