@@ -76,7 +76,7 @@ namespace Clinic.Appointment
             lblDoctorID.Text = _Appointment.DoctorID.ToString();
             lblPatientID.Text = _Appointment.PatientID.ToString();
             lblCreatedByUserID.Text = _Appointment.CreatedByUserID.ToString();
-            cbAppointmentType.SelectedIndex = _Appointment.AppointmentType - 1;
+            cbAppointmentType.SelectedIndex = _Appointment.AppointmentTypeInfo.ID - 1;
             cbStatus.SelectedIndex = _Appointment.Status - 1;
             dtpAppointmentDate.Value = _Appointment.AppointmentDate;
             lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
@@ -122,8 +122,9 @@ namespace Clinic.Appointment
             _Appointment.PatientID = Convert.ToInt32(lblPatientID.Text);
             _Appointment.DoctorID =Convert.ToInt32(lblDoctorID.Text);
             _Appointment.CreatedByUserID = Convert.ToInt32(lblCreatedByUserID.Text);
-            _Appointment.AppointmentType = (byte)(cbAppointmentType.SelectedIndex + 1);
+            _Appointment.AppointmentTypeInfo.ID = cbAppointmentType.SelectedIndex + 1;
             _Appointment.Status = (byte)(cbStatus.SelectedIndex + 1);
+            _Appointment.AppointmentFees = Convert.ToDecimal(lblAppointmentTypeFees.Text);
 
             //validation of working days of doctor
             if (!IsDoctorWorkingInThatDay())
@@ -202,7 +203,10 @@ namespace Clinic.Appointment
                     tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpAppointmentInfo"];
                     lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
                     lblDoctorID.Text = ctrlDoctorCardWithFilter1.DoctorID.ToString();
+                    lblDoctorConsaltantFees.Text = ctrlDoctorCardWithFilter1.DoctorConsultationFees;
+                    lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString();
 
+                    lblTotalAppointmentFees.Text = (Convert.ToDecimal(lblDoctorConsaltantFees.Text) + Convert.ToDecimal(lblAppointmentTypeFees.Text)).ToString();
                 }
             }
             else
@@ -210,6 +214,17 @@ namespace Clinic.Appointment
                 MessageBox.Show("Please Select a Doctor", "Select a Doctor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ctrlDoctorCardWithFilter1.FilterFocus();
             }
+        }
+
+        private void cbAppointmentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             lblAppointmentTypeFees.Text = _Appointment.AppointmentTypeInfo.Fees.ToString();
+
+             decimal doctorFees = Convert.ToDecimal(ctrlDoctorCardWithFilter1.DoctorConsultationFees);
+
+             _Appointment.AppointmentFees = doctorFees + _Appointment.AppointmentTypeInfo.Fees;
+
+             lblTotalAppointmentFees.Text = _Appointment.AppointmentFees.ToString() + " $";
         }
 
     }

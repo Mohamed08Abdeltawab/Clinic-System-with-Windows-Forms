@@ -8,7 +8,7 @@ using ClinicData;
 
 namespace Clinicbusiness
 {
-    internal class clsAppointmentType
+    public class clsAppointmentType
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.Update;

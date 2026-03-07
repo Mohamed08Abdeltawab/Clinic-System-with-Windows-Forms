@@ -16,22 +16,13 @@ namespace Clinicbusiness
         public int PatientID { set; get; }
         public int DoctorID { set; get; }
 
-        // التحديث: تغيير النوع لـ int وإضافة عمود السعر
-        public int AppointmentTypeID { set; get; }
-        public decimal AppointmentFees { set; get; }
+        
+        public clsAppointmentType AppointmentTypeInfo;
 
-        public string AppointmentTypeName
-        {
-            get
-            {
-                // نستخدم الكلاس الجديد لجلب الاسم من قاعدة البيانات لضمان المرونة
-                clsAppointmentType type = clsAppointmentType.Find(this.AppointmentTypeID);
-                return (type != null) ? type.Name : "Unknown";
-            }
-        }
-
+        public decimal AppointmentFees { set; get; } // السعر النهائي المحفوظ
         public DateTime AppointmentDate { set; get; }
         public byte Status { set; get; }
+
         public string StatusName
         {
             get
@@ -51,12 +42,16 @@ namespace Clinicbusiness
         public clsPatient PatientInfo;
         public clsDoctor DoctorInfo;
 
+        // المشيد الافتراضي
         public clsAppointment()
         {
             this.AppointmentID = -1;
             this.PatientID = -1;
             this.DoctorID = -1;
-            this.AppointmentTypeID = 1; // الافتراضي: Normal Visit
+
+            // تهيئة الكائنات (Composition Initialization)
+            this.AppointmentTypeInfo = new clsAppointmentType();
+            this.AppointmentTypeInfo.ID = 1;
             this.AppointmentFees = 0;
             this.AppointmentDate = DateTime.Now;
             this.Status = (byte)enStatus.Scheduled;
@@ -65,14 +60,18 @@ namespace Clinicbusiness
             Mode = enMode.AddNew;
         }
 
+        // المشيد الخاص لعملية الـ Find
         private clsAppointment(int AppointmentID, int PatientID, int DoctorID, int AppointmentTypeID,
                                decimal AppointmentFees, DateTime AppointmentDate, byte Status, int CreatedByUserID)
         {
             this.AppointmentID = AppointmentID;
             this.PatientID = PatientID;
             this.DoctorID = DoctorID;
-            this.AppointmentTypeID = AppointmentTypeID;
-            this.AppointmentFees = AppointmentFees; // تعيين القيمة الجديدة
+
+            // جلب بيانات النوع بالكامل (Composition)
+            this.AppointmentTypeInfo = clsAppointmentType.Find(AppointmentTypeID);
+            this.AppointmentTypeInfo.ID = AppointmentTypeID;
+            this.AppointmentFees = AppointmentFees;
             this.AppointmentDate = AppointmentDate;
             this.Status = Status;
             this.CreatedByUserID = CreatedByUserID;
@@ -85,9 +84,9 @@ namespace Clinicbusiness
 
         private bool _AddNewAppointment()
         {
-            // تمرير الحقول الجديدة للـ Data Layer
+            // نمرر الـ ID من داخل كائن الـ AppointmentTypeInfo
             this.AppointmentID = clsAppointmentData.AddNewAppointment(
-                this.PatientID, this.DoctorID, this.AppointmentTypeID, this.AppointmentFees,
+                this.PatientID, this.DoctorID, this.AppointmentTypeInfo.ID, this.AppointmentFees,
                 this.AppointmentDate, this.Status, this.CreatedByUserID);
 
             return (this.AppointmentID != -1);
@@ -96,17 +95,16 @@ namespace Clinicbusiness
         private bool _UpdateAppointment()
         {
             return clsAppointmentData.UpdateAppointment(
-                this.AppointmentID, this.PatientID, this.DoctorID, this.AppointmentTypeID, this.AppointmentFees,
+                this.AppointmentID, this.PatientID, this.DoctorID, this.AppointmentTypeInfo.ID, this.AppointmentFees,
                 this.AppointmentDate, this.Status, this.CreatedByUserID);
         }
 
         public static clsAppointment Find(int AppointmentID)
         {
-            int PatientID = -1, DoctorID = -1, CreatedByUserID = -1;
+            int PatientID = -1, DoctorID = -1, CreatedByUserID = -1, AppointmentTypeID = -1;
             DateTime AppointmentDate = DateTime.Now;
             byte Status = 1;
-            int AppointmentTypeID = 1;
-            decimal AppointmentFees = 0; // متغير لاستقبال السعر
+            decimal AppointmentFees = 0;
 
             bool IsFound = clsAppointmentData.GetAppointmentInfoByID(
                 AppointmentID, ref PatientID, ref DoctorID, ref AppointmentTypeID, ref AppointmentFees,

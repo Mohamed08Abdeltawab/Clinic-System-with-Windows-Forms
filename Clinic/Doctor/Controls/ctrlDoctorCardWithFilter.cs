@@ -53,6 +53,11 @@ namespace Clinic.Doctor
             get { return ctrlDoctorInfo1.DoctorWorkingDays; }
         }
 
+        public string DoctorConsultationFees
+        {
+            get { return ctrlDoctorInfo1.DoctorConsultationFees; }
+        }
+
         public ctrlDoctorCardWithFilter()
         {
             InitializeComponent();

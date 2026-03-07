@@ -32,6 +32,11 @@ namespace Clinic.Doctor
             get { return GetWorkingDaysNames(SelectedDoctorInfo); }
         }
 
+        public string DoctorConsultationFees
+        {
+            get { return _Doctor.ConsultationFees.ToString(); }
+        }
+
         public ctrlDoctorInfo()
         {
             InitializeComponent();
@@ -79,7 +84,7 @@ namespace Clinic.Doctor
         {
             ctrlPersonCard1.LoadInfo(_Doctor.PersonID);
             lblDoctorID.Text = _Doctor.DoctorID.ToString();
-            lblConsultationFees.Text = _Doctor.ConsultationFees.ToString();
+            lblConsultationFees.Text = DoctorConsultationFees;
             lblSpecialization.Text = _Doctor.Specialization.ToString();
 
             // 🌟 استخدام الدالة الجديدة لعرض الأيام
