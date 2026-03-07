@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbAppointmentType = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -39,11 +39,6 @@
             this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmsPeople = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dgvAppointment = new System.Windows.Forms.DataGridView();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnAddAppointment = new System.Windows.Forms.Button();
-            this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.showPatientDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDoctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +47,11 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dgvAppointment = new System.Windows.Forms.DataGridView();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnAddAppointment = new System.Windows.Forms.Button();
+            this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.cmsPeople.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
@@ -116,8 +116,9 @@
             "Appointment ID",
             "Patient Name",
             "Doctor Name",
-            "Appointment Type",
-            "Status"});
+            "Appointment Type Name",
+            "Status",
+            "Created By UserID"});
             this.cbFilterBy.Location = new System.Drawing.Point(90, 270);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(210, 28);
@@ -157,86 +158,6 @@
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
             this.cmsPeople.Size = new System.Drawing.Size(214, 238);
-            // 
-            // dgvAppointment
-            // 
-            this.dgvAppointment.AllowUserToAddRows = false;
-            this.dgvAppointment.AllowUserToDeleteRows = false;
-            this.dgvAppointment.AllowUserToResizeRows = false;
-            this.dgvAppointment.BackgroundColor = System.Drawing.Color.White;
-            this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAppointment.ContextMenuStrip = this.cmsPeople;
-            this.dgvAppointment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvAppointment.Location = new System.Drawing.Point(16, 306);
-            this.dgvAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvAppointment.MultiSelect = false;
-            this.dgvAppointment.Name = "dgvAppointment";
-            this.dgvAppointment.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAppointment.Size = new System.Drawing.Size(1339, 371);
-            this.dgvAppointment.TabIndex = 104;
-            this.dgvAppointment.TabStop = false;
-            // 
-            // cbStatus
-            // 
-            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Items.AddRange(new object[] {
-            "All",
-            "Scheduled",
-            "Cancelled",
-            "Completed"});
-            this.cbStatus.Location = new System.Drawing.Point(307, 269);
-            this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(152, 28);
-            this.cbStatus.TabIndex = 115;
-            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
-            // 
-            // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1220, 685);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(135, 36);
-            this.btnClose.TabIndex = 113;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnAddAppointment
-            // 
-            this.btnAddAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddAppointment.Image = global::Clinic.Properties.Resources.Add_Appointment_64;
-            this.btnAddAppointment.Location = new System.Drawing.Point(1267, 214);
-            this.btnAddAppointment.Name = "btnAddAppointment";
-            this.btnAddAppointment.Size = new System.Drawing.Size(88, 75);
-            this.btnAddAppointment.TabIndex = 112;
-            this.btnAddAppointment.UseVisualStyleBackColor = true;
-            this.btnAddAppointment.Click += new System.EventHandler(this.btnAddAppointment_Click);
-            // 
-            // pbPersonImage
-            // 
-            this.pbPersonImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbPersonImage.Image = global::Clinic.Properties.Resources.appointment_512;
-            this.pbPersonImage.InitialImage = null;
-            this.pbPersonImage.Location = new System.Drawing.Point(602, 20);
-            this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pbPersonImage.Name = "pbPersonImage";
-            this.pbPersonImage.Size = new System.Drawing.Size(220, 189);
-            this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPersonImage.TabIndex = 110;
-            this.pbPersonImage.TabStop = false;
             // 
             // toolStripMenuItem2
             // 
@@ -311,6 +232,86 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // dgvAppointment
+            // 
+            this.dgvAppointment.AllowUserToAddRows = false;
+            this.dgvAppointment.AllowUserToDeleteRows = false;
+            this.dgvAppointment.AllowUserToResizeRows = false;
+            this.dgvAppointment.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAppointment.ContextMenuStrip = this.cmsPeople;
+            this.dgvAppointment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvAppointment.Location = new System.Drawing.Point(16, 306);
+            this.dgvAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvAppointment.MultiSelect = false;
+            this.dgvAppointment.Name = "dgvAppointment";
+            this.dgvAppointment.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAppointment.Size = new System.Drawing.Size(1339, 371);
+            this.dgvAppointment.TabIndex = 104;
+            this.dgvAppointment.TabStop = false;
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "All",
+            "Scheduled",
+            "Cancelled",
+            "Completed"});
+            this.cbStatus.Location = new System.Drawing.Point(307, 269);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(152, 28);
+            this.cbStatus.TabIndex = 115;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1220, 685);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(135, 36);
+            this.btnClose.TabIndex = 113;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnAddAppointment
+            // 
+            this.btnAddAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddAppointment.Image = global::Clinic.Properties.Resources.Add_Appointment_64;
+            this.btnAddAppointment.Location = new System.Drawing.Point(1267, 214);
+            this.btnAddAppointment.Name = "btnAddAppointment";
+            this.btnAddAppointment.Size = new System.Drawing.Size(88, 75);
+            this.btnAddAppointment.TabIndex = 112;
+            this.btnAddAppointment.UseVisualStyleBackColor = true;
+            this.btnAddAppointment.Click += new System.EventHandler(this.btnAddAppointment_Click);
+            // 
+            // pbPersonImage
+            // 
+            this.pbPersonImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbPersonImage.Image = global::Clinic.Properties.Resources.appointment_512;
+            this.pbPersonImage.InitialImage = null;
+            this.pbPersonImage.Location = new System.Drawing.Point(602, 20);
+            this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbPersonImage.Name = "pbPersonImage";
+            this.pbPersonImage.Size = new System.Drawing.Size(220, 189);
+            this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPersonImage.TabIndex = 110;
+            this.pbPersonImage.TabStop = false;
             // 
             // frmListAppointment
             // 

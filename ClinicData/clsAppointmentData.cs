@@ -129,6 +129,7 @@ namespace ClinicData
             string query = @"SELECT 
                  Apps.AppointmentID, 
                  Apps.PatientID, 
+                 Apps.DoctorID,
                  PatientName = PeoplePat.FullName, 
                  DoctorName = PeopleDoc.FullName,
                  Types.AppointmentTypeName,

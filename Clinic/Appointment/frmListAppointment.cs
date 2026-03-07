@@ -33,27 +33,31 @@ namespace Clinic.Appointment
                 dgvAppointment.Columns[0].HeaderText = "Appointment ID";
                 dgvAppointment.Columns[0].Width = 110;
 
-                dgvAppointment.Columns[1].Visible = false;
-                dgvAppointment.Columns[2].Visible = false;
+                dgvAppointment.Columns[1].Visible = false; // PatientID
+                dgvAppointment.Columns[2].Visible = false; // DoctorID
 
-                dgvAppointment.Columns[3].HeaderText = "Patient Name"; // تعديل من ID لـ Name
+                dgvAppointment.Columns[3].HeaderText = "Patient Name";
                 dgvAppointment.Columns[3].Width = 220;
 
-                dgvAppointment.Columns[4].HeaderText = "Doctor Name"; // تعديل من ID لـ Name
+                dgvAppointment.Columns[4].HeaderText = "Doctor Name";
                 dgvAppointment.Columns[4].Width = 220;
 
+                // العمود الجديد القادم من الـ JOIN في الداتا لير
                 dgvAppointment.Columns[5].HeaderText = "Type";
-                dgvAppointment.Columns[5].Width = 170;
+                dgvAppointment.Columns[5].Width = 150;
 
-                dgvAppointment.Columns[6].HeaderText = "Appointment Date";
-                dgvAppointment.Columns[6].Width = 220;
+                // العمود الجديد الخاص بالسعر
+                dgvAppointment.Columns[6].HeaderText = "Fees";
+                dgvAppointment.Columns[6].Width = 110;
 
-                dgvAppointment.Columns[7].HeaderText = "Status";
-                dgvAppointment.Columns[7].Width = 170;
+                dgvAppointment.Columns[7].HeaderText = "Date";
+                dgvAppointment.Columns[7].Width = 200;
 
-                dgvAppointment.Columns[8].HeaderText = "Created By UserID";
-                dgvAppointment.Columns[8].Width = 110;
-                
+                dgvAppointment.Columns[8].HeaderText = "Status";
+                dgvAppointment.Columns[8].Width = 140;
+
+                dgvAppointment.Columns[9].HeaderText = "Created By UserID";
+                dgvAppointment.Columns[9].Width = 110;
             }
         }
 
@@ -76,6 +80,10 @@ namespace Clinic.Appointment
                     FilterColumn = "DoctorName";
                     break;
 
+                case "Created By UserID":
+                    FilterColumn = "CreatedByUserID";
+                    break;
+
                 default:
                     FilterColumn = "None";
                     break;
@@ -89,7 +97,7 @@ namespace Clinic.Appointment
                 return;
             }
 
-            if (FilterColumn == "AppointmentID")
+            if (FilterColumn == "AppointmentID" || FilterColumn == "CreatedByUserID")
                 //in this case we deal with integer not string.
                 _dtAppointments.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
             else
@@ -101,7 +109,7 @@ namespace Clinic.Appointment
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFilterValue.Visible = (cbFilterBy.Text != "None" && cbFilterBy.Text != "Appointment Type" && cbFilterBy.Text != "Status");
+            txtFilterValue.Visible = (cbFilterBy.Text != "None" && cbFilterBy.Text != "Appointment Type Name" && cbFilterBy.Text != "Status");
 
             if (txtFilterValue.Visible)
             {
@@ -110,7 +118,7 @@ namespace Clinic.Appointment
                 txtFilterValue.Text = "";
                 txtFilterValue.Focus();
             }
-            else if (cbFilterBy.Text == "Appointment Type")
+            else if (cbFilterBy.Text == "Appointment Type Name")
             {
                 cbAppointmentType.SelectedIndex = 0;
                 cbAppointmentType.Visible = true;
@@ -140,7 +148,7 @@ namespace Clinic.Appointment
                 _dtAppointments.DefaultView.RowFilter = "";
             }
             else
-                _dtAppointments.DefaultView.RowFilter = string.Format("[AppointmentType] LIKE '%{0}%'", FilterValue);
+                _dtAppointments.DefaultView.RowFilter = string.Format("[AppointmentTypeName] LIKE '%{0}%'", FilterValue);
 
             lblRecordsCount.Text = dgvAppointment.Rows.Count.ToString();
 
@@ -215,7 +223,7 @@ namespace Clinic.Appointment
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cbFilterBy.Text == "Appointment ID")//
+            if (cbFilterBy.Text == "Appointment ID" || cbFilterBy.Text == "Created By UserID")
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
