@@ -185,17 +185,32 @@ namespace Clinic.Appointment
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            frmListAppointment_Load(null, null);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment(AppointmentID);
+            frm.ShowDialog();
+            frmListAppointment_Load(null,null);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Are you sure you want to delete this Appointment!","Delete Appointment",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (clsAppointment.DeleteAppointment(AppointmentID))
+                {
+                    MessageBox.Show("Appointment has been deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmListAppointment_Load(null, null);
+                }
+                else
+                    MessageBox.Show("Appointment is not deleted due to data connected to it.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
