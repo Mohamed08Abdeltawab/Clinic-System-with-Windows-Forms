@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Appointment;
+using Clinic.Appointment.AppointmentType;
 using Clinic.Doctor;
 using Clinic.Global_Classes;
 using Clinic.Login;
@@ -100,6 +101,18 @@ namespace Clinic
         private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmListAppointment frm = new frmListAppointment();
+            frm.ShowDialog();
+        }
+
+        private void manageServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListServices frm = new frmListServices();
+            frm.ShowDialog();
+        }
+
+        private void mangeAppointmentTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListAppointmentType frm = new frmListAppointmentType();
             frm.ShowDialog();
         }
     }

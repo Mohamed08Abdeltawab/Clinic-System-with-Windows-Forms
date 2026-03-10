@@ -508,9 +508,6 @@
     <None Include="Resources\sign_out 32 -2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SignOut 64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\User 32 -2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -674,6 +671,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appointment type 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Account Setttings 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mange 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User Options 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User Options 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mange Services32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment type 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
