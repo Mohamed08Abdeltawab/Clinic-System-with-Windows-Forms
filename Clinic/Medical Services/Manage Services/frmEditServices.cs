@@ -74,16 +74,16 @@ namespace Clinic.Medical_Services.Mange_Services
                 errorProvider1.SetError(txtServicePrice, null);
             }
 
-
-            if (!clsValidation.IsNumber(txtServicePrice.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(txtServicePrice, "Invalid Number.");
-            }
-            else
-            {
-                errorProvider1.SetError(txtServicePrice, null);
-            }
+            //not used because using keypress to prevent the non degit input
+            //if (!clsValidation.IsNumber(txtServicePrice.Text))
+            //{
+            //    e.Cancel = true;
+            //    errorProvider1.SetError(txtServicePrice, "Invalid Number.");
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(txtServicePrice, null);
+            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace Clinic.Medical_Services.Mange_Services
                 MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            lblApplicationTypeID.Text = _Service.ServiceID.ToString();
             _Service.ServiceName = txtServiceName.Text.Trim();
             _Service.ServiceDescription = txtServiceDescription.Text.Trim();
             _Service.ServicePrice = Convert.ToDecimal(txtServicePrice.Text.Trim());
@@ -110,6 +110,11 @@ namespace Clinic.Medical_Services.Mange_Services
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtServicePrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

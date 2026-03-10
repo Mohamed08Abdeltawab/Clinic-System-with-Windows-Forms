@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Appointment;
+using Clinic.Appointment.AppointmentType;
 using Clinic.Doctor;
 using Clinic.Login;
 using Clinic.Medical_Services.Mange_Services;
@@ -23,7 +24,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new frmEditAppointmentType(1));
         }
     }
 }
