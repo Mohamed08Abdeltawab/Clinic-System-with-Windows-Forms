@@ -114,7 +114,8 @@ namespace Clinic.Medical_Services.Mange_Services
 
         private void txtServicePrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
+                && !(e.KeyChar == '.' && !(sender as TextBox).Text.Contains("."));//allow one . in txt box
         }
     }
 }

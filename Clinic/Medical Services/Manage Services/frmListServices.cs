@@ -25,17 +25,20 @@ namespace Clinic.Medical_Services.Mange_Services
             dgvServices.DataSource = _dtAllServices;
             lblRecordsCount.Text = dgvServices.Rows.Count.ToString();
 
-            dgvServices.Columns[0].HeaderText = "ID";
-            dgvServices.Columns[0].Width = 70;
+            if(dgvServices.Rows.Count > 0 )
+            {
+                dgvServices.Columns[0].HeaderText = "ID";
+                dgvServices.Columns[0].Width = 70;
 
-            dgvServices.Columns[1].HeaderText = "Service Name";
-            dgvServices.Columns[1].Width = 150;
+                dgvServices.Columns[1].HeaderText = "Service Name";
+                dgvServices.Columns[1].Width = 150;
 
-            dgvServices.Columns[2].HeaderText = "Service Description";
-            dgvServices.Columns[2].Width = 310;
+                dgvServices.Columns[2].HeaderText = "Service Description";
+                dgvServices.Columns[2].Width = 310;
 
-            dgvServices.Columns[3].HeaderText = "Service Price";
-            dgvServices.Columns[3].Width = 120;
+                dgvServices.Columns[3].HeaderText = "Service Price";
+                dgvServices.Columns[3].Width = 120;
+            }
 
         }
 

@@ -253,6 +253,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap appointment_type_512 {
+            get {
+                object obj = ResourceManager.GetObject("appointment type 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bill_64 {
             get {
                 object obj = ResourceManager.GetObject("Bill 64", resourceCulture);

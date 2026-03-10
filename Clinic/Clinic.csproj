@@ -52,6 +52,12 @@
     <Compile Include="Appointment\AppointmentType\frmEditAppointmentType.Designer.cs">
       <DependentUpon>frmEditAppointmentType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Appointment\AppointmentType\frmListAppointmentType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointment\AppointmentType\frmListAppointmentType.Designer.cs">
+      <DependentUpon>frmListAppointmentType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Appointment\ctrlAppointmentInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </Compile>
     <EmbeddedResource Include="Appointment\AppointmentType\frmEditAppointmentType.resx">
       <DependentUpon>frmEditAppointmentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Appointment\AppointmentType\frmListAppointmentType.resx">
+      <DependentUpon>frmListAppointmentType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Appointment\ctrlAppointmentInfo.resx">
       <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
@@ -662,6 +671,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money2 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment type 512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
