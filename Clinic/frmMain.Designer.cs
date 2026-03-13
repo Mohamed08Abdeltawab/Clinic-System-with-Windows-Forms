@@ -35,7 +35,6 @@
             this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prescriptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mangeServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.manageBillsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,8 +91,7 @@
             this.servicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.appointmentsToolStripMenuItem,
             this.visitsToolStripMenuItem,
-            this.prescriptionsToolStripMenuItem,
-            this.mangeServicesToolStripMenuItem});
+            this.prescriptionsToolStripMenuItem});
             this.servicesToolStripMenuItem.Image = global::Clinic.Properties.Resources.MedicalServices;
             this.servicesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
@@ -116,6 +114,7 @@
             this.visitsToolStripMenuItem.Name = "visitsToolStripMenuItem";
             this.visitsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
             this.visitsToolStripMenuItem.Text = "Manage Visits";
+            this.visitsToolStripMenuItem.Click += new System.EventHandler(this.visitsToolStripMenuItem_Click);
             // 
             // prescriptionsToolStripMenuItem
             // 
@@ -124,15 +123,6 @@
             this.prescriptionsToolStripMenuItem.Name = "prescriptionsToolStripMenuItem";
             this.prescriptionsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
             this.prescriptionsToolStripMenuItem.Text = "Manage Prescriptions";
-            // 
-            // mangeServicesToolStripMenuItem
-            // 
-            this.mangeServicesToolStripMenuItem.Image = global::Clinic.Properties.Resources.Mange_Services3_64;
-            this.mangeServicesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.mangeServicesToolStripMenuItem.Name = "mangeServicesToolStripMenuItem";
-            this.mangeServicesToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
-            this.mangeServicesToolStripMenuItem.Text = "Manage Services";
-            this.mangeServicesToolStripMenuItem.Click += new System.EventHandler(this.mangeServicesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -150,7 +140,7 @@
             this.manageBillsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Bill_64;
             this.manageBillsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.manageBillsToolStripMenuItem.Name = "manageBillsToolStripMenuItem";
-            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.manageBillsToolStripMenuItem.Text = "Manage Bills";
             // 
             // paymentsToolStripMenuItem
@@ -158,7 +148,7 @@
             this.paymentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Payment_64;
             this.paymentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.paymentsToolStripMenuItem.Text = "Payments";
             // 
             // peopleToolStripMenuItem
@@ -218,7 +208,7 @@
             this.toolStripMenuItem3.Image = global::Clinic.Properties.Resources.mange_32;
             this.toolStripMenuItem3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(196, 38);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(189, 38);
             this.toolStripMenuItem3.Text = "Mangement";
             // 
             // manageServicesToolStripMenuItem
@@ -245,7 +235,7 @@
             this.toolStripMenuItem4.Image = global::Clinic.Properties.Resources.User_Options_32;
             this.toolStripMenuItem4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(196, 38);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(189, 38);
             this.toolStripMenuItem4.Text = "UserOption";
             // 
             // currentUserInfoToolStripMenuItem1
@@ -269,14 +259,14 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(186, 6);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("signOutToolStripMenuItem.Image")));
             this.signOutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(189, 38);
             this.signOutToolStripMenuItem.Text = "Sign &Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
@@ -333,7 +323,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem manageBillsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mangeServicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem currentUserInfoToolStripMenuItem1;

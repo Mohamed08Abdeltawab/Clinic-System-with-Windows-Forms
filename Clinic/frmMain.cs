@@ -115,5 +115,10 @@ namespace Clinic
             frmListAppointmentType frm = new frmListAppointmentType();
             frm.ShowDialog();
         }
+
+        private void visitsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,6 +8,7 @@ using Clinic.Appointment.AppointmentType;
 using Clinic.Doctor;
 using Clinic.Login;
 using Clinic.Medical_Services.Mange_Services;
+using Clinic.Medical_Services.Visit;
 using Clinic.Patient;
 using Clinic.People;
 using Clinic.User;
@@ -24,7 +25,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListAppointmentType());
+            Application.Run(new frmListVisits());
         }
     }
 }

@@ -46,34 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appointment\AppointmentType\frmEditAppointmentType.cs">
+    <Compile Include="Medical Services\Appointment\AppointmentType\frmEditAppointmentType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Appointment\AppointmentType\frmEditAppointmentType.Designer.cs">
+    <Compile Include="Medical Services\Appointment\AppointmentType\frmEditAppointmentType.Designer.cs">
       <DependentUpon>frmEditAppointmentType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Appointment\AppointmentType\frmListAppointmentType.cs">
+    <Compile Include="Medical Services\Appointment\AppointmentType\frmListAppointmentType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Appointment\AppointmentType\frmListAppointmentType.Designer.cs">
+    <Compile Include="Medical Services\Appointment\AppointmentType\frmListAppointmentType.Designer.cs">
       <DependentUpon>frmListAppointmentType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Appointment\ctrlAppointmentInfo.cs">
+    <Compile Include="Medical Services\Appointment\ctrlAppointmentInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Appointment\ctrlAppointmentInfo.Designer.cs">
+    <Compile Include="Medical Services\Appointment\ctrlAppointmentInfo.Designer.cs">
       <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Appointment\frmAddUpdateAppointment.cs">
+    <Compile Include="Medical Services\Appointment\frmAddUpdateAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Appointment\frmAddUpdateAppointment.Designer.cs">
+    <Compile Include="Medical Services\Appointment\frmAddUpdateAppointment.Designer.cs">
       <DependentUpon>frmAddUpdateAppointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Appointment\frmListAppointment.cs">
+    <Compile Include="Medical Services\Appointment\frmListAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Appointment\frmListAppointment.Designer.cs">
+    <Compile Include="Medical Services\Appointment\frmListAppointment.Designer.cs">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="Doctor\Controls\ctrlDoctorCardWithFilter.cs">
@@ -139,6 +139,12 @@
     </Compile>
     <Compile Include="Medical Services\Manage Services\frmListServices.Designer.cs">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medical Services\Visit\frmListVisits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Visit\frmListVisits.Designer.cs">
+      <DependentUpon>frmListVisits.cs</DependentUpon>
     </Compile>
     <Compile Include="Patient\Controls\ctrlPatientInfo.cs">
       <SubType>UserControl</SubType>
@@ -249,19 +255,19 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Appointment\AppointmentType\frmEditAppointmentType.resx">
+    <EmbeddedResource Include="Medical Services\Appointment\AppointmentType\frmEditAppointmentType.resx">
       <DependentUpon>frmEditAppointmentType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Appointment\AppointmentType\frmListAppointmentType.resx">
+    <EmbeddedResource Include="Medical Services\Appointment\AppointmentType\frmListAppointmentType.resx">
       <DependentUpon>frmListAppointmentType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Appointment\ctrlAppointmentInfo.resx">
+    <EmbeddedResource Include="Medical Services\Appointment\ctrlAppointmentInfo.resx">
       <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Appointment\frmAddUpdateAppointment.resx">
+    <EmbeddedResource Include="Medical Services\Appointment\frmAddUpdateAppointment.resx">
       <DependentUpon>frmAddUpdateAppointment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Appointment\frmListAppointment.resx">
+    <EmbeddedResource Include="Medical Services\Appointment\frmListAppointment.resx">
       <DependentUpon>frmListAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Doctor\Controls\ctrlDoctorCardWithFilter.resx">
@@ -293,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Services\frmListServices.resx">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Visit\frmListVisits.resx">
+      <DependentUpon>frmListVisits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Patient\Controls\ctrlPatientInfo.resx">
       <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
@@ -689,6 +698,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appointment type 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Visits 512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
