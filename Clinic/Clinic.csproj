@@ -58,12 +58,6 @@
     <Compile Include="Medical Services\Appointment\AppointmentType\frmListAppointmentType.Designer.cs">
       <DependentUpon>frmListAppointmentType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medical Services\Appointment\ctrlAppointmentInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Medical Services\Appointment\ctrlAppointmentInfo.Designer.cs">
-      <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Medical Services\Appointment\frmAddUpdateAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +133,12 @@
     </Compile>
     <Compile Include="Medical Services\Manage Services\frmListServices.Designer.cs">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medical Services\Visit\frmFillVisitDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Visit\frmFillVisitDetails.Designer.cs">
+      <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Medical Services\Visit\frmListVisits.cs">
       <SubType>Form</SubType>
@@ -261,9 +261,6 @@
     <EmbeddedResource Include="Medical Services\Appointment\AppointmentType\frmListAppointmentType.resx">
       <DependentUpon>frmListAppointmentType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medical Services\Appointment\ctrlAppointmentInfo.resx">
-      <DependentUpon>ctrlAppointmentInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Appointment\frmAddUpdateAppointment.resx">
       <DependentUpon>frmAddUpdateAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Services\frmListServices.resx">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Visit\frmFillVisitDetails.resx">
+      <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Visit\frmListVisits.resx">
       <DependentUpon>frmListVisits.cs</DependentUpon>
@@ -701,6 +701,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Visits 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diagnosis 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

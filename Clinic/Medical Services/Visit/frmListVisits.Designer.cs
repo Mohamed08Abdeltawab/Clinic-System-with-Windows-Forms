@@ -48,7 +48,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
-            this.btnAddAppointment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisit)).BeginInit();
             this.cmsPeople.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
@@ -252,16 +251,6 @@
             this.pbPersonImage.TabIndex = 122;
             this.pbPersonImage.TabStop = false;
             // 
-            // btnAddAppointment
-            // 
-            this.btnAddAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddAppointment.Image = global::Clinic.Properties.Resources.Add_Appointment_64;
-            this.btnAddAppointment.Location = new System.Drawing.Point(1274, 214);
-            this.btnAddAppointment.Name = "btnAddAppointment";
-            this.btnAddAppointment.Size = new System.Drawing.Size(88, 75);
-            this.btnAddAppointment.TabIndex = 124;
-            this.btnAddAppointment.UseVisualStyleBackColor = true;
-            // 
             // frmListVisits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -275,7 +264,6 @@
             this.Controls.Add(this.cbFilterBy);
             this.Controls.Add(this.txtFilterValue);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnAddAppointment);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -308,7 +296,6 @@
         private System.Windows.Forms.ComboBox cbFilterBy;
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddAppointment;
         private System.Windows.Forms.Label lblTitle;
     }
 }
