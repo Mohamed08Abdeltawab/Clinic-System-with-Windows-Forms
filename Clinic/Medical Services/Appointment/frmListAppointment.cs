@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Doctor;
+using Clinic.Medical_Services.Visit;
 using Clinic.Patient;
 using Clinicbusiness;
 
@@ -15,6 +16,9 @@ namespace Clinic.Appointment
 {
     public partial class frmListAppointment : Form
     {
+        private enum enMode { AddNew = 0, Update = 1 };
+        private enMode _Mode = enMode.AddNew;
+
         private DataTable _dtAppointments;
         public frmListAppointment()
         {
@@ -181,10 +185,7 @@ namespace Clinic.Appointment
             frmListAppointment_Load(null, null);
         }
 
-        private void startVisitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //show visit form 
-        }
+        
 
         private void rescheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -241,6 +242,54 @@ namespace Clinic.Appointment
             int DoctorID = (int)dgvAppointment.CurrentRow.Cells[2].Value;
             frmDoctorInfo frm = new frmDoctorInfo(DoctorID);
             frm.ShowDialog();
+        }
+
+        private void startVisitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
+           
+            frmFillVisitDetails frm = new frmFillVisitDetails(AppointmentID,(int)enMode.AddNew);
+            frm.ShowDialog();
+             frmListAppointment_Load(null, null);
+        }
+
+        private void editVisitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
+
+            frmFillVisitDetails frm = new frmFillVisitDetails(AppointmentID, (int)enMode.Update);
+            frm.ShowDialog();
+            frmListAppointment_Load(null, null);
+        }
+
+        private void cmsPeople_Opening(object sender, CancelEventArgs e)
+        {
+            // التأكد من وجود سطر مختار
+            if (dgvAppointment.CurrentRow == null)
+            {
+                startVisitToolStripMenuItem.Enabled = false;
+                editVisitToolStripMenuItem.Enabled = false;
+                return;
+            }
+
+            // جلب الـ AppointmentID من السطر الحالي (العمود رقم 0 كما حددت في Load)
+            int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
+
+            // التحقق من قاعدة البيانات هل توجد زيارة لهذا الموعد أم لا
+            bool IsVisitExists = clsVisit.IsVisitExistByAppointmentID(AppointmentID);
+
+            if (IsVisitExists)
+            {
+                // إذا كانت الزيارة موجودة: عطّل "البدء" وفعل "التعديل"
+                startVisitToolStripMenuItem.Enabled = false;
+                editVisitToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                // إذا لم توجد زيارة: فعل "البدء" وعطّل "التعديل"
+                startVisitToolStripMenuItem.Enabled = true;
+                editVisitToolStripMenuItem.Enabled = false;
+            }
         }
     }
 }

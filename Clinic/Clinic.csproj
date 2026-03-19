@@ -705,5 +705,11 @@
   <ItemGroup>
     <None Include="Resources\Diagnosis 32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit2 32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

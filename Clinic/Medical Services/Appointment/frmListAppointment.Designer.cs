@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbAppointmentType = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,7 +42,9 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.showPatientDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDoctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rescheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,13 +153,14 @@
             this.cmsPeople.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
-            this.startVisitToolStripMenuItem,
+            this.VisitToolStripMenuItem,
             this.rescheduleToolStripMenuItem,
             this.toolStripMenuItem1,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
             this.cmsPeople.Size = new System.Drawing.Size(214, 238);
+            this.cmsPeople.Opening += new System.ComponentModel.CancelEventHandler(this.cmsPeople_Opening);
             // 
             // toolStripMenuItem2
             // 
@@ -188,14 +191,34 @@
             this.showDoctorDetailsToolStripMenuItem.Text = "Show Doctor Details";
             this.showDoctorDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDoctorDetailsToolStripMenuItem_Click);
             // 
+            // VisitToolStripMenuItem
+            // 
+            this.VisitToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startVisitToolStripMenuItem,
+            this.editVisitToolStripMenuItem});
+            this.VisitToolStripMenuItem.Image = global::Clinic.Properties.Resources.start_visit_32;
+            this.VisitToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.VisitToolStripMenuItem.Name = "VisitToolStripMenuItem";
+            this.VisitToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
+            this.VisitToolStripMenuItem.Text = "&Visit";
+            // 
             // startVisitToolStripMenuItem
             // 
-            this.startVisitToolStripMenuItem.Image = global::Clinic.Properties.Resources.start_visit_32;
+            this.startVisitToolStripMenuItem.Image = global::Clinic.Properties.Resources.start_32;
             this.startVisitToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.startVisitToolStripMenuItem.Name = "startVisitToolStripMenuItem";
-            this.startVisitToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
-            this.startVisitToolStripMenuItem.Text = "&Start Visit";
+            this.startVisitToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.startVisitToolStripMenuItem.Text = "Start Visit";
             this.startVisitToolStripMenuItem.Click += new System.EventHandler(this.startVisitToolStripMenuItem_Click);
+            // 
+            // editVisitToolStripMenuItem
+            // 
+            this.editVisitToolStripMenuItem.Image = global::Clinic.Properties.Resources.edit2_32;
+            this.editVisitToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.editVisitToolStripMenuItem.Name = "editVisitToolStripMenuItem";
+            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.editVisitToolStripMenuItem.Text = "Edit Visit";
+            this.editVisitToolStripMenuItem.Click += new System.EventHandler(this.editVisitToolStripMenuItem_Click);
             // 
             // rescheduleToolStripMenuItem
             // 
@@ -247,14 +270,14 @@
             this.dgvAppointment.MultiSelect = false;
             this.dgvAppointment.Name = "dgvAppointment";
             this.dgvAppointment.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAppointment.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAppointment.Size = new System.Drawing.Size(1339, 371);
             this.dgvAppointment.TabIndex = 104;
@@ -361,11 +384,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip cmsPeople;
         private System.Windows.Forms.DataGridView dgvAppointment;
-        private System.Windows.Forms.ToolStripMenuItem startVisitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VisitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rescheduleToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem showPatientDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showDoctorDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startVisitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editVisitToolStripMenuItem;
     }
 }
