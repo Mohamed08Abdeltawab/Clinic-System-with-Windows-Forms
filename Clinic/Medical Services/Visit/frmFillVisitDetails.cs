@@ -33,6 +33,8 @@ namespace Clinic.Medical_Services.Visit
                 lblTitle.Text = "Set Visit Details";
                 _Visit = new clsVisit(); // تهيئة الكائن الجديد هنا
                 lblVisitID.Text = "[???]";
+                dtpDateTime.MinDate = DateTime.Now;
+                dtpDateTime.Value = DateTime.Now;
 
                 // جلب بيانات الموعد لعرض معرف المريض والطبيب
                 // نفترض وجود كلاس clsAppointment
@@ -61,7 +63,8 @@ namespace Clinic.Medical_Services.Visit
                 lblVisitID.Text = _Visit.VisitID.ToString();
                 txtDiagnosis.Text = _Visit.Diagnosis;
                 txtNotes.Text = _Visit.Notes;
-                dtpDateTime.Value = _Visit.VisitDate;
+                dtpDateTime.MinDate = DateTime.Now.AddDays(-_Visit.VisitDate.Day);
+                dtpDateTime.Value = dtpDateTime.MinDate;
                 lblPatientID.Text = _Visit.AppointmentInfo.PatientID.ToString();
                 lblDoctorID.Text = _Visit.AppointmentInfo.DoctorID.ToString();
                 lblAppointmentID.Text = _Visit.AppointmentID.ToString();

@@ -37,7 +37,7 @@
             this.showDoctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.rescheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowAppointmentListtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecordsCount = new System.Windows.Forms.Label();
@@ -86,11 +86,11 @@
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.rescheduleToolStripMenuItem,
-            this.toolStripMenuItem1,
+            this.ShowAppointmentListtoolStripMenuItem,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(214, 200);
+            this.cmsPeople.Size = new System.Drawing.Size(209, 200);
             // 
             // toolStripMenuItem2
             // 
@@ -100,7 +100,7 @@
             this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 38);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 38);
             this.toolStripMenuItem2.Text = "Show Details";
             // 
             // showPatientDetailsToolStripMenuItem
@@ -122,39 +122,42 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(210, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(205, 6);
             // 
             // rescheduleToolStripMenuItem
             // 
             this.rescheduleToolStripMenuItem.Image = global::Clinic.Properties.Resources.Reschedule_32;
             this.rescheduleToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rescheduleToolStripMenuItem.Name = "rescheduleToolStripMenuItem";
-            this.rescheduleToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
+            this.rescheduleToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.rescheduleToolStripMenuItem.Text = "Reschedule";
             // 
-            // toolStripMenuItem1
+            // ShowAppointmentListtoolStripMenuItem
             // 
-            this.toolStripMenuItem1.Image = global::Clinic.Properties.Resources.Add_Appointment_32;
-            this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 38);
-            this.toolStripMenuItem1.Text = "Add &New Appointment";
+            this.ShowAppointmentListtoolStripMenuItem.Image = global::Clinic.Properties.Resources.appoint_type_32;
+            this.ShowAppointmentListtoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowAppointmentListtoolStripMenuItem.Name = "ShowAppointmentListtoolStripMenuItem";
+            this.ShowAppointmentListtoolStripMenuItem.Size = new System.Drawing.Size(208, 38);
+            this.ShowAppointmentListtoolStripMenuItem.Text = "ShowAppointmentList";
+            this.ShowAppointmentListtoolStripMenuItem.Click += new System.EventHandler(this.ShowAppointmentListtoolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = global::Clinic.Properties.Resources.edit_32;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::Clinic.Properties.Resources.Delete_32;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(213, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(208, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // lblRecordsCount
             // 
@@ -288,7 +291,7 @@
         private System.Windows.Forms.ToolStripMenuItem showDoctorDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem rescheduleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ShowAppointmentListtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Label lblRecordsCount;

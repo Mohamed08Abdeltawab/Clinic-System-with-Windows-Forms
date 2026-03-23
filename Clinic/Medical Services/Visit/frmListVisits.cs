@@ -1,4 +1,6 @@
-﻿using Clinicbusiness;
+﻿using Clinic.Appointment;
+using Clinic.People;
+using Clinicbusiness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +16,11 @@ namespace Clinic.Medical_Services.Visit
 {
     public partial class frmListVisits : Form
     {
-        static DataTable _dtAllVisits = clsVisit.GetAllVisits();
-        DataTable _dtVists = _dtAllVisits.DefaultView.ToTable(false, "VisitID", "AppointmentID", "PatientName", "DoctorName", "VisitDate", "Diagnosis");
+        private enum enMode { AddNew = 0, Update = 1 };
+        private enMode _Mode = enMode.AddNew;
+
+        static DataTable _dtAllVisits;
+        DataTable _dtVists;
 
         public frmListVisits()
         {
@@ -33,6 +38,7 @@ namespace Clinic.Medical_Services.Visit
 
         private void frmListVisits_Load(object sender, EventArgs e)
         {
+            _RefreshVisitList();
             dgvVisit.DataSource = _dtVists;
             cbFilterBy.SelectedIndex = 0;
             lblRecordsCount.Text = dgvVisit.Rows.Count.ToString();
@@ -128,6 +134,37 @@ namespace Clinic.Medical_Services.Visit
             if (cbFilterBy.Text == "Appointment ID" || cbFilterBy.Text == "Visit ID")
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
+        }
+
+        private void ShowAppointmentListtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListAppointment frm = new frmListAppointment();
+            frm.ShowDialog();
+            frmListVisits_Load(null, null);
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppointmentID = (int)dgvVisit.CurrentRow.Cells[1].Value;
+
+            frmFillVisitDetails frm = new frmFillVisitDetails(AppointmentID, (int)enMode.Update);
+            frm.ShowDialog();
+            frmListVisits_Load(null, null);
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int VisitID = (int)dgvVisit.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Are you sure you want delete this Visit!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (clsVisit.DeleteVisit(VisitID))
+                {
+                    MessageBox.Show("Visit has been deleted successfully", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmListVisits_Load(null, null);
+                }
+                else
+                    MessageBox.Show("Visit is not deleted due to data connected to it.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
