@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clinic.Global_Classes;
+using Clinicbusiness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clinic.Global_Classes;
-using Clinicbusiness;
+using static Clinicbusiness.clsUser;
 
 namespace Clinic.People
 {
@@ -38,8 +39,8 @@ namespace Clinic.People
                 dgvPeople.Columns[2].HeaderText = "Phone";
                 dgvPeople.Columns[2].Width = 170;
 
-                dgvPeople.Columns[3].HeaderText = "Gendor";
-                dgvPeople.Columns[3].Width = 120;
+                dgvPeople.Columns[3].HeaderText = "GendorCaption";
+                dgvPeople.Columns[3].Width = 150;
 
                 dgvPeople.Columns[4].HeaderText = "Date Of Birth";
                 dgvPeople.Columns[4].Width = 170;
@@ -54,10 +55,18 @@ namespace Clinic.People
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtFilterValue.Visible = (cbFilterBy.Text != "None");
-
-            if (txtFilterValue.Visible)
+            if (cbFilterBy.Text == "Gendor")
             {
+                txtFilterValue.Visible = false;
+                cbGendor.Visible = true;
+                cbGendor.Focus();
+                cbGendor.SelectedIndex = 0;
+            }
+            else
+            {
+                txtFilterValue.Visible = (cbFilterBy.Text != "None");
+                cbGendor.Visible = false;//if not check role 
+
                 txtFilterValue.Text = "";
                 txtFilterValue.Focus();
             }
@@ -77,9 +86,6 @@ namespace Clinic.People
                     FilterColumn = "FullName";
                     break;
 
-                case "Gendor":
-                    FilterColumn = "GendorCaption";
-                    break;
 
                 case "Phone":
                     FilterColumn = "Phone";
@@ -185,6 +191,34 @@ namespace Clinic.People
             //we allow number incase person id is selected.
             if (cbFilterBy.Text == "Person ID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void cbGendor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string FilterColumn = "GendorCaption";
+            string FilterValue = cbGendor.Text;
+
+            switch (FilterValue)
+            {
+                case "All":
+                    break;
+                case "Male":
+                    FilterValue = "Male";
+                    break;
+                case "Female":
+                    FilterValue = "Female";
+                    break;
+                
+            }
+
+
+            if (FilterValue == "All")
+                _dtAllPeople.DefaultView.RowFilter = "";
+            else
+                //in this case we deal with numbers not string.
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}'", FilterColumn, cbGendor.Text.Trim());
+
+            lblRecordsCount.Text = _dtAllPeople.Rows.Count.ToString();
         }
     }
 }

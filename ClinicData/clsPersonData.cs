@@ -197,7 +197,7 @@ namespace ClinicData
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"SELECT People.PersonID, People.FullName, People.Phone,
-                             People.Gendor,  
+                             People.Gendor,
                              CASE
                                 WHEN People.Gendor = 0 THEN 'Male'
                                 ELSE 'Female'

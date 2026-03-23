@@ -13,6 +13,7 @@ using Clinic.Doctor;
 using Clinic.Global_Classes;
 using Clinic.Login;
 using Clinic.Medical_Services.Mange_Services;
+using Clinic.Medical_Services.Visit;
 using Clinic.Patient;
 using Clinic.People;
 using Clinic.User;
@@ -118,7 +119,8 @@ namespace Clinic
 
         private void visitsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListVisits frm = new frmListVisits();
+            frm.ShowDialog();
         }
     }
 }

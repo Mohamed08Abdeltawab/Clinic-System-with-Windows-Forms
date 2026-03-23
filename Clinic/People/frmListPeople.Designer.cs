@@ -47,6 +47,7 @@
             this.showDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPeople = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dgvPeople = new System.Windows.Forms.DataGridView();
+            this.cbGendor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.cmsPeople.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
@@ -244,11 +245,27 @@
             this.dgvPeople.TabStop = false;
             this.dgvPeople.DoubleClick += new System.EventHandler(this.dgvPeople_DoubleClick);
             // 
+            // cbGendor
+            // 
+            this.cbGendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGendor.FormattingEnabled = true;
+            this.cbGendor.Items.AddRange(new object[] {
+            "All",
+            "Male",
+            "Female"});
+            this.cbGendor.Location = new System.Drawing.Point(313, 260);
+            this.cbGendor.Name = "cbGendor";
+            this.cbGendor.Size = new System.Drawing.Size(138, 28);
+            this.cbGendor.TabIndex = 115;
+            this.cbGendor.Visible = false;
+            this.cbGendor.SelectedIndexChanged += new System.EventHandler(this.cbGendor_SelectedIndexChanged);
+            // 
             // frmListPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1520, 740);
+            this.Controls.Add(this.cbGendor);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddPerson);
             this.Controls.Add(this.lblTitle);
@@ -291,5 +308,6 @@
         private System.Windows.Forms.ToolStripMenuItem showDetailsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip cmsPeople;
         private System.Windows.Forms.DataGridView dgvPeople;
+        private System.Windows.Forms.ComboBox cbGendor;
     }
 }

@@ -57,13 +57,6 @@ namespace Clinic.User
                 txtFilterValue.Visible = (cbFilterBy.Text != "None");
                 cbRole.Visible = false;//if not check role 
 
-                if(cbFilterBy.Text == "None")
-                {
-                    txtFilterValue.Enabled = false;
-                }
-                else
-                    txtFilterValue.Enabled = true;
-
                 txtFilterValue.Text = "";
                 txtFilterValue.Focus();
             }
