@@ -128,7 +128,12 @@ namespace ClinicData
         {
             DataTable dt = new DataTable();
 
-            string query = @"SELECT * FROM Prescriptions ORDER BY PrescriptionID DESC";
+            string query = @"SELECT PrescriptionID,
+                                    VisitID,
+                                    MedicineID,
+                                    Quantity,
+                                    Instructions
+                            FROM Prescriptions ORDER BY PrescriptionID DESC";
 
             try
             {

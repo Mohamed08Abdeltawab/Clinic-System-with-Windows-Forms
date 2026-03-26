@@ -943,6 +943,26 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap prescription_32 {
+            get {
+                object obj = ResourceManager.GetObject("prescription 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Prescription_512 {
+            get {
+                object obj = ResourceManager.GetObject("Prescription 512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Prescription_64 {
             get {
                 object obj = ResourceManager.GetObject("Prescription 64", resourceCulture);
@@ -1103,6 +1123,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap start_visit_321 {
+            get {
+                object obj = ResourceManager.GetObject("start visit 321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap status_32 {
             get {
                 object obj = ResourceManager.GetObject("status 32", resourceCulture);
@@ -1156,6 +1186,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Users_2_64 {
             get {
                 object obj = ResourceManager.GetObject("Users 2 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap visit_32 {
+            get {
+                object obj = ResourceManager.GetObject("visit 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

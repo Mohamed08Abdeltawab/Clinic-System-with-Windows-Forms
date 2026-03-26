@@ -122,5 +122,10 @@ namespace Clinic
             frmListVisits frm = new frmListVisits();
             frm.ShowDialog();
         }
+
+        private void prescriptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

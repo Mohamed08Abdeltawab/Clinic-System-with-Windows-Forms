@@ -123,6 +123,7 @@
             this.prescriptionsToolStripMenuItem.Name = "prescriptionsToolStripMenuItem";
             this.prescriptionsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
             this.prescriptionsToolStripMenuItem.Text = "Manage Prescriptions";
+            this.prescriptionsToolStripMenuItem.Click += new System.EventHandler(this.prescriptionsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -140,7 +141,7 @@
             this.manageBillsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Bill_64;
             this.manageBillsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.manageBillsToolStripMenuItem.Name = "manageBillsToolStripMenuItem";
-            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
+            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
             this.manageBillsToolStripMenuItem.Text = "Manage Bills";
             // 
             // paymentsToolStripMenuItem
@@ -148,7 +149,7 @@
             this.paymentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Payment_64;
             this.paymentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
             this.paymentsToolStripMenuItem.Text = "Payments";
             // 
             // peopleToolStripMenuItem
