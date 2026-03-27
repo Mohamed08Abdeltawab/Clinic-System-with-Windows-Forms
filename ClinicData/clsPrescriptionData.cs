@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicData
 {
     public class clsPrescriptionData
     {
-
-        public static bool GetPrescriptionInfoByID(int PrescriptionID, ref int VisitID, ref int MedicineID,
-            ref int Quantity, ref string Instructions)
+        // 1. جلب معلومات الروشتة الأساسية (Header)
+        public static bool GetPrescriptionInfoByID(int PrescriptionID, ref int VisitID,
+            ref DateTime PrescriptionDate, ref string Notes)
         {
             bool isFound = false;
-
             string query = "SELECT * FROM Prescriptions WHERE PrescriptionID = @PrescriptionID";
 
             try
@@ -25,7 +21,6 @@ namespace ClinicData
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
-
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -33,29 +28,23 @@ namespace ClinicData
                             {
                                 isFound = true;
                                 VisitID = (int)reader["VisitID"];
-                                MedicineID = (int)reader["MedicineID"];
-                                Quantity = (int)reader["Quantity"];
-                                Instructions = (string)reader["Instructions"];
+                                PrescriptionDate = (DateTime)reader["PrescriptionDate"];
+                                Notes = reader["Notes"] == DBNull.Value ? "" : (string)reader["Notes"];
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                isFound = false;
-            }
-
+            catch { isFound = false; }
             return isFound;
         }
 
-        public static int AddNewPrescription(int VisitID, int MedicineID,
-            int Quantity, string Instructions)
+        // 2. إضافة روشتة جديدة (Header) وترجع الـ ID الجديد
+        public static int AddNewPrescription(int VisitID, DateTime PrescriptionDate, string Notes)
         {
             int PrescriptionID = -1;
-
-            string query = @"INSERT INTO Prescriptions (VisitID, MedicineID, Quantity, Instructions)
-                             VALUES (@VisitID, @MedicineID, @Quantity, @Instructions);
+            string query = @"INSERT INTO Prescriptions (VisitID, PrescriptionDate, Notes)
+                             VALUES (@VisitID, @PrescriptionDate, @Notes);
                              SELECT SCOPE_IDENTITY();";
 
             try
@@ -65,14 +54,11 @@ namespace ClinicData
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@VisitID", VisitID);
-                        command.Parameters.AddWithValue("@MedicineID", MedicineID);
-                        command.Parameters.AddWithValue("@Quantity", Quantity);
-                        command.Parameters.AddWithValue("@Instructions", Instructions);
+                        command.Parameters.AddWithValue("@PrescriptionDate", PrescriptionDate);
+                        command.Parameters.AddWithValue("@Notes", string.IsNullOrEmpty(Notes) ? (object)DBNull.Value : Notes);
 
                         connection.Open();
-
                         object result = command.ExecuteScalar();
-
                         if (result != null && int.TryParse(result.ToString(), out int insertedID))
                         {
                             PrescriptionID = insertedID;
@@ -80,24 +66,17 @@ namespace ClinicData
                     }
                 }
             }
-            catch (Exception ex)
-            {
-            }
-
+            catch { }
             return PrescriptionID;
         }
 
-        public static bool UpdatePrescription(int PrescriptionID, int VisitID, int MedicineID,
-            int Quantity, string Instructions)
+        // 3. إضافة دواء واحد داخل الروشتة (Detail Item)
+        public static int AddPrescriptionItem(int PrescriptionID, int MedicineID, int Quantity, string Instructions)
         {
-            int rowsAffected = 0;
-
-            string query = @"Update Prescriptions  
-                             set VisitID = @VisitID,
-                                 MedicineID = @MedicineID,
-                                 Quantity = @Quantity,
-                                 Instructions = @Instructions
-                             where PrescriptionID = @PrescriptionID";
+            int ItemID = -1;
+            string query = @"INSERT INTO PrescriptionItems (PrescriptionID, MedicineID, Quantity, Instructions)
+                             VALUES (@PrescriptionID, @MedicineID, @Quantity, @Instructions);
+                             SELECT SCOPE_IDENTITY();";
 
             try
             {
@@ -105,35 +84,37 @@ namespace ClinicData
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
                         command.Parameters.AddWithValue("@MedicineID", MedicineID);
                         command.Parameters.AddWithValue("@Quantity", Quantity);
                         command.Parameters.AddWithValue("@Instructions", Instructions);
-                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
 
                         connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
+                        object result = command.ExecuteScalar();
+                        if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                        {
+                            ItemID = insertedID;
+                        }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-            return (rowsAffected > 0);
+            catch { }
+            return ItemID;
         }
 
+        // 4. عرض كل الروشتات (Master List) ببيانات المرضى (Join)
         public static DataTable GetAllPrescriptions()
         {
             DataTable dt = new DataTable();
-
-            string query = @"SELECT PrescriptionID,
-                                    VisitID,
-                                    MedicineID,
-                                    Quantity,
-                                    Instructions
-                            FROM Prescriptions ORDER BY PrescriptionID DESC";
+            string query = @"SELECT P.PrescriptionID, 
+                                    Pe.FullName AS PatientName, 
+                                    P.PrescriptionDate, 
+                                    P.VisitID
+                             FROM Prescriptions P
+                             JOIN Visits V ON P.VisitID = V.VisitID
+                             JOIN Patients Pat ON V.PatientID = Pat.PatientID
+                             JOIN People Pe ON Pat.PersonID = Pe.PersonID
+                             ORDER BY P.PrescriptionID DESC";
 
             try
             {
@@ -144,19 +125,85 @@ namespace ClinicData
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if (reader.HasRows)
-                            {
-                                dt.Load(reader);
-                            }
+                            if (reader.HasRows) dt.Load(reader);
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-            }
-
+            catch { }
             return dt;
+        }
+
+        // 5. جلب كافة أدوية روشتة معينة (Details List)
+        public static DataTable GetPrescriptionItems(int PrescriptionID)
+        {
+            DataTable dt = new DataTable();
+            string query = @"SELECT I.ItemID, M.MedicineName, I.Quantity, I.Instructions
+                             FROM PrescriptionItems I
+                             JOIN Medicines M ON I.MedicineID = M.MedicineID
+                             WHERE I.PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows) dt.Load(reader);
+                        }
+                    }
+                }
+            }
+            catch { }
+            return dt;
+        }
+
+        // 6. حذف الروشتة (سيقوم الـ Cascade في SQL بحذف الأدوية تلقائياً)
+        public static bool DeletePrescription(int PrescriptionID)
+        {
+            int rowsAffected = 0;
+            string query = "DELETE Prescriptions WHERE PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { }
+            return (rowsAffected > 0);
+        }
+
+        // 7. حذف كافة الأدوية من روشتة معينة (نحتاجها عند التعديل)
+        public static bool DeleteAllItemsByPrescriptionID(int PrescriptionID)
+        {
+            int rowsAffected = 0;
+            string query = "DELETE PrescriptionItems WHERE PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { }
+            return (rowsAffected >= 0);
         }
 
 
@@ -193,32 +240,7 @@ namespace ClinicData
         }
 
 
-        public static bool DeletePrescription(int PrescriptionID)
-        {
-            int rowsAffected = 0;
-
-            string query = @"Delete Prescriptions 
-                             where PrescriptionID = @PrescriptionID";
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-                {
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
-                        connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return (rowsAffected > 0);
-        }
-
+        
         public static bool IsPrescriptionExist(int PrescriptionID)
         {
             bool isFound = false;
