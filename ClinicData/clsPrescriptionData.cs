@@ -107,7 +107,7 @@ namespace ClinicData
         {
             DataTable dt = new DataTable();
             string query = @"SELECT P.PrescriptionID, 
-                                    Pe.FullName AS PatientName, 
+                                    Pe.FullName AS PatientName,  
                                     P.PrescriptionDate, 
                                     P.VisitID
                              FROM Prescriptions P

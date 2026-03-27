@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClinicData;
 
 namespace Clinicbusiness
 {
+    public class clsPrescriptionItem
+    {
+        public int ItemID { get; set; } = -1;
+        public int PrescriptionID { get; set; }
+        public int MedicineID { get; set; }
+        public int Quantity { get; set; }
+        public string Instructions { get; set; }
+        public string MedicineName { get; set; } // لعرض الاسم في الـ Grid
+    }
     public class clsPrescription
     {
         public enum enMode { AddNew = 0, Update = 1 };
@@ -15,67 +21,87 @@ namespace Clinicbusiness
 
         public int PrescriptionID { set; get; }
         public int VisitID { set; get; }
-        public int MedicineID { set; get; }
-        public int Quantity { set; get; }
-        public string Instructions { set; get; }
+        public DateTime PrescriptionDate { set; get; }
+        public string Notes { set; get; }
 
-        // تم إضافة كائن الدواء لجلب بياناته (مثل الاسم والسعر) مباشرة عند الحاجة
-        public clsMedicine MedicineInfo;
+        // التعديل الأهم: قائمة الأدوية بدل متغير MedicineID واحد
+        public List<clsPrescriptionItem> ItemsList;
 
         public clsPrescription()
         {
             this.PrescriptionID = -1;
             this.VisitID = -1;
-            this.MedicineID = -1;
-            this.Quantity = 1;
-            this.Instructions = "";
+            this.PrescriptionDate = DateTime.Now;
+            this.Notes = "";
+            this.ItemsList = new List<clsPrescriptionItem>();
 
             Mode = enMode.AddNew;
         }
 
-        private clsPrescription(int PrescriptionID, int VisitID, int MedicineID,
-                                int Quantity, string Instructions)
+        private clsPrescription(int PrescriptionID, int VisitID, DateTime PrescriptionDate, string Notes)
         {
             this.PrescriptionID = PrescriptionID;
             this.VisitID = VisitID;
-            this.MedicineID = MedicineID;
-            this.Quantity = Quantity;
-            this.Instructions = Instructions;
+            this.PrescriptionDate = PrescriptionDate;
+            this.Notes = Notes;
 
-            // ربط تلقائي ببيانات الدواء عند العثور على السجل
-            this.MedicineInfo = clsMedicine.Find(MedicineID);
+            // جلب الأدوية التابعة لهذه الروشتة وملء القائمة
+            this.ItemsList = _LoadPrescriptionItems(PrescriptionID);
 
             Mode = enMode.Update;
         }
 
+        private List<clsPrescriptionItem> _LoadPrescriptionItems(int PrescriptionID)
+        {
+            List<clsPrescriptionItem> items = new List<clsPrescriptionItem>();
+            DataTable dt = clsPrescriptionData.GetPrescriptionItems(PrescriptionID);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                items.Add(new clsPrescriptionItem
+                {
+                    ItemID = (int)row["ItemID"],
+                    MedicineName = (string)row["MedicineName"],
+                    Quantity = (int)row["Quantity"],
+                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"]
+                });
+            }
+            return items;
+        }
+
         private bool _AddNewPrescription()
         {
-            // استدعاء طبقة الوصول للبيانات لإضافة سجل جديد
-            this.PrescriptionID = clsPrescriptionData.AddNewPrescription(
-                this.VisitID, this.MedicineID, this.Quantity, this.Instructions);
+            // 1. حفظ الرأس (Header) والحصول على الـ ID الجديد
+            this.PrescriptionID = clsPrescriptionData.AddNewPrescription(this.VisitID, this.PrescriptionDate, this.Notes);
 
-            return (this.PrescriptionID != -1);
+            if (this.PrescriptionID == -1) return false;
+
+            // 2. حفظ جميع الأدوية الموجودة في القائمة
+            foreach (var item in ItemsList)
+            {
+                if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Instructions) == -1)
+                {
+                    // ملاحظة: في المشاريع الكبيرة نستخدم Transaction هنا لضمان حفظ الكل أو لا شيء
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool _UpdatePrescription()
         {
-            // استدعاء طبقة الوصول للبيانات لتحديث السجل الحالي
-            return clsPrescriptionData.UpdatePrescription(
-                this.PrescriptionID, this.VisitID, this.MedicineID, this.Quantity, this.Instructions);
-        }
-
-        public static clsPrescription Find(int PrescriptionID)
-        {
-            int VisitID = -1, MedicineID = -1, Quantity = 1;
-            string Instructions = "";
-
-            bool IsFound = clsPrescriptionData.GetPrescriptionInfoByID(
-                PrescriptionID, ref VisitID, ref MedicineID, ref Quantity, ref Instructions);
-
-            if (IsFound)
-                return new clsPrescription(PrescriptionID, VisitID, MedicineID, Quantity, Instructions);
-            else
-                return null;
+            // عند التعديل: الأفضل مسح الأدوية القديمة وإضافة الجديدة من القائمة
+            if (clsPrescriptionData.DeleteAllItemsByPrescriptionID(this.PrescriptionID))
+            {
+                foreach (var item in ItemsList)
+                {
+                    if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Instructions) == -1)
+                        return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         public bool Save()
@@ -88,16 +114,24 @@ namespace Clinicbusiness
                         Mode = enMode.Update;
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    return false;
 
                 case enMode.Update:
                     return _UpdatePrescription();
             }
-
             return false;
+        }
+
+        public static clsPrescription Find(int PrescriptionID)
+        {
+            int VisitID = -1;
+            DateTime PrescriptionDate = DateTime.Now;
+            string Notes = "";
+
+            if (clsPrescriptionData.GetPrescriptionInfoByID(PrescriptionID, ref VisitID, ref PrescriptionDate, ref Notes))
+                return new clsPrescription(PrescriptionID, VisitID, PrescriptionDate, Notes);
+
+            return null;
         }
 
         public static DataTable GetAllPrescriptions()
@@ -115,7 +149,16 @@ namespace Clinicbusiness
             return clsPrescriptionData.IsPrescriptionExist(PrescriptionID);
         }
 
-        // جلب جميع الأدوية الموصوفة لزيارة طبية محددة لعرضها في شاشة المريض
+        public static bool IsPrescriptionExistByVisitID(int VisitID)
+        {
+            return clsPrescriptionData.IsPrescriptionExistByVisitID(VisitID);
+        }
+
+        public static DataTable GetPrescriptionItemsDataTable(int PrescriptionID)
+        {
+            return clsPrescriptionData.GetPrescriptionItems(PrescriptionID);
+        }
+
         public static DataTable GetPrescriptionsByVisitID(int VisitID)
         {
             return clsPrescriptionData.GetPrescriptionsByVisitID(VisitID);
