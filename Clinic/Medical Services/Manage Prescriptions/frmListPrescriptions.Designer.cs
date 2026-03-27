@@ -78,7 +78,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPrescription.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrescription.Size = new System.Drawing.Size(634, 371);
+            this.dgvPrescription.Size = new System.Drawing.Size(763, 371);
             this.dgvPrescription.TabIndex = 126;
             this.dgvPrescription.TabStop = false;
             // 
@@ -92,7 +92,7 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(215, 222);
+            this.cmsPeople.Size = new System.Drawing.Size(215, 200);
             // 
             // toolStripMenuItem2
             // 
@@ -190,8 +190,9 @@
             this.cbFilterBy.Items.AddRange(new object[] {
             "None",
             "Prescription ID",
-            "Visit ID",
-            "Medicine ID"});
+            "Patient Name",
+            "Date",
+            "Visit ID"});
             this.cbFilterBy.Location = new System.Drawing.Point(97, 270);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(210, 28);
@@ -223,7 +224,7 @@
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(103, 212);
+            this.lblTitle.Location = new System.Drawing.Point(171, 212);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(460, 39);
             this.lblTitle.TabIndex = 133;
@@ -242,7 +243,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(522, 685);
+            this.btnClose.Location = new System.Drawing.Point(651, 685);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 134;
@@ -255,7 +256,7 @@
             this.pbPersonImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbPersonImage.Image = global::Clinic.Properties.Resources.Prescription_512;
             this.pbPersonImage.InitialImage = null;
-            this.pbPersonImage.Location = new System.Drawing.Point(226, 14);
+            this.pbPersonImage.Location = new System.Drawing.Point(294, 14);
             this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbPersonImage.Name = "pbPersonImage";
             this.pbPersonImage.Size = new System.Drawing.Size(220, 189);
@@ -267,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 740);
+            this.ClientSize = new System.Drawing.Size(802, 740);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pbPersonImage);
             this.Controls.Add(this.dgvPrescription);

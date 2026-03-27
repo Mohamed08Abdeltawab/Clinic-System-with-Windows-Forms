@@ -112,7 +112,8 @@ namespace ClinicData
                                     P.VisitID
                              FROM Prescriptions P
                              JOIN Visits V ON P.VisitID = V.VisitID
-                             JOIN Patients Pat ON V.PatientID = Pat.PatientID
+                             JOIN Appointments App ON V.AppointmentID = App.AppointmentID
+                             JOIN Patients Pat ON App.PatientID = Pat.PatientID
                              JOIN People Pe ON Pat.PersonID = Pe.PersonID
                              ORDER BY P.PrescriptionID DESC";
 

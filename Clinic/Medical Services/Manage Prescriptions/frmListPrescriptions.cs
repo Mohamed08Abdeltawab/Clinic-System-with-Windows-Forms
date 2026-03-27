@@ -13,27 +13,20 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 {
     public partial class frmListPrescriptions : Form
     {
-        static DataTable _dtAllPrescription;
-        DataTable _dtPrescription;
+        // نستخدم DataTable واحدة للتعامل مع العرض والفلترة
+        private DataTable _dtAllPrescriptions;
+
         public frmListPrescriptions()
         {
             InitializeComponent();
         }
 
-        private void _RefreshPrescriptionList()
-        {
-            _dtAllPrescription = clsPrescription.GetAllPrescriptions();
-            _dtPrescription = _dtAllPrescription.DefaultView.ToTable(false, "PrescriptionID", "VisitID", "MedicineID", "Quantity");
-
-            dgvPrescription.DataSource = _dtPrescription;
-            lblRecordsCount.Text = dgvPrescription.Rows.Count.ToString();
-        }
-
+       
         private void frmListPrescriptions_Load(object sender, EventArgs e)
         {
-            _RefreshPrescriptionList();
-            dgvPrescription.DataSource = _dtPrescription;
             cbFilterBy.SelectedIndex = 0;
+            _dtAllPrescriptions = clsPrescription.GetAllPrescriptions();
+            dgvPrescription.DataSource = _dtAllPrescriptions;
             lblRecordsCount.Text = dgvPrescription.Rows.Count.ToString();
 
             if (dgvPrescription.Rows.Count > 0)
@@ -41,16 +34,14 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
                 dgvPrescription.Columns[0].HeaderText = "Prescription ID";
                 dgvPrescription.Columns[0].Width = 110;
 
+                dgvPrescription.Columns[1].HeaderText = "Patient Name";
+                dgvPrescription.Columns[1].Width = 250;
 
-                dgvPrescription.Columns[1].HeaderText = "Visit ID";
-                dgvPrescription.Columns[1].Width = 110;
+                dgvPrescription.Columns[2].HeaderText = "Date";
+                dgvPrescription.Columns[2].Width = 170;
 
-                dgvPrescription.Columns[2].HeaderText = "Medicine ID";
-                dgvPrescription.Columns[2].Width = 110;
-
-                dgvPrescription.Columns[3].HeaderText = "Quantity";
-                dgvPrescription.Columns[3].Width = 200;
-
+                dgvPrescription.Columns[3].HeaderText = "Visit ID";
+                dgvPrescription.Columns[3].Width = 110;
             }
         }
 
@@ -68,45 +59,52 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         private void txtFilterValue_TextChanged(object sender, EventArgs e)
         {
             string FilterColumn = "";
-            //Map Selected Filter to real Column name 
+
+            // ربط الاختيار باسم العمود الحقيقي في الداتابيز
             switch (cbFilterBy.Text)
             {
                 case "Prescription ID":
                     FilterColumn = "PrescriptionID";
                     break;
 
+                case "Patient Name":
+                    FilterColumn = "PatientName";
+                    break;
+
                 case "Visit ID":
                     FilterColumn = "VisitID";
                     break;
-
-                case "Medicine ID":
-                    FilterColumn = "MedicineID";
-                    break;
-
-                case "Quantity":
-                    FilterColumn = "Quantity";
-                    break;
-
             }
 
-            //Reset the filters in case nothing selected or filter value contains nothing.
-            if (txtFilterValue.Text.Trim() == "" || FilterColumn == "None")
-                _dtPrescription.DefaultView.RowFilter = "";
+            if (txtFilterValue.Text.Trim() == "" || cbFilterBy.Text == "None")
+            {
+                _dtAllPrescriptions.DefaultView.RowFilter = "";
+            }
             else
-                _dtPrescription.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
+            {
+                // إذا كان الفلتر نصي (اسم المريض) نستخدم LIKE
+                if (FilterColumn == "PatientName")
+                    _dtAllPrescriptions.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", FilterColumn, txtFilterValue.Text.Trim());
+                else
+                    // إذا كان الفلتر رقمي (ID) نستخدم = 
+                    _dtAllPrescriptions.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
+            }
 
-            lblRecordsCount.Text = _dtPrescription.Rows.Count.ToString();
+            lblRecordsCount.Text = dgvPrescription.Rows.Count.ToString();
+        }
 
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // نمنع كتابة الحروف فقط لو كان الفلتر يعتمد على أرقام الـ IDs
+            if (cbFilterBy.Text == "Prescription ID" || cbFilterBy.Text == "Visit ID")
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
