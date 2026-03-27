@@ -583,6 +583,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edit_medicinek_32 {
+            get {
+                object obj = ResourceManager.GetObject("edit medicinek 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit2_32 {
             get {
                 object obj = ResourceManager.GetObject("edit2 32", resourceCulture);
@@ -1033,6 +1043,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap remove_32 {
+            get {
+                object obj = ResourceManager.GetObject("remove 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Reschedule_32 {
             get {
                 object obj = ResourceManager.GetObject("Reschedule 32", resourceCulture);
@@ -1106,6 +1126,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Services2_641 {
             get {
                 object obj = ResourceManager.GetObject("Services2 641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap show_medicine_32 {
+            get {
+                object obj = ResourceManager.GetObject("show medicine 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

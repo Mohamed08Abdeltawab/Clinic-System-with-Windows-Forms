@@ -57,19 +57,23 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lblVisitID = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnPrecriptionNext = new System.Windows.Forms.Button();
+            this.btnSaveandNext = new System.Windows.Forms.Button();
             this.tpPrescriptionInfo = new System.Windows.Forms.TabPage();
             this.dgvMedicines = new System.Windows.Forms.DataGridView();
-            this.btnAddNewMedicine = new System.Windows.Forms.Button();
+            this.cmsMedicines = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ShowMedicineInfotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMedicinetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtPrescriptionNotes = new System.Windows.Forms.TextBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.dtpPrescriptionDate = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.lblPrescriptionID = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnAddNewMedicine = new System.Windows.Forms.Button();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -84,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.tpPrescriptionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicines)).BeginInit();
+            this.cmsMedicines.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -140,7 +145,7 @@
             this.tpVisitInfo.Controls.Add(this.pictureBox5);
             this.tpVisitInfo.Controls.Add(this.lblVisitID);
             this.tpVisitInfo.Controls.Add(this.label8);
-            this.tpVisitInfo.Controls.Add(this.btnPrecriptionNext);
+            this.tpVisitInfo.Controls.Add(this.btnSaveandNext);
             this.tpVisitInfo.Location = new System.Drawing.Point(4, 29);
             this.tpVisitInfo.Name = "tpVisitInfo";
             this.tpVisitInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -241,6 +246,7 @@
             this.llDoctorInfo.TabIndex = 206;
             this.llDoctorInfo.TabStop = true;
             this.llDoctorInfo.Text = "Doctor Info";
+            this.llDoctorInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llDoctorInfo_LinkClicked);
             // 
             // llPatientInfo
             // 
@@ -251,6 +257,7 @@
             this.llPatientInfo.TabIndex = 205;
             this.llPatientInfo.TabStop = true;
             this.llPatientInfo.Text = "Patient Info";
+            this.llPatientInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llPatientInfo_LinkClicked);
             // 
             // label10
             // 
@@ -391,33 +398,34 @@
             this.label8.TabIndex = 192;
             this.label8.Text = "Visit ID:";
             // 
-            // btnPrecriptionNext
+            // btnSaveandNext
             // 
-            this.btnPrecriptionNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrecriptionNext.Image = global::Clinic.Properties.Resources.Next_32;
-            this.btnPrecriptionNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrecriptionNext.Location = new System.Drawing.Point(748, 481);
-            this.btnPrecriptionNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnPrecriptionNext.Name = "btnPrecriptionNext";
-            this.btnPrecriptionNext.Size = new System.Drawing.Size(126, 37);
-            this.btnPrecriptionNext.TabIndex = 119;
-            this.btnPrecriptionNext.Text = "Next";
-            this.btnPrecriptionNext.UseVisualStyleBackColor = true;
-            this.btnPrecriptionNext.Click += new System.EventHandler(this.btnPrecriptionNext_Click);
+            this.btnSaveandNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSaveandNext.Image = global::Clinic.Properties.Resources.Next_32;
+            this.btnSaveandNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveandNext.Location = new System.Drawing.Point(730, 481);
+            this.btnSaveandNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSaveandNext.Name = "btnSaveandNext";
+            this.btnSaveandNext.Size = new System.Drawing.Size(151, 37);
+            this.btnSaveandNext.TabIndex = 119;
+            this.btnSaveandNext.Text = "Save and Next";
+            this.btnSaveandNext.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveandNext.UseVisualStyleBackColor = true;
+            this.btnSaveandNext.Click += new System.EventHandler(this.btnSaveandNext_Click);
             // 
             // tpPrescriptionInfo
             // 
             this.tpPrescriptionInfo.Controls.Add(this.dgvMedicines);
-            this.tpPrescriptionInfo.Controls.Add(this.btnAddNewMedicine);
             this.tpPrescriptionInfo.Controls.Add(this.txtPrescriptionNotes);
-            this.tpPrescriptionInfo.Controls.Add(this.pictureBox13);
             this.tpPrescriptionInfo.Controls.Add(this.label15);
-            this.tpPrescriptionInfo.Controls.Add(this.pictureBox12);
             this.tpPrescriptionInfo.Controls.Add(this.dtpPrescriptionDate);
             this.tpPrescriptionInfo.Controls.Add(this.label13);
-            this.tpPrescriptionInfo.Controls.Add(this.pictureBox11);
             this.tpPrescriptionInfo.Controls.Add(this.lblPrescriptionID);
             this.tpPrescriptionInfo.Controls.Add(this.label11);
+            this.tpPrescriptionInfo.Controls.Add(this.btnAddNewMedicine);
+            this.tpPrescriptionInfo.Controls.Add(this.pictureBox13);
+            this.tpPrescriptionInfo.Controls.Add(this.pictureBox12);
+            this.tpPrescriptionInfo.Controls.Add(this.pictureBox11);
             this.tpPrescriptionInfo.Location = new System.Drawing.Point(4, 29);
             this.tpPrescriptionInfo.Name = "tpPrescriptionInfo";
             this.tpPrescriptionInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -433,6 +441,7 @@
             this.dgvMedicines.AllowUserToResizeRows = false;
             this.dgvMedicines.BackgroundColor = System.Drawing.Color.White;
             this.dgvMedicines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMedicines.ContextMenuStrip = this.cmsMedicines;
             this.dgvMedicines.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMedicines.Location = new System.Drawing.Point(20, 146);
             this.dgvMedicines.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -452,20 +461,41 @@
             this.dgvMedicines.TabIndex = 223;
             this.dgvMedicines.TabStop = false;
             // 
-            // btnAddNewMedicine
+            // cmsMedicines
             // 
-            this.btnAddNewMedicine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddNewMedicine.Image = global::Clinic.Properties.Resources.add_32;
-            this.btnAddNewMedicine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddNewMedicine.Location = new System.Drawing.Point(20, 98);
-            this.btnAddNewMedicine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAddNewMedicine.Name = "btnAddNewMedicine";
-            this.btnAddNewMedicine.Size = new System.Drawing.Size(204, 38);
-            this.btnAddNewMedicine.TabIndex = 222;
-            this.btnAddNewMedicine.Text = "Add New Medicine";
-            this.btnAddNewMedicine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddNewMedicine.UseVisualStyleBackColor = true;
-            this.btnAddNewMedicine.Click += new System.EventHandler(this.btnAddNewMedicine_Click);
+            this.cmsMedicines.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowMedicineInfotoolStripMenuItem,
+            this.EditMedicinetoolStripMenuItem,
+            this.removeMedicineToolStripMenuItem});
+            this.cmsMedicines.Name = "contextMenuStrip1";
+            this.cmsMedicines.Size = new System.Drawing.Size(196, 118);
+            // 
+            // ShowMedicineInfotoolStripMenuItem
+            // 
+            this.ShowMedicineInfotoolStripMenuItem.Image = global::Clinic.Properties.Resources.show_medicine_32;
+            this.ShowMedicineInfotoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowMedicineInfotoolStripMenuItem.Name = "ShowMedicineInfotoolStripMenuItem";
+            this.ShowMedicineInfotoolStripMenuItem.Size = new System.Drawing.Size(195, 38);
+            this.ShowMedicineInfotoolStripMenuItem.Text = "Show Medicine Info";
+            this.ShowMedicineInfotoolStripMenuItem.Click += new System.EventHandler(this.ShowMedicineInfotoolStripMenuItem_Click);
+            // 
+            // EditMedicinetoolStripMenuItem
+            // 
+            this.EditMedicinetoolStripMenuItem.Image = global::Clinic.Properties.Resources.edit_medicinek_32;
+            this.EditMedicinetoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditMedicinetoolStripMenuItem.Name = "EditMedicinetoolStripMenuItem";
+            this.EditMedicinetoolStripMenuItem.Size = new System.Drawing.Size(195, 38);
+            this.EditMedicinetoolStripMenuItem.Text = "Edit Medicine";
+            this.EditMedicinetoolStripMenuItem.Click += new System.EventHandler(this.EditMedicinetoolStripMenuItem_Click);
+            // 
+            // removeMedicineToolStripMenuItem
+            // 
+            this.removeMedicineToolStripMenuItem.Image = global::Clinic.Properties.Resources.remove_32;
+            this.removeMedicineToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.removeMedicineToolStripMenuItem.Name = "removeMedicineToolStripMenuItem";
+            this.removeMedicineToolStripMenuItem.Size = new System.Drawing.Size(195, 38);
+            this.removeMedicineToolStripMenuItem.Text = "Remove Medicine";
+            this.removeMedicineToolStripMenuItem.Click += new System.EventHandler(this.removeMedicineToolStripMenuItem_Click);
             // 
             // txtPrescriptionNotes
             // 
@@ -477,16 +507,6 @@
             this.txtPrescriptionNotes.Size = new System.Drawing.Size(429, 81);
             this.txtPrescriptionNotes.TabIndex = 214;
             // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Image = global::Clinic.Properties.Resources.Notes_32;
-            this.pictureBox13.Location = new System.Drawing.Point(179, 435);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox13.TabIndex = 213;
-            this.pictureBox13.TabStop = false;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -497,16 +517,6 @@
             this.label15.Size = new System.Drawing.Size(161, 20);
             this.label15.TabIndex = 212;
             this.label15.Text = "Prescription Notes:";
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::Clinic.Properties.Resources.appoint_date_32;
-            this.pictureBox12.Location = new System.Drawing.Point(526, 44);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 182;
-            this.pictureBox12.TabStop = false;
             // 
             // dtpPrescriptionDate
             // 
@@ -529,16 +539,6 @@
             this.label13.TabIndex = 181;
             this.label13.Text = "Prescription Date:";
             // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox11.Location = new System.Drawing.Point(170, 44);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 170;
-            this.pictureBox11.TabStop = false;
-            // 
             // lblPrescriptionID
             // 
             this.lblPrescriptionID.AutoSize = true;
@@ -560,6 +560,51 @@
             this.label11.Size = new System.Drawing.Size(133, 20);
             this.label11.TabIndex = 168;
             this.label11.Text = "Prescription ID:";
+            // 
+            // btnAddNewMedicine
+            // 
+            this.btnAddNewMedicine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddNewMedicine.Image = global::Clinic.Properties.Resources.add_32;
+            this.btnAddNewMedicine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddNewMedicine.Location = new System.Drawing.Point(20, 98);
+            this.btnAddNewMedicine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddNewMedicine.Name = "btnAddNewMedicine";
+            this.btnAddNewMedicine.Size = new System.Drawing.Size(204, 38);
+            this.btnAddNewMedicine.TabIndex = 222;
+            this.btnAddNewMedicine.Text = "Add New Medicine";
+            this.btnAddNewMedicine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddNewMedicine.UseVisualStyleBackColor = true;
+            this.btnAddNewMedicine.Click += new System.EventHandler(this.btnAddNewMedicine_Click);
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = global::Clinic.Properties.Resources.Notes_32;
+            this.pictureBox13.Location = new System.Drawing.Point(179, 435);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox13.TabIndex = 213;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::Clinic.Properties.Resources.appoint_date_32;
+            this.pictureBox12.Location = new System.Drawing.Point(526, 44);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 182;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::Clinic.Properties.Resources.ID_32;
+            this.pictureBox11.Location = new System.Drawing.Point(170, 44);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 170;
+            this.pictureBox11.TabStop = false;
             // 
             // btnClose
             // 
@@ -618,6 +663,7 @@
             this.tpPrescriptionInfo.ResumeLayout(false);
             this.tpPrescriptionInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicines)).EndInit();
+            this.cmsMedicines.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
@@ -657,7 +703,7 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lblVisitID;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnPrecriptionNext;
+        private System.Windows.Forms.Button btnSaveandNext;
         private System.Windows.Forms.TabPage tpPrescriptionInfo;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label lblPrescriptionID;
@@ -670,5 +716,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnAddNewMedicine;
         private System.Windows.Forms.DataGridView dgvMedicines;
+        private System.Windows.Forms.ContextMenuStrip cmsMedicines;
+        private System.Windows.Forms.ToolStripMenuItem EditMedicinetoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowMedicineInfotoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeMedicineToolStripMenuItem;
     }
 }

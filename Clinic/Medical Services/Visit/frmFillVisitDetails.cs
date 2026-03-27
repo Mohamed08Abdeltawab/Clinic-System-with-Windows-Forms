@@ -66,11 +66,20 @@ namespace Clinic.Medical_Services.Visit
 
         private void _LoadData()
         {
+            // 1. التحقق من وجود زيارة سابقة (حماية الداتا)
+            if (_Mode == enMode.AddNew && clsVisit.IsVisitExistByAppointmentID(_AppointmentID))
+            {
+                MessageBox.Show("This appointment already has a visit recorded.",
+                                "Existing Visit", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
+
             if (_Mode == enMode.AddNew)
             {
                 lblTitle.Text = "Set Visit Details";
                 _Visit = new clsVisit();
-                _Prescription = new clsPrescription(); // تهيئة روشتة جديدة
+                _Prescription = new clsPrescription();
 
                 lblVisitID.Text = "[???]";
                 lblPrescriptionID.Text = "[???]";
@@ -82,21 +91,29 @@ namespace Clinic.Medical_Services.Visit
                 lblPatientID.Text = appointment.PatientID.ToString();
                 lblDoctorID.Text = appointment.DoctorID.ToString();
                 lblAppointmentID.Text = _AppointmentID.ToString();
+
+                // --- التعديل الجوهري هنا لـ AddNew ---
+                tpPrescriptionInfo.Enabled = false;   // مقفول لحد ما يحفظ الزيارة
+                btnSaveandNext.Enabled = true;        // شغال لأنه هو اللي هيعمل Save للزيارة وينقله
+                btnSave.Enabled = false;              // زرار الروشتة (الخارجي) مطفي حالياً
             }
             else
             {
+                // وضعية الـ Update والـ Read
+                lblTitle.Text = (_Mode == enMode.Update) ? "Edit Visit Details" : "Visit Details";
+
                 _Visit = clsVisit.FindByAppointmentID(_AppointmentID);
                 if (_Visit == null) { this.Close(); return; }
 
-                // تحميل الروشتة التابعة لهذه الزيارة
-                _Prescription = clsPrescription.Find(_Visit.VisitID); // تأكد من وجود ميثود Find تأخذ VisitID
+                _Prescription = clsPrescription.Find(_Visit.VisitID);
                 if (_Prescription == null) _Prescription = new clsPrescription();
 
+                // تعبئة البيانات (نفس كودك السليم)
                 lblVisitID.Text = _Visit.VisitID.ToString();
                 lblPrescriptionID.Text = _Prescription.PrescriptionID == -1 ? "[???]" : _Prescription.PrescriptionID.ToString();
                 txtDiagnosis.Text = _Visit.Diagnosis;
                 txtNotes.Text = _Visit.Notes;
-                txtPrescriptionNotes.Text = _Prescription.Notes; // عرض ملاحظات الروشتة
+                txtPrescriptionNotes.Text = _Prescription.Notes;
                 dtpDateTime.Value = _Visit.VisitDate;
 
                 lblPatientID.Text = _Visit.AppointmentInfo.PatientID.ToString();
@@ -104,50 +121,48 @@ namespace Clinic.Medical_Services.Visit
                 lblAppointmentID.Text = _Visit.AppointmentID.ToString();
 
                 _RefreshGrid();
+
+                // --- التعديل الجوهري هنا لـ Update/Read ---
+                tpPrescriptionInfo.Enabled = true;    // مفتوح لأن الزيارة موجودة
+                btnSaveandNext.Enabled = true;        // شغال للتنقل
+                btnSave.Enabled = (_Mode == enMode.Update); // شغال في التعديل ومطفي في القراءة
+
             }
 
+            // تعامل خاص مع الـ Read Mode
             if (_Mode == enMode.Read)
             {
                 btnSave.Visible = false;
                 btnAddNewMedicine.Enabled = false;
-                clsGlobal.SetControlsReadOnly(this, true); // استخدام الميثود العالمية
+                clsGlobal.SetControlsReadOnly(this, true);
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return;
-
-            // 1. تعبئة بيانات الزيارة
-            _Visit.AppointmentID = _AppointmentID;
-            _Visit.VisitDate = dtpDateTime.Value;
-            _Visit.Diagnosis = txtDiagnosis.Text.Trim();
-            _Visit.Notes = txtNotes.Text.Trim();
-
-            // 2. حفظ الزيارة أولاً (لأن الروشتة تحتاج VisitID)
-            if (_Visit.Save())
+            // التأكد إن فيه زيارة محفوظة أصلاً (لأن الروشتة Foreign Key للزيارة)
+            if (_Visit.VisitID == -1)
             {
-                // 3. تعبئة بيانات الروشتة برقم الزيارة الجديد
-                _Prescription.VisitID = _Visit.VisitID;
-                _Prescription.PrescriptionDate = DateTime.Now;
-                _Prescription.Notes = txtPrescriptionNotes.Text.Trim();
+                MessageBox.Show("Please save visit details first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                // 4. حفظ الروشتة وأدويتها (تمت برمجتها داخل Save في clsPrescription)
-                if (_Prescription.Save())
-                {
-                    lblVisitID.Text = _Visit.VisitID.ToString();
-                    lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
-                    _Mode = enMode.Update;
-                    MessageBox.Show("Visit and Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Visit saved, but failed to save prescription.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            // تعبئة بيانات الروشتة
+            _Prescription.VisitID = _Visit.VisitID;
+            _Prescription.PrescriptionDate = DateTime.Now;
+            _Prescription.Notes = txtPrescriptionNotes.Text.Trim();
+
+            // حفظ الروشتة ومعها قائمة الأدوية (ItemsList)
+            if (_Prescription.Save())
+            {
+                lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
+                MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _Mode = enMode.Update;
+                //this.Close(); // إغلاق الشاشة بعد الحفظ النهائي
             }
             else
             {
-                MessageBox.Show("Failed to save visit details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to save prescription.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -190,7 +205,7 @@ namespace Clinic.Medical_Services.Visit
 
         private void llDoctorInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (int.TryParse(lblPatientID.Text, out int doctorID))
+            if (int.TryParse(lblDoctorID.Text, out int doctorID))
             {
                 frmDoctorInfo frm = new frmDoctorInfo(doctorID);
 
@@ -220,45 +235,87 @@ namespace Clinic.Medical_Services.Visit
             this.Close();
         }
 
-        private void btnPrecriptionNext_Click(object sender, EventArgs e)
+        private void removeMedicineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 1. لو إحنا في حالة القراءة فقط، اسمح له يتنقل بين الـ Tabs عادي
-            if (_Mode == enMode.Read)
+            if (dgvMedicines.CurrentRow == null) return;
+            if (MessageBox.Show("Are you sure you want to remove this medicine?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                // مسح العنصر من الـ List الأصلية باستخدام الـ Index بتاع السطر
+                _Prescription.ItemsList.RemoveAt(dgvMedicines.CurrentRow.Index);
+
+                // إعادة تحديث الـ Grid
+                _RefreshGrid();
+            }
+        }
+
+        private void ShowMedicineInfotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 1. التأكد إن فيه سطر مختار
+            if (dgvMedicines.CurrentRow == null) return;
+
+            // 2. جلب الكائن المختار من الـ List (بناءً على الـ Index بتاع السطر)
+            clsPrescriptionItem SelectedItem = _Prescription.ItemsList[dgvMedicines.CurrentRow.Index];
+
+            // 3. فتح نفس الشاشة اللي عملناها، بس بتبعت لها الـ Mode = Read
+            // هنا إنت بتبعت الـ Item والـ Mode، والشاشة هتتولى قفل كل الـ Controls أوتوماتيك
+            frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription(SelectedItem, frmAddUpdateMedicineToPrescription.enMode.Read);
+
+            // مش محتاج تشترك في الـ DataBack هنا لأن مفيش حفظ هيحصل
+            frm.ShowDialog();
+
+        }
+
+        private void EditMedicinetoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvMedicines.CurrentRow == null) return;
+            // 1. جلب الدواء المختار من الـ List بناءً على السطر المحدد في الـ Grid
+            clsPrescriptionItem SelectedItem = _Prescription.ItemsList[dgvMedicines.CurrentRow.Index];
+
+            // 2. فتح الشاشة في وضع الـ Update وإرسال الكائن
+            frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription(SelectedItem, frmAddUpdateMedicineToPrescription.enMode.Update);
+
+            // 3. الاشتراك في الـ Event لتحديث البيانات بعد التعديل
+            frm.DataBack += (s, UpdatedItem) => {
+                _RefreshGrid(); // تحديث العرض فوراً
+            };
+
+            frm.ShowDialog();
+        }
+
+        private void btnSaveandNext_Click(object sender, EventArgs e)
+        {
+            // 1. التحقق من البيانات (التشخيص إلزامي)
+            if (!ValidateChildren()) return;
+
+            // 2. تعبئة بيانات الزيارة
+            _Visit.AppointmentID = _AppointmentID;
+            _Visit.VisitDate = dtpDateTime.Value;
+            _Visit.Diagnosis = txtDiagnosis.Text.Trim();
+            _Visit.Notes = txtNotes.Text.Trim();
+
+            // 3. حفظ الزيارة في قاعدة البيانات
+            if (_Visit.Save())
+            {
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                lblVisitID.Text = _Visit.VisitID.ToString();
+
+                // الانتقال للوضع التالي
+                tpPrescriptionInfo.Enabled = true;
                 tcVisitInfo.SelectedTab = tcVisitInfo.TabPages["tpPrescriptionInfo"];
-                return;
-            }
 
-            // 2. التحقق من صحة بيانات الزيارة (التشخيص مهم جداً قبل الروشتة)
-            if (!ValidateChildren())
-            {
-                MessageBox.Show("Please fill the Diagnosis before moving to Prescription.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                // تغيير الحالة لـ Update عشان لو داس الزرار تاني يعدل ميكررش
+                _Mode = enMode.Update;
 
-            // 3. التعامل مع حالة الـ Update
-            if (_Mode == enMode.Update)
-            {
+                // تفعيل زرار الحفظ النهائي للروشتة
                 btnSave.Enabled = true;
-                tpPrescriptionInfo.Enabled = true; // تفعيل صفحة الروشتة
-                tcVisitInfo.SelectedTab = tcVisitInfo.TabPages["tpPrescriptionInfo"];
-                return;
-            }
-
-            // 4. حالة الـ Add New
-            // هنا بنتأكد إننا مش بنعمل "روشتة مكررة" لو الزيارة موجودة فعلاً (حالة نادرة في الشاشة دي)
-            if (_Visit.VisitID != -1 && clsPrescription.IsPrescriptionExistByVisitID(_Visit.VisitID))
-            {
-                MessageBox.Show("This visit already has a prescription.", "Existing Prescription", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                // الانتقال لصفحة الروشتة بنجاح
-                btnSave.Enabled = true;
-                tpPrescriptionInfo.Enabled = true;
-                tcVisitInfo.SelectedTab = tcVisitInfo.TabPages["tpPrescriptionInfo"];
+                MessageBox.Show("Failed to save visit details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
 

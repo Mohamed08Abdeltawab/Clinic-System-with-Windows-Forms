@@ -15,7 +15,7 @@ namespace Clinic.Medical_Services.Medicine
     public partial class frmAddUpdateMedicineToPrescription : Form
     {
         // 1. تعريف الـ Mode والـ Delegate
-        public enum enMode { AddNew = 0, Update = 1};
+        public enum enMode { AddNew = 0, Update = 1, Read = 2};
         private enMode _Mode = enMode.AddNew;
 
         public delegate void DataBackEventHandler(object sender, clsPrescriptionItem Item);
@@ -49,7 +49,7 @@ namespace Clinic.Medical_Services.Medicine
 
         private void _LoadData()
         {
-            // نملأ الكومبو بوكس الأول عشان نعرف نعمل FindString بعد كدة
+            // 1. دائماً نملأ قائمة الأدوية أولاً
             _FillMedicinesComboBox();
 
             switch (_Mode)
@@ -57,6 +57,8 @@ namespace Clinic.Medical_Services.Medicine
                 case enMode.AddNew:
                     lblTitle.Text = "Add Medicine To Prescription";
                     _Item = new clsPrescriptionItem();
+                    // القيمة الافتراضية للكمية
+                    NUDQuantity.Value = 1;
                     break;
 
                 case enMode.Update:
@@ -64,6 +66,17 @@ namespace Clinic.Medical_Services.Medicine
                     _FillFieldsWithData();
                     break;
 
+                case enMode.Read:
+                    lblTitle.Text = "Medicine Details (Read Only)";
+                    _FillFieldsWithData();
+
+                    // 2. قفل كافة العناصر باستخدام الكلاس العالمي
+                    clsGlobal.SetControlsReadOnly(this, true);
+
+                    // 3. إخفاء زر الحفظ وتحريك زر الإغلاق لمكانه (لشكل أفضل)
+                    btnSave.Visible = false;
+                    btnClose.Location = btnSave.Location;
+                    break;
             }
         }
 
@@ -71,11 +84,21 @@ namespace Clinic.Medical_Services.Medicine
         {
             if (_Item == null) return;
 
-            // اختيار الدواء بناءً على الاسم
-            cbMedicines.SelectedIndex = cbMedicines.FindString(_Item.MedicineName);
+            // اختيار الدواء بناءً على الاسم (تأكد أن الأسماء مطابقة تماماً)
+            cbMedicines.SelectedIndex = cbMedicines.FindStringExact(_Item.MedicineName);
+
+            // تعبئة الكمية في الـ NumericUpDown
             NUDQuantity.Value = _Item.Quantity;
+
             txtDosage.Text = _Item.Dosage;
             txtInstructions.Text = _Item.Instructions;
+
+            // عرض السعر (اختياري لو حابب يظهر في وضع العرض)
+            clsMedicine medicine = clsMedicine.Find(_Item.MedicineID);
+            if (medicine != null)
+            {
+                lblMedicinePrice.Text = medicine.Price.ToString() + " $";
+            }
         }
 
         private void frmAddUpdateMedicineToPrescription_Load(object sender, EventArgs e)

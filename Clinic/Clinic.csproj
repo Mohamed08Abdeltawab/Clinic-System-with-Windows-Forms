@@ -753,5 +753,14 @@
   <ItemGroup>
     <None Include="Resources\instruction 32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show medicine 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit medicinek 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove 32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
