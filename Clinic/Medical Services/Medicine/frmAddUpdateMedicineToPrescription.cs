@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Clinic.Medical_Services.Manage_Prescriptions
+namespace Clinic.Medical_Services.Medicine
 {
-    public partial class frmAddMedicineToPrescription : Form
+    public partial class frmAddUpdateMedicineToPrescription : Form
     {
-        public frmAddMedicineToPrescription()
+        public frmAddUpdateMedicineToPrescription()
         {
             InitializeComponent();
         }

@@ -122,12 +122,6 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medical Services\Medicine\frmAddMedicineToPrescription.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Medical Services\Medicine\frmAddMedicineToPrescription.Designer.cs">
-      <DependentUpon>frmAddMedicineToPrescription.cs</DependentUpon>
-    </Compile>
     <Compile Include="Medical Services\Manage Prescriptions\frmListPrescriptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +139,12 @@
     </Compile>
     <Compile Include="Medical Services\Manage Services\frmListServices.Designer.cs">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medical Services\Medicine\frmAddUpdateMedicineToPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Medicine\frmAddUpdateMedicineToPrescription.Designer.cs">
+      <DependentUpon>frmAddUpdateMedicineToPrescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Medical Services\Visit\frmFillVisitDetails.cs">
       <SubType>Form</SubType>
@@ -311,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Services\frmListServices.resx">
       <DependentUpon>frmListServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Medicine\frmAddUpdateMedicineToPrescription.resx">
+      <DependentUpon>frmAddUpdateMedicineToPrescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Visit\frmFillVisitDetails.resx">
       <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
