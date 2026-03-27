@@ -83,7 +83,12 @@ namespace Clinic.Medical_Services.Visit
 
                 lblVisitID.Text = "[???]";
                 lblPrescriptionID.Text = "[???]";
+
+                dtpDateTime.MinDate = DateTime.Now;
                 dtpDateTime.Value = DateTime.Now;
+
+                dtpPrescriptionDate.MinDate = DateTime.Now;
+                dtpPrescriptionDate.Value = DateTime.Now;
 
                 var appointment = clsAppointment.Find(_AppointmentID);
                 if (appointment == null) { this.Close(); return; }
@@ -120,6 +125,35 @@ namespace Clinic.Medical_Services.Visit
                 lblDoctorID.Text = _Visit.AppointmentInfo.DoctorID.ToString();
                 lblAppointmentID.Text = _Visit.AppointmentID.ToString();
 
+
+                // --- كود الوقت في حالة Update ---
+
+                // أولاً: للزيارة
+                DateTime visitDate = _Visit.VisitDate;
+                // بنحسب الـ MinDate بتاعك (أيام الشهر الحالي)
+                DateTime calcVisitMin = DateTime.Now.AddDays(-visitDate.Day);
+
+                // التأمين: لو تاريخ الزيارة قديم أوي، بنخلي الـ MinDate هو تاريخ الزيارة نفسه
+                dtpDateTime.MinDate = (visitDate < calcVisitMin) ? visitDate : calcVisitMin;
+                dtpDateTime.Value = visitDate;
+
+
+                // ثانياً: للروشتة (لو موجودة)
+                if (_Prescription.PrescriptionID != -1)
+                {
+                    DateTime presDate = _Prescription.PrescriptionDate;
+                    DateTime calcPresMin = DateTime.Now.AddDays(-presDate.Day);
+
+                    dtpPrescriptionDate.MinDate = (presDate < calcPresMin) ? presDate : calcPresMin;
+                    dtpPrescriptionDate.Value = presDate;
+                }
+                else
+                {
+                    // لو لسه ملوش روشتة، بنبدأ من النهاردة
+                    dtpPrescriptionDate.MinDate = DateTime.Now;
+                    dtpPrescriptionDate.Value = DateTime.Now;
+                }
+
                 _RefreshGrid();
 
                 // --- التعديل الجوهري هنا لـ Update/Read ---
@@ -147,6 +181,12 @@ namespace Clinic.Medical_Services.Visit
                 return;
             }
 
+            if(dgvMedicines.Rows.Count <= 0)
+            {
+                MessageBox.Show("Must Select at lest one Medicine.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // تعبئة بيانات الروشتة
             _Prescription.VisitID = _Visit.VisitID;
             _Prescription.PrescriptionDate = DateTime.Now;
@@ -156,8 +196,8 @@ namespace Clinic.Medical_Services.Visit
             if (_Prescription.Save())
             {
                 lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
-                MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _Mode = enMode.Update;
+                MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //this.Close(); // إغلاق الشاشة بعد الحفظ النهائي
             }
             else
