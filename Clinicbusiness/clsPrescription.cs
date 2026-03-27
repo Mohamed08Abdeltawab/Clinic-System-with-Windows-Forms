@@ -10,10 +10,10 @@ namespace Clinicbusiness
         public int ItemID { get; set; } = -1;
         public int PrescriptionID { get; set; }
         public int MedicineID { get; set; }
+        public string MedicineName { get; set; }
         public int Quantity { get; set; }
         public string Dosage { get; set; }
         public string Instructions { get; set; }
-        public string MedicineName { get; set; } // لعرض الاسم في الـ Grid
     }
     public class clsPrescription
     {
@@ -62,10 +62,11 @@ namespace Clinicbusiness
                 items.Add(new clsPrescriptionItem
                 {
                     ItemID = (int)row["ItemID"],
+                    MedicineID = (int)row["MedicineID"],
                     MedicineName = (string)row["MedicineName"],
                     Quantity = (int)row["Quantity"],
-                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"],
-                    Dosage = row["Dosage"] == DBNull.Value ? "" : (string)row["Dosage"]
+                    Dosage = row["Dosage"] == DBNull.Value ? "" : (string)row["Dosage"],
+                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"]
                 });
             }
             return items;

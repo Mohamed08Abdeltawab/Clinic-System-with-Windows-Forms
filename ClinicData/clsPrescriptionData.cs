@@ -140,10 +140,10 @@ namespace ClinicData
         public static DataTable GetPrescriptionItems(int PrescriptionID)
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT I.ItemID, M.MedicineName, I.Quantity, I.Dosage, I.Instructions
-                             FROM PrescriptionItems I
-                             JOIN Medicines M ON I.MedicineID = M.MedicineID
-                             WHERE I.PrescriptionID = @PrescriptionID";
+            string query = @"SELECT I.ItemID, I.MedicineID, M.MedicineName, I.Quantity, I.Dosage, I.Instructions
+                 FROM PrescriptionItems I
+                 JOIN Medicines M ON I.MedicineID = M.MedicineID
+                 WHERE I.PrescriptionID = @PrescriptionID";
 
             try
             {
