@@ -311,5 +311,32 @@ namespace ClinicData
 
             return isFound;
         }
+
+        public static int GetAppointmentIDByVisitID(int VisitID)
+        {
+            int AppointmentID = -1;
+            string query = "SELECT AppointmentID FROM Visits WHERE VisitID = @VisitID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            AppointmentID = id;
+                        }
+                    }
+                }
+            }
+            catch { AppointmentID = -1; }
+
+            return AppointmentID;
+        }
     }
 }

@@ -38,7 +38,6 @@
             this.showMedicineDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShowAppointmentListtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecordsCount = new System.Windows.Forms.Label();
@@ -88,11 +87,10 @@
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.toolStripMenuItem1,
-            this.ShowAppointmentListtoolStripMenuItem,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(215, 200);
+            this.cmsPeople.Size = new System.Drawing.Size(197, 184);
             // 
             // toolStripMenuItem2
             // 
@@ -103,7 +101,7 @@
             this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(214, 38);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 38);
             this.toolStripMenuItem2.Text = "Show Details";
             // 
             // showPrescriptionDetailsToolStripMenuItem
@@ -117,43 +115,39 @@
             // showVisitDetailsToolStripMenuItem
             // 
             this.showVisitDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.visit_32;
+            this.showVisitDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.showVisitDetailsToolStripMenuItem.Name = "showVisitDetailsToolStripMenuItem";
             this.showVisitDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
             this.showVisitDetailsToolStripMenuItem.Text = "Show Visit Details";
             // 
             // showMedicineDetailsToolStripMenuItem
             // 
+            this.showMedicineDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Medicine_32;
+            this.showMedicineDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.showMedicineDetailsToolStripMenuItem.Name = "showMedicineDetailsToolStripMenuItem";
             this.showMedicineDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
             this.showMedicineDetailsToolStripMenuItem.Text = "Show Medicine Details";
+            this.showMedicineDetailsToolStripMenuItem.Click += new System.EventHandler(this.showMedicineDetailsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(211, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(193, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Image = global::Clinic.Properties.Resources.start_visit_321;
             this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(214, 38);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 38);
             this.toolStripMenuItem1.Text = "Show Visits List";
-            // 
-            // ShowAppointmentListtoolStripMenuItem
-            // 
-            this.ShowAppointmentListtoolStripMenuItem.Image = global::Clinic.Properties.Resources.appoint_type_32;
-            this.ShowAppointmentListtoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowAppointmentListtoolStripMenuItem.Name = "ShowAppointmentListtoolStripMenuItem";
-            this.ShowAppointmentListtoolStripMenuItem.Size = new System.Drawing.Size(214, 38);
-            this.ShowAppointmentListtoolStripMenuItem.Text = "Show Appointment List";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = global::Clinic.Properties.Resources.edit_32;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // deleteToolStripMenuItem
@@ -161,7 +155,7 @@
             this.deleteToolStripMenuItem.Image = global::Clinic.Properties.Resources.Delete_32;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
             // 
             // lblRecordsCount
@@ -294,7 +288,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShowAppointmentListtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pbPersonImage;

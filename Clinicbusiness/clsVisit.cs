@@ -154,5 +154,15 @@ namespace Clinicbusiness
             visitService.ServiceFees = ServiceFees;
             return visitService.Save();
         }
+
+        public static clsAppointment GetAppointmentInfoByVisitID(int VisitID)
+        {
+            int AppointmentID = clsVisitData.GetAppointmentIDByVisitID(VisitID);
+
+            if (AppointmentID != -1)
+                return clsAppointment.Find(AppointmentID); // هيرجعلك كل بيانات الموعد
+            else
+                return null;
+        }
     }
 }

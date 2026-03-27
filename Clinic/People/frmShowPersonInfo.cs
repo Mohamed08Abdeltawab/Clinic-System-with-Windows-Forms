@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinic.Global_Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,5 +23,6 @@ namespace Clinic.People
         {
             this.Close();
         }
+
     }
 }

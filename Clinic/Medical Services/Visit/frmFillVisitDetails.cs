@@ -1,4 +1,5 @@
 ﻿using Clinic.Doctor;
+using Clinic.Global_Classes;
 using Clinic.Patient;
 using Clinicbusiness;
 using System;
@@ -15,7 +16,7 @@ namespace Clinic.Medical_Services.Visit
 {
     public partial class frmFillVisitDetails : Form
     {
-        private enum enMode { AddNew = 0, Update = 1};
+        private enum enMode { AddNew = 0, Update = 1,Read = 2};
         private enMode _Mode = enMode.AddNew;
         private int _AppointmentID;
         private clsVisit _Visit;
@@ -69,6 +70,14 @@ namespace Clinic.Medical_Services.Visit
                 lblDoctorID.Text = _Visit.AppointmentInfo.DoctorID.ToString();
                 lblAppointmentID.Text = _Visit.AppointmentID.ToString();
             }
+            if(_Mode == enMode.Read)
+            {
+                btnSave.Visible = false;
+                txtDiagnosis.ReadOnly = true;
+                txtNotes.ReadOnly = true;
+                dtpDateTime.Enabled = false;
+            }
+
         }
 
         private void frmFillVisitDetails_Load(object sender, EventArgs e)
@@ -81,15 +90,27 @@ namespace Clinic.Medical_Services.Visit
             if (int.TryParse(lblPatientID.Text, out int patientID))
             {
                 frmPatientInfo frm = new frmPatientInfo(patientID);
+
+                if (_Mode == enMode.Read)
+                {
+                    frm.IsReadOnly = true;
+                }
+
                 frm.ShowDialog();
             }
         }
 
         private void llDoctorInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (int.TryParse(lblDoctorID.Text, out int doctorID))
+            if (int.TryParse(lblPatientID.Text, out int doctorID))
             {
                 frmDoctorInfo frm = new frmDoctorInfo(doctorID);
+
+                if (_Mode == enMode.Read)
+                {
+                    frm.IsReadOnly = true;
+                }
+
                 frm.ShowDialog();
             }
         }

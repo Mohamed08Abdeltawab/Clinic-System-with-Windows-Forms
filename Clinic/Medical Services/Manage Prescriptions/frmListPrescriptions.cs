@@ -1,4 +1,5 @@
-﻿using Clinicbusiness;
+﻿using Clinic.Medical_Services.Visit;
+using Clinicbusiness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,17 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 {
     public partial class frmListPrescriptions : Form
     {
+        private enum enMode { AddNew = 0, Update = 1, Read = 2 };
         // نستخدم DataTable واحدة للتعامل مع العرض والفلترة
         private DataTable _dtAllPrescriptions;
+
 
         public frmListPrescriptions()
         {
             InitializeComponent();
         }
 
-       
+
         private void frmListPrescriptions_Load(object sender, EventArgs e)
         {
             cbFilterBy.SelectedIndex = 0;
@@ -105,6 +108,15 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void showMedicineDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
+            clsAppointment _Appointment = clsVisit.GetAppointmentInfoByVisitID(VisitID);
+            
+            frmFillVisitDetails frm = new frmFillVisitDetails(_Appointment.AppointmentID, (int)enMode.Read);
+            frm.ShowDialog();
         }
     }
 }

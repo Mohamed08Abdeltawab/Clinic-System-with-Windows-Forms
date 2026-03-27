@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -116,6 +117,41 @@ namespace Clinic.Global_Classes
                 return false;
             }
             return true;
+        }
+
+
+        public static void SetControlsReadOnly(Control parent, bool isReadOnly)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                // 1. لو هو TextBox خليه ReadOnly (أشيك من Enabled = false لأنه بيفضل واضح)
+                if (ctrl is TextBox txt)
+                {
+                    txt.ReadOnly = isReadOnly;
+                }
+                // 2. لو ComboBox أو CheckBox أو DateTimePicker اقفلهم تماماً
+                else if (ctrl is ComboBox || ctrl is CheckBox || ctrl is DateTimePicker)
+                {
+                    ctrl.Enabled = !isReadOnly;
+                }
+                // 3. الزراير (ماعدا زرار الـ Close لو حابب)
+                else if (ctrl is Button btn && btn.Name != "btnClose")
+                {
+                    btn.Enabled = !isReadOnly;
+                }
+                // 4. الـ LinkLabels زي "Change Image" أو غيره
+                else if (ctrl is LinkLabel ll)
+                {
+                    ll.Enabled = !isReadOnly;
+                }
+
+                // الحتة المهمة: لو الـ Control ده جواه Controls تانية (زي Panel أو GroupBox)
+                // بننادي الميثود تاني عشان تدخل تجيب اللي جواهم
+                if (ctrl.HasChildren)
+                {
+                    SetControlsReadOnly(ctrl, isReadOnly);
+                }
+            }
         }
     }
 }
