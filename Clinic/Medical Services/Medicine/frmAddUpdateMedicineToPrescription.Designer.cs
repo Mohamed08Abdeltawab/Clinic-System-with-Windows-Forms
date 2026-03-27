@@ -28,38 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cbMedicines = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMedicinePrice = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtDosage = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtInstructions = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NUDQuantity = new System.Windows.Forms.NumericUpDown();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // cbMedicines
             // 
+            this.cbMedicines.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMedicines.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbMedicines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMedicines.FormattingEnabled = true;
             this.cbMedicines.Location = new System.Drawing.Point(206, 84);
             this.cbMedicines.Name = "cbMedicines";
             this.cbMedicines.Size = new System.Drawing.Size(236, 28);
             this.cbMedicines.TabIndex = 167;
+            this.cbMedicines.SelectedIndexChanged += new System.EventHandler(this.cbMedicines_SelectedIndexChanged);
+            this.cbMedicines.Validating += new System.ComponentModel.CancelEventHandler(this.cbMedicines_Validating);
             // 
             // label1
             // 
@@ -93,15 +102,6 @@
             this.label10.Size = new System.Drawing.Size(130, 20);
             this.label10.TabIndex = 177;
             this.label10.Text = "Medicine Price:";
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(206, 156);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtQuantity.MaxLength = 50;
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(236, 26);
-            this.txtQuantity.TabIndex = 182;
             // 
             // label15
             // 
@@ -167,20 +167,6 @@
             this.lblTitle.Text = "Add New Medicine in Prescription";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnSave
-            // 
-            this.btnSave.Enabled = false;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Image = global::Clinic.Properties.Resources.Save_32;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(586, 536);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(126, 37);
-            this.btnSave.TabIndex = 220;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -194,6 +180,7 @@
             this.btnClose.TabIndex = 221;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pictureBox7
             // 
@@ -245,12 +232,49 @@
             this.pictureBox3.TabIndex = 166;
             this.pictureBox3.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // NUDQuantity
+            // 
+            this.NUDQuantity.Location = new System.Drawing.Point(206, 156);
+            this.NUDQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUDQuantity.Name = "NUDQuantity";
+            this.NUDQuantity.Size = new System.Drawing.Size(89, 26);
+            this.NUDQuantity.TabIndex = 222;
+            this.NUDQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Image = global::Clinic.Properties.Resources.Save_32;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(586, 536);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(126, 37);
+            this.btnSave.TabIndex = 223;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
             // frmAddUpdateMedicineToPrescription
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(758, 593);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.NUDQuantity);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtInstructions);
@@ -259,7 +283,6 @@
             this.Controls.Add(this.txtDosage);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox9);
@@ -278,6 +301,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,7 +316,6 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label lblMedicinePrice;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.TextBox txtDosage;
@@ -301,7 +325,9 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.NumericUpDown NUDQuantity;
+        private System.Windows.Forms.Button btnSave;
     }
 }

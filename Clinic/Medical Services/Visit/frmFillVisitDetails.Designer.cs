@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tcVisitInfo = new System.Windows.Forms.TabControl();
@@ -59,22 +59,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnDoctorNext = new System.Windows.Forms.Button();
             this.tpPrescriptionInfo = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dgvMedicine = new System.Windows.Forms.DataGridView();
+            this.btnAddNewMedicine = new System.Windows.Forms.Button();
+            this.txtPrescriptionNotes = new System.Windows.Forms.TextBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.dtpAppointmentDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpPrescriptionDate = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPrescriptionID = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dgvPrescription = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tcVisitInfo.SuspendLayout();
             this.tpVisitInfo.SuspendLayout();
@@ -86,11 +83,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.tpPrescriptionInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPrescription)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -407,22 +403,20 @@
             this.btnDoctorNext.TabIndex = 119;
             this.btnDoctorNext.Text = "Next";
             this.btnDoctorNext.UseVisualStyleBackColor = true;
+            this.btnDoctorNext.Click += new System.EventHandler(this.btnDoctorNext_Click);
             // 
             // tpPrescriptionInfo
             // 
-            this.tpPrescriptionInfo.Controls.Add(this.dgvPrescription);
-            this.tpPrescriptionInfo.Controls.Add(this.button1);
-            this.tpPrescriptionInfo.Controls.Add(this.textBox1);
+            this.tpPrescriptionInfo.Controls.Add(this.dgvMedicine);
+            this.tpPrescriptionInfo.Controls.Add(this.btnAddNewMedicine);
+            this.tpPrescriptionInfo.Controls.Add(this.txtPrescriptionNotes);
             this.tpPrescriptionInfo.Controls.Add(this.pictureBox13);
             this.tpPrescriptionInfo.Controls.Add(this.label15);
             this.tpPrescriptionInfo.Controls.Add(this.pictureBox12);
-            this.tpPrescriptionInfo.Controls.Add(this.dtpAppointmentDate);
+            this.tpPrescriptionInfo.Controls.Add(this.dtpPrescriptionDate);
             this.tpPrescriptionInfo.Controls.Add(this.label13);
-            this.tpPrescriptionInfo.Controls.Add(this.pictureBox10);
-            this.tpPrescriptionInfo.Controls.Add(this.label2);
-            this.tpPrescriptionInfo.Controls.Add(this.label4);
             this.tpPrescriptionInfo.Controls.Add(this.pictureBox11);
-            this.tpPrescriptionInfo.Controls.Add(this.label9);
+            this.tpPrescriptionInfo.Controls.Add(this.lblPrescriptionID);
             this.tpPrescriptionInfo.Controls.Add(this.label11);
             this.tpPrescriptionInfo.Location = new System.Drawing.Point(4, 29);
             this.tpPrescriptionInfo.Name = "tpPrescriptionInfo";
@@ -432,29 +426,56 @@
             this.tpPrescriptionInfo.Text = "Prescription Info";
             this.tpPrescriptionInfo.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // dgvMedicine
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Image = global::Clinic.Properties.Resources.add_32;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(20, 160);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 38);
-            this.button1.TabIndex = 222;
-            this.button1.Text = "Add New Medicine";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.dgvMedicine.AllowUserToAddRows = false;
+            this.dgvMedicine.AllowUserToDeleteRows = false;
+            this.dgvMedicine.AllowUserToResizeRows = false;
+            this.dgvMedicine.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMedicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMedicine.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvMedicine.Location = new System.Drawing.Point(20, 146);
+            this.dgvMedicine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvMedicine.MultiSelect = false;
+            this.dgvMedicine.Name = "dgvMedicine";
+            this.dgvMedicine.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMedicine.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMedicine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMedicine.Size = new System.Drawing.Size(774, 248);
+            this.dgvMedicine.TabIndex = 223;
+            this.dgvMedicine.TabStop = false;
             // 
-            // textBox1
+            // btnAddNewMedicine
             // 
-            this.textBox1.Location = new System.Drawing.Point(217, 435);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(429, 81);
-            this.textBox1.TabIndex = 214;
+            this.btnAddNewMedicine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddNewMedicine.Image = global::Clinic.Properties.Resources.add_32;
+            this.btnAddNewMedicine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddNewMedicine.Location = new System.Drawing.Point(20, 98);
+            this.btnAddNewMedicine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddNewMedicine.Name = "btnAddNewMedicine";
+            this.btnAddNewMedicine.Size = new System.Drawing.Size(204, 38);
+            this.btnAddNewMedicine.TabIndex = 222;
+            this.btnAddNewMedicine.Text = "Add New Medicine";
+            this.btnAddNewMedicine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddNewMedicine.UseVisualStyleBackColor = true;
+            this.btnAddNewMedicine.Click += new System.EventHandler(this.btnAddNewMedicine_Click);
+            // 
+            // txtPrescriptionNotes
+            // 
+            this.txtPrescriptionNotes.Location = new System.Drawing.Point(217, 435);
+            this.txtPrescriptionNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPrescriptionNotes.MaxLength = 50;
+            this.txtPrescriptionNotes.Multiline = true;
+            this.txtPrescriptionNotes.Name = "txtPrescriptionNotes";
+            this.txtPrescriptionNotes.Size = new System.Drawing.Size(429, 81);
+            this.txtPrescriptionNotes.TabIndex = 214;
             // 
             // pictureBox13
             // 
@@ -487,15 +508,15 @@
             this.pictureBox12.TabIndex = 182;
             this.pictureBox12.TabStop = false;
             // 
-            // dtpAppointmentDate
+            // dtpPrescriptionDate
             // 
-            this.dtpAppointmentDate.CustomFormat = "";
-            this.dtpAppointmentDate.Location = new System.Drawing.Point(568, 44);
-            this.dtpAppointmentDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpAppointmentDate.Name = "dtpAppointmentDate";
-            this.dtpAppointmentDate.Size = new System.Drawing.Size(279, 26);
-            this.dtpAppointmentDate.TabIndex = 180;
-            this.dtpAppointmentDate.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
+            this.dtpPrescriptionDate.CustomFormat = "";
+            this.dtpPrescriptionDate.Location = new System.Drawing.Point(568, 44);
+            this.dtpPrescriptionDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpPrescriptionDate.Name = "dtpPrescriptionDate";
+            this.dtpPrescriptionDate.Size = new System.Drawing.Size(279, 26);
+            this.dtpPrescriptionDate.TabIndex = 180;
+            this.dtpPrescriptionDate.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -508,64 +529,32 @@
             this.label13.TabIndex = 181;
             this.label13.Text = "Prescription Date:";
             // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox10.Location = new System.Drawing.Point(170, 96);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 173;
-            this.pictureBox10.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(208, 96);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 20);
-            this.label2.TabIndex = 172;
-            this.label2.Text = "[???]";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 96);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 20);
-            this.label4.TabIndex = 171;
-            this.label4.Text = "Visit ID:";
-            // 
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox11.Location = new System.Drawing.Point(170, 38);
+            this.pictureBox11.Location = new System.Drawing.Point(170, 44);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(31, 26);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox11.TabIndex = 170;
             this.pictureBox11.TabStop = false;
             // 
-            // label9
+            // lblPrescriptionID
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(208, 38);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 20);
-            this.label9.TabIndex = 169;
-            this.label9.Text = "[???]";
+            this.lblPrescriptionID.AutoSize = true;
+            this.lblPrescriptionID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrescriptionID.Location = new System.Drawing.Point(208, 44);
+            this.lblPrescriptionID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrescriptionID.Name = "lblPrescriptionID";
+            this.lblPrescriptionID.Size = new System.Drawing.Size(49, 20);
+            this.lblPrescriptionID.TabIndex = 169;
+            this.lblPrescriptionID.Text = "[???]";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(16, 38);
+            this.label11.Location = new System.Drawing.Point(16, 44);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(133, 20);
@@ -601,32 +590,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dgvPrescription
-            // 
-            this.dgvPrescription.AllowUserToAddRows = false;
-            this.dgvPrescription.AllowUserToDeleteRows = false;
-            this.dgvPrescription.AllowUserToResizeRows = false;
-            this.dgvPrescription.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPrescription.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrescription.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvPrescription.Location = new System.Drawing.Point(20, 208);
-            this.dgvPrescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvPrescription.MultiSelect = false;
-            this.dgvPrescription.Name = "dgvPrescription";
-            this.dgvPrescription.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPrescription.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvPrescription.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrescription.Size = new System.Drawing.Size(774, 184);
-            this.dgvPrescription.TabIndex = 223;
-            this.dgvPrescription.TabStop = false;
-            // 
             // frmFillVisitDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -654,11 +617,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.tpPrescriptionInfo.ResumeLayout(false);
             this.tpPrescriptionInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPrescription)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -697,19 +659,16 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnDoctorNext;
         private System.Windows.Forms.TabPage tpPrescriptionInfo;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPrescriptionID;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.DateTimePicker dtpAppointmentDate;
+        private System.Windows.Forms.DateTimePicker dtpPrescriptionDate;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPrescriptionNotes;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dgvPrescription;
+        private System.Windows.Forms.Button btnAddNewMedicine;
+        private System.Windows.Forms.DataGridView dgvMedicine;
     }
 }

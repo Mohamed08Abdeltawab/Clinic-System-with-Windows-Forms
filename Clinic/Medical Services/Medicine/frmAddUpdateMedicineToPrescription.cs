@@ -1,4 +1,5 @@
-﻿using Clinicbusiness;
+﻿using Clinic.Global_Classes;
+using Clinicbusiness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,48 +14,126 @@ namespace Clinic.Medical_Services.Medicine
 {
     public partial class frmAddUpdateMedicineToPrescription : Form
     {
+        // 1. تعريف الـ Mode والـ Delegate
+        public enum enMode { AddNew = 0, Update = 1};
+        private enMode _Mode = enMode.AddNew;
 
         public delegate void DataBackEventHandler(object sender, clsPrescriptionItem Item);
         public event DataBackEventHandler DataBack;
 
         private clsPrescriptionItem _Item;
+
+        // 2. Constructor لحالة الإضافة
         public frmAddUpdateMedicineToPrescription()
         {
             InitializeComponent();
-            _Item = new clsPrescriptionItem();
+            _Mode = enMode.AddNew;
         }
 
-        public frmAddUpdateMedicineToPrescription(clsPrescriptionItem Item)
+        // 3. Constructor لحالة التعديل أو القراءة
+        public frmAddUpdateMedicineToPrescription(clsPrescriptionItem Item, enMode Mode)
         {
             InitializeComponent();
             _Item = Item;
+            _Mode = Mode;
         }
 
-        //fill combo box of Medicne
         private void _FillMedicinesComboBox()
         {
             DataTable dt = clsMedicine.GetAllMedicines();
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
-                cbMedicines.Items.Add(row["MedicineName"]);
+                cbMedicines.Items.Add(row["MedicineName"].ToString());
             }
         }
 
         private void _LoadData()
         {
+            // نملأ الكومبو بوكس الأول عشان نعرف نعمل FindString بعد كدة
+            _FillMedicinesComboBox();
+
+            switch (_Mode)
+            {
+                case enMode.AddNew:
+                    lblTitle.Text = "Add Medicine To Prescription";
+                    _Item = new clsPrescriptionItem();
+                    break;
+
+                case enMode.Update:
+                    lblTitle.Text = "Update Medicine In Prescription";
+                    _FillFieldsWithData();
+                    break;
+
+            }
+        }
+
+        private void _FillFieldsWithData()
+        {
+            if (_Item == null) return;
+
+            // اختيار الدواء بناءً على الاسم
             cbMedicines.SelectedIndex = cbMedicines.FindString(_Item.MedicineName);
-            txtQuantity.Text = _Item.Quantity.ToString();
+            NUDQuantity.Value = _Item.Quantity;
             txtDosage.Text = _Item.Dosage;
             txtInstructions.Text = _Item.Instructions;
         }
 
         private void frmAddUpdateMedicineToPrescription_Load(object sender, EventArgs e)
         {
-            _FillMedicinesComboBox();
+            _LoadData();
+        }
 
-            if(_Item.ItemID == -1)
+        private void cbMedicines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // جلب بيانات الدواء عند الاختيار لعرض السعر
+            clsMedicine medicine = clsMedicine.Find(cbMedicines.Text);
+            if (medicine != null)
             {
-                MessageBox.Show("")
+                lblMedicinePrice.Text = medicine.Price.ToString() + " $";
+                _Item.MedicineID = medicine.MedicineID;
+                _Item.MedicineName = medicine.MedicineName;
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+            // التحقق من المدخلات (Validation)
+            if (!ValidateChildren())
+            {
+                MessageBox.Show("Some fields are not valid!, put the mouse over the red icon(s) to see the error",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // تعبئة الكائن بالبيانات الجديدة
+            _Item.Quantity = (int)NUDQuantity.Value;
+            _Item.Dosage = txtDosage.Text.Trim();
+            _Item.Instructions = txtInstructions.Text.Trim();
+
+            // إرسال البيانات للخلف
+            DataBack?.Invoke(this, _Item);
+
+            this.Close();
+        }
+
+        private void cbMedicines_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cbMedicines.Text))
+            {
+                e.Cancel = true; 
+                errorProvider1.SetError(cbMedicines, "Must Select Medicine!");
+                return;
+            }
+
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(cbMedicines, "");
             }
         }
     }

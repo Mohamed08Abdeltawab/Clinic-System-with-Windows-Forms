@@ -1,5 +1,6 @@
 ﻿using Clinic.Doctor;
 using Clinic.Global_Classes;
+using Clinic.Medical_Services.Medicine;
 using Clinic.Patient;
 using Clinicbusiness;
 using System;
@@ -20,6 +21,7 @@ namespace Clinic.Medical_Services.Visit
         private enMode _Mode = enMode.AddNew;
         private int _AppointmentID;
         private clsVisit _Visit;
+        private clsPrescription _Prescription;
         public frmFillVisitDetails(int AppointmentID, int Mode)//sending mode as int to avoid issues with combo box selected value
         {
             InitializeComponent();
@@ -157,6 +159,25 @@ namespace Clinic.Medical_Services.Visit
             {
                 MessageBox.Show("Failed to save visit details. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnAddNewMedicine_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription();
+
+            // الاشتراك في الـ Event لاستلام الدواء المختار
+            frm.DataBack += (s, Item) => {
+                // هنا بتضيف الـ Item للـ Grid عندك وللـ ItemsList اللي في الـ Business Layer
+                _Prescription.ItemsList.Add(Item);
+                //_RefreshGrid();
+            };
+
+            frm.ShowDialog();
+        }
+
+        private void btnDoctorNext_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
