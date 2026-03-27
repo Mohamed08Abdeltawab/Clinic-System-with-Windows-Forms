@@ -111,6 +111,7 @@
             this.showPrescriptionDetailsToolStripMenuItem.Name = "showPrescriptionDetailsToolStripMenuItem";
             this.showPrescriptionDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
             this.showPrescriptionDetailsToolStripMenuItem.Text = "Show Prescription Details";
+            this.showPrescriptionDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPrescriptionDetailsToolStripMenuItem_Click);
             // 
             // showVisitDetailsToolStripMenuItem
             // 
@@ -119,6 +120,7 @@
             this.showVisitDetailsToolStripMenuItem.Name = "showVisitDetailsToolStripMenuItem";
             this.showVisitDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
             this.showVisitDetailsToolStripMenuItem.Text = "Show Visit Details";
+            this.showVisitDetailsToolStripMenuItem.Click += new System.EventHandler(this.showVisitDetailsToolStripMenuItem_Click);
             // 
             // showMedicineDetailsToolStripMenuItem
             // 
@@ -141,6 +143,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 38);
             this.toolStripMenuItem1.Text = "Show Visits List";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 

@@ -112,11 +112,28 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 
         private void showMedicineDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //
+        }
+
+        private void showVisitDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
             clsAppointment _Appointment = clsVisit.GetAppointmentInfoByVisitID(VisitID);
-            
+
             frmFillVisitDetails frm = new frmFillVisitDetails(_Appointment.AppointmentID, (int)enMode.Read);
             frm.ShowDialog();
+        }
+
+        private void showPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmListVisits frm = new frmListVisits();
+            frm.ShowDialog();
+            frmListPrescriptions_Load(null, null);
         }
     }
 }
