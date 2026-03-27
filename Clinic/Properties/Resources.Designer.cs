@@ -563,6 +563,16 @@ namespace Clinic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dosage_32 {
+            get {
+                object obj = ResourceManager.GetObject("dosage 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_32 {
             get {
                 object obj = ResourceManager.GetObject("edit 32", resourceCulture);
@@ -626,6 +636,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap ID_32 {
             get {
                 object obj = ResourceManager.GetObject("ID 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap instruction_32 {
+            get {
+                object obj = ResourceManager.GetObject("instruction 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -986,6 +1006,16 @@ namespace Clinic.Properties {
         internal static System.Drawing.Bitmap Prescription_64 {
             get {
                 object obj = ResourceManager.GetObject("Prescription 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quantity_32 {
+            get {
+                object obj = ResourceManager.GetObject("quantity 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

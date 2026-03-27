@@ -11,6 +11,7 @@ namespace Clinicbusiness
         public int PrescriptionID { get; set; }
         public int MedicineID { get; set; }
         public int Quantity { get; set; }
+        public string Dosage { get; set; }
         public string Instructions { get; set; }
         public string MedicineName { get; set; } // لعرض الاسم في الـ Grid
     }
@@ -63,7 +64,8 @@ namespace Clinicbusiness
                     ItemID = (int)row["ItemID"],
                     MedicineName = (string)row["MedicineName"],
                     Quantity = (int)row["Quantity"],
-                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"]
+                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"],
+                    Dosage = row["Dosage"] == DBNull.Value ? "" : (string)row["Dosage"]
                 });
             }
             return items;
@@ -79,7 +81,7 @@ namespace Clinicbusiness
             // 2. حفظ جميع الأدوية الموجودة في القائمة
             foreach (var item in ItemsList)
             {
-                if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Instructions) == -1)
+                if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Dosage,item.Instructions) == -1)
                 {
                     // ملاحظة: في المشاريع الكبيرة نستخدم Transaction هنا لضمان حفظ الكل أو لا شيء
                     return false;
@@ -96,7 +98,7 @@ namespace Clinicbusiness
             {
                 foreach (var item in ItemsList)
                 {
-                    if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Instructions) == -1)
+                    if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity,item.Dosage, item.Instructions) == -1)
                         return false;
                 }
                 return true;

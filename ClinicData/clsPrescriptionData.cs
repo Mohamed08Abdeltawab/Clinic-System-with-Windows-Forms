@@ -71,11 +71,11 @@ namespace ClinicData
         }
 
         // 3. إضافة دواء واحد داخل الروشتة (Detail Item)
-        public static int AddPrescriptionItem(int PrescriptionID, int MedicineID, int Quantity, string Instructions)
+        public static int AddPrescriptionItem(int PrescriptionID, int MedicineID, int Quantity, string Instructions,string Dosage)
         {
             int ItemID = -1;
-            string query = @"INSERT INTO PrescriptionItems (PrescriptionID, MedicineID, Quantity, Instructions)
-                             VALUES (@PrescriptionID, @MedicineID, @Quantity, @Instructions);
+            string query = @"INSERT INTO PrescriptionItems (PrescriptionID, MedicineID, Quantity,Dosage, Instructions)
+                             VALUES (@PrescriptionID, @MedicineID, @Quantity, @Dosage, @Instructions);
                              SELECT SCOPE_IDENTITY();";
 
             try
@@ -87,6 +87,7 @@ namespace ClinicData
                         command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
                         command.Parameters.AddWithValue("@MedicineID", MedicineID);
                         command.Parameters.AddWithValue("@Quantity", Quantity);
+                        command.Parameters.AddWithValue("@Dosage", Dosage);
                         command.Parameters.AddWithValue("@Instructions", Instructions);
 
                         connection.Open();
@@ -139,7 +140,7 @@ namespace ClinicData
         public static DataTable GetPrescriptionItems(int PrescriptionID)
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT I.ItemID, M.MedicineName, I.Quantity, I.Instructions
+            string query = @"SELECT I.ItemID, M.MedicineName, I.Quantity, I.Dosage, I.Instructions
                              FROM PrescriptionItems I
                              JOIN Medicines M ON I.MedicineID = M.MedicineID
                              WHERE I.PrescriptionID = @PrescriptionID";
