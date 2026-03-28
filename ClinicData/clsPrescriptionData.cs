@@ -71,7 +71,7 @@ namespace ClinicData
         }
 
         // 3. إضافة دواء واحد داخل الروشتة (Detail Item)
-        public static int AddPrescriptionItem(int PrescriptionID, int MedicineID, int Quantity, string Instructions,string Dosage)
+        public static int AddPrescriptionItem(int PrescriptionID, int MedicineID, int Quantity,string Dosage, string Instructions)
         {
             int ItemID = -1;
             string query = @"INSERT INTO PrescriptionItems (PrescriptionID, MedicineID, Quantity,Dosage, Instructions)
@@ -101,6 +101,67 @@ namespace ClinicData
             }
             catch { }
             return ItemID;
+        }
+
+        public static bool UpdatePrescription(int PrescriptionID, int VisitID, DateTime PrescriptionDate, string Notes)
+        {
+            int rowsAffected = 0;
+            string query = @"UPDATE Prescriptions 
+                     SET VisitID = @VisitID, 
+                         PrescriptionDate = @PrescriptionDate, 
+                         Notes = @Notes
+                     WHERE PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        command.Parameters.AddWithValue("@PrescriptionDate", PrescriptionDate);
+                        command.Parameters.AddWithValue("@Notes", string.IsNullOrEmpty(Notes) ? (object)DBNull.Value : Notes);
+
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { return false; }
+
+            return (rowsAffected > 0);
+        }
+
+        public static bool GetPrescriptionInfoByVisitID(int VisitID, ref int PrescriptionID,
+    ref DateTime PrescriptionDate, ref string Notes)
+        {
+            bool isFound = false;
+            string query = "SELECT * FROM Prescriptions WHERE VisitID = @VisitID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VisitID", VisitID);
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                PrescriptionID = (int)reader["PrescriptionID"];
+                                PrescriptionDate = (DateTime)reader["PrescriptionDate"];
+                                Notes = reader["Notes"] == DBNull.Value ? "" : (string)reader["Notes"];
+                            }
+                        }
+                    }
+                }
+            }
+            catch { isFound = false; }
+            return isFound;
         }
 
         // 4. عرض كل الروشتات (Master List) ببيانات المرضى (Join)

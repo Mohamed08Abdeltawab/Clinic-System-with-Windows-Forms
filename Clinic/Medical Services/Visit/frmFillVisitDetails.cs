@@ -110,7 +110,7 @@ namespace Clinic.Medical_Services.Visit
                 _Visit = clsVisit.FindByAppointmentID(_AppointmentID);
                 if (_Visit == null) { this.Close(); return; }
 
-                _Prescription = clsPrescription.Find(_Visit.VisitID);
+                _Prescription = clsPrescription.FindByVisitID(_Visit.VisitID);
                 if (_Prescription == null) _Prescription = new clsPrescription();
 
                 // تعبئة البيانات (نفس كودك السليم)

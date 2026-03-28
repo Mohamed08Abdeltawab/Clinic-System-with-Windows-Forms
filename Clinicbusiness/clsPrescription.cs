@@ -15,6 +15,7 @@ namespace Clinicbusiness
         public string Dosage { get; set; }
         public string Instructions { get; set; }
     }
+
     public class clsPrescription
     {
         public enum enMode { AddNew = 0, Update = 1 };
@@ -25,7 +26,7 @@ namespace Clinicbusiness
         public DateTime PrescriptionDate { set; get; }
         public string Notes { set; get; }
 
-        // التعديل الأهم: قائمة الأدوية بدل متغير MedicineID واحد
+        // قائمة الأدوية (Details)
         public List<clsPrescriptionItem> ItemsList;
 
         public clsPrescription()
@@ -46,7 +47,7 @@ namespace Clinicbusiness
             this.PrescriptionDate = PrescriptionDate;
             this.Notes = Notes;
 
-            // جلب الأدوية التابعة لهذه الروشتة وملء القائمة
+            // جلب الأدوية التابعة لهذه الروشتة فوراً عند تحميلها
             this.ItemsList = _LoadPrescriptionItems(PrescriptionID);
 
             Mode = enMode.Update;
@@ -74,37 +75,40 @@ namespace Clinicbusiness
 
         private bool _AddNewPrescription()
         {
-            // 1. حفظ الرأس (Header) والحصول على الـ ID الجديد
+            // 1. حفظ الرأس (Header) والحصول على الرقم الجديد (Identity)
             this.PrescriptionID = clsPrescriptionData.AddNewPrescription(this.VisitID, this.PrescriptionDate, this.Notes);
 
             if (this.PrescriptionID == -1) return false;
 
-            // 2. حفظ جميع الأدوية الموجودة في القائمة
-            foreach (var item in ItemsList)
-            {
-                if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Dosage,item.Instructions) == -1)
-                {
-                    // ملاحظة: في المشاريع الكبيرة نستخدم Transaction هنا لضمان حفظ الكل أو لا شيء
-                    return false;
-                }
-            }
-
-            return true;
+            // 2. حفظ الأدوية مربوطة بالـ ID الجديد
+            return _SaveItemsList();
         }
 
         private bool _UpdatePrescription()
         {
-            // عند التعديل: الأفضل مسح الأدوية القديمة وإضافة الجديدة من القائمة
+            // 1. تحديث بيانات الروشتة الأساسية أولاً (Notes, Date)
+            if (!clsPrescriptionData.UpdatePrescription(this.PrescriptionID, this.VisitID, this.PrescriptionDate, this.Notes))
+                return false;
+
+            // 2. مسح الأدوية القديمة لإعادة كتابة القائمة الجديدة (لضمان الدقة)
             if (clsPrescriptionData.DeleteAllItemsByPrescriptionID(this.PrescriptionID))
             {
-                foreach (var item in ItemsList)
-                {
-                    if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity,item.Dosage, item.Instructions) == -1)
-                        return false;
-                }
-                return true;
+                return _SaveItemsList();
             }
             return false;
+        }
+
+        // ميثود مساعدة لتكرار عملية حفظ القائمة
+        private bool _SaveItemsList()
+        {
+            foreach (var item in ItemsList)
+            {
+                if (clsPrescriptionData.AddPrescriptionItem(this.PrescriptionID, item.MedicineID, item.Quantity, item.Dosage, item.Instructions) == -1)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public bool Save()
@@ -125,6 +129,8 @@ namespace Clinicbusiness
             return false;
         }
 
+        // --- Static Methods ---
+
         public static clsPrescription Find(int PrescriptionID)
         {
             int VisitID = -1;
@@ -137,25 +143,41 @@ namespace Clinicbusiness
             return null;
         }
 
-        public static DataTable GetAllPrescriptions()
+        // ميثود مهمة جداً للربط مع الزيارة
+        public static clsPrescription FindByVisitID(int VisitID)
         {
-            return clsPrescriptionData.GetAllPrescriptions();
+            int PrescriptionID = -1;
+            DateTime PrescriptionDate = DateTime.Now;
+            string Notes = "";
+
+            if (clsPrescriptionData.GetPrescriptionInfoByVisitID(VisitID, ref PrescriptionID, ref PrescriptionDate, ref Notes))
+                return new clsPrescription(PrescriptionID, VisitID, PrescriptionDate, Notes);
+
+            return null;
         }
 
         public static bool DeletePrescription(int PrescriptionID)
         {
+            // الأفضل في الداتا لاير أن يتم مسح الـ Items أولاً ثم الـ Prescription (بسبب الـ Foreign Key)
             return clsPrescriptionData.DeletePrescription(PrescriptionID);
-        }
-
-        public static bool IsPrescriptionExist(int PrescriptionID)
-        {
-            return clsPrescriptionData.IsPrescriptionExist(PrescriptionID);
         }
 
         public static bool IsPrescriptionExistByVisitID(int VisitID)
         {
             return clsPrescriptionData.IsPrescriptionExistByVisitID(VisitID);
         }
+
+        public static DataTable GetAllPrescriptions()
+        {
+            return clsPrescriptionData.GetAllPrescriptions();
+        }
+
+
+        public static bool IsPrescriptionExist(int PrescriptionID)
+        {
+            return clsPrescriptionData.IsPrescriptionExist(PrescriptionID);
+        }
+
 
         public static DataTable GetPrescriptionItemsDataTable(int PrescriptionID)
         {
