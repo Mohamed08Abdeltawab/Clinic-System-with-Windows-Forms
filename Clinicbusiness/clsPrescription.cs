@@ -159,6 +159,7 @@ namespace Clinicbusiness
         public static bool DeletePrescription(int PrescriptionID)
         {
             // الأفضل في الداتا لاير أن يتم مسح الـ Items أولاً ثم الـ Prescription (بسبب الـ Foreign Key)
+            clsPrescriptionData.DeleteAllItemsByPrescriptionID(PrescriptionID);
             return clsPrescriptionData.DeletePrescription(PrescriptionID);
         }
 

@@ -31,11 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPrescription = new System.Windows.Forms.DataGridView();
-            this.cmsPeople = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsPrescription = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.showPrescriptionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showVisitDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showMedicineDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showVisitandPrescriptionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +48,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrescription)).BeginInit();
-            this.cmsPeople.SuspendLayout();
+            this.cmsPrescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +59,7 @@
             this.dgvPrescription.AllowUserToResizeRows = false;
             this.dgvPrescription.BackgroundColor = System.Drawing.Color.White;
             this.dgvPrescription.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrescription.ContextMenuStrip = this.cmsPeople;
+            this.dgvPrescription.ContextMenuStrip = this.cmsPrescription;
             this.dgvPrescription.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPrescription.Location = new System.Drawing.Point(23, 306);
             this.dgvPrescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -81,55 +79,35 @@
             this.dgvPrescription.TabIndex = 126;
             this.dgvPrescription.TabStop = false;
             // 
-            // cmsPeople
+            // cmsPrescription
             // 
-            this.cmsPeople.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsPrescription.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.toolStripMenuItem1,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
-            this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(197, 184);
+            this.cmsPrescription.Name = "contextMenuStrip1";
+            this.cmsPrescription.Size = new System.Drawing.Size(197, 184);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showPrescriptionDetailsToolStripMenuItem,
-            this.showVisitDetailsToolStripMenuItem,
-            this.showMedicineDetailsToolStripMenuItem});
+            this.showVisitandPrescriptionDetailsToolStripMenuItem});
             this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 38);
             this.toolStripMenuItem2.Text = "Show Details";
             // 
-            // showPrescriptionDetailsToolStripMenuItem
+            // showVisitandPrescriptionDetailsToolStripMenuItem
             // 
-            this.showPrescriptionDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.prescription_32;
-            this.showPrescriptionDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showPrescriptionDetailsToolStripMenuItem.Name = "showPrescriptionDetailsToolStripMenuItem";
-            this.showPrescriptionDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
-            this.showPrescriptionDetailsToolStripMenuItem.Text = "Show Prescription Details";
-            this.showPrescriptionDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPrescriptionDetailsToolStripMenuItem_Click);
-            // 
-            // showVisitDetailsToolStripMenuItem
-            // 
-            this.showVisitDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.visit_32;
-            this.showVisitDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showVisitDetailsToolStripMenuItem.Name = "showVisitDetailsToolStripMenuItem";
-            this.showVisitDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
-            this.showVisitDetailsToolStripMenuItem.Text = "Show Visit Details";
-            this.showVisitDetailsToolStripMenuItem.Click += new System.EventHandler(this.showVisitDetailsToolStripMenuItem_Click);
-            // 
-            // showMedicineDetailsToolStripMenuItem
-            // 
-            this.showMedicineDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Medicine_32;
-            this.showMedicineDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showMedicineDetailsToolStripMenuItem.Name = "showMedicineDetailsToolStripMenuItem";
-            this.showMedicineDetailsToolStripMenuItem.Size = new System.Drawing.Size(223, 38);
-            this.showMedicineDetailsToolStripMenuItem.Text = "Show Medicine Details";
-            this.showMedicineDetailsToolStripMenuItem.Click += new System.EventHandler(this.showMedicineDetailsToolStripMenuItem_Click);
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.Image = global::Clinic.Properties.Resources.visit_32;
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.Name = "showVisitandPrescriptionDetailsToolStripMenuItem";
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.Size = new System.Drawing.Size(271, 38);
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.Text = "Show Visit and Prescription Details";
+            this.showVisitandPrescriptionDetailsToolStripMenuItem.Click += new System.EventHandler(this.showVisitandPrescriptionDetailsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -152,6 +130,7 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -160,6 +139,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // lblRecordsCount
             // 
@@ -281,7 +261,7 @@
             this.Text = "frmListPrescriptions";
             this.Load += new System.EventHandler(this.frmListPrescriptions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrescription)).EndInit();
-            this.cmsPeople.ResumeLayout(false);
+            this.cmsPrescription.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -295,7 +275,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pbPersonImage;
         private System.Windows.Forms.DataGridView dgvPrescription;
-        private System.Windows.Forms.ContextMenuStrip cmsPeople;
+        private System.Windows.Forms.ContextMenuStrip cmsPrescription;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Label lblRecordsCount;
@@ -306,8 +286,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem showPrescriptionDetailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showVisitDetailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showMedicineDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showVisitandPrescriptionDetailsToolStripMenuItem;
     }
 }

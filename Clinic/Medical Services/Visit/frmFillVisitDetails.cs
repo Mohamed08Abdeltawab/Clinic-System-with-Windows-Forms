@@ -31,6 +31,17 @@ namespace Clinic.Medical_Services.Visit
             _Mode = (enMode)Mode;
         }
 
+        public void SetOnlyPrescriptionMode()
+        {
+            // 1. تعطيل تاب الزيارة تماماً
+            tpVisitInfo.Enabled = false;
+
+            // 2. الوقوف تلقائياً على تاب الروشتة
+            tcVisitInfo.SelectedTab = tpPrescriptionInfo;
+
+            // 3. تغيير العنوان للتوضيح
+            lblTitle.Text = "Update Prescription Only";
+        }
         private void _RefreshGrid()
         {
             // ربط الـ List الموجودة في كائن الروشتة بالـ DataGridView

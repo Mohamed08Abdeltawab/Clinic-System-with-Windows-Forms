@@ -1,4 +1,5 @@
-﻿using Clinic.Medical_Services.Visit;
+﻿using Clinic.Medical_Services.Medicine;
+using Clinic.Medical_Services.Visit;
 using Clinicbusiness;
 using System;
 using System.Collections.Generic;
@@ -110,12 +111,22 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             this.Close();
         }
 
-        private void showMedicineDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        
+
+        private void showPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            frmFillVisitDetails frm = new frmFillVisitDetails((int)dgvPrescription.CurrentRow.Cells["VisitID"].Value, (int)enMode.Read);
+            frm.ShowDialog();
         }
 
-        private void showVisitDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmListVisits frm = new frmListVisits();
+            frm.ShowDialog();
+            frmListPrescriptions_Load(null, null);
+        }
+
+        private void showVisitandPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
             clsAppointment _Appointment = clsVisit.GetAppointmentInfoByVisitID(VisitID);
@@ -124,16 +135,43 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             frm.ShowDialog();
         }
 
-        private void showPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
+            int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
+
+            // 2. البحث عن الـ AppointmentID المرتبط بالزيارة دي (لأن شاشتك بتفتح بيه)
+            clsVisit visit = clsVisit.Find(VisitID);
+
+            if (visit != null)
+            {
+                // 3. فتح شاشة الإضافة/التعديل
+                frmFillVisitDetails frm = new frmFillVisitDetails(visit.AppointmentID, 1);//1 is for update mode
+
+                // 4. الحركة السحرية: ننده ميثود تخلي الروشتة هي اللي مفتوحة والزيارة مقفولة
+                frm.SetOnlyPrescriptionMode();
+
+                frm.ShowDialog();
+                frmListPrescriptions_Load(null, null);
+            }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmListVisits frm = new frmListVisits();
-            frm.ShowDialog();
-            frmListPrescriptions_Load(null, null);
+            if (MessageBox.Show("Are you sure you want to delete this prescription?", "Confirm Delete",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int PrescriptionID = (int)dgvPrescription.CurrentRow.Cells["PrescriptionID"].Value;
+
+                if (clsPrescription.DeletePrescription(PrescriptionID))
+                {
+                    MessageBox.Show("Prescription Deleted Successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmListPrescriptions_Load(null,null); 
+                }
+                else
+                {
+                    MessageBox.Show("Error: Could not delete prescription.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
