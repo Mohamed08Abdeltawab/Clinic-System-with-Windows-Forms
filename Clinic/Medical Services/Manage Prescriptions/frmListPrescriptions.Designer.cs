@@ -88,7 +88,7 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPrescription.Name = "contextMenuStrip1";
-            this.cmsPrescription.Size = new System.Drawing.Size(197, 184);
+            this.cmsPrescription.Size = new System.Drawing.Size(171, 162);
             // 
             // toolStripMenuItem2
             // 
@@ -97,7 +97,7 @@
             this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 38);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 38);
             this.toolStripMenuItem2.Text = "Show Details";
             // 
             // showVisitandPrescriptionDetailsToolStripMenuItem
@@ -112,14 +112,14 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Image = global::Clinic.Properties.Resources.start_visit_321;
             this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 38);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(170, 38);
             this.toolStripMenuItem1.Text = "Show Visits List";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -128,7 +128,7 @@
             this.editToolStripMenuItem.Image = global::Clinic.Properties.Resources.edit_32;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(170, 38);
             this.editToolStripMenuItem.Text = "&Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -137,7 +137,7 @@
             this.deleteToolStripMenuItem.Image = global::Clinic.Properties.Resources.Delete_32;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(170, 38);
             this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -168,7 +168,6 @@
             "None",
             "Prescription ID",
             "Patient Name",
-            "Date",
             "Visit ID"});
             this.cbFilterBy.Location = new System.Drawing.Point(97, 270);
             this.cbFilterBy.Name = "cbFilterBy";
