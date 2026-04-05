@@ -16,5 +16,19 @@ namespace Clinic.Medical_Services.Visit
         {
             InitializeComponent();
         }
+
+        public void LoadVisitInfoByVisitID(int VisitID)
+        {
+            ctrlVisitInfoWithFilter1.LoadVisitInfo(VisitID);
+        }
+        public void LoadVisitInfoByAppointmentID(int AppointmentID)
+        {
+            ctrlVisitInfoWithFilter1.LoadVisitInfoByAppointment(AppointmentID);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

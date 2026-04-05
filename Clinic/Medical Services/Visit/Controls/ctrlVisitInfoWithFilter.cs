@@ -89,6 +89,13 @@ namespace Clinic.Medical_Services.Visit
             txtFilterValue.Text = VisitID.ToString();
             _FindNow();
         }
+
+        public void LoadVisitInfoByAppointment(int AppointmentID)
+        {
+            cbFilterBy.SelectedIndex = 1;
+            txtFilterValue.Text = AppointmentID.ToString();
+            _FindNow();
+        }
         private void _FindNow()
         {
             switch (cbFilterBy.Text)
