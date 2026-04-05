@@ -39,7 +39,6 @@ namespace Clinic.Medical_Services.Visit
         private void frmListVisits_Load(object sender, EventArgs e)
         {
             _RefreshVisitList();
-            dgvVisit.DataSource = _dtVists;
             cbFilterBy.SelectedIndex = 0;
             lblRecordsCount.Text = dgvVisit.Rows.Count.ToString();
 

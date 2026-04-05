@@ -213,7 +213,7 @@ namespace ClinicData
                              FROM Bills 
                              INNER JOIN Visits ON Bills.VisitID = Visits.VisitID
                              INNER JOIN Appointments ON Visits.AppointmentID = Appointments.AppointmentID
-                             INNER JOIN Patients ON Appointments.PatientID = Patients.PetientID
+                             INNER JOIN Patients ON Appointments.PatientID = Patients.PatientID
                              INNER JOIN People ON Patients.PersonID = People.PersonID
                              ORDER BY Bills.BillID DESC";
 

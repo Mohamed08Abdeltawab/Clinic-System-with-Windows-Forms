@@ -1,6 +1,7 @@
 ﻿using Clinic.Appointment;
 using Clinic.Appointment.AppointmentType;
 using Clinic.Doctor;
+using Clinic.Financials.Manage_Bills;
 using Clinic.Login;
 using Clinic.Medical_Services.Manage_Prescriptions;
 using Clinic.Medical_Services.Mange_Services;
@@ -27,7 +28,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListDoctors());
+            Application.Run(new frmListBills());
         }
     }
 }
