@@ -34,7 +34,6 @@ namespace Clinic.Medical_Services.Visit
             set
             {
                 _ShowAddVisit = value;
-                btnAddNewVisit.Visible = _ShowAddVisit;
             }
         }
 
@@ -154,13 +153,7 @@ namespace Clinic.Medical_Services.Visit
 
         }
 
-        private void btnAddNewVisit_Click(object sender, EventArgs e)
-        {
-            frmFillVisitDetails frm = new frmFillVisitDetails(int.Parse(txtFilterValue.Text.Trim()),(int)enMode.Add);
-            frm.DataBack += DataBackEvent;
-            frm.ShowDialog();
-        }
-
+        //will use if add button is visible and user added new visit and want to show it in the filter
         private void DataBackEvent(object sender, int VisitID)
         {
             txtFilterValue.Text = VisitID.ToString();

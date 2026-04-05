@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.gbFilters = new System.Windows.Forms.GroupBox();
             this.cbFilterBy = new System.Windows.Forms.ComboBox();
-            this.btnAddNewVisit = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +43,6 @@
             // gbFilters
             // 
             this.gbFilters.Controls.Add(this.cbFilterBy);
-            this.gbFilters.Controls.Add(this.btnAddNewVisit);
             this.gbFilters.Controls.Add(this.btnFind);
             this.gbFilters.Controls.Add(this.txtFilterValue);
             this.gbFilters.Controls.Add(this.label1);
@@ -68,21 +66,7 @@
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(130, 28);
             this.cbFilterBy.TabIndex = 116;
-            this.cbFilterBy.Visible = false;
             this.cbFilterBy.SelectedIndexChanged += new System.EventHandler(this.cbFilterBy_SelectedIndexChanged);
-            // 
-            // btnAddNewVisit
-            // 
-            this.btnAddNewVisit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddNewVisit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddNewVisit.Image = global::Clinic.Properties.Resources.AddPerson_32;
-            this.btnAddNewVisit.Location = new System.Drawing.Point(620, 25);
-            this.btnAddNewVisit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAddNewVisit.Name = "btnAddNewVisit";
-            this.btnAddNewVisit.Size = new System.Drawing.Size(50, 40);
-            this.btnAddNewVisit.TabIndex = 20;
-            this.btnAddNewVisit.UseVisualStyleBackColor = true;
-            this.btnAddNewVisit.Click += new System.EventHandler(this.btnAddNewVisit_Click);
             // 
             // btnFind
             // 
@@ -136,6 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.ctrlVisitInfo1);
             this.Controls.Add(this.gbFilters);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -151,7 +136,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox gbFilters;
-        private System.Windows.Forms.Button btnAddNewVisit;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;

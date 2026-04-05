@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Clinic.Medical_Services.Visit
 {
-    public partial class testControls : Form
+    public partial class frmShowVisitInfo : Form
     {
-        public testControls()
+        public frmShowVisitInfo()
         {
             InitializeComponent();
-        }
-
-        private void testControls_Load(object sender, EventArgs e)
-        {
-            ctrlVisitInfoWithFilter1.LoadVisitInfo(1);
         }
     }
 }
