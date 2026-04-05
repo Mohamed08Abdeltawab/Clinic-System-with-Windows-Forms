@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlVisitInfo1 = new Clinic.Medical_Services.Visit.ctrlVisitInfo();
+            this.ctrlVisitInfoWithFilter1 = new Clinic.Medical_Services.Visit.ctrlVisitInfoWithFilter();
             this.SuspendLayout();
             // 
-            // ctrlVisitInfo1
+            // ctrlVisitInfoWithFilter1
             // 
-            this.ctrlVisitInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlVisitInfo1.Location = new System.Drawing.Point(95, 84);
-            this.ctrlVisitInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfo1.Name = "ctrlVisitInfo1";
-            this.ctrlVisitInfo1.SetMode = Clinic.Medical_Services.Visit.ctrlVisitInfo.enMode.Update;
-            this.ctrlVisitInfo1.Size = new System.Drawing.Size(787, 491);
-            this.ctrlVisitInfo1.TabIndex = 0;
+            this.ctrlVisitInfoWithFilter1.FilterEnabled = true;
+            this.ctrlVisitInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlVisitInfoWithFilter1.Location = new System.Drawing.Point(34, 72);
+            this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
+            this.ctrlVisitInfoWithFilter1.SetMode = Clinic.Medical_Services.Visit.ctrlVisitInfoWithFilter.enMode.Update;
+            this.ctrlVisitInfoWithFilter1.ShowAddVisit = true;
+            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
+            this.ctrlVisitInfoWithFilter1.TabIndex = 0;
             // 
             // testControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 706);
-            this.Controls.Add(this.ctrlVisitInfo1);
+            this.Controls.Add(this.ctrlVisitInfoWithFilter1);
             this.Name = "testControls";
             this.Text = "testControls";
             this.Load += new System.EventHandler(this.testControls_Load);
@@ -56,6 +58,6 @@
 
         #endregion
 
-        private ctrlVisitInfo ctrlVisitInfo1;
+        private ctrlVisitInfoWithFilter ctrlVisitInfoWithFilter1;
     }
 }

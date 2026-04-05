@@ -18,6 +18,11 @@ namespace Clinic.Medical_Services.Visit
 {
     public partial class frmFillVisitDetails : Form
     {
+        // Declare a delegate
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        // Declare an event using the delegate
+        public event DataBackEventHandler DataBack;
         private enum enMode { AddNew = 0, Update = 1, Read = 2 };
         private enMode _Mode = enMode.AddNew;
         private int _AppointmentID;
@@ -209,7 +214,7 @@ namespace Clinic.Medical_Services.Visit
                 lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
                 _Mode = enMode.Update;
                 MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //this.Close(); // إغلاق الشاشة بعد الحفظ النهائي
+                DataBack?.Invoke(this, _Visit.VisitID);
             }
             else
             {

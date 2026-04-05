@@ -19,7 +19,8 @@ namespace Clinic.Medical_Services.Visit
 
         private void testControls_Load(object sender, EventArgs e)
         {
-            ctrlVisitInfo1.LoadVisitInfo(1);
+            ctrlVisitInfoWithFilter1.FilterEnabled = false;
+            ctrlVisitInfoWithFilter1.LoadVisitInfo(1);
         }
     }
 }

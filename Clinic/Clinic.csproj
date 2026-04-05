@@ -158,6 +158,12 @@
     <Compile Include="Medical Services\Visit\ctrlVisitInfo.Designer.cs">
       <DependentUpon>ctrlVisitInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medical Services\Visit\ctrlVisitInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Visit\ctrlVisitInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlVisitInfoWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Medical Services\Visit\frmFillVisitDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Visit\ctrlVisitInfo.resx">
       <DependentUpon>ctrlVisitInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Visit\ctrlVisitInfoWithFilter.resx">
+      <DependentUpon>ctrlVisitInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Visit\frmFillVisitDetails.resx">
       <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
