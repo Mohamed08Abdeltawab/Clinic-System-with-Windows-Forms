@@ -55,7 +55,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(258, 39);
             this.lblTitle.TabIndex = 116;
-            this.lblTitle.Text = "Visit Details";
+            this.lblTitle.Text = "Find Visit";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ctrlVisitInfoWithFilter1
@@ -75,6 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(833, 722);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);

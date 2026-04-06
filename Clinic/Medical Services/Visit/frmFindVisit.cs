@@ -26,6 +26,7 @@ namespace Clinic.Medical_Services.Visit
         private void btnClose_Click(object sender, EventArgs e)
         {
             DataBack?.Invoke(this, ctrlVisitInfoWithFilter1.VisitID);
+            this.Close();
         }
     }
 }

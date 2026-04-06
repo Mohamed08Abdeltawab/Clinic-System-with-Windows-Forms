@@ -73,6 +73,7 @@ namespace Clinic.Medical_Services.Visit
         public ctrlVisitInfoWithFilter()
         {
             InitializeComponent();
+            cbFilterBy.SelectedIndex = 0;
         }
 
         public void LoadVisitInfo(int VisitID)
