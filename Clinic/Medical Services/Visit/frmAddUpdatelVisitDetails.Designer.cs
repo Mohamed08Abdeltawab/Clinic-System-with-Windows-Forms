@@ -1,6 +1,6 @@
 ﻿namespace Clinic.Medical_Services.Visit
 {
-    partial class frmFillVisitDetails
+    partial class frmAddUpdatelVisitDetails
     {
         /// <summary>
         /// Required designer variable.

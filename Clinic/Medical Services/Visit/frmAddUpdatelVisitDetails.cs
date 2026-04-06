@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace Clinic.Medical_Services.Visit
 {
-    public partial class frmFillVisitDetails : Form
+    public partial class frmAddUpdatelVisitDetails : Form
     {
         // Declare a delegate
         public delegate void DataBackEventHandler(object sender, int PersonID);
@@ -29,7 +29,7 @@ namespace Clinic.Medical_Services.Visit
         private clsVisit _Visit;
         private clsPrescription _Prescription;
 
-        public frmFillVisitDetails(int AppointmentID, int Mode)
+        public frmAddUpdatelVisitDetails(int AppointmentID, int Mode)
         {
             InitializeComponent();
             _AppointmentID = AppointmentID;

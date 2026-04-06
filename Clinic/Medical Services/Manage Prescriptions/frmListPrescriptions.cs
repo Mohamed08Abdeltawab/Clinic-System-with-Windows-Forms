@@ -115,7 +115,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 
         private void showPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmFillVisitDetails frm = new frmFillVisitDetails((int)dgvPrescription.CurrentRow.Cells["VisitID"].Value, (int)enMode.Read);
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails((int)dgvPrescription.CurrentRow.Cells["VisitID"].Value, (int)enMode.Read);
             frm.ShowDialog();
         }
 
@@ -131,7 +131,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
             clsAppointment _Appointment = clsVisit.GetAppointmentInfoByVisitID(VisitID);
 
-            frmFillVisitDetails frm = new frmFillVisitDetails(_Appointment.AppointmentID, (int)enMode.Read);
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(_Appointment.AppointmentID, (int)enMode.Read);
             frm.ShowDialog();
         }
 
@@ -145,7 +145,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             if (visit != null)
             {
                 // 3. فتح شاشة الإضافة/التعديل
-                frmFillVisitDetails frm = new frmFillVisitDetails(visit.AppointmentID, 1);//1 is for update mode
+                frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(visit.AppointmentID, 1);//1 is for update mode
 
                 // 4. الحركة السحرية: ننده ميثود تخلي الروشتة هي اللي مفتوحة والزيارة مقفولة
                 frm.SetOnlyPrescriptionMode();

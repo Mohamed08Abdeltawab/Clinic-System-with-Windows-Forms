@@ -128,11 +128,23 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfo.Designer.cs">
+      <DependentUpon>ctrlPrescriptionInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Medical Services\Manage Prescriptions\frmListPrescriptions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Medical Services\Manage Prescriptions\frmListPrescriptions.Designer.cs">
       <DependentUpon>frmListPrescriptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\testControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\testControls.Designer.cs">
+      <DependentUpon>testControls.cs</DependentUpon>
     </Compile>
     <Compile Include="Medical Services\Manage Services\frmEditServices.cs">
       <SubType>Form</SubType>
@@ -164,11 +176,11 @@
     <Compile Include="Medical Services\Visit\Controls\ctrlVisitInfoWithFilter.Designer.cs">
       <DependentUpon>ctrlVisitInfoWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medical Services\Visit\frmFillVisitDetails.cs">
+    <Compile Include="Medical Services\Visit\frmAddUpdatelVisitDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Medical Services\Visit\frmFillVisitDetails.Designer.cs">
-      <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
+    <Compile Include="Medical Services\Visit\frmAddUpdatelVisitDetails.Designer.cs">
+      <DependentUpon>frmAddUpdatelVisitDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Medical Services\Visit\frmFindVisit.cs">
       <SubType>Form</SubType>
@@ -336,8 +348,14 @@
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfo.resx">
+      <DependentUpon>ctrlPrescriptionInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Prescriptions\frmListPrescriptions.resx">
       <DependentUpon>frmListPrescriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Manage Prescriptions\testControls.resx">
+      <DependentUpon>testControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Services\frmEditServices.resx">
       <DependentUpon>frmEditServices.cs</DependentUpon>
@@ -354,8 +372,8 @@
     <EmbeddedResource Include="Medical Services\Visit\Controls\ctrlVisitInfoWithFilter.resx">
       <DependentUpon>ctrlVisitInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medical Services\Visit\frmFillVisitDetails.resx">
-      <DependentUpon>frmFillVisitDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Medical Services\Visit\frmAddUpdatelVisitDetails.resx">
+      <DependentUpon>frmAddUpdatelVisitDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Visit\frmFindVisit.resx">
       <DependentUpon>frmFindVisit.cs</DependentUpon>

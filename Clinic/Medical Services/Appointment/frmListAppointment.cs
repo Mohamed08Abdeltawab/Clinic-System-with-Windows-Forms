@@ -248,7 +248,7 @@ namespace Clinic.Appointment
         {
             int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
            
-            frmFillVisitDetails frm = new frmFillVisitDetails(AppointmentID,(int)enMode.AddNew);
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(AppointmentID,(int)enMode.AddNew);
             frm.ShowDialog();
              frmListAppointment_Load(null, null);
         }
@@ -257,7 +257,7 @@ namespace Clinic.Appointment
         {
             int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
 
-            frmFillVisitDetails frm = new frmFillVisitDetails(AppointmentID, (int)enMode.Update);
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(AppointmentID, (int)enMode.Update);
             frm.ShowDialog();
             frmListAppointment_Load(null, null);
         }
