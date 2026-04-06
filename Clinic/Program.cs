@@ -28,7 +28,7 @@ namespace Clinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new testControls());
+            Application.Run(new frmShowVisitInfo(1,1));//visit id = 1
         }
     }
 }

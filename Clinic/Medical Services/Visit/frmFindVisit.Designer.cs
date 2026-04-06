@@ -1,6 +1,6 @@
 ﻿namespace Clinic.Medical_Services.Visit
 {
-    partial class frmShowVisitInfo
+    partial class frmFindVisit
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlVisitInfoWithFilter1 = new Clinic.Medical_Services.Visit.ctrlVisitInfoWithFilter();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.ctrlVisitInfoWithFilter1 = new Clinic.Medical_Services.Visit.ctrlVisitInfoWithFilter();
             this.SuspendLayout();
-            // 
-            // ctrlVisitInfoWithFilter1
-            // 
-            this.ctrlVisitInfoWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ctrlVisitInfoWithFilter1.FilterEnabled = true;
-            this.ctrlVisitInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlVisitInfoWithFilter1.Location = new System.Drawing.Point(13, 66);
-            this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfoWithFilter1.Mode = 0;
-            this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
-            this.ctrlVisitInfoWithFilter1.ShowAddVisit = true;
-            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
-            this.ctrlVisitInfoWithFilter1.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(286, 22);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(258, 39);
-            this.lblTitle.TabIndex = 90;
-            this.lblTitle.Text = "Visit Details";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClose
             // 
@@ -63,15 +39,39 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(686, 676);
+            this.btnClose.Location = new System.Drawing.Point(683, 670);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
-            this.btnClose.TabIndex = 114;
+            this.btnClose.TabIndex = 117;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // frmShowVisitInfo
+            // lblTitle
+            // 
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Location = new System.Drawing.Point(283, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(258, 39);
+            this.lblTitle.TabIndex = 116;
+            this.lblTitle.Text = "Visit Details";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ctrlVisitInfoWithFilter1
+            // 
+            this.ctrlVisitInfoWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ctrlVisitInfoWithFilter1.FilterEnabled = true;
+            this.ctrlVisitInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlVisitInfoWithFilter1.Location = new System.Drawing.Point(10, 60);
+            this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlVisitInfoWithFilter1.Mode = 0;
+            this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
+            this.ctrlVisitInfoWithFilter1.ShowAddVisit = true;
+            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
+            this.ctrlVisitInfoWithFilter1.TabIndex = 115;
+            // 
+            // frmFindVisit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,17 +81,16 @@
             this.Controls.Add(this.ctrlVisitInfoWithFilter1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmShowVisitInfo";
-            this.Text = "frmShowVisitInfo";
-            this.Load += new System.EventHandler(this.frmShowVisitInfo_Load);
+            this.Name = "frmFindVisit";
+            this.Text = "frmFindVisit";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private ctrlVisitInfoWithFilter ctrlVisitInfoWithFilter1;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblTitle;
+        private ctrlVisitInfoWithFilter ctrlVisitInfoWithFilter1;
     }
 }

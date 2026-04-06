@@ -48,22 +48,14 @@ namespace Clinic.Medical_Services.Visit
             }
         }
 
-
-        public enum enMode
-        {
-            Add = 0,
-            Update = 1,
-            Read = 2
-        }
-
-
-        private enMode _Mode = enMode.Update;
-        public enMode SetMode
+        private int _Mode = 0;//0:update, 1:read
+        public int Mode
         {
             get { return _Mode; }
             set
             {
                 _Mode = value;
+                ctrlVisitInfo1.Mode = _Mode;
             }
         }
 

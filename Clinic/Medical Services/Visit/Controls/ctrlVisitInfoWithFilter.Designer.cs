@@ -34,8 +34,8 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ctrlVisitInfo1 = new Clinic.Medical_Services.Visit.ctrlVisitInfo();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrlVisitInfo1 = new Clinic.Medical_Services.Visit.ctrlVisitInfo();
             this.gbFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -102,19 +102,18 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Find By Visit ID:";
             // 
-            // ctrlVisitInfo1
-            // 
-            this.ctrlVisitInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlVisitInfo1.Location = new System.Drawing.Point(2, 91);
-            this.ctrlVisitInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfo1.Name = "ctrlVisitInfo1";
-            this.ctrlVisitInfo1.SetMode = Clinic.Medical_Services.Visit.ctrlVisitInfo.enMode.Update;
-            this.ctrlVisitInfo1.Size = new System.Drawing.Size(807, 510);
-            this.ctrlVisitInfo1.TabIndex = 19;
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // ctrlVisitInfo1
+            // 
+            this.ctrlVisitInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlVisitInfo1.Location = new System.Drawing.Point(0, 87);
+            this.ctrlVisitInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlVisitInfo1.Name = "ctrlVisitInfo1";
+            this.ctrlVisitInfo1.Size = new System.Drawing.Size(807, 510);
+            this.ctrlVisitInfo1.TabIndex = 19;
             // 
             // ctrlVisitInfoWithFilter
             // 
@@ -139,8 +138,8 @@
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;
-        private ctrlVisitInfo ctrlVisitInfo1;
         private System.Windows.Forms.ComboBox cbFilterBy;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private ctrlVisitInfo ctrlVisitInfo1;
     }
 }

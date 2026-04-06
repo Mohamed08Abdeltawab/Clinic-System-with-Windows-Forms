@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,25 +23,16 @@ namespace Clinic.Medical_Services.Visit
         public int VisitID => _VisitID;
         public clsVisit SelectedVisitInfo => _Visit;
         
-        public enum enMode
-        {
-            Add = 0,
-            Update = 1,
-            Read = 2
-        }
-
-
-        private enMode _Mode = enMode.Update;
-        public enMode SetMode
+        private int _Mode = 0;//0:update, 1:read
+        public int Mode
         {
             get { return _Mode; }
             set
             {
                 _Mode = value;
+                _HandleModeChange();
             }
         }
-
-
         public ctrlVisitInfo()
         {
             InitializeComponent();
@@ -102,14 +94,22 @@ namespace Clinic.Medical_Services.Visit
             txtNotes.Text = string.IsNullOrEmpty(_Visit.Notes) ? "No Notes" : _Visit.Notes;
         }
 
-        
+        private void _HandleModeChange()
+        {
+            // إذا كان الوضع قراءة، نجعل التكست بوكس للقراءة فقط
+            bool isReadOnly = (_Mode == 1);
+            txtDiagnosis.ReadOnly = isReadOnly;
+            txtNotes.ReadOnly = isReadOnly;
+            dtpDateTime.Enabled = !isReadOnly;
+        }
+
         private void llPatientInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (int.TryParse(lblPatientID.Text, out int patientID))
             {
                 frmPatientInfo frm = new frmPatientInfo(patientID);
 
-                if (_Mode == enMode.Read)
+                if (_Mode == 1)//Read-Only Mode
                 {
                     frm.IsReadOnly = true;
                 }
@@ -124,7 +124,7 @@ namespace Clinic.Medical_Services.Visit
             {
                 frmDoctorInfo frm = new frmDoctorInfo(doctorID);
 
-                if (_Mode == enMode.Read)
+                if (_Mode == 1)//Read-Only Mode
                 {
                     frm.IsReadOnly = true;
                 }
