@@ -149,5 +149,6 @@ namespace Clinic.Medical_Services.Visit
             txtFilterValue.Text = VisitID.ToString();
             ctrlVisitInfo1.LoadVisitInfo(VisitID);
         }
+
     }
 }

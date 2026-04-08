@@ -82,6 +82,19 @@ namespace Clinic.Medical_Services.Visit
             _FillVisitData();
         }
 
+        public void LoadVisitInfoByPrescriptionID(int PrescriptionID)
+        {
+            _Visit = clsVisit.FindByPrescriptionID(PrescriptionID);
+            if (_Visit == null)
+            {
+                MessageBox.Show("No Visit found for Prescription ID = " + PrescriptionID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetDefaultValues();
+                return;
+            }
+
+            _FillVisitData();
+        }
+
         private void _FillVisitData()
         {
             _VisitID = _Visit.VisitID;

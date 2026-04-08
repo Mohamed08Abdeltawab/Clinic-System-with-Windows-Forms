@@ -228,6 +228,52 @@ namespace ClinicData
             return isFound;
         }
 
+
+        public static bool GetVisitInfoByPrescriptionID(int PrescriptionID, ref int VisitID,
+                ref DateTime VisitDate, ref string Diagnosis, ref string Notes)
+        {
+            bool isFound = false;
+
+            string query = @"SELECT * FROM Visits V INNER JOIN Prescriptions P 
+                        ON V.VisitID = P.VisitID WHERE P.PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                VisitID = (int)reader["VisitID"];
+                                VisitDate = (DateTime)reader["VisitDate"];
+                                Diagnosis = (string)reader["Diagnosis"];
+
+                                if (reader["Notes"] != DBNull.Value)
+                                    Notes = (string)reader["Notes"];
+                                else
+                                    Notes = "";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+
+            return isFound;
+        }
+
+
         public static bool DeleteVisit(int VisitID)
         {
             int rowsAffected = 0;
@@ -312,6 +358,8 @@ namespace ClinicData
             return isFound;
         }
 
+
+        
         public static int GetAppointmentIDByVisitID(int VisitID)
         {
             int AppointmentID = -1;

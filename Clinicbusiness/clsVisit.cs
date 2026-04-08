@@ -90,6 +90,21 @@ namespace Clinicbusiness
                 return null;
         }
 
+        public static clsVisit FindByPrescriptionID(int PrescriptionID)
+        {
+            int VisitID = -1;
+            DateTime VisitDate = DateTime.Now;
+            string Diagnosis = "", Notes = "";
+
+            bool IsFound = clsVisitData.GetVisitInfoByPrescriptionID(
+                PrescriptionID, ref VisitID, ref VisitDate, ref Diagnosis, ref Notes);
+
+            if (IsFound)
+                return new clsVisit(VisitID, PrescriptionID, VisitDate, Diagnosis, Notes);
+            else
+                return null;
+        }
+
         public bool Save()
         {
             switch (Mode)
@@ -130,6 +145,11 @@ namespace Clinicbusiness
         public static bool IsVisitExistByAppointmentID(int AppointmentID)
         {
             return clsVisitData.IsVisitExistByAppointmentID(AppointmentID);
+        }
+
+        public static clsVisit FindByPrescriptionID(int PrescriptionID)
+        {
+            return clsVisitData.IsVisitExistByPrescriptionID(PrescriptionID);
         }
 
         // --- دوال إضافية ذكية للربط مع الخدمات والوصفات ---

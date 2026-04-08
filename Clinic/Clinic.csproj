@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Financials\Manage Bills\frmAddUpdateBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Financials\Manage Bills\frmAddUpdateBill.Designer.cs">
+      <DependentUpon>frmAddUpdateBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financials\Manage Bills\frmListBills.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Financials\Manage Bills\frmAddUpdateBill.resx">
+      <DependentUpon>frmAddUpdateBill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Financials\Manage Bills\frmListBills.resx">
       <DependentUpon>frmListBills.cs</DependentUpon>
     </EmbeddedResource>

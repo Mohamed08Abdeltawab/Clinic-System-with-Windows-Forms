@@ -61,7 +61,8 @@
             this.cbFilterBy.FormattingEnabled = true;
             this.cbFilterBy.Items.AddRange(new object[] {
             "Visit ID",
-            "Appointment ID"});
+            "Appointment ID",
+            "Prescription ID"});
             this.cbFilterBy.Location = new System.Drawing.Point(155, 30);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(130, 28);
@@ -111,6 +112,7 @@
             this.ctrlVisitInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlVisitInfo1.Location = new System.Drawing.Point(0, 87);
             this.ctrlVisitInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlVisitInfo1.Mode = 0;
             this.ctrlVisitInfo1.Name = "ctrlVisitInfo1";
             this.ctrlVisitInfo1.Size = new System.Drawing.Size(807, 510);
             this.ctrlVisitInfo1.TabIndex = 19;
