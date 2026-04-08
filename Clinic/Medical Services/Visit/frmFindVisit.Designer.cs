@@ -39,7 +39,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(683, 670);
+            this.btnClose.Location = new System.Drawing.Point(668, 656);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 117;
@@ -75,7 +75,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(833, 722);
+            this.ClientSize = new System.Drawing.Size(833, 704);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlVisitInfoWithFilter1);
