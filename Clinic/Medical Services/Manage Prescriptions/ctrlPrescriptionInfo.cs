@@ -42,6 +42,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             _Prescription = null;
 
             lblPrescriptionID.Text = "[???]";
+            lblVisitID.Text = "[???]";
             dtpPrescriptionDate.Value = DateTime.Now;
             txtPrescriptionNotes.Text = "";
 
@@ -53,6 +54,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         {
             _PrescriptionID = _Prescription.PrescriptionID;
             lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
+            lblVisitID.Text = _Prescription.VisitID.ToString();
             dtpPrescriptionDate.Value = _Prescription.PrescriptionDate;
             txtPrescriptionNotes.Text = string.IsNullOrEmpty(_Prescription.Notes) ? "No Notes" : _Prescription.Notes;
 
