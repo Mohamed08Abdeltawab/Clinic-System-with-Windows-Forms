@@ -140,6 +140,12 @@
     <Compile Include="Medical Services\Manage Prescriptions\frmListPrescriptions.Designer.cs">
       <DependentUpon>frmListPrescriptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\frmShowPrescriptionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\frmShowPrescriptionInfo.Designer.cs">
+      <DependentUpon>frmShowPrescriptionInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Medical Services\Manage Prescriptions\testControls.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Prescriptions\frmListPrescriptions.resx">
       <DependentUpon>frmListPrescriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Manage Prescriptions\frmShowPrescriptionInfo.resx">
+      <DependentUpon>frmShowPrescriptionInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Prescriptions\testControls.resx">
       <DependentUpon>testControls.cs</DependentUpon>

@@ -20,6 +20,17 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         public clsPrescription SelectedPrescription => _Prescription;
         public int PrescriptionID => _PrescriptionID;
 
+        private int _Mode = 0;//0:update, 1:read
+        public int Mode
+        {
+            get { return _Mode; }
+            set
+            {
+                _Mode = value;
+                _HandleModeChange();
+            }
+        }
+
         public ctrlPrescriptionInfo()
         {
             InitializeComponent();
@@ -48,10 +59,18 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             _RefreshGrid();
         }
 
+        private void _HandleModeChange()
+        {
+            // إذا كان الوضع قراءة، نجعل التكست بوكس للقراءة فقط
+            bool isReadOnly = (_Mode == 1);
+            dgvMedicines.ReadOnly = isReadOnly;
+            txtPrescriptionNotes.ReadOnly = isReadOnly;
+            dtpPrescriptionDate.Enabled = !isReadOnly;
+        }
+
         private void _RefreshGrid()
         {
             dgvMedicines.DataSource = null;
-
             // حماية في حالة كانت القائمة فارغة
             if (_Prescription == null || _Prescription.ItemsList == null)
                 return;
