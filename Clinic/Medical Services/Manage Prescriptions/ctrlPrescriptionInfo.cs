@@ -121,7 +121,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 
             if (_Prescription == null)
             {
-                // مش لازم دايماً تظهر Error Message هنا لأن ممكن الزيارة ميكونش لها روشتة أصلاً
+                MessageBox.Show("No Prescription with Visit ID = " + VisitID, "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _ResetDefaultValues();
                 return;
             }

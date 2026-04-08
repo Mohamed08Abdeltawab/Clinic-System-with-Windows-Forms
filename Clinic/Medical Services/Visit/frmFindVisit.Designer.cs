@@ -67,7 +67,6 @@
             this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlVisitInfoWithFilter1.Mode = 0;
             this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
-            this.ctrlVisitInfoWithFilter1.ShowAddVisit = true;
             this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
             this.ctrlVisitInfoWithFilter1.TabIndex = 115;
             // 

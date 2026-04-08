@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPrescriptionInfo1 = new Clinic.Medical_Services.Manage_Prescriptions.ctrlPrescriptionInfo();
+            this.ctrlPrescriptionInfoWithFilter1 = new Clinic.Medical_Services.Manage_Prescriptions.ctrlPrescriptionInfoWithFilter();
             this.SuspendLayout();
             // 
-            // ctrlPrescriptionInfo1
+            // ctrlPrescriptionInfoWithFilter1
             // 
-            this.ctrlPrescriptionInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPrescriptionInfo1.Location = new System.Drawing.Point(27, 34);
-            this.ctrlPrescriptionInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPrescriptionInfo1.Name = "ctrlPrescriptionInfo1";
-            this.ctrlPrescriptionInfo1.Size = new System.Drawing.Size(855, 469);
-            this.ctrlPrescriptionInfo1.TabIndex = 0;
+            this.ctrlPrescriptionInfoWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ctrlPrescriptionInfoWithFilter1.FilterEnabled = true;
+            this.ctrlPrescriptionInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPrescriptionInfoWithFilter1.Location = new System.Drawing.Point(134, 49);
+            this.ctrlPrescriptionInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPrescriptionInfoWithFilter1.Name = "ctrlPrescriptionInfoWithFilter1";
+            this.ctrlPrescriptionInfoWithFilter1.Size = new System.Drawing.Size(862, 582);
+            this.ctrlPrescriptionInfoWithFilter1.TabIndex = 0;
             // 
             // testControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 529);
-            this.Controls.Add(this.ctrlPrescriptionInfo1);
+            this.ClientSize = new System.Drawing.Size(1191, 701);
+            this.Controls.Add(this.ctrlPrescriptionInfoWithFilter1);
             this.Name = "testControls";
             this.Text = "testControls";
             this.Load += new System.EventHandler(this.testControls_Load);
@@ -55,6 +57,6 @@
 
         #endregion
 
-        private ctrlPrescriptionInfo ctrlPrescriptionInfo1;
+        private ctrlPrescriptionInfoWithFilter ctrlPrescriptionInfoWithFilter1;
     }
 }

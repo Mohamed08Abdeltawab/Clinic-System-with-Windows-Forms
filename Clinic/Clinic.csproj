@@ -134,6 +134,12 @@
     <Compile Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfo.Designer.cs">
       <DependentUpon>ctrlPrescriptionInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlPrescriptionInfoWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Medical Services\Manage Prescriptions\frmListPrescriptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfo.resx">
       <DependentUpon>ctrlPrescriptionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Medical Services\Manage Prescriptions\ctrlPrescriptionInfoWithFilter.resx">
+      <DependentUpon>ctrlPrescriptionInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medical Services\Manage Prescriptions\frmListPrescriptions.resx">
       <DependentUpon>frmListPrescriptions.cs</DependentUpon>

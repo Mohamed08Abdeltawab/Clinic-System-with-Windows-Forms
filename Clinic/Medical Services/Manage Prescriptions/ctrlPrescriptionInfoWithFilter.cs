@@ -1,5 +1,4 @@
-﻿using Clinic.People;
-using Clinic.People.Controls;
+﻿using Clinic.Medical_Services.Visit;
 using Clinicbusiness;
 using System;
 using System.Collections.Generic;
@@ -7,23 +6,23 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Clinic.Medical_Services.Visit
+namespace Clinic.Medical_Services.Manage_Prescriptions
 {
-    public partial class ctrlVisitInfoWithFilter : UserControl
+    public partial class ctrlPrescriptionInfoWithFilter : UserControl
     {
-        //define event 
-        public event Action<int> OnVisitSeleted;
+        public event Action<int> OnPrescriptionSeleted;
 
-        public virtual void VisitSelected(int VisitID)
+        public virtual void PrescriptionSelected(int PrescriptionID)
         {
-            Action<int> handler = OnVisitSeleted;
+            Action<int> handler = OnPrescriptionSeleted;
             if (handler != null)
             {
-                handler.Invoke(VisitID);
+                handler.Invoke(PrescriptionID);
             }
         }
 
@@ -38,67 +37,48 @@ namespace Clinic.Medical_Services.Visit
             }
         }
 
-        private int _Mode = 0;//0:update, 1:read
-        public int Mode
+        private int _PrescriptionID;
+        public int PrescriptionID
         {
-            get { return _Mode; }
-            set
-            {
-                _Mode = value;
-                ctrlVisitInfo1.Mode = _Mode;
-            }
+            get { return ctrlPrescriptionInfo1.PrescriptionID; }
         }
 
-        private int _VisitID;
-        public int VisitID
+        public clsPrescription SelectedPrescriptionInfo
         {
-            get { return ctrlVisitInfo1.VisitID; }
+            get { return ctrlPrescriptionInfo1.SelectedPrescription; }
         }
-
-        public clsVisit SelectedVisitInfo
-        {
-            get { return ctrlVisitInfo1.SelectedVisitInfo; }
-        }
-
-        public ctrlVisitInfoWithFilter()
+        public ctrlPrescriptionInfoWithFilter()
         {
             InitializeComponent();
             cbFilterBy.SelectedIndex = 0;
         }
 
-        public void LoadVisitInfo(int VisitID)
+        public void LoadPrescriptionInfo(int PrescriptionID)
         {
             cbFilterBy.SelectedIndex = 0;
-            txtFilterValue.Text = VisitID.ToString();
+            txtFilterValue.Text = PrescriptionID.ToString();
             _FindNow();
         }
 
-        public void LoadVisitInfoByAppointment(int AppointmentID)
-        {
-            cbFilterBy.SelectedIndex = 1;
-            txtFilterValue.Text = AppointmentID.ToString();
-            _FindNow();
-        }
         private void _FindNow()
         {
             switch (cbFilterBy.Text)
             {
-                case "Visit ID":
-                    ctrlVisitInfo1.LoadVisitInfo(int.Parse(txtFilterValue.Text.Trim()));
-                   
+                case "Prescription ID":
+                    ctrlPrescriptionInfo1.LoadPrescriptionInfoByPrescriptionID(int.Parse(txtFilterValue.Text.Trim()));
+
                     break;
 
-                case "Appointment ID":
-                    ctrlVisitInfo1.LoadVisitInfoByAppointmentID(int.Parse(txtFilterValue.Text.Trim()));
+                case "Visit ID":
+                    ctrlPrescriptionInfo1.LoadPrescriptionInfoByVisitID(int.Parse(txtFilterValue.Text.Trim()));
                     break;
 
                 default:
                     break;
             }
-           
-            if ( OnVisitSeleted !=null && FilterEnabled)
+            if (OnPrescriptionSeleted != null && FilterEnabled)
                 // Raise the event with a parameter
-                OnVisitSeleted(ctrlVisitInfo1.VisitID);
+                OnPrescriptionSeleted(ctrlPrescriptionInfo1.PrescriptionID);
         }
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,10 +124,10 @@ namespace Clinic.Medical_Services.Visit
         }
 
         //will use if add button is visible and user added new visit and want to show it in the filter
-        private void DataBackEvent(object sender, int VisitID)
+        private void DataBackEvent(object sender, int PrescriptionID)
         {
-            txtFilterValue.Text = VisitID.ToString();
-            ctrlVisitInfo1.LoadVisitInfo(VisitID);
+            txtFilterValue.Text = PrescriptionID.ToString();
+            ctrlPrescriptionInfo1.LoadPrescriptionInfoByPrescriptionID(PrescriptionID);
         }
     }
 }

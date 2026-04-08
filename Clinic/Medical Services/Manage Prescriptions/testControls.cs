@@ -19,7 +19,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
 
         private void testControls_Load(object sender, EventArgs e)
         {
-            ctrlPrescriptionInfo1.LoadPrescriptionInfoByVisitID(1);
+
         }
     }
 }
