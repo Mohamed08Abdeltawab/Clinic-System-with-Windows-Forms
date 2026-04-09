@@ -74,7 +74,7 @@
             this.btnFind.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFind.Image = global::Clinic.Properties.Resources.SearchPerson;
-            this.btnFind.Location = new System.Drawing.Point(560, 25);
+            this.btnFind.Location = new System.Drawing.Point(506, 22);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(50, 40);
             this.btnFind.TabIndex = 18;
@@ -88,7 +88,7 @@
             this.txtFilterValue.Location = new System.Drawing.Point(292, 30);
             this.txtFilterValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFilterValue.Name = "txtFilterValue";
-            this.txtFilterValue.Size = new System.Drawing.Size(243, 29);
+            this.txtFilterValue.Size = new System.Drawing.Size(207, 29);
             this.txtFilterValue.TabIndex = 17;
             this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
             this.txtFilterValue.Validating += new System.ComponentModel.CancelEventHandler(this.txtFilterValue_Validating);
@@ -112,9 +112,8 @@
             this.ctrlVisitInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlVisitInfo1.Location = new System.Drawing.Point(0, 87);
             this.ctrlVisitInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfo1.Mode = 0;
             this.ctrlVisitInfo1.Name = "ctrlVisitInfo1";
-            this.ctrlVisitInfo1.Size = new System.Drawing.Size(807, 510);
+            this.ctrlVisitInfo1.Size = new System.Drawing.Size(800, 372);
             this.ctrlVisitInfo1.TabIndex = 19;
             // 
             // ctrlVisitInfoWithFilter
@@ -127,7 +126,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ctrlVisitInfoWithFilter";
-            this.Size = new System.Drawing.Size(813, 602);
+            this.Size = new System.Drawing.Size(801, 456);
             this.gbFilters.ResumeLayout(false);
             this.gbFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

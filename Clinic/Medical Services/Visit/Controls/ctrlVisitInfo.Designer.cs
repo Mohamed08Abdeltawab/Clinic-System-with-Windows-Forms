@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.dtpDateTime = new System.Windows.Forms.DateTimePicker();
-            this.txtDiagnosis = new System.Windows.Forms.TextBox();
-            this.txtNotes = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.llDoctorInfo = new System.Windows.Forms.LinkLabel();
@@ -52,6 +50,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llEditVisitInfo = new System.Windows.Forms.LinkLabel();
+            this.txtDiagnosis = new System.Windows.Forms.Label();
+            this.txtNotes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -73,31 +74,11 @@
             this.dtpDateTime.TabIndex = 236;
             this.dtpDateTime.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
             // 
-            // txtDiagnosis
-            // 
-            this.txtDiagnosis.Location = new System.Drawing.Point(173, 234);
-            this.txtDiagnosis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtDiagnosis.MaxLength = 50;
-            this.txtDiagnosis.Multiline = true;
-            this.txtDiagnosis.Name = "txtDiagnosis";
-            this.txtDiagnosis.Size = new System.Drawing.Size(466, 75);
-            this.txtDiagnosis.TabIndex = 235;
-            // 
-            // txtNotes
-            // 
-            this.txtNotes.Location = new System.Drawing.Point(173, 363);
-            this.txtNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNotes.MaxLength = 50;
-            this.txtNotes.Multiline = true;
-            this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(466, 116);
-            this.txtNotes.TabIndex = 234;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(26, 329);
+            this.label14.Location = new System.Drawing.Point(26, 273);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 20);
@@ -118,7 +99,7 @@
             // llDoctorInfo
             // 
             this.llDoctorInfo.AutoSize = true;
-            this.llDoctorInfo.Location = new System.Drawing.Point(683, 92);
+            this.llDoctorInfo.Location = new System.Drawing.Point(683, 146);
             this.llDoctorInfo.Name = "llDoctorInfo";
             this.llDoctorInfo.Size = new System.Drawing.Size(89, 20);
             this.llDoctorInfo.TabIndex = 229;
@@ -129,7 +110,7 @@
             // llPatientInfo
             // 
             this.llPatientInfo.AutoSize = true;
-            this.llPatientInfo.Location = new System.Drawing.Point(683, 38);
+            this.llPatientInfo.Location = new System.Drawing.Point(683, 92);
             this.llPatientInfo.Name = "llPatientInfo";
             this.llPatientInfo.Size = new System.Drawing.Size(91, 20);
             this.llPatientInfo.TabIndex = 228;
@@ -152,7 +133,7 @@
             // 
             this.lblDoctorID.AutoSize = true;
             this.lblDoctorID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoctorID.Location = new System.Drawing.Point(574, 94);
+            this.lblDoctorID.Location = new System.Drawing.Point(574, 148);
             this.lblDoctorID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDoctorID.Name = "lblDoctorID";
             this.lblDoctorID.Size = new System.Drawing.Size(49, 20);
@@ -163,7 +144,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(389, 94);
+            this.label7.Location = new System.Drawing.Point(389, 148);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 20);
@@ -174,7 +155,7 @@
             // 
             this.lblPatientID.AutoSize = true;
             this.lblPatientID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPatientID.Location = new System.Drawing.Point(574, 38);
+            this.lblPatientID.Location = new System.Drawing.Point(574, 92);
             this.lblPatientID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPatientID.Name = "lblPatientID";
             this.lblPatientID.Size = new System.Drawing.Size(49, 20);
@@ -185,7 +166,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(389, 38);
+            this.label5.Location = new System.Drawing.Point(389, 92);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 20);
@@ -249,7 +230,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Clinic.Properties.Resources.Notes_32;
-            this.pictureBox7.Location = new System.Drawing.Point(173, 329);
+            this.pictureBox7.Location = new System.Drawing.Point(173, 273);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(31, 26);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -269,7 +250,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox3.Location = new System.Drawing.Point(536, 94);
+            this.pictureBox3.Location = new System.Drawing.Point(536, 148);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(31, 26);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -279,7 +260,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox2.Location = new System.Drawing.Point(536, 38);
+            this.pictureBox2.Location = new System.Drawing.Point(536, 92);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(31, 26);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -308,14 +289,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNotes);
+            this.groupBox1.Controls.Add(this.txtDiagnosis);
+            this.groupBox1.Controls.Add(this.llEditVisitInfo);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.pictureBox8);
             this.groupBox1.Controls.Add(this.lblVisitID);
             this.groupBox1.Controls.Add(this.dtpDateTime);
             this.groupBox1.Controls.Add(this.pictureBox5);
-            this.groupBox1.Controls.Add(this.txtDiagnosis);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtNotes);
             this.groupBox1.Controls.Add(this.lblAppointmentID);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.pictureBox1);
@@ -333,10 +315,43 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(795, 499);
+            this.groupBox1.Size = new System.Drawing.Size(795, 361);
             this.groupBox1.TabIndex = 238;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Visit Information";
+            // 
+            // llEditVisitInfo
+            // 
+            this.llEditVisitInfo.AutoSize = true;
+            this.llEditVisitInfo.Location = new System.Drawing.Point(618, 38);
+            this.llEditVisitInfo.Name = "llEditVisitInfo";
+            this.llEditVisitInfo.Size = new System.Drawing.Size(156, 20);
+            this.llEditVisitInfo.TabIndex = 238;
+            this.llEditVisitInfo.TabStop = true;
+            this.llEditVisitInfo.Text = "Edit Visit Information";
+            this.llEditVisitInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditVisitInfo_LinkClicked);
+            // 
+            // txtDiagnosis
+            // 
+            this.txtDiagnosis.AutoSize = true;
+            this.txtDiagnosis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiagnosis.Location = new System.Drawing.Point(211, 206);
+            this.txtDiagnosis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtDiagnosis.Name = "txtDiagnosis";
+            this.txtDiagnosis.Size = new System.Drawing.Size(49, 20);
+            this.txtDiagnosis.TabIndex = 239;
+            this.txtDiagnosis.Text = "[???]";
+            // 
+            // txtNotes
+            // 
+            this.txtNotes.AutoSize = true;
+            this.txtNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNotes.Location = new System.Drawing.Point(211, 279);
+            this.txtNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(49, 20);
+            this.txtNotes.TabIndex = 240;
+            this.txtNotes.Text = "[???]";
             // 
             // ctrlVisitInfo
             // 
@@ -346,7 +361,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ctrlVisitInfo";
-            this.Size = new System.Drawing.Size(807, 510);
+            this.Size = new System.Drawing.Size(807, 371);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -364,8 +379,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.DateTimePicker dtpDateTime;
-        private System.Windows.Forms.TextBox txtDiagnosis;
-        private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox pictureBox6;
@@ -386,5 +399,8 @@
         private System.Windows.Forms.Label lblVisitID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel llEditVisitInfo;
+        private System.Windows.Forms.Label txtNotes;
+        private System.Windows.Forms.Label txtDiagnosis;
     }
 }

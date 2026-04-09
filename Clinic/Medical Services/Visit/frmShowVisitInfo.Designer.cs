@@ -40,9 +40,8 @@
             this.ctrlVisitInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlVisitInfoWithFilter1.Location = new System.Drawing.Point(13, 66);
             this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfoWithFilter1.Mode = 0;
             this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
-            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
+            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 461);
             this.ctrlVisitInfoWithFilter1.TabIndex = 0;
             // 
             // lblTitle
@@ -62,7 +61,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(686, 676);
+            this.btnClose.Location = new System.Drawing.Point(674, 535);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 114;
@@ -74,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 722);
+            this.ClientSize = new System.Drawing.Size(833, 580);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlVisitInfoWithFilter1);

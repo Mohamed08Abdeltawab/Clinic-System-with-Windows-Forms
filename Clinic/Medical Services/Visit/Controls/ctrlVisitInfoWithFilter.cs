@@ -38,17 +38,6 @@ namespace Clinic.Medical_Services.Visit
             }
         }
 
-        private int _Mode = 0;//0:update, 1:read
-        public int Mode
-        {
-            get { return _Mode; }
-            set
-            {
-                _Mode = value;
-                ctrlVisitInfo1.Mode = _Mode;
-            }
-        }
-
         private int _VisitID;
         public int VisitID
         {

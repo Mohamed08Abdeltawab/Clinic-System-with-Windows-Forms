@@ -23,30 +23,39 @@ namespace Clinic.Medical_Services.Visit
 
         // Declare an event using the delegate
         public event DataBackEventHandler DataBack;
-        private enum enMode { AddNew = 0, Update = 1, Read = 2 };
+        private enum enMode { AddNew = 0, Update = 1};
         private enMode _Mode = enMode.AddNew;
+
+        private enum enTargetTab { Both, VisitOnly, PrescriptionOnly }
+        private enTargetTab _TargetTab = enTargetTab.Both;
+
         private int _AppointmentID;
         private clsVisit _Visit;
         private clsPrescription _Prescription;
 
-        public frmAddUpdatelVisitDetails(int AppointmentID, int Mode)
+        public frmAddUpdatelVisitDetails(int AppointmentID)
         {
             InitializeComponent();
             _AppointmentID = AppointmentID;
-            _Mode = (enMode)Mode;
+            _Mode = enMode.Update;
+        }
+
+        public frmAddUpdatelVisitDetails()
+        {
+            InitializeComponent();
+            _Mode = enMode.AddNew;
         }
 
         public void SetOnlyPrescriptionMode()
         {
-            // 1. تعطيل تاب الزيارة تماماً
-            tpVisitInfo.Enabled = false;
-
-            // 2. الوقوف تلقائياً على تاب الروشتة
-            tcVisitInfo.SelectedTab = tpPrescriptionInfo;
-
-            // 3. تغيير العنوان للتوضيح
-            lblTitle.Text = "Update Prescription Only";
+            _TargetTab = enTargetTab.PrescriptionOnly;
         }
+
+        public void SetOnlyVisitMode()
+        {
+            _TargetTab = enTargetTab.VisitOnly;
+        }
+
         private void _RefreshGrid()
         {
             // ربط الـ List الموجودة في كائن الروشتة بالـ DataGridView
@@ -177,15 +186,21 @@ namespace Clinic.Medical_Services.Visit
                 btnSaveandNext.Enabled = true;        // شغال للتنقل
                 btnSave.Enabled = (_Mode == enMode.Update); // شغال في التعديل ومطفي في القراءة
 
+                //handel taps based on target
+                if (_TargetTab == enTargetTab.VisitOnly)
+                {
+                    tpPrescriptionInfo.Enabled = false;
+                    tcVisitInfo.SelectedTab = tpVisitInfo;
+                    lblTitle.Text = "Update Visit Only";
+                }
+                else if (_TargetTab == enTargetTab.PrescriptionOnly)
+                {
+                    tpVisitInfo.Enabled = false;
+                    tcVisitInfo.SelectedTab = tpPrescriptionInfo;
+                    lblTitle.Text = "Update Prescription Only";
+                }
             }
 
-            // تعامل خاص مع الـ Read Mode
-            if (_Mode == enMode.Read)
-            {
-                btnSave.Visible = false;
-                btnAddNewMedicine.Enabled = false;
-                clsGlobal.SetControlsReadOnly(this, true);
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -250,11 +265,6 @@ namespace Clinic.Medical_Services.Visit
             {
                 frmPatientInfo frm = new frmPatientInfo(patientID);
 
-                if (_Mode == enMode.Read)
-                {
-                    frm.IsReadOnly = true;
-                }
-
                 frm.ShowDialog();
             }
         }
@@ -264,11 +274,6 @@ namespace Clinic.Medical_Services.Visit
             if (int.TryParse(lblDoctorID.Text, out int doctorID))
             {
                 frmDoctorInfo frm = new frmDoctorInfo(doctorID);
-
-                if (_Mode == enMode.Read)
-                {
-                    frm.IsReadOnly = true;
-                }
 
                 frm.ShowDialog();
             }
@@ -306,14 +311,8 @@ namespace Clinic.Medical_Services.Visit
 
         private void ShowMedicineInfotoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 1. التأكد إن فيه سطر مختار
             if (dgvMedicines.CurrentRow == null) return;
-
-            // 2. جلب الكائن المختار من الـ List (بناءً على الـ Index بتاع السطر)
             clsPrescriptionItem SelectedItem = _Prescription.ItemsList[dgvMedicines.CurrentRow.Index];
-
-            // 3. فتح نفس الشاشة اللي عملناها، بس بتبعت لها الـ Mode = Read
-            // هنا إنت بتبعت الـ Item والـ Mode، والشاشة هتتولى قفل كل الـ Controls أوتوماتيك
             frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription(SelectedItem, frmAddUpdateMedicineToPrescription.enMode.Read);
 
             // مش محتاج تشترك في الـ DataBack هنا لأن مفيش حفظ هيحصل

@@ -24,15 +24,7 @@ namespace Clinic.Medical_Services.Visit
         public clsVisit SelectedVisitInfo => _Visit;
         
         private int _Mode = 0;//0:update, 1:read
-        public int Mode
-        {
-            get { return _Mode; }
-            set
-            {
-                _Mode = value;
-                _HandleModeChange();
-            }
-        }
+        
         public ctrlVisitInfo()
         {
             InitializeComponent();
@@ -107,15 +99,6 @@ namespace Clinic.Medical_Services.Visit
             txtNotes.Text = string.IsNullOrEmpty(_Visit.Notes) ? "No Notes" : _Visit.Notes;
         }
 
-        private void _HandleModeChange()
-        {
-            // إذا كان الوضع قراءة، نجعل التكست بوكس للقراءة فقط
-            bool isReadOnly = (_Mode == 1);
-            txtDiagnosis.ReadOnly = isReadOnly;
-            txtNotes.ReadOnly = isReadOnly;
-            dtpDateTime.Enabled = !isReadOnly;
-        }
-
         private void llPatientInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (int.TryParse(lblPatientID.Text, out int patientID))
@@ -152,6 +135,14 @@ namespace Clinic.Medical_Services.Visit
             {
                 MessageBox.Show("Doctor ID Not Selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void llEditVisitInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(lblAppointmentID.Text)) { return; }
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(int.Parse(lblAppointmentID.Text));
+            frm.SetOnlyVisitMode();
+            frm.ShowDialog();
         }
     }
 }

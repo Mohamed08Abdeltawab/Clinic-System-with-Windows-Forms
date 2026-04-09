@@ -39,7 +39,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(668, 656);
+            this.btnClose.Location = new System.Drawing.Point(668, 531);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 117;
@@ -65,9 +65,8 @@
             this.ctrlVisitInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlVisitInfoWithFilter1.Location = new System.Drawing.Point(10, 60);
             this.ctrlVisitInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlVisitInfoWithFilter1.Mode = 0;
             this.ctrlVisitInfoWithFilter1.Name = "ctrlVisitInfoWithFilter1";
-            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 602);
+            this.ctrlVisitInfoWithFilter1.Size = new System.Drawing.Size(813, 463);
             this.ctrlVisitInfoWithFilter1.TabIndex = 115;
             // 
             // frmFindVisit
@@ -75,7 +74,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(833, 704);
+            this.ClientSize = new System.Drawing.Size(833, 584);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlVisitInfoWithFilter1);

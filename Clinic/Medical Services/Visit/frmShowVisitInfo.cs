@@ -26,7 +26,6 @@ namespace Clinic.Medical_Services.Visit
         private void frmShowVisitInfo_Load(object sender, EventArgs e)
         {
             ctrlVisitInfoWithFilter1.FilterEnabled = false;
-            ctrlVisitInfoWithFilter1.Mode = 1;//Read-Only Mode
         }
     }
 }

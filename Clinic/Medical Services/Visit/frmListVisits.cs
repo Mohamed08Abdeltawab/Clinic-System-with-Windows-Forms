@@ -147,7 +147,7 @@ namespace Clinic.Medical_Services.Visit
         {
             int AppointmentID = (int)dgvVisit.CurrentRow.Cells[1].Value;
 
-            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(AppointmentID, (int)enMode.Update);
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(AppointmentID);
             frm.ShowDialog();
             frmListVisits_Load(null, null);
         }
