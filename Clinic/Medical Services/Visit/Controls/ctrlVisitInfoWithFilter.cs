@@ -79,6 +79,13 @@ namespace Clinic.Medical_Services.Visit
             txtFilterValue.Text = AppointmentID.ToString();
             _FindNow();
         }
+
+        public void LoadVisitInfoByPrescription(int PrescriptionID)
+        {
+            cbFilterBy.SelectedIndex = 2;
+            txtFilterValue.Text = PrescriptionID.ToString();
+            _FindNow();
+        }
         private void _FindNow()
         {
             switch (cbFilterBy.Text)
@@ -90,6 +97,10 @@ namespace Clinic.Medical_Services.Visit
 
                 case "Appointment ID":
                     ctrlVisitInfo1.LoadVisitInfoByAppointmentID(int.Parse(txtFilterValue.Text.Trim()));
+                    break;
+
+                case "Prescription ID":
+                    ctrlVisitInfo1.LoadVisitInfoByPrescriptionID(int.Parse(txtFilterValue.Text.Trim()));
                     break;
 
                 default:

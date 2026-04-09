@@ -147,11 +147,6 @@ namespace Clinicbusiness
             return clsVisitData.IsVisitExistByAppointmentID(AppointmentID);
         }
 
-        public static clsVisit FindByPrescriptionID(int PrescriptionID)
-        {
-            return clsVisitData.IsVisitExistByPrescriptionID(PrescriptionID);
-        }
-
         // --- دوال إضافية ذكية للربط مع الخدمات والوصفات ---
 
         // جلب كل الخدمات المقدمة في هذه الزيارة (من جدول VisitServices)

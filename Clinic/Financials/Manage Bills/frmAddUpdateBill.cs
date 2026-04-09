@@ -16,5 +16,10 @@ namespace Clinic.Financials.Manage_Bills
         {
             InitializeComponent();
         }
+
+        private void frmAddUpdateBill_Load(object sender, EventArgs e)
+        {
+            ctrlVisitInfoWithFilter1.LoadVisitInfoByPrescription(1);
+        }
     }
 }
