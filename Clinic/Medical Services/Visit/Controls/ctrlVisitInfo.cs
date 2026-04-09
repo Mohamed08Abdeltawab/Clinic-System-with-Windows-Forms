@@ -129,6 +129,10 @@ namespace Clinic.Medical_Services.Visit
 
                 frm.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Patient ID Not Selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void llDoctorInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
@@ -143,6 +147,10 @@ namespace Clinic.Medical_Services.Visit
                 }
 
                 frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Doctor ID Not Selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

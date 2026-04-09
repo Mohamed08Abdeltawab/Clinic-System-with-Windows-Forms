@@ -47,6 +47,18 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         {
             get { return ctrlPrescriptionInfo1.SelectedPrescription; }
         }
+
+        private int _Mode = 0;//0:update, 1:read
+        public int Mode
+        {
+            get { return _Mode; }
+            set
+            {
+                _Mode = value;
+                ctrlPrescriptionInfo1.Mode = _Mode;
+            }
+        }
+
         public ctrlPrescriptionInfoWithFilter()
         {
             InitializeComponent();

@@ -21,6 +21,8 @@ namespace Clinic.Medical_Services.Visit
         public frmFindVisit()
         {
             InitializeComponent();
+            ctrlVisitInfoWithFilter1.FilterEnabled = true;
+            ctrlVisitInfoWithFilter1.Mode = 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

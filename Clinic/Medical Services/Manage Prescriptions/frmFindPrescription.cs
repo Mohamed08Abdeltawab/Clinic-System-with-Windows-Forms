@@ -17,6 +17,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         public frmFindPrescription()
         {
             InitializeComponent();
+            ctrlPrescriptionInfoWithFilter1.Mode = 1;//read only
         }
 
         private void btnClose_Click(object sender, EventArgs e)
