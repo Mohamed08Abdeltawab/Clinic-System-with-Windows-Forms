@@ -166,5 +166,15 @@ namespace Clinic.Medical_Services.Visit
                     MessageBox.Show("Visit is not deleted due to data connected to it.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void showPatientDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showDoctorDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

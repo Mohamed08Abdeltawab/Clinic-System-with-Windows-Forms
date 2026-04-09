@@ -23,8 +23,6 @@ namespace Clinic.Medical_Services.Visit
         public int VisitID => _VisitID;
         public clsVisit SelectedVisitInfo => _Visit;
         
-        private int _Mode = 0;//0:update, 1:read
-        
         public ctrlVisitInfo()
         {
             InitializeComponent();
@@ -105,11 +103,6 @@ namespace Clinic.Medical_Services.Visit
             {
                 frmPatientInfo frm = new frmPatientInfo(patientID);
 
-                if (_Mode == 1)//Read-Only Mode
-                {
-                    frm.IsReadOnly = true;
-                }
-
                 frm.ShowDialog();
             }
             else
@@ -124,11 +117,6 @@ namespace Clinic.Medical_Services.Visit
             {
                 frmDoctorInfo frm = new frmDoctorInfo(doctorID);
 
-                if (_Mode == 1)//Read-Only Mode
-                {
-                    frm.IsReadOnly = true;
-                }
-
                 frm.ShowDialog();
             }
             else
@@ -139,10 +127,17 @@ namespace Clinic.Medical_Services.Visit
 
         private void llEditVisitInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(string.IsNullOrEmpty(lblAppointmentID.Text)) { return; }
-            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(int.Parse(lblAppointmentID.Text));
-            frm.SetOnlyVisitMode();
-            frm.ShowDialog();
+            if(string.IsNullOrEmpty(lblAppointmentID.Text.Trim()) || lblAppointmentID.Text == "[???]")
+            {
+                MessageBox.Show("Appointment ID Not Selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (int.TryParse(lblAppointmentID.Text.Trim(), out int appointmentID))
+            {
+                frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(appointmentID);
+                frm.SetOnlyVisitMode();
+                frm.ShowDialog();
+            }
         }
     }
 }

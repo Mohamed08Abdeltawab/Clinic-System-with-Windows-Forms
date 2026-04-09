@@ -171,7 +171,7 @@
             this.dtpDateTime.Location = new System.Drawing.Point(225, 165);
             this.dtpDateTime.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpDateTime.Name = "dtpDateTime";
-            this.dtpDateTime.Size = new System.Drawing.Size(167, 26);
+            this.dtpDateTime.Size = new System.Drawing.Size(177, 26);
             this.dtpDateTime.TabIndex = 213;
             this.dtpDateTime.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
             // 
@@ -635,7 +635,7 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // frmFillVisitDetails
+            // frmAddUpdatelVisitDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -646,7 +646,7 @@
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmFillVisitDetails";
+            this.Name = "frmAddUpdatelVisitDetails";
             this.Text = "frmFillVisitDetails";
             this.Load += new System.EventHandler(this.frmFillVisitDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

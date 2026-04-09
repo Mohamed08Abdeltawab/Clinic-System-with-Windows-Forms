@@ -38,7 +38,7 @@
             this.cbFilterBy = new System.Windows.Forms.ComboBox();
             this.txtFilterValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmsPeople = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsAppointment = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.showPatientDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDoctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +54,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddAppointment = new System.Windows.Forms.Button();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
-            this.cmsPeople.SuspendLayout();
+            this.cmsAppointment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.SuspendLayout();
@@ -148,9 +148,9 @@
             this.label1.TabIndex = 105;
             this.label1.Text = "Filter By:";
             // 
-            // cmsPeople
+            // cmsAppointment
             // 
-            this.cmsPeople.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsAppointment.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.VisitToolStripMenuItem,
@@ -158,9 +158,9 @@
             this.toolStripMenuItem1,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
-            this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(214, 238);
-            this.cmsPeople.Opening += new System.ComponentModel.CancelEventHandler(this.cmsPeople_Opening);
+            this.cmsAppointment.Name = "contextMenuStrip1";
+            this.cmsAppointment.Size = new System.Drawing.Size(214, 260);
+            this.cmsAppointment.Opening += new System.ComponentModel.CancelEventHandler(this.cmsPeople_Opening);
             // 
             // toolStripMenuItem2
             // 
@@ -263,7 +263,7 @@
             this.dgvAppointment.AllowUserToResizeRows = false;
             this.dgvAppointment.BackgroundColor = System.Drawing.Color.White;
             this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAppointment.ContextMenuStrip = this.cmsPeople;
+            this.dgvAppointment.ContextMenuStrip = this.cmsAppointment;
             this.dgvAppointment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvAppointment.Location = new System.Drawing.Point(16, 306);
             this.dgvAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -358,7 +358,7 @@
             this.Name = "frmListAppointment";
             this.Text = "frmListAppointment";
             this.Load += new System.EventHandler(this.frmListAppointment_Load);
-            this.cmsPeople.ResumeLayout(false);
+            this.cmsAppointment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             this.ResumeLayout(false);
@@ -382,7 +382,7 @@
         private System.Windows.Forms.ComboBox cbFilterBy;
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ContextMenuStrip cmsPeople;
+        private System.Windows.Forms.ContextMenuStrip cmsAppointment;
         private System.Windows.Forms.DataGridView dgvAppointment;
         private System.Windows.Forms.ToolStripMenuItem VisitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rescheduleToolStripMenuItem;

@@ -90,7 +90,7 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(209, 200);
+            this.cmsPeople.Size = new System.Drawing.Size(209, 222);
             // 
             // toolStripMenuItem2
             // 
@@ -110,6 +110,7 @@
             this.showPatientDetailsToolStripMenuItem.Name = "showPatientDetailsToolStripMenuItem";
             this.showPatientDetailsToolStripMenuItem.Size = new System.Drawing.Size(197, 38);
             this.showPatientDetailsToolStripMenuItem.Text = "Show Patient Details";
+            this.showPatientDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPatientDetailsToolStripMenuItem_Click);
             // 
             // showDoctorDetailsToolStripMenuItem
             // 
@@ -118,6 +119,7 @@
             this.showDoctorDetailsToolStripMenuItem.Name = "showDoctorDetailsToolStripMenuItem";
             this.showDoctorDetailsToolStripMenuItem.Size = new System.Drawing.Size(197, 38);
             this.showDoctorDetailsToolStripMenuItem.Text = "Show Doctor Details";
+            this.showDoctorDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDoctorDetailsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
