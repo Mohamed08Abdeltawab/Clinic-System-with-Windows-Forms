@@ -15,7 +15,6 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         public frmShowPrescriptionInfo(int PrescriptionID)
         {
             InitializeComponent();
-            ctrlPrescriptionInfo1.Mode = 1;//Read-Only Mode
             ctrlPrescriptionInfo1.LoadPrescriptionInfoByPrescriptionID(PrescriptionID);
         }
 

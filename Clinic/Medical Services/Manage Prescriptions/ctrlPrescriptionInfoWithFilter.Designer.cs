@@ -45,7 +45,6 @@
             this.ctrlPrescriptionInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlPrescriptionInfo1.Location = new System.Drawing.Point(4, 91);
             this.ctrlPrescriptionInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPrescriptionInfo1.Mode = 0;
             this.ctrlPrescriptionInfo1.Name = "ctrlPrescriptionInfo1";
             this.ctrlPrescriptionInfo1.Size = new System.Drawing.Size(854, 487);
             this.ctrlPrescriptionInfo1.TabIndex = 0;
@@ -126,7 +125,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ctrlPrescriptionInfoWithFilter";
-            this.Size = new System.Drawing.Size(862, 582);
+            this.Size = new System.Drawing.Size(862, 534);
             this.gbFilters.ResumeLayout(false);
             this.gbFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

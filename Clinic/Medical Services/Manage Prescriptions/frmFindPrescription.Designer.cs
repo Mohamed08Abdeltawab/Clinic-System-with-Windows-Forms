@@ -41,7 +41,7 @@
             this.ctrlPrescriptionInfoWithFilter1.Location = new System.Drawing.Point(13, 53);
             this.ctrlPrescriptionInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlPrescriptionInfoWithFilter1.Name = "ctrlPrescriptionInfoWithFilter1";
-            this.ctrlPrescriptionInfoWithFilter1.Size = new System.Drawing.Size(862, 582);
+            this.ctrlPrescriptionInfoWithFilter1.Size = new System.Drawing.Size(862, 534);
             this.ctrlPrescriptionInfoWithFilter1.TabIndex = 0;
             // 
             // lblTitle
@@ -61,7 +61,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(719, 639);
+            this.btnClose.Location = new System.Drawing.Point(717, 595);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 136;
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 687);
+            this.ClientSize = new System.Drawing.Size(879, 642);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlPrescriptionInfoWithFilter1);

@@ -50,7 +50,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::Clinic.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(726, 548);
+            this.btnClose.Location = new System.Drawing.Point(712, 504);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 36);
             this.btnClose.TabIndex = 135;
@@ -63,7 +63,6 @@
             this.ctrlPrescriptionInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlPrescriptionInfo1.Location = new System.Drawing.Point(13, 53);
             this.ctrlPrescriptionInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPrescriptionInfo1.Mode = 0;
             this.ctrlPrescriptionInfo1.Name = "ctrlPrescriptionInfo1";
             this.ctrlPrescriptionInfo1.Size = new System.Drawing.Size(854, 487);
             this.ctrlPrescriptionInfo1.TabIndex = 0;
@@ -72,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 599);
+            this.ClientSize = new System.Drawing.Size(873, 548);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlPrescriptionInfo1);

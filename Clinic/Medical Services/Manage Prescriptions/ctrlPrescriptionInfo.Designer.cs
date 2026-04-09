@@ -30,10 +30,13 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.llEditPrescriptionInfo = new System.Windows.Forms.LinkLabel();
+            this.lblVisitID = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvMedicines = new System.Windows.Forms.DataGridView();
-            this.txtPrescriptionNotes = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.dtpPrescriptionDate = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
@@ -42,27 +45,26 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.lblVisitID = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.txtPrescriptionNotes = new System.Windows.Forms.Label();
             this.GroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.txtPrescriptionNotes);
+            this.GroupBox1.Controls.Add(this.llEditPrescriptionInfo);
             this.GroupBox1.Controls.Add(this.lblVisitID);
             this.GroupBox1.Controls.Add(this.label3);
             this.GroupBox1.Controls.Add(this.pictureBox2);
             this.GroupBox1.Controls.Add(this.label1);
             this.GroupBox1.Controls.Add(this.pictureBox1);
             this.GroupBox1.Controls.Add(this.dgvMedicines);
-            this.GroupBox1.Controls.Add(this.txtPrescriptionNotes);
             this.GroupBox1.Controls.Add(this.label15);
             this.GroupBox1.Controls.Add(this.dtpPrescriptionDate);
             this.GroupBox1.Controls.Add(this.label13);
@@ -73,10 +75,53 @@
             this.GroupBox1.Controls.Add(this.pictureBox11);
             this.GroupBox1.Location = new System.Drawing.Point(3, 3);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(847, 479);
+            this.GroupBox1.Size = new System.Drawing.Size(847, 432);
             this.GroupBox1.TabIndex = 237;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Prescription Information";
+            // 
+            // llEditPrescriptionInfo
+            // 
+            this.llEditPrescriptionInfo.AutoSize = true;
+            this.llEditPrescriptionInfo.Location = new System.Drawing.Point(626, 31);
+            this.llEditPrescriptionInfo.Name = "llEditPrescriptionInfo";
+            this.llEditPrescriptionInfo.Size = new System.Drawing.Size(209, 20);
+            this.llEditPrescriptionInfo.TabIndex = 252;
+            this.llEditPrescriptionInfo.TabStop = true;
+            this.llEditPrescriptionInfo.Text = "Edit Prescription Information";
+            this.llEditPrescriptionInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPrescriptionInfo_LinkClicked);
+            // 
+            // lblVisitID
+            // 
+            this.lblVisitID.AutoSize = true;
+            this.lblVisitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVisitID.Location = new System.Drawing.Point(546, 31);
+            this.lblVisitID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVisitID.Name = "lblVisitID";
+            this.lblVisitID.Size = new System.Drawing.Size(49, 20);
+            this.lblVisitID.TabIndex = 250;
+            this.lblVisitID.Text = "[???]";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(354, 31);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 249;
+            this.label3.Text = "Visit ID:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Clinic.Properties.Resources.ID_32;
+            this.pictureBox2.Location = new System.Drawing.Point(508, 31);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 251;
+            this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -124,16 +169,6 @@
             this.dgvMedicines.Size = new System.Drawing.Size(827, 248);
             this.dgvMedicines.TabIndex = 246;
             this.dgvMedicines.TabStop = false;
-            // 
-            // txtPrescriptionNotes
-            // 
-            this.txtPrescriptionNotes.Location = new System.Drawing.Point(209, 382);
-            this.txtPrescriptionNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtPrescriptionNotes.MaxLength = 50;
-            this.txtPrescriptionNotes.Multiline = true;
-            this.txtPrescriptionNotes.Name = "txtPrescriptionNotes";
-            this.txtPrescriptionNotes.Size = new System.Drawing.Size(429, 81);
-            this.txtPrescriptionNotes.TabIndex = 245;
             // 
             // label15
             // 
@@ -219,37 +254,16 @@
             this.pictureBox11.TabIndex = 239;
             this.pictureBox11.TabStop = false;
             // 
-            // lblVisitID
+            // txtPrescriptionNotes
             // 
-            this.lblVisitID.AutoSize = true;
-            this.lblVisitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVisitID.Location = new System.Drawing.Point(546, 31);
-            this.lblVisitID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblVisitID.Name = "lblVisitID";
-            this.lblVisitID.Size = new System.Drawing.Size(49, 20);
-            this.lblVisitID.TabIndex = 250;
-            this.lblVisitID.Text = "[???]";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(354, 31);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
-            this.label3.TabIndex = 249;
-            this.label3.Text = "Visit ID:";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox2.Location = new System.Drawing.Point(508, 31);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 251;
-            this.pictureBox2.TabStop = false;
+            this.txtPrescriptionNotes.AutoSize = true;
+            this.txtPrescriptionNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrescriptionNotes.Location = new System.Drawing.Point(219, 388);
+            this.txtPrescriptionNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtPrescriptionNotes.Name = "txtPrescriptionNotes";
+            this.txtPrescriptionNotes.Size = new System.Drawing.Size(49, 20);
+            this.txtPrescriptionNotes.TabIndex = 253;
+            this.txtPrescriptionNotes.Text = "[???]";
             // 
             // ctrlPrescriptionInfo
             // 
@@ -259,15 +273,15 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ctrlPrescriptionInfo";
-            this.Size = new System.Drawing.Size(854, 487);
+            this.Size = new System.Drawing.Size(854, 442);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicines)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,7 +292,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dgvMedicines;
-        private System.Windows.Forms.TextBox txtPrescriptionNotes;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DateTimePicker dtpPrescriptionDate;
         private System.Windows.Forms.Label label13;
@@ -290,5 +303,7 @@
         private System.Windows.Forms.Label lblVisitID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.LinkLabel llEditPrescriptionInfo;
+        private System.Windows.Forms.Label txtPrescriptionNotes;
     }
 }

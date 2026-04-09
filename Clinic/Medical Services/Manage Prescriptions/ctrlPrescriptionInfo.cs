@@ -1,4 +1,5 @@
 ﻿using Clinic.Global_Classes;
+using Clinic.Medical_Services.Visit;
 using Clinicbusiness;
 using System;
 using System.Collections.Generic;
@@ -20,20 +21,13 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
         public clsPrescription SelectedPrescription => _Prescription;
         public int PrescriptionID => _PrescriptionID;
 
-        private int _Mode = 0;//0:update, 1:read
-        public int Mode
-        {
-            get { return _Mode; }
-            set
-            {
-                _Mode = value;
-                _HandleModeChange();
-            }
-        }
+        
 
         public ctrlPrescriptionInfo()
         {
             InitializeComponent();
+            dgvMedicines.ReadOnly = true;
+            dtpPrescriptionDate.Enabled = false;
         }
 
         public void _ResetDefaultValues()
@@ -61,14 +55,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             _RefreshGrid();
         }
 
-        private void _HandleModeChange()
-        {
-            // إذا كان الوضع قراءة، نجعل التكست بوكس للقراءة فقط
-            bool isReadOnly = (_Mode == 1);
-            dgvMedicines.ReadOnly = isReadOnly;
-            txtPrescriptionNotes.ReadOnly = isReadOnly;
-            dtpPrescriptionDate.Enabled = !isReadOnly;
-        }
+       
 
         private void _RefreshGrid()
         {
@@ -127,6 +114,22 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             }
 
             _FillPrescriptionData();
+        }
+
+        private void llEditPrescriptionInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(lblPrescriptionID.Text.Trim()) || lblPrescriptionID.Text == "[???]")
+            {
+                MessageBox.Show("Prescription ID Not Selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (int.TryParse(lblVisitID.Text.Trim(), out int visitID))
+            {
+                clsVisit currentVisit = clsVisit.Find(visitID);
+                frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(currentVisit.AppointmentID);
+                frm.SetOnlyPrescriptionMode();
+                frm.ShowDialog();
+            }
         }
     }
 }
