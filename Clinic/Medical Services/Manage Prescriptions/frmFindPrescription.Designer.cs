@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPrescriptionInfoWithFilter1 = new Clinic.Medical_Services.Manage_Prescriptions.ctrlPrescriptionInfoWithFilter();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlPrescriptionInfoWithFilter1 = new Clinic.Medical_Services.Manage_Prescriptions.ctrlPrescriptionInfoWithFilter();
             this.SuspendLayout();
-            // 
-            // ctrlPrescriptionInfoWithFilter1
-            // 
-            this.ctrlPrescriptionInfoWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ctrlPrescriptionInfoWithFilter1.FilterEnabled = true;
-            this.ctrlPrescriptionInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPrescriptionInfoWithFilter1.Location = new System.Drawing.Point(13, 53);
-            this.ctrlPrescriptionInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPrescriptionInfoWithFilter1.Name = "ctrlPrescriptionInfoWithFilter1";
-            this.ctrlPrescriptionInfoWithFilter1.Size = new System.Drawing.Size(862, 534);
-            this.ctrlPrescriptionInfoWithFilter1.TabIndex = 0;
             // 
             // lblTitle
             // 
@@ -68,6 +57,17 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // ctrlPrescriptionInfoWithFilter1
+            // 
+            this.ctrlPrescriptionInfoWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ctrlPrescriptionInfoWithFilter1.FilterEnabled = true;
+            this.ctrlPrescriptionInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPrescriptionInfoWithFilter1.Location = new System.Drawing.Point(13, 53);
+            this.ctrlPrescriptionInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPrescriptionInfoWithFilter1.Name = "ctrlPrescriptionInfoWithFilter1";
+            this.ctrlPrescriptionInfoWithFilter1.Size = new System.Drawing.Size(862, 534);
+            this.ctrlPrescriptionInfoWithFilter1.TabIndex = 0;
             // 
             // frmFindPrescription
             // 

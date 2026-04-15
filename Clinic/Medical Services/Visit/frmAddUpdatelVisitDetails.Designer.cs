@@ -184,6 +184,7 @@
             this.txtDiagnosis.Name = "txtDiagnosis";
             this.txtDiagnosis.Size = new System.Drawing.Size(539, 75);
             this.txtDiagnosis.TabIndex = 212;
+            this.txtDiagnosis.Validating += new System.ComponentModel.CancelEventHandler(this.txtDiagnosis_Validating);
             // 
             // txtNotes
             // 

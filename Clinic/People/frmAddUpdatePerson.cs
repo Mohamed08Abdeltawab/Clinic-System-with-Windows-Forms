@@ -130,7 +130,7 @@ namespace Clinic.People
                     {
                         File.Delete(_Person.ImagePath);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
 
                     }

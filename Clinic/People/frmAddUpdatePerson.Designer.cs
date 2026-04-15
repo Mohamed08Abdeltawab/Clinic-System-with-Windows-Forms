@@ -216,7 +216,7 @@
             this.llRemoveImage.LinkColor = System.Drawing.Color.Red;
             this.llRemoveImage.Location = new System.Drawing.Point(790, 250);
             this.llRemoveImage.Name = "llRemoveImage";
-            this.llRemoveImage.Size = new System.Drawing.Size(60, 19);
+            this.llRemoveImage.Size = new System.Drawing.Size(59, 19);
             this.llRemoveImage.TabIndex = 111;
             this.llRemoveImage.TabStop = true;
             this.llRemoveImage.Text = "Remove";
@@ -319,6 +319,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(220, 29);
             this.txtEmail.TabIndex = 10;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // label6
             // 
@@ -337,6 +338,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(185, 29);
             this.txtPhone.TabIndex = 9;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // label4
             // 
@@ -354,7 +356,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(380, 127);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 21);
+            this.label3.Size = new System.Drawing.Size(113, 21);
             this.label3.TabIndex = 89;
             this.label3.Text = "Date Of Birth:";
             // 
@@ -375,6 +377,7 @@
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(545, 29);
             this.txtFullName.TabIndex = 1;
+            this.txtFullName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // pbPersonImage
             // 
