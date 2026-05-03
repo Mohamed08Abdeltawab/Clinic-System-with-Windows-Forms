@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace Clinic.Financials.Manage_Bills
 {
-    public partial class frmAddUpdateBill : Form
+    public partial class frmBillDetails : Form
     {
-        public frmAddUpdateBill()
+        public frmBillDetails()
         {
             InitializeComponent();
         }
 
-        private void frmAddUpdateBill_Load(object sender, EventArgs e)
-        {
-            ctrlVisitInfoWithFilter1.LoadVisitInfoByPrescription(1);
-        }
     }
 }
