@@ -37,13 +37,6 @@ namespace Clinic.Medical_Services.Visit
         {
             InitializeComponent();
             _AppointmentID = AppointmentID;
-            _Mode = enMode.Update;
-        }
-
-        public frmAddUpdatelVisitDetails()
-        {
-            InitializeComponent();
-            _Mode = enMode.AddNew;
         }
 
         public void SetOnlyPrescriptionMode()
@@ -106,6 +99,8 @@ namespace Clinic.Medical_Services.Visit
                 _Visit = new clsVisit();
                 _Prescription = new clsPrescription();
 
+                btnShowBill.Visible = false; // تعطيل زرار عرض الفاتورة في وضع الإضافة لحد ما يحفظ الزيارة والروشتة
+
                 lblVisitID.Text = "[???]";
                 lblPrescriptionID.Text = "[???]";
 
@@ -137,6 +132,8 @@ namespace Clinic.Medical_Services.Visit
 
                 _Prescription = clsPrescription.FindByVisitID(_Visit.VisitID);
                 if (_Prescription == null) _Prescription = new clsPrescription();
+
+                btnShowBill.Visible = true; // تفعيل زرار عرض الفاتورة بعد حفظ الروشتة
 
                 // تعبئة البيانات (نفس كودك السليم)
                 lblVisitID.Text = _Visit.VisitID.ToString();
@@ -228,6 +225,7 @@ namespace Clinic.Medical_Services.Visit
             {
                 lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
                 _Mode = enMode.Update;
+                btnShowBill.Visible = true; // تفعيل زرار عرض الفاتورة بعد حفظ الروشتة
                 MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DataBack?.Invoke(this, _Visit.VisitID);
             }
@@ -252,6 +250,19 @@ namespace Clinic.Medical_Services.Visit
 
         private void frmFillVisitDetails_Load(object sender, EventArgs e)
         {
+            // 1. Determine Mode
+            if (clsVisit.IsVisitExistByAppointmentID(_AppointmentID))
+                _Mode = enMode.Update;
+            else if (clsAppointment.IsAppointmentExist(_AppointmentID))
+                _Mode = enMode.AddNew;
+            else
+            {
+                MessageBox.Show("Appointment not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close(); // هنا مسموح باستخدام Close لأن الشاشة بدأت العمل فعلياً
+                return;
+            }
+
+            // 2. Load the rest of data
             _LoadData();
         }
 
@@ -283,10 +294,12 @@ namespace Clinic.Medical_Services.Visit
         {
             if (!string.IsNullOrEmpty(txtDiagnosis.Text.Trim()))
             {
+                e.Cancel = false;
                 errorProvider1.SetError(txtDiagnosis, "");
             }
             else
             {
+                e.Cancel = true;
                 errorProvider1.SetError(txtDiagnosis, "Please enter the diagnosis.");
             }
         }
@@ -340,7 +353,12 @@ namespace Clinic.Medical_Services.Visit
         private void btnSaveandNext_Click(object sender, EventArgs e)
         {
             // 1. التحقق من البيانات (التشخيص إلزامي)
-            if (!ValidateChildren()) return;
+            if (!ValidateChildren())
+            {
+                MessageBox.Show("Please correct the errors before proceeding.", "Validation warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                
 
             // 2. تعبئة بيانات الزيارة
             _Visit.AppointmentID = _AppointmentID;

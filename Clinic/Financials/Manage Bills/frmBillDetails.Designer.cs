@@ -240,7 +240,7 @@
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(206, 45);
             this.lblUserName.TabIndex = 138;
-            this.lblUserName.Text = "Visit ID:";
+            this.lblUserName.Text = "N/A";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTaxAmount
@@ -250,7 +250,7 @@
             this.lblTaxAmount.Name = "lblTaxAmount";
             this.lblTaxAmount.Size = new System.Drawing.Size(206, 45);
             this.lblTaxAmount.TabIndex = 139;
-            this.lblTaxAmount.Text = "Visit ID:";
+            this.lblTaxAmount.Text = "N/A";
             this.lblTaxAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblPaymentMethod
@@ -260,7 +260,7 @@
             this.lblPaymentMethod.Name = "lblPaymentMethod";
             this.lblPaymentMethod.Size = new System.Drawing.Size(206, 45);
             this.lblPaymentMethod.TabIndex = 138;
-            this.lblPaymentMethod.Text = "Visit ID:";
+            this.lblPaymentMethod.Text = "N/A";
             this.lblPaymentMethod.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDiscount
@@ -270,7 +270,7 @@
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(206, 45);
             this.lblDiscount.TabIndex = 137;
-            this.lblDiscount.Text = "Visit ID:";
+            this.lblDiscount.Text = "N/A";
             this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblPaymentStatus
@@ -280,7 +280,7 @@
             this.lblPaymentStatus.Name = "lblPaymentStatus";
             this.lblPaymentStatus.Size = new System.Drawing.Size(206, 45);
             this.lblPaymentStatus.TabIndex = 139;
-            this.lblPaymentStatus.Text = "Visit ID:";
+            this.lblPaymentStatus.Text = "N/A";
             this.lblPaymentStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblPaymentDate
@@ -290,7 +290,7 @@
             this.lblPaymentDate.Name = "lblPaymentDate";
             this.lblPaymentDate.Size = new System.Drawing.Size(206, 45);
             this.lblPaymentDate.TabIndex = 137;
-            this.lblPaymentDate.Text = "Visit ID:";
+            this.lblPaymentDate.Text = "N/A";
             this.lblPaymentDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotalAmount
@@ -300,7 +300,7 @@
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.Size = new System.Drawing.Size(206, 45);
             this.lblTotalAmount.TabIndex = 138;
-            this.lblTotalAmount.Text = "Visit ID:";
+            this.lblTotalAmount.Text = "N/A";
             this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblVisitID
@@ -311,7 +311,7 @@
             this.lblVisitID.Size = new System.Drawing.Size(206, 45);
             this.lblVisitID.TabIndex = 137;
             this.lblVisitID.Tag = "";
-            this.lblVisitID.Text = "dddd";
+            this.lblVisitID.Text = "N/A";
             this.lblVisitID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox7
@@ -486,6 +486,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmBillDetails";
             this.Text = "frmBillDetails";
+            this.Load += new System.EventHandler(this.frmBillDetails_Load);
             this.pnlBillHeader.ResumeLayout(false);
             this.pnlBillFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
