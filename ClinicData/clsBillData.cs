@@ -90,8 +90,8 @@ namespace ClinicData
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Bills (VisitID, PatientID, DoctorID, TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, TaxAmount, Discount, CreatedByUserID)
-                             VALUES (@VisitID, @PatientID, @DoctorID, @TotalAmount, @PaymentStatus, @PaymentDate, @PaymentMethod, @TaxAmount, @Discount, @CreatedByUserID);
+            string query = @"INSERT INTO Bills (VisitID, TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, TaxAmount, Discount, CreatedByUserID)
+                             VALUES (@VisitID, @TotalAmount, @PaymentStatus, @PaymentDate, @PaymentMethod, @TaxAmount, @Discount, @CreatedByUserID);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -143,8 +143,6 @@ namespace ClinicData
 
             string query = @"Update Bills  
                              set VisitID = @VisitID,
-                                 PatientID = @PatientID,
-                                 DoctorID = @DoctorID,
                                  TotalAmount = @TotalAmount,
                                  PaymentStatus = @PaymentStatus,
                                  PaymentDate = @PaymentDate,

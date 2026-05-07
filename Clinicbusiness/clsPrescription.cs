@@ -14,6 +14,9 @@ namespace Clinicbusiness
         public int Quantity { get; set; }
         public string Dosage { get; set; }
         public string Instructions { get; set; }
+
+        /* This property is only in memory, not necessarily in the PrescriptionItems table */
+        public decimal UnitPrice { get; set; }
     }
 
     public class clsPrescription
@@ -67,7 +70,8 @@ namespace Clinicbusiness
                     MedicineName = (string)row["MedicineName"],
                     Quantity = (int)row["Quantity"],
                     Dosage = row["Dosage"] == DBNull.Value ? "" : (string)row["Dosage"],
-                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"]
+                    Instructions = row["Instructions"] == DBNull.Value ? "" : (string)row["Instructions"],
+                    UnitPrice = row["UnitPrice"] == DBNull.Value ? 0 : (decimal)row["UnitPrice"]
                 });
             }
             return items;

@@ -17,18 +17,11 @@ namespace Clinic.Financials.Manage_Bills
         private int _BillID;
 
         clsPerson _PatientPerson;
+        clsVisit _Visit;
         public frmBillDetails(int billID)
         {
             InitializeComponent();
             _BillID = billID;
-            _LoadBillData();
-        }
-
-        //add new bill c
-        public frmBillDetails(clsBill newBill)
-        {
-            InitializeComponent();
-            _Bill = newBill;
             _LoadBillData();
         }
 
@@ -42,8 +35,8 @@ namespace Clinic.Financials.Manage_Bills
                 return;
             }
             // Use properties instead of List indexes (Type-Safe)
-            
-            _PatientPerson = clsPerson.FindByPatientID(clsAppointment.Find(_Bill.VisitID).PatientID);
+            _Visit = clsVisit.Find(_Bill.VisitID);
+            _PatientPerson = clsPerson.FindByPatientID(clsAppointment.Find(_Visit.AppointmentID).PatientID);
             lblPatientName.Text = _PatientPerson != null ? _PatientPerson.FullName : "N/A";
             lblBillID.Text = _Bill.BillID.ToString();
             lblVisitID.Text = _Bill.VisitID.ToString();

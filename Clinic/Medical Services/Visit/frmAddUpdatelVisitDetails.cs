@@ -30,16 +30,19 @@ namespace Clinic.Medical_Services.Visit
         private enum enTargetTab { Both, VisitOnly, PrescriptionOnly }
         private enTargetTab _TargetTab = enTargetTab.Both;
 
-        private int _AppointmentID;
+        private int _AppointmentID = -1;
         private clsVisit _Visit;
+        private clsAppointment _Appointment;
         private clsPrescription _Prescription;
 
         private clsBill _Bill;
+        private int _BillID = -1;
 
         public frmAddUpdatelVisitDetails(int AppointmentID)
         {
             InitializeComponent();
             _AppointmentID = AppointmentID;
+            _Appointment = clsAppointment.Find(_AppointmentID);
         }
 
         public void SetOnlyPrescriptionMode()
@@ -150,7 +153,8 @@ namespace Clinic.Medical_Services.Visit
                 lblDoctorID.Text = _Visit.AppointmentInfo.DoctorID.ToString();
                 lblAppointmentID.Text = _Visit.AppointmentID.ToString();
 
-
+                _Bill = clsBill.FindByVisitID(_Visit.VisitID);
+                _BillID = (_Bill != null) ? _Bill.BillID : -1;
                 // --- كود الوقت في حالة Update ---
 
                 // أولاً: للزيارة
@@ -203,6 +207,34 @@ namespace Clinic.Medical_Services.Visit
 
         }
 
+        private void _SaveBill()
+        {
+            if (_Bill == null)
+            {
+                _Bill = new clsBill
+                {
+                    VisitID = _Visit.VisitID,
+                    PaymentStatus = (byte)clsBill.enPaymentStatus.Paid,
+                    PaymentDate = DateTime.Now,
+                    PaymentMethod = (byte)clsBill.enPaymentMethod.Cash,
+                    TaxAmount = 5, // لو في ضريبة، تحسب هنا
+                    Discount = 0,
+                    TotalAmount = _Prescription.ItemsList.Sum(i => i.Quantity * i.UnitPrice),
+                    //CreatedByUserID = clsGlobal.CurrentUser.UserID
+                    CreatedByUserID = 1 // مؤقت لحد ما تعمل نظام تسجيل دخول
+                };
+            }
+            if (_Bill.Save())
+            {
+                _BillID = _Bill.BillID;
+                MessageBox.Show("Bill saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to save bill.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             // التأكد إن فيه زيارة محفوظة أصلاً (لأن الروشتة Foreign Key للزيارة)
@@ -226,13 +258,13 @@ namespace Clinic.Medical_Services.Visit
             // حفظ الروشتة ومعها قائمة الأدوية (ItemsList)
             if (_Prescription.Save())
             {
+                //save bill
+                _SaveBill();
+
                 lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
                 _Mode = enMode.Update;
                 btnShowBill.Visible = true; // تفعيل زرار عرض الفاتورة بعد حفظ الروشتة
 
-                //Save Bill
-
-                //SaveBill();
                 MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DataBack?.Invoke(this, _Visit.VisitID);
             }
@@ -398,7 +430,15 @@ namespace Clinic.Medical_Services.Visit
 
         private void btnShowBill_Click(object sender, EventArgs e)
         {
-           //
+           if(_BillID != -1)
+            {
+                frmBillDetails frm = new frmBillDetails(_BillID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No bill available to show.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
