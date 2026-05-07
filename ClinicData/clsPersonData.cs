@@ -299,5 +299,95 @@ namespace ClinicData
 
             return isFound;
         }
+        /* Private helper method to avoid redundancy */
+        private static void _MapReaderToPersonData(SqlDataReader reader, ref int PersonID, ref string FullName, ref string Phone,
+            ref byte Gendor, ref DateTime DateOfBirth, ref string Address, ref string Email, ref string ImagePath)
+        {
+            PersonID = (int)reader["PersonID"];
+            FullName = (string)reader["FullName"];
+            Phone = (string)reader["Phone"];
+            Gendor = (byte)reader["Gendor"];
+            DateOfBirth = (DateTime)reader["DateOfBirth"];
+
+            /* Handling Nullable Columns */
+            Address = (reader["Address"] != DBNull.Value) ? (string)reader["Address"] : "";
+            Email = (reader["Email"] != DBNull.Value) ? (string)reader["Email"] : "";
+            ImagePath = (reader["ImagePath"] != DBNull.Value) ? (string)reader["ImagePath"] : "";
+        }
+
+
+        public static bool GetPersonByPatientID(int PatientID, ref int PersonID, ref string FullName, ref string Phone,
+            ref byte Gendor, ref DateTime DateOfBirth, ref string Address, ref string Email, ref string ImagePath)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT p.* FROM People p
+                         INNER JOIN Patients pt ON p.PersonID = pt.PersonID
+                         WHERE pt.PatientID = @PatientID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                _MapReaderToPersonData(reader, ref PersonID, ref FullName, ref Phone, ref Gendor,
+                                    ref DateOfBirth, ref Address, ref Email, ref ImagePath);
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+            return isFound;
+        }
+
+        public static bool GetPersonByDoctorID(int DoctorID, ref int PersonID, ref string FullName, ref string Phone,
+            ref byte Gendor, ref DateTime DateOfBirth, ref string Address, ref string Email, ref string ImagePath)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT p.* FROM People p
+                         INNER JOIN Doctors d ON p.PersonID = d.PersonID
+                         WHERE d.DoctorID = @DoctorID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@DoctorID", DoctorID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                _MapReaderToPersonData(reader, ref PersonID, ref FullName, ref Phone, ref Gendor,
+                                    ref DateOfBirth, ref Address, ref Email, ref ImagePath);
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+            return isFound;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace ClinicData
     public class clsBillData
     {
 
-        public static bool GetBillInfoByID(int BillID, ref int VisitID, ref int PatientID, ref int DoctorID, ref decimal TotalAmount,
+        public static bool GetBillInfoByID(int BillID, ref int VisitID, ref decimal TotalAmount,
             ref byte PaymentStatus, ref DateTime? PaymentDate, ref byte PaymentMethod,
             ref decimal TaxAmount, ref decimal Discount, ref int CreatedByUserID)
         {
@@ -36,8 +36,6 @@ namespace ClinicData
                     isFound = true;
 
                     VisitID = (int)reader["VisitID"];
-                    PatientID = (int)reader["PatientID"];
-                    DoctorID = (int)reader["DoctorID"];
                     TotalAmount = (decimal)reader["TotalAmount"];
                     PaymentStatus = (byte)reader["PaymentStatus"];
 
@@ -85,7 +83,7 @@ namespace ClinicData
             return isFound;
         }
 
-        public static int AddNewBill(int VisitID, int PatientID, int DoctorID, decimal TotalAmount, byte PaymentStatus,
+        public static int AddNewBill(int VisitID, decimal TotalAmount, byte PaymentStatus,
              DateTime? PaymentDate, byte PaymentMethod, decimal TaxAmount, decimal Discount, int CreatedByUserID)
         {
             int BillID = -1;
@@ -99,8 +97,6 @@ namespace ClinicData
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@VisitID", VisitID);
-            command.Parameters.AddWithValue("@PatientID", PatientID);
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
             command.Parameters.AddWithValue("@TotalAmount", TotalAmount);
             command.Parameters.AddWithValue("@PaymentStatus", PaymentStatus);
             command.Parameters.AddWithValue("@PaymentMethod", PaymentMethod);
@@ -139,7 +135,7 @@ namespace ClinicData
             return BillID;
         }
 
-        public static bool UpdateBill(int BillID, int VisitID, int PatientID, int DoctorID, decimal TotalAmount, byte PaymentStatus,
+        public static bool UpdateBill(int BillID, int VisitID, decimal TotalAmount, byte PaymentStatus,
             DateTime? PaymentDate, byte PaymentMethod, decimal TaxAmount, decimal Discount, int CreatedByUserID)
         {
             int rowsAffected = 0;
@@ -161,8 +157,6 @@ namespace ClinicData
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@VisitID", VisitID);
-            command.Parameters.AddWithValue("@PatientID", PatientID);
-            command.Parameters.AddWithValue("@DoctorID", DoctorID);
             command.Parameters.AddWithValue("@TotalAmount", TotalAmount);
             command.Parameters.AddWithValue("@PaymentStatus", PaymentStatus);
             command.Parameters.AddWithValue("@PaymentMethod", PaymentMethod);
@@ -200,8 +194,6 @@ namespace ClinicData
 
             string query = @"SELECT Bills.BillID, 
                              Bills.VisitID, 
-                             Bills.PatientID,
-                             Bills.DoctorID,
                              PatientName = People.FullName,
                              Bills.TotalAmount, 
                              Bills.PaymentStatus,
@@ -252,7 +244,7 @@ namespace ClinicData
             return dt;
         }
 
-        public static bool GetBillInfoByVisitID(int VisitID, ref int BillID, ref int PatientID, ref int DoctorID, ref decimal TotalAmount,
+        public static bool GetBillInfoByVisitID(int VisitID, ref int BillID, ref decimal TotalAmount,
             ref byte PaymentStatus, ref DateTime? PaymentDate, ref byte PaymentMethod,
             ref decimal TaxAmount, ref decimal Discount, ref int CreatedByUserID)
         {
@@ -278,8 +270,6 @@ namespace ClinicData
                                 isFound = true;
 
                                 BillID = (int)reader["BillID"];
-                                PatientID = (int)reader["PatientID"];
-                                DoctorID = (int)reader["DoctorID"];
                                 TotalAmount = (decimal)reader["TotalAmount"];
                                 PaymentStatus = (byte)reader["PaymentStatus"];
 

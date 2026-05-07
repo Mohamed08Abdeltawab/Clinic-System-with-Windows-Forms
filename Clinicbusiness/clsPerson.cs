@@ -120,5 +120,45 @@ namespace Clinicbusiness
         {
             return clsPersonData.IsPersonExist(ID);
         }
+
+
+        public static clsPerson FindByPatientID(int PatientID)
+        {
+            int PersonID = -1;
+            string FullName = "", Phone = "", Address = "", Email = "", ImagePath = "";
+            byte Gendor = 0;
+            DateTime DateOfBirth = DateTime.Now;
+
+            /* Call the DataAccess layer method */
+            if (clsPersonData.GetPersonByPatientID(PatientID, ref PersonID, ref FullName, ref Phone,
+                ref Gendor, ref DateOfBirth, ref Address, ref Email, ref ImagePath))
+            {
+                return new clsPerson(PersonID, FullName, Phone, Gendor, DateOfBirth, Address, Email, ImagePath);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // Static method to find a person by DoctorID
+        public static clsPerson FindByDoctorID(int DoctorID)
+        {
+            int PersonID = -1;
+            string FullName = "", Phone = "", Address = "", Email = "", ImagePath = "";
+            byte Gendor = 0;
+            DateTime DateOfBirth = DateTime.Now;
+
+            /* Call the DataAccess layer method */
+            if (clsPersonData.GetPersonByDoctorID(DoctorID, ref PersonID, ref FullName, ref Phone,
+                ref Gendor, ref DateOfBirth, ref Address, ref Email, ref ImagePath))
+            {
+                return new clsPerson(PersonID, FullName, Phone, Gendor, DateOfBirth, Address, Email, ImagePath);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

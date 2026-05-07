@@ -20,8 +20,6 @@ namespace Clinicbusiness
 
         public int BillID { set; get; }
         public int VisitID { set; get; }
-        public int PatientID { set; get; }
-        public int DoctorID { set; get; }
         public decimal TotalAmount { set; get; }
         public byte PaymentStatus { set; get; }
 
@@ -41,8 +39,6 @@ namespace Clinicbusiness
         {
             this.BillID = -1;
             this.VisitID = -1;
-            this.PatientID = -1;
-            this.DoctorID = -1;
             this.TotalAmount = 0;
             this.PaymentStatus = (byte)enPaymentStatus.Unpaid;
             this.PaymentDate = null; // الافتراضي لا يوجد تاريخ دفع
@@ -51,19 +47,17 @@ namespace Clinicbusiness
             this.Discount = 0;
             this.CreatedByUserID = -1;
             this.UserInfo = null;
-
+           
             Mode = enMode.AddNew;
         }
 
         // تحديث البناء الخاص ليشمل الحقول الجديدة
-        private clsBill(int BillID, int VisitID, int PatientID, int DoctorID, decimal TotalAmount,
+        private clsBill(int BillID, int VisitID, decimal TotalAmount,
                         byte PaymentStatus, DateTime? PaymentDate, byte PaymentMethod,
                         decimal TaxAmount, decimal Discount, int CreatedByUserID)
         {
             this.BillID = BillID;
             this.VisitID = VisitID;
-            this.PatientID = PatientID;
-            this.DoctorID = DoctorID;
             this.TotalAmount = TotalAmount;
             this.PaymentStatus = PaymentStatus;
             this.PaymentDate = PaymentDate;
@@ -72,7 +66,7 @@ namespace Clinicbusiness
             this.Discount = Discount;
             this.CreatedByUserID = CreatedByUserID;
             this.UserInfo = clsUser.FindByUserID(this.CreatedByUserID);
-
+            
 
             Mode = enMode.Update;
         }
@@ -81,7 +75,7 @@ namespace Clinicbusiness
         {
             // تمرير المعاملات الجديدة للـ Data Layer
             this.BillID = clsBillData.AddNewBill(
-                this.VisitID, this.PatientID, this.DoctorID, this.TotalAmount, this.PaymentStatus, this.PaymentDate,
+                this.VisitID, this.TotalAmount, this.PaymentStatus, this.PaymentDate,
                 this.PaymentMethod, this.TaxAmount, this.Discount, this.CreatedByUserID);
 
             return (this.BillID != -1);
@@ -91,13 +85,13 @@ namespace Clinicbusiness
         {
             // تمرير المعاملات الجديدة للـ Data Layer
             return clsBillData.UpdateBill(
-                this.BillID, this.VisitID, this.PatientID, this.DoctorID, this.TotalAmount, this.PaymentStatus, this.PaymentDate,
+                this.BillID, this.VisitID, this.TotalAmount, this.PaymentStatus, this.PaymentDate,
                 this.PaymentMethod, this.TaxAmount, this.Discount, this.CreatedByUserID);
         }
 
         public static clsBill Find(int BillID)
         {
-            int VisitID = -1, PatientID = -1, DoctorID = -1, CreatedByUserID = -1;
+            int VisitID = -1, CreatedByUserID = -1;
             decimal TotalAmount = 0;
             byte PaymentStatus = 2;
             DateTime? PaymentDate = null; // متغير Nullable
@@ -108,11 +102,11 @@ namespace Clinicbusiness
             decimal Discount = 0;
 
             bool IsFound = clsBillData.GetBillInfoByID(
-                BillID, ref VisitID, ref PatientID, ref DoctorID, ref TotalAmount, ref PaymentStatus, ref PaymentDate,
+                BillID, ref VisitID, ref TotalAmount, ref PaymentStatus, ref PaymentDate,
                 ref PaymentMethod, ref TaxAmount, ref Discount, ref CreatedByUserID);
 
             if (IsFound)
-                return new clsBill(BillID, VisitID, PatientID, DoctorID, TotalAmount, PaymentStatus, PaymentDate,
+                return new clsBill(BillID, VisitID, TotalAmount, PaymentStatus, PaymentDate,
                     PaymentMethod, TaxAmount, Discount, CreatedByUserID);
             else
                 return null;
@@ -120,7 +114,7 @@ namespace Clinicbusiness
 
         public static clsBill FindByVisitID(int VisitID)
         {
-            int BillID = -1, PatientID = -1, DoctorID = -1, CreatedByUserID = -1;
+            int BillID = -1, CreatedByUserID = -1;
             decimal TotalAmount = 0;
             byte PaymentStatus = 2;
             DateTime? PaymentDate = null;
@@ -130,11 +124,11 @@ namespace Clinicbusiness
             decimal Discount = 0;
 
             bool IsFound = clsBillData.GetBillInfoByVisitID(
-                VisitID, ref BillID, ref PatientID, ref DoctorID, ref TotalAmount, ref PaymentStatus, ref PaymentDate,
+                VisitID, ref BillID, ref TotalAmount, ref PaymentStatus, ref PaymentDate,
                 ref PaymentMethod, ref TaxAmount, ref Discount, ref CreatedByUserID);
 
             if (IsFound)
-                return new clsBill(BillID, VisitID, PatientID, DoctorID, TotalAmount, PaymentStatus, PaymentDate,
+                return new clsBill(BillID, VisitID, TotalAmount, PaymentStatus, PaymentDate,
                     PaymentMethod, TaxAmount, Discount, CreatedByUserID);
             else
                 return null;

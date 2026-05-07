@@ -15,6 +15,8 @@ namespace Clinic.Financials.Manage_Bills
     {
         clsBill _Bill;
         private int _BillID;
+
+        clsPerson _PatientPerson;
         public frmBillDetails(int billID)
         {
             InitializeComponent();
@@ -22,10 +24,12 @@ namespace Clinic.Financials.Manage_Bills
             _LoadBillData();
         }
 
-
-        private void frmBillDetails_Load(object sender, EventArgs e)
+        //add new bill c
+        public frmBillDetails(clsBill newBill)
         {
-
+            InitializeComponent();
+            _Bill = newBill;
+            _LoadBillData();
         }
 
         private void _LoadBillData()
@@ -38,20 +42,20 @@ namespace Clinic.Financials.Manage_Bills
                 return;
             }
             // Use properties instead of List indexes (Type-Safe)
-            lblPatientName.Text = _Bill.UserInfo?.UserName ?? "N/A";
-            lblDoctorName.Text = 
+            
+            _PatientPerson = clsPerson.FindByPatientID(clsAppointment.Find(_Bill.VisitID).PatientID);
+            lblPatientName.Text = _PatientPerson != null ? _PatientPerson.FullName : "N/A";
             lblBillID.Text = _Bill.BillID.ToString();
             lblVisitID.Text = _Bill.VisitID.ToString();
             lblTotalAmount.Text = _Bill.TotalAmount.ToString("C");
             lblPaymentStatus.Text = _Bill.PaymentStatus.ToString();
             lblBillDate.Text = _Bill.PaymentDate.HasValue ? _Bill.PaymentDate.Value.ToShortDateString() : "N/A";
             lblDiscount.Text = _Bill.Discount.ToString("C");
-            lblPaymentMethod.Text = _Bill.PaymentMethod.ToString();
+            lblPaymentMethod.Text = ((clsBill.enPaymentMethod)_Bill.PaymentMethod).ToString();
             lblPaymentStatus.Text = ((clsBill.enPaymentStatus)_Bill.PaymentStatus).ToString();
             lblTaxAmount.Text = _Bill.TaxAmount.ToString("C");
             lblTotalCost.Text = (_Bill.TotalAmount + _Bill.TaxAmount - _Bill.Discount).ToString("C");
             lblPaymentDate.Text = _Bill.PaymentDate.HasValue ? _Bill.PaymentDate.Value.ToShortDateString() : "N/A";
-
             lblUserName.Text = _Bill.UserInfo?.UserName ?? "N/A";
         }
 
