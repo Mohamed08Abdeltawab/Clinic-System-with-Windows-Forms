@@ -19,16 +19,16 @@ namespace Clinic.Financials.Manage_Bills
         {
             InitializeComponent();
             _BillID = billID;
+            _LoadBillData();
         }
-
 
 
         private void frmBillDetails_Load(object sender, EventArgs e)
         {
-            _FillBillDetails();
+
         }
 
-        private void _FillBillDetails()
+        private void _LoadBillData()
         {
             _Bill = clsBill.Find(_BillID);
             if(_Bill == null)
@@ -37,14 +37,23 @@ namespace Clinic.Financials.Manage_Bills
                 this.Close();
                 return;
             }
+            // Use properties instead of List indexes (Type-Safe)
+            lblPatientName.Text = _Bill.UserInfo?.UserName ?? "N/A";
+            lblDoctorName.Text = 
             lblBillID.Text = _Bill.BillID.ToString();
             lblVisitID.Text = _Bill.VisitID.ToString();
             lblTotalAmount.Text = _Bill.TotalAmount.ToString("C");
+            lblPaymentStatus.Text = _Bill.PaymentStatus.ToString();
+            lblBillDate.Text = _Bill.PaymentDate.HasValue ? _Bill.PaymentDate.Value.ToShortDateString() : "N/A";
+            lblDiscount.Text = _Bill.Discount.ToString("C");
+            lblPaymentMethod.Text = _Bill.PaymentMethod.ToString();
             lblPaymentStatus.Text = ((clsBill.enPaymentStatus)_Bill.PaymentStatus).ToString();
+            lblTaxAmount.Text = _Bill.TaxAmount.ToString("C");
+            lblTotalCost.Text = (_Bill.TotalAmount + _Bill.TaxAmount - _Bill.Discount).ToString("C");
             lblPaymentDate.Text = _Bill.PaymentDate.HasValue ? _Bill.PaymentDate.Value.ToShortDateString() : "N/A";
-            lblPaymentMethod.Text = ((clsBill.enPaymentMethod)_Bill.PaymentMethod).ToString();
-            lblBillDate.Text = _Bill.CreatedByUserID.ToString(); // Assuming CreatedByUserID is being used as BillDate, adjust if necessary
-            lblUserName.Text = _Bill.CreatedByUserID.ToString(); // Assuming CreatedByUserID is being used as UserName, adjust if necessary
+
+            lblUserName.Text = _Bill.UserInfo?.UserName ?? "N/A";
         }
+
     }
 }

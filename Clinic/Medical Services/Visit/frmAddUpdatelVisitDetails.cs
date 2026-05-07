@@ -1,4 +1,5 @@
 ﻿using Clinic.Doctor;
+using Clinic.Financials.Manage_Bills;
 using Clinic.Global_Classes;
 using Clinic.Medical_Services.Medicine;
 using Clinic.Patient;
@@ -32,6 +33,8 @@ namespace Clinic.Medical_Services.Visit
         private int _AppointmentID;
         private clsVisit _Visit;
         private clsPrescription _Prescription;
+
+        private clsBill _Bill;
 
         public frmAddUpdatelVisitDetails(int AppointmentID)
         {
@@ -226,6 +229,10 @@ namespace Clinic.Medical_Services.Visit
                 lblPrescriptionID.Text = _Prescription.PrescriptionID.ToString();
                 _Mode = enMode.Update;
                 btnShowBill.Visible = true; // تفعيل زرار عرض الفاتورة بعد حفظ الروشتة
+
+                //Save Bill
+
+                //SaveBill();
                 MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DataBack?.Invoke(this, _Visit.VisitID);
             }
@@ -389,6 +396,10 @@ namespace Clinic.Medical_Services.Visit
             }
         }
 
+        private void btnShowBill_Click(object sender, EventArgs e)
+        {
+           //
+        }
     }
 }
 

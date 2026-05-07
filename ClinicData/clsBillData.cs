@@ -11,7 +11,7 @@ namespace ClinicData
     public class clsBillData
     {
 
-        public static bool GetBillInfoByID(int BillID, ref int VisitID, ref decimal TotalAmount,
+        public static bool GetBillInfoByID(int BillID, ref int VisitID, ref int PatientID, ref int DoctorID, ref decimal TotalAmount,
             ref byte PaymentStatus, ref DateTime? PaymentDate, ref byte PaymentMethod,
             ref decimal TaxAmount, ref decimal Discount, ref int CreatedByUserID)
         {
@@ -36,6 +36,8 @@ namespace ClinicData
                     isFound = true;
 
                     VisitID = (int)reader["VisitID"];
+                    PatientID = (int)reader["PatientID"];
+                    DoctorID = (int)reader["DoctorID"];
                     TotalAmount = (decimal)reader["TotalAmount"];
                     PaymentStatus = (byte)reader["PaymentStatus"];
 
@@ -83,20 +85,22 @@ namespace ClinicData
             return isFound;
         }
 
-        public static int AddNewBill(int VisitID, decimal TotalAmount, byte PaymentStatus,
+        public static int AddNewBill(int VisitID, int PatientID, int DoctorID, decimal TotalAmount, byte PaymentStatus,
              DateTime? PaymentDate, byte PaymentMethod, decimal TaxAmount, decimal Discount, int CreatedByUserID)
         {
             int BillID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Bills (VisitID, TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, TaxAmount, Discount, CreatedByUserID)
-                             VALUES (@VisitID, @TotalAmount, @PaymentStatus, @PaymentDate, @PaymentMethod, @TaxAmount, @Discount, @CreatedByUserID);
+            string query = @"INSERT INTO Bills (VisitID, PatientID, DoctorID, TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, TaxAmount, Discount, CreatedByUserID)
+                             VALUES (@VisitID, @PatientID, @DoctorID, @TotalAmount, @PaymentStatus, @PaymentDate, @PaymentMethod, @TaxAmount, @Discount, @CreatedByUserID);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@VisitID", VisitID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
             command.Parameters.AddWithValue("@TotalAmount", TotalAmount);
             command.Parameters.AddWithValue("@PaymentStatus", PaymentStatus);
             command.Parameters.AddWithValue("@PaymentMethod", PaymentMethod);
@@ -135,7 +139,7 @@ namespace ClinicData
             return BillID;
         }
 
-        public static bool UpdateBill(int BillID, int VisitID, decimal TotalAmount, byte PaymentStatus,
+        public static bool UpdateBill(int BillID, int VisitID, int PatientID, int DoctorID, decimal TotalAmount, byte PaymentStatus,
             DateTime? PaymentDate, byte PaymentMethod, decimal TaxAmount, decimal Discount, int CreatedByUserID)
         {
             int rowsAffected = 0;
@@ -143,6 +147,8 @@ namespace ClinicData
 
             string query = @"Update Bills  
                              set VisitID = @VisitID,
+                                 PatientID = @PatientID,
+                                 DoctorID = @DoctorID,
                                  TotalAmount = @TotalAmount,
                                  PaymentStatus = @PaymentStatus,
                                  PaymentDate = @PaymentDate,
@@ -155,6 +161,8 @@ namespace ClinicData
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@VisitID", VisitID);
+            command.Parameters.AddWithValue("@PatientID", PatientID);
+            command.Parameters.AddWithValue("@DoctorID", DoctorID);
             command.Parameters.AddWithValue("@TotalAmount", TotalAmount);
             command.Parameters.AddWithValue("@PaymentStatus", PaymentStatus);
             command.Parameters.AddWithValue("@PaymentMethod", PaymentMethod);
@@ -192,6 +200,8 @@ namespace ClinicData
 
             string query = @"SELECT Bills.BillID, 
                              Bills.VisitID, 
+                             Bills.PatientID,
+                             Bills.DoctorID,
                              PatientName = People.FullName,
                              Bills.TotalAmount, 
                              Bills.PaymentStatus,
@@ -242,7 +252,7 @@ namespace ClinicData
             return dt;
         }
 
-        public static bool GetBillInfoByVisitID(int VisitID, ref int BillID, ref decimal TotalAmount,
+        public static bool GetBillInfoByVisitID(int VisitID, ref int BillID, ref int PatientID, ref int DoctorID, ref decimal TotalAmount,
             ref byte PaymentStatus, ref DateTime? PaymentDate, ref byte PaymentMethod,
             ref decimal TaxAmount, ref decimal Discount, ref int CreatedByUserID)
         {
@@ -268,6 +278,8 @@ namespace ClinicData
                                 isFound = true;
 
                                 BillID = (int)reader["BillID"];
+                                PatientID = (int)reader["PatientID"];
+                                DoctorID = (int)reader["DoctorID"];
                                 TotalAmount = (decimal)reader["TotalAmount"];
                                 PaymentStatus = (byte)reader["PaymentStatus"];
 
