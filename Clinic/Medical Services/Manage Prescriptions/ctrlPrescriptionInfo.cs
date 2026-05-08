@@ -139,5 +139,6 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
                 frm.ShowDialog();
             }
         }
+
     }
 }

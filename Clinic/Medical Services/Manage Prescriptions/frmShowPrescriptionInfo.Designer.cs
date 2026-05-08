@@ -30,6 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnPrintPrescription = new System.Windows.Forms.Button();
             this.ctrlPrescriptionInfo1 = new Clinic.Medical_Services.Manage_Prescriptions.ctrlPrescriptionInfo();
             this.SuspendLayout();
             // 
@@ -58,13 +59,29 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnPrintPrescription
+            // 
+            this.btnPrintPrescription.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnPrintPrescription.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrintPrescription.Image = global::Clinic.Properties.Resources.bill_32;
+            this.btnPrintPrescription.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPrescription.Location = new System.Drawing.Point(13, 505);
+            this.btnPrintPrescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPrintPrescription.Name = "btnPrintPrescription";
+            this.btnPrintPrescription.Size = new System.Drawing.Size(186, 37);
+            this.btnPrintPrescription.TabIndex = 196;
+            this.btnPrintPrescription.Text = "Print Prescription";
+            this.btnPrintPrescription.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrintPrescription.UseVisualStyleBackColor = false;
+            this.btnPrintPrescription.Click += new System.EventHandler(this.btnPrintPrescription_Click);
+            // 
             // ctrlPrescriptionInfo1
             // 
             this.ctrlPrescriptionInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlPrescriptionInfo1.Location = new System.Drawing.Point(13, 53);
             this.ctrlPrescriptionInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlPrescriptionInfo1.Name = "ctrlPrescriptionInfo1";
-            this.ctrlPrescriptionInfo1.Size = new System.Drawing.Size(854, 445);
+            this.ctrlPrescriptionInfo1.Size = new System.Drawing.Size(854, 442);
             this.ctrlPrescriptionInfo1.TabIndex = 0;
             // 
             // frmShowPrescriptionInfo
@@ -72,6 +89,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 548);
+            this.Controls.Add(this.btnPrintPrescription);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlPrescriptionInfo1);
@@ -88,5 +106,6 @@
         private ctrlPrescriptionInfo ctrlPrescriptionInfo1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnPrintPrescription;
     }
 }

@@ -364,5 +364,58 @@ namespace ClinicData
 
             return isFound;
         }
+
+
+        /* Comprehensive method to fetch all data required for prescription printing */
+        public static bool GetPrescriptionDetailsForPrinting(int PrescriptionID,
+            ref string PatientName, ref string DoctorName, ref string Diagnosis,
+            ref DateTime PrescriptionDate, ref string Notes)
+        {
+            bool isFound = false;
+
+            /* SQL Query connecting all relevant tables to get names and medical info */
+            string query = @"SELECT 
+                        P_Patient.FullName AS PatientName, 
+                        P_Doctor.FullName AS DoctorName, 
+                        V.Diagnosis, 
+                        Pr.PrescriptionDate, 
+                        Pr.Notes
+                     FROM Prescriptions Pr
+                     JOIN Visits V ON Pr.VisitID = V.VisitID
+                     JOIN Appointments A ON V.AppointmentID = A.AppointmentID
+                     JOIN Patients Pat ON A.PatientID = Pat.PatientID
+                     JOIN People P_Patient ON Pat.PersonID = P_Patient.PersonID
+                     JOIN Doctors D ON A.DoctorID = D.DoctorID
+                     JOIN People P_Doctor ON D.PersonID = P_Doctor.PersonID
+                     WHERE Pr.PrescriptionID = @PrescriptionID";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PrescriptionID", PrescriptionID);
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+                                PatientName = (string)reader["PatientName"];
+                                DoctorName = (string)reader["DoctorName"];
+                                Diagnosis = reader["Diagnosis"] == DBNull.Value ? "N/A" : (string)reader["Diagnosis"];
+                                PrescriptionDate = (DateTime)reader["PrescriptionDate"];
+                                Notes = reader["Notes"] == DBNull.Value ? "" : (string)reader["Notes"];
+                            }
+                        }
+                    }
+                }
+            }
+            catch { isFound = false; }
+
+            return isFound;
+        }
     }
 }

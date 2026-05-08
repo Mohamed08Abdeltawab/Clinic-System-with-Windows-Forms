@@ -29,6 +29,11 @@ namespace Clinicbusiness
         public DateTime PrescriptionDate { set; get; }
         public string Notes { set; get; }
 
+        /* Extended properties for printing purposes (Read-only from DB) */
+        public string PatientName { get; set; }
+        public string DoctorName { get; set; }
+        public string Diagnosis { get; set; }
+
         // قائمة الأدوية (Details)
         public List<clsPrescriptionItem> ItemsList;
 
@@ -75,6 +80,34 @@ namespace Clinicbusiness
                 });
             }
             return items;
+        }
+
+
+        /* Method to find all prescription details including linked names for printing */
+        public static clsPrescription FindFullInfo(int PrescriptionID)
+        {
+            string patientName = "", doctorName = "", diagnosis = "", notes = "";
+            DateTime prescriptionDate = DateTime.Now;
+            int visitID = -1;
+
+            /* Use the special printing data access method */
+            if (clsPrescriptionData.GetPrescriptionDetailsForPrinting(PrescriptionID,
+                ref patientName, ref doctorName, ref diagnosis, ref prescriptionDate, ref notes))
+            {
+                // We need the visitID for the constructor, let's get it through info by ID
+                clsPrescriptionData.GetPrescriptionInfoByID(PrescriptionID, ref visitID, ref prescriptionDate, ref notes);
+
+                clsPrescription prescription = new clsPrescription(PrescriptionID, visitID, prescriptionDate, notes);
+
+                /* Fill the extended properties */
+                prescription.PatientName = patientName;
+                prescription.DoctorName = doctorName;
+                prescription.Diagnosis = diagnosis;
+
+                return prescription;
+            }
+
+            return null;
         }
 
         private bool _AddNewPrescription()

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPrescriptionNotes = new System.Windows.Forms.Label();
             this.llEditPrescriptionInfo = new System.Windows.Forms.LinkLabel();
             this.lblVisitID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.txtPrescriptionNotes = new System.Windows.Forms.Label();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,6 +79,17 @@
             this.GroupBox1.TabIndex = 237;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Prescription Information";
+            // 
+            // txtPrescriptionNotes
+            // 
+            this.txtPrescriptionNotes.AutoSize = true;
+            this.txtPrescriptionNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrescriptionNotes.Location = new System.Drawing.Point(219, 388);
+            this.txtPrescriptionNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtPrescriptionNotes.Name = "txtPrescriptionNotes";
+            this.txtPrescriptionNotes.Size = new System.Drawing.Size(49, 20);
+            this.txtPrescriptionNotes.TabIndex = 253;
+            this.txtPrescriptionNotes.Text = "[???]";
             // 
             // llEditPrescriptionInfo
             // 
@@ -206,7 +217,7 @@
             // 
             this.lblPrescriptionID.AutoSize = true;
             this.lblPrescriptionID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrescriptionID.Location = new System.Drawing.Point(200, 25);
+            this.lblPrescriptionID.Location = new System.Drawing.Point(200, 31);
             this.lblPrescriptionID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrescriptionID.Name = "lblPrescriptionID";
             this.lblPrescriptionID.Size = new System.Drawing.Size(49, 20);
@@ -217,7 +228,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 25);
+            this.label11.Location = new System.Drawing.Point(8, 31);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(133, 20);
@@ -247,23 +258,12 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Clinic.Properties.Resources.ID_32;
-            this.pictureBox11.Location = new System.Drawing.Point(162, 25);
+            this.pictureBox11.Location = new System.Drawing.Point(162, 31);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(31, 26);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox11.TabIndex = 239;
             this.pictureBox11.TabStop = false;
-            // 
-            // txtPrescriptionNotes
-            // 
-            this.txtPrescriptionNotes.AutoSize = true;
-            this.txtPrescriptionNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrescriptionNotes.Location = new System.Drawing.Point(219, 388);
-            this.txtPrescriptionNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtPrescriptionNotes.Name = "txtPrescriptionNotes";
-            this.txtPrescriptionNotes.Size = new System.Drawing.Size(49, 20);
-            this.txtPrescriptionNotes.TabIndex = 253;
-            this.txtPrescriptionNotes.Text = "[???]";
             // 
             // ctrlPrescriptionInfo
             // 
