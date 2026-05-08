@@ -77,14 +77,22 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
                 dgvMedicines.Columns["MedicineName"].HeaderText = "Medicine Name";
                 dgvMedicines.Columns["MedicineName"].Width = 150;
 
-                dgvMedicines.Columns["Quantity"].HeaderText = "Qty";
-                dgvMedicines.Columns["Quantity"].Width = 70;
+                dgvMedicines.Columns["Quantity"].HeaderText = "Quantity";
+                dgvMedicines.Columns["Quantity"].Width = 130;
 
-                dgvMedicines.Columns["Dosage"].HeaderText = "Dosage";
-                dgvMedicines.Columns["Dosage"].Width = 220;
+                dgvMedicines.Columns["Dosage"].Visible = false;
+                dgvMedicines.Columns["Instructions"].Visible = false;
 
-                dgvMedicines.Columns["Instructions"].HeaderText = "Instructions";
-                dgvMedicines.Columns["Instructions"].Width = 220;
+                dgvMedicines.Columns["UnitPrice"].HeaderText = "Unit Price";
+                dgvMedicines.Columns["UnitPrice"].Width = 150;
+
+            }
+            else
+            {
+                dgvMedicines.Columns["ItemID"].Visible = false;
+                dgvMedicines.Columns["PrescriptionID"].Visible = false;
+                dgvMedicines.Columns["Dosage"].Visible = false;
+                dgvMedicines.Columns["Instructions"].Visible = false;
             }
         }
 

@@ -57,9 +57,11 @@ namespace Clinic.Medical_Services.Visit
 
         private void _RefreshGrid()
         {
-            // ربط الـ List الموجودة في كائن الروشتة بالـ DataGridView
-            // ملاحظة: الأفضل استخدام BindingSource أو تحويل الـ List لـ DataTable مؤقتاً للعرض
             dgvMedicines.DataSource = null;
+            // حماية في حالة كانت القائمة فارغة
+            if (_Prescription == null || _Prescription.ItemsList == null)
+                return;
+
             dgvMedicines.DataSource = _Prescription.ItemsList;
 
             if (dgvMedicines.Rows.Count > 0)
@@ -70,21 +72,25 @@ namespace Clinic.Medical_Services.Visit
                 dgvMedicines.Columns["MedicineID"].HeaderText = "ID";
                 dgvMedicines.Columns["MedicineID"].Width = 70;
 
-
                 dgvMedicines.Columns["MedicineName"].HeaderText = "Medicine Name";
                 dgvMedicines.Columns["MedicineName"].Width = 150;
 
-                dgvMedicines.Columns["Quantity"].HeaderText = "Qty";
-                dgvMedicines.Columns["Quantity"].Width = 70;
+                dgvMedicines.Columns["Quantity"].HeaderText = "Quantity";
+                dgvMedicines.Columns["Quantity"].Width = 130;
 
+                dgvMedicines.Columns["Dosage"].Visible = false;
+                dgvMedicines.Columns["Instructions"].Visible = false;
 
-                dgvMedicines.Columns["Dosage"].HeaderText = "Dosage";
-                dgvMedicines.Columns["Dosage"].Width = 220;
+                dgvMedicines.Columns["UnitPrice"].HeaderText = "Unit Price";
+                dgvMedicines.Columns["UnitPrice"].Width = 150;
 
-
-                dgvMedicines.Columns["Instructions"].HeaderText = "Instructions";
-                dgvMedicines.Columns["Instructions"].Width = 220;
-
+            }
+            else
+            {
+                dgvMedicines.Columns["ItemID"].Visible = false;
+                dgvMedicines.Columns["PrescriptionID"].Visible = false;
+                dgvMedicines.Columns["Dosage"].Visible = false;
+                dgvMedicines.Columns["Instructions"].Visible = false;
             }
         }
 

@@ -141,7 +141,7 @@
             this.paymentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Payment_64;
             this.paymentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.paymentsToolStripMenuItem.Text = "Payments";
             // 
             // manageBillsToolStripMenuItem
@@ -149,8 +149,9 @@
             this.manageBillsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Bill_64;
             this.manageBillsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.manageBillsToolStripMenuItem.Name = "manageBillsToolStripMenuItem";
-            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
+            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
             this.manageBillsToolStripMenuItem.Text = "Manage Bills";
+            this.manageBillsToolStripMenuItem.Click += new System.EventHandler(this.manageBillsToolStripMenuItem_Click);
             // 
             // peopleToolStripMenuItem
             // 
@@ -297,7 +298,6 @@
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.msMainMenue.ResumeLayout(false);
             this.msMainMenue.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

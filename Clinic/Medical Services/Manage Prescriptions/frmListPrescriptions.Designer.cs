@@ -33,6 +33,7 @@
             this.dgvPrescription = new System.Windows.Forms.DataGridView();
             this.cmsPrescription = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPrescriptionInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showVisitandPrescriptionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,12 +94,22 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPrescriptionInformationToolStripMenuItem,
             this.showVisitandPrescriptionDetailsToolStripMenuItem});
             this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.PersonDetails_32;
             this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 38);
             this.toolStripMenuItem2.Text = "Show Details";
+            // 
+            // showPrescriptionInformationToolStripMenuItem
+            // 
+            this.showPrescriptionInformationToolStripMenuItem.Image = global::Clinic.Properties.Resources.prescription_32;
+            this.showPrescriptionInformationToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showPrescriptionInformationToolStripMenuItem.Name = "showPrescriptionInformationToolStripMenuItem";
+            this.showPrescriptionInformationToolStripMenuItem.Size = new System.Drawing.Size(271, 38);
+            this.showPrescriptionInformationToolStripMenuItem.Text = "Show Prescription Details";
+            this.showPrescriptionInformationToolStripMenuItem.Click += new System.EventHandler(this.showPrescriptionInformationToolStripMenuItem_Click);
             // 
             // showVisitandPrescriptionDetailsToolStripMenuItem
             // 
@@ -286,5 +297,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem showVisitandPrescriptionDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPrescriptionInformationToolStripMenuItem;
     }
 }

@@ -111,12 +111,7 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             this.Close();
         }
 
-        
 
-        private void showPrescriptionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //
-        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -130,7 +125,9 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             int VisitID = (int)dgvPrescription.CurrentRow.Cells["VisitID"].Value;
             clsAppointment _Appointment = clsVisit.GetAppointmentInfoByVisitID(VisitID);
 
-            //
+            frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(_Appointment.AppointmentID);
+            frm.ShowDialog();
+            frmListPrescriptions_Load(null, null);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,6 +167,14 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
                     MessageBox.Show("Error: Could not delete prescription.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void showPrescriptionInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PrescriptionID = (int)dgvPrescription.CurrentRow.Cells["PrescriptionID"].Value;
+            frmShowPrescriptionInfo frm = new frmShowPrescriptionInfo(PrescriptionID);
+            frm.ShowDialog();
+            frmListPrescriptions_Load(null, null);
         }
     }
 }

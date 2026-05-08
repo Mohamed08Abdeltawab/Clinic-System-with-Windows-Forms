@@ -10,8 +10,10 @@ using System.Windows.Forms;
 using Clinic.Appointment;
 using Clinic.Appointment.AppointmentType;
 using Clinic.Doctor;
+using Clinic.Financials.Manage_Bills;
 using Clinic.Global_Classes;
 using Clinic.Login;
+using Clinic.Medical_Services.Manage_Prescriptions;
 using Clinic.Medical_Services.Mange_Services;
 using Clinic.Medical_Services.Visit;
 using Clinic.Patient;
@@ -125,12 +127,14 @@ namespace Clinic
 
         private void prescriptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListPrescriptions frm = new frmListPrescriptions();
+            frm.ShowDialog();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void manageBillsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListBills frm = new frmListBills();
+            frm.ShowDialog();
         }
     }
 }
