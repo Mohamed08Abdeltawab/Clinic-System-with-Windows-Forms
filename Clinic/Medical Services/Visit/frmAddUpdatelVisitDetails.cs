@@ -220,8 +220,7 @@ namespace Clinic.Medical_Services.Visit
                     TaxAmount = 5, // لو في ضريبة، تحسب هنا
                     Discount = 0,
                     TotalAmount = _Prescription.ItemsList.Sum(i => i.Quantity * i.UnitPrice),
-                    //CreatedByUserID = clsGlobal.CurrentUser.UserID
-                    CreatedByUserID = 1 // مؤقت لحد ما تعمل نظام تسجيل دخول
+                    CreatedByUserID = clsGlobal.CurrentUser.UserID
                 };
             }
             if (_Bill.Save())
