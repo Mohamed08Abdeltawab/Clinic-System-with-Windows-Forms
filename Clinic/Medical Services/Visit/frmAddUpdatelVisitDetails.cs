@@ -64,10 +64,13 @@ namespace Clinic.Medical_Services.Visit
 
             dgvMedicines.DataSource = _Prescription.ItemsList;
 
+            dgvMedicines.Columns["ItemID"].Visible = false;
+            dgvMedicines.Columns["PrescriptionID"].Visible = false;
+            dgvMedicines.Columns["Dosage"].Visible = false;
+            dgvMedicines.Columns["Instructions"].Visible = false;
+
             if (dgvMedicines.Rows.Count > 0)
             {
-                dgvMedicines.Columns["ItemID"].Visible = false;
-                dgvMedicines.Columns["PrescriptionID"].Visible = false;
 
                 dgvMedicines.Columns["MedicineID"].HeaderText = "ID";
                 dgvMedicines.Columns["MedicineID"].Width = 70;
@@ -78,19 +81,9 @@ namespace Clinic.Medical_Services.Visit
                 dgvMedicines.Columns["Quantity"].HeaderText = "Quantity";
                 dgvMedicines.Columns["Quantity"].Width = 130;
 
-                dgvMedicines.Columns["Dosage"].Visible = false;
-                dgvMedicines.Columns["Instructions"].Visible = false;
-
                 dgvMedicines.Columns["UnitPrice"].HeaderText = "Unit Price";
                 dgvMedicines.Columns["UnitPrice"].Width = 150;
 
-            }
-            else
-            {
-                dgvMedicines.Columns["ItemID"].Visible = false;
-                dgvMedicines.Columns["PrescriptionID"].Visible = false;
-                dgvMedicines.Columns["Dosage"].Visible = false;
-                dgvMedicines.Columns["Instructions"].Visible = false;
             }
         }
 
@@ -372,13 +365,15 @@ namespace Clinic.Medical_Services.Visit
 
         private void ShowMedicineInfotoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgvMedicines.CurrentRow == null) return;
+            // Check if CurrentRow is null first to avoid the exception
+            if (dgvMedicines.CurrentRow == null || dgvMedicines.CurrentRow.Index == -1)
+                return;
+
             clsPrescriptionItem SelectedItem = _Prescription.ItemsList[dgvMedicines.CurrentRow.Index];
+
             frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription(SelectedItem, frmAddUpdateMedicineToPrescription.enMode.Read);
 
-            // مش محتاج تشترك في الـ DataBack هنا لأن مفيش حفظ هيحصل
             frm.ShowDialog();
-
         }
 
         private void EditMedicinetoolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,7 +381,6 @@ namespace Clinic.Medical_Services.Visit
             if (dgvMedicines.CurrentRow == null) return;
             // 1. جلب الدواء المختار من الـ List بناءً على السطر المحدد في الـ Grid
             clsPrescriptionItem SelectedItem = _Prescription.ItemsList[dgvMedicines.CurrentRow.Index];
-
             // 2. فتح الشاشة في وضع الـ Update وإرسال الكائن
             frmAddUpdateMedicineToPrescription frm = new frmAddUpdateMedicineToPrescription(SelectedItem, frmAddUpdateMedicineToPrescription.enMode.Update);
 
@@ -447,6 +441,19 @@ namespace Clinic.Medical_Services.Visit
             else
             {
                 MessageBox.Show("No bill available to show.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dgvMedicines_Click(object sender, EventArgs e)
+        {
+            EditMedicinetoolStripMenuItem_Click(sender, e);
+        }
+
+        private void cmsMedicines_Opening(object sender, CancelEventArgs e)
+        {
+            if(_Prescription == null || _Prescription.ItemsList == null || dgvMedicines.CurrentRow == null || dgvMedicines.CurrentRow.Index == -1)
+            {
+                e.Cancel = true; // إلغاء فتح القائمة إذا ما فيش دواء مختار
             }
         }
     }

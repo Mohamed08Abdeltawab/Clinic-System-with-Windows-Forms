@@ -48,6 +48,7 @@ namespace Clinic.Doctor
                 _Doctor = new clsDoctor();
                 ctrlPersonCardWithFilter1.FilterFocus();
                 tpDoctorInfo.Enabled = false;
+                ctrlPersonCardWithFilter1.FilterEnabled = true;
             }
             else
             {
@@ -124,10 +125,6 @@ namespace Clinic.Doctor
 
         private void frmAddUpdateDoctor_Load(object sender, EventArgs e)
         {
-            if (!clsGlobal.CheckIsAdmin())
-            {
-                clsGlobal.SetControlsReadOnly(this, true);
-            }
             _ResetDefualtValues();
             if (_Mode == enMode.Update)
                 _LoadData();

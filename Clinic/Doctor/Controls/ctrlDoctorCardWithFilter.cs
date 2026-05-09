@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clinic.Global_Classes;
+using Clinicbusiness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clinicbusiness;
 
 namespace Clinic.Doctor
 {
@@ -130,6 +131,11 @@ namespace Clinic.Doctor
 
         private void btnAddNewDoctor_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckIsAdmin())
+            {
+                MessageBox.Show("You don't have the previliges to edit or add Doctors, you can only view the Doctor data.", "Read Only", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             frmAddUpdateDoctor frm = new frmAddUpdateDoctor();
             frm.DataBack += DataBackEvent;
             frm.ShowDialog();

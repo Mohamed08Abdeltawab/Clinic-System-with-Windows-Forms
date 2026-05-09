@@ -462,6 +462,7 @@
             this.dgvMedicines.Size = new System.Drawing.Size(827, 248);
             this.dgvMedicines.TabIndex = 223;
             this.dgvMedicines.TabStop = false;
+            this.dgvMedicines.DoubleClick += new System.EventHandler(this.dgvMedicines_Click);
             // 
             // cmsMedicines
             // 
@@ -471,6 +472,7 @@
             this.removeMedicineToolStripMenuItem});
             this.cmsMedicines.Name = "contextMenuStrip1";
             this.cmsMedicines.Size = new System.Drawing.Size(196, 118);
+            this.cmsMedicines.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMedicines_Opening);
             // 
             // ShowMedicineInfotoolStripMenuItem
             // 

@@ -187,7 +187,7 @@ namespace Clinic.People
                 _Person.Gendor = (byte)enGendor.Male;
             else
                 _Person.Gendor = (byte)enGendor.Female;
-
+            _Person.ImagePath = pbPersonImage.ImageLocation ?? ""; // Set to empty string if no image is selected
 
 
             if (_Person.Save())

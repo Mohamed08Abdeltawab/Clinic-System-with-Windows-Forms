@@ -262,7 +262,6 @@ namespace Clinic.Appointment
         private void editVisitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int AppointmentID = (int)dgvAppointment.CurrentRow.Cells[0].Value;
-
             frmAddUpdatelVisitDetails frm = new frmAddUpdatelVisitDetails(AppointmentID);
             frm.ShowDialog();
             frmListAppointment_Load(null, null);

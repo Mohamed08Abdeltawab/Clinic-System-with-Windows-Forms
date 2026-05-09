@@ -203,7 +203,7 @@ namespace ClinicData
             DataTable dt = new DataTable();
             /* Updated query to include the price from Medicines table */
             string query = @"SELECT I.ItemID, I.MedicineID, M.MedicineName, 
-                             M.Price AS UnitPrice, -- Add this line
+                             M.Price AS UnitPrice, 
                              I.Quantity, I.Dosage, I.Instructions
                       FROM PrescriptionItems I
                       JOIN Medicines M ON I.MedicineID = M.MedicineID

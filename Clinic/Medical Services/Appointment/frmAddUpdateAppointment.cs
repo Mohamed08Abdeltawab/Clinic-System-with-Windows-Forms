@@ -19,6 +19,7 @@ namespace Clinic.Appointment
         private enMode _Mode;
         private int _AppointmentID = -1;
         clsAppointment _Appointment;
+        clsDoctor _Doctor;
         public frmAddUpdateAppointment()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace Clinic.Appointment
             ctrlPatientCardWithFilter1.FilterEnabled = false;
             ctrlDoctorCardWithFilter1.FilterEnabled = false;
             _Appointment = clsAppointment.Find(_AppointmentID);
+            _Doctor = clsDoctor.Find(_Appointment.DoctorID);
 
             if (_Appointment == null)
             {
@@ -79,8 +81,7 @@ namespace Clinic.Appointment
             cbAppointmentType.SelectedIndex = _Appointment.AppointmentTypeInfo.ID - 1;
             cbStatus.SelectedIndex = _Appointment.Status - 1;
             dtpAppointmentDate.Value = _Appointment.AppointmentDate;
-            lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;
-
+            lblWorkingDays.Text = _Doctor.WorkingDaysIDs.ToString();
         }
 
         private void frmAddUpdateAppointment_Load(object sender, EventArgs e)
@@ -201,6 +202,7 @@ namespace Clinic.Appointment
                 {
                     btnSave.Enabled = true;
                     tpAppointmentInfo.Enabled = true;
+                    ctrlDoctorCardWithFilter1.FilterEnabled = true;
                     tcAppointmentInfo.SelectedTab = tcAppointmentInfo.TabPages["tpAppointmentInfo"];
 
                     lblWorkingDays.Text = ctrlDoctorCardWithFilter1.DoctorWorkingDays;

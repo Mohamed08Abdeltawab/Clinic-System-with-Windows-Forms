@@ -137,6 +137,7 @@ namespace Clinic.Medical_Services.Medicine
             _Item.Quantity = (int)NUDQuantity.Value;
             _Item.Dosage = txtDosage.Text.Trim();
             _Item.Instructions = txtInstructions.Text.Trim();
+            _Item.UnitPrice = clsMedicine.Find(_Item.MedicineID)?.Price ?? 0; // جلب السعر الحالي للدواء
 
             // إرسال البيانات للخلف
             DataBack?.Invoke(this, _Item);
