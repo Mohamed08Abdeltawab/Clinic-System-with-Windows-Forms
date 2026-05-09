@@ -34,11 +34,8 @@ namespace Clinic
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (clsGlobal.CheckIsAdmin())
-            {
-                frmListPeople frm = new frmListPeople();
-                frm.ShowDialog();
-            }
+            frmListPeople frm = new frmListPeople();
+            frm.ShowDialog();
         }
 
         private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,6 +46,11 @@ namespace Clinic
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckIsAdmin())
+            {
+                MessageBox.Show("Only admin can change password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             frmChangePassword frm = new frmChangePassword(clsGlobal.CurrentUser.UserID);
             frm.ShowDialog();
         }
@@ -58,24 +60,6 @@ namespace Clinic
             clsGlobal.CurrentUser = null;
             _frmLogin.Show();
             this.Close();
-        }
-
-        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(clsGlobal.CheckIsAdmin() || clsGlobal.CheckIsReceptionist())
-            {
-                frmListPatient frm = new frmListPatient();
-                frm.ShowDialog();
-            }
-        }
-
-        private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (clsGlobal.CheckIsAdmin())
-            {
-                frmListUsers frm = new frmListUsers();
-                frm.ShowDialog();
-            }
         }
 
         private void mangeServicesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,15 +74,6 @@ namespace Clinic
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (clsGlobal.CheckIsAdmin())
-            {
-                frmListDoctors frm = new frmListDoctors();
-                frm.ShowDialog();
-            }
         }
 
         private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,6 +109,41 @@ namespace Clinic
         private void manageBillsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmListBills frm = new frmListBills();
+            frm.ShowDialog();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //if not admin disable some menu items
+            if (!clsGlobal.CheckIsAdmin())
+            {
+                MangementStripMenuItem.Enabled = false;
+                Password32ToolStripMenuItem.Enabled = false;
+                UsersToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void PatientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListPatient frm = new frmListPatient();
+            frm.ShowDialog();
+        }
+
+        private void DoctorsStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmListDoctors frm = new frmListDoctors();
+            frm.ShowDialog();
+        }
+
+        private void UsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListUsers frm = new frmListUsers();
+            frm.ShowDialog();
+        }
+
+        private void appointmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmListAppointment frm = new frmListAppointment();
             frm.ShowDialog();
         }
     }

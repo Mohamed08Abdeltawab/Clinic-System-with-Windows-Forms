@@ -36,6 +36,7 @@
             this.showPatientDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDoctorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ShowVisitDetailstoolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.rescheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowAppointmentListtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,12 +86,13 @@
             this.cmsPeople.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
+            this.ShowVisitDetailstoolStripMenuItem1,
             this.rescheduleToolStripMenuItem,
             this.ShowAppointmentListtoolStripMenuItem,
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPeople.Name = "contextMenuStrip1";
-            this.cmsPeople.Size = new System.Drawing.Size(209, 222);
+            this.cmsPeople.Size = new System.Drawing.Size(209, 260);
             // 
             // toolStripMenuItem2
             // 
@@ -125,6 +127,15 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(205, 6);
+            // 
+            // ShowVisitDetailstoolStripMenuItem1
+            // 
+            this.ShowVisitDetailstoolStripMenuItem1.Image = global::Clinic.Properties.Resources.visit_32;
+            this.ShowVisitDetailstoolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowVisitDetailstoolStripMenuItem1.Name = "ShowVisitDetailstoolStripMenuItem1";
+            this.ShowVisitDetailstoolStripMenuItem1.Size = new System.Drawing.Size(208, 38);
+            this.ShowVisitDetailstoolStripMenuItem1.Text = "Show Visit Details";
+            this.ShowVisitDetailstoolStripMenuItem1.Click += new System.EventHandler(this.ShowVisitDetailstoolStripMenuItem1_Click);
             // 
             // rescheduleToolStripMenuItem
             // 
@@ -302,5 +313,6 @@
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.ToolStripMenuItem ShowVisitDetailstoolStripMenuItem1;
     }
 }

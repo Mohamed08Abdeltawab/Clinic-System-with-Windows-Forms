@@ -1,4 +1,5 @@
-﻿using Clinicbusiness;
+﻿using Clinic.Global_Classes;
+using Clinicbusiness;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -128,5 +129,6 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             ((Form)preview).WindowState = FormWindowState.Maximized;
             preview.ShowDialog();
         }
+
     }
 }

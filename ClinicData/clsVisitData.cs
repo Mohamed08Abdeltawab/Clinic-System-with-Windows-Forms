@@ -146,7 +146,7 @@ namespace ClinicData
 
             // تم تصحيح PatientID هنا بافتراض أنك قمت بتعديل الاسم في قاعدة البيانات
             // إذا كان لا يزال PetientID، يرجى تعديل الكلمة أدناه
-            string query = @"SELECT Visits.VisitID,Visits.AppointmentID,
+            string query = @"SELECT Visits.VisitID,Visits.AppointmentID,PeoplePat.PersonID AS PatientID, PeopleDoc.PersonID AS DoctorID,
                              PatientName = PeoplePat.FullName,
                              DoctorName = PeopleDoc.FullName,
                              Visits.VisitDate, 

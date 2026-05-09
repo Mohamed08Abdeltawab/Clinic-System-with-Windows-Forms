@@ -294,6 +294,10 @@ namespace Clinic.Medical_Services.Visit
 
         private void frmFillVisitDetails_Load(object sender, EventArgs e)
         {
+            if (clsGlobal.CheckIsReceptionist())
+            {
+                clsGlobal.SetControlsReadOnly(this, true);
+            }
             // 1. Determine Mode
             if (clsVisit.IsVisitExistByAppointmentID(_AppointmentID))
                 _Mode = enMode.Update;

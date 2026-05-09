@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clinic.Global_Classes;
 using Clinicbusiness;
 
 namespace Clinic.Doctor
@@ -22,6 +23,12 @@ namespace Clinic.Doctor
 
         private void frmListDoctors_Load(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckIsAdmin())
+            {
+                btnAddDoctor.Visible = false;
+                editToolStripMenuItem.Visible = false;
+                deleteToolStripMenuItem.Visible = false;
+            }
             _dtDoctors = clsDoctor.GetAllDoctors();
             dgvDoctors.DataSource = _dtDoctors;
             cbFilterBy.SelectedIndex = 0;

@@ -12,10 +12,11 @@ namespace Clinic.Medical_Services.Visit
 {
     public partial class frmShowVisitInfo : Form
     {
-        int _Mode = 1;//1:Visit details, 2:Appointment details
+        int _VisitID;
         public frmShowVisitInfo(int VisitID)
         {
-            ctrlVisitInfoWithFilter1.LoadVisitInfo(VisitID);  
+            InitializeComponent();
+            _VisitID = VisitID;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -26,6 +27,8 @@ namespace Clinic.Medical_Services.Visit
         private void frmShowVisitInfo_Load(object sender, EventArgs e)
         {
             ctrlVisitInfoWithFilter1.FilterEnabled = false;
+            ctrlVisitInfoWithFilter1.LoadVisitInfo(_VisitID);
+
         }
     }
 }

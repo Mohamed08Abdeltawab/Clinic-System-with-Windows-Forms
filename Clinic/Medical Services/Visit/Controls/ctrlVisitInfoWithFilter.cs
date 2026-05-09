@@ -1,4 +1,5 @@
-﻿using Clinic.People;
+﻿using Clinic.Global_Classes;
+using Clinic.People;
 using Clinic.People.Controls;
 using Clinicbusiness;
 using System;

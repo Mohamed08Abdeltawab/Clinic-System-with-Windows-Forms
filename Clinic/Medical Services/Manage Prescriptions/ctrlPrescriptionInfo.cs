@@ -28,6 +28,10 @@ namespace Clinic.Medical_Services.Manage_Prescriptions
             InitializeComponent();
             dgvMedicines.ReadOnly = true;
             dtpPrescriptionDate.Enabled = false;
+            if (clsGlobal.CheckIsReceptionist())
+            {
+                clsGlobal.SetControlsReadOnly(this, true);
+            }
         }
 
         public void _ResetDefaultValues()

@@ -124,6 +124,10 @@ namespace Clinic.Doctor
 
         private void frmAddUpdateDoctor_Load(object sender, EventArgs e)
         {
+            if (!clsGlobal.CheckIsAdmin())
+            {
+                clsGlobal.SetControlsReadOnly(this, true);
+            }
             _ResetDefualtValues();
             if (_Mode == enMode.Update)
                 _LoadData();

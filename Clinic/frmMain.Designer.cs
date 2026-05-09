@@ -35,20 +35,20 @@
             this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prescriptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.FinancialstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageBillsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.peopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.driversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PatientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DoctorsStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MangementStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mangeAppointmentTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserOptiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentUserInfoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Password32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -72,17 +72,17 @@
             this.msMainMenue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.msMainMenue.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.servicesToolStripMenuItem,
-            this.toolStripMenuItem2,
+            this.FinancialstoolStripMenuItem,
             this.peopleToolStripMenuItem,
-            this.driversToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.employeesToolStripMenuItem,
-            this.closeToolStripMenuItem});
+            this.PatientsToolStripMenuItem,
+            this.DoctorsStripMenuItem1,
+            this.UsersToolStripMenuItem,
+            this.accountSettingsToolStripMenuItem});
             this.msMainMenue.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.msMainMenue.Location = new System.Drawing.Point(0, 0);
             this.msMainMenue.Name = "msMainMenue";
             this.msMainMenue.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.msMainMenue.Size = new System.Drawing.Size(1908, 72);
+            this.msMainMenue.Size = new System.Drawing.Size(1924, 72);
             this.msMainMenue.TabIndex = 7;
             this.msMainMenue.Text = "menuStrip1";
             // 
@@ -105,7 +105,7 @@
             this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
             this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(303, 70);
             this.appointmentsToolStripMenuItem.Text = "Manage Appointments";
-            this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click);
+            this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click_1);
             // 
             // visitsToolStripMenuItem
             // 
@@ -125,23 +125,23 @@
             this.prescriptionsToolStripMenuItem.Text = "Manage Prescriptions";
             this.prescriptionsToolStripMenuItem.Click += new System.EventHandler(this.prescriptionsToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // FinancialstoolStripMenuItem
             // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FinancialstoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paymentsToolStripMenuItem,
             this.manageBillsToolStripMenuItem});
-            this.toolStripMenuItem2.Image = global::Clinic.Properties.Resources.Financials;
-            this.toolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 68);
-            this.toolStripMenuItem2.Text = "Financials";
+            this.FinancialstoolStripMenuItem.Image = global::Clinic.Properties.Resources.Financials;
+            this.FinancialstoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FinancialstoolStripMenuItem.Name = "FinancialstoolStripMenuItem";
+            this.FinancialstoolStripMenuItem.Size = new System.Drawing.Size(162, 68);
+            this.FinancialstoolStripMenuItem.Text = "Financials";
             // 
             // paymentsToolStripMenuItem
             // 
             this.paymentsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Payment_64;
             this.paymentsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
-            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
             this.paymentsToolStripMenuItem.Text = "Payments";
             // 
             // manageBillsToolStripMenuItem
@@ -149,7 +149,7 @@
             this.manageBillsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Bill_64;
             this.manageBillsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.manageBillsToolStripMenuItem.Name = "manageBillsToolStripMenuItem";
-            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(228, 70);
+            this.manageBillsToolStripMenuItem.Size = new System.Drawing.Size(226, 70);
             this.manageBillsToolStripMenuItem.Text = "Manage Bills";
             this.manageBillsToolStripMenuItem.Click += new System.EventHandler(this.manageBillsToolStripMenuItem_Click);
             // 
@@ -162,56 +162,56 @@
             this.peopleToolStripMenuItem.Text = "People";
             this.peopleToolStripMenuItem.Click += new System.EventHandler(this.peopleToolStripMenuItem_Click);
             // 
-            // driversToolStripMenuItem
+            // PatientsToolStripMenuItem
             // 
-            this.driversToolStripMenuItem.Image = global::Clinic.Properties.Resources.patient;
-            this.driversToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.driversToolStripMenuItem.Name = "driversToolStripMenuItem";
-            this.driversToolStripMenuItem.Size = new System.Drawing.Size(148, 68);
-            this.driversToolStripMenuItem.Text = "Patients";
-            this.driversToolStripMenuItem.Click += new System.EventHandler(this.driversToolStripMenuItem_Click);
+            this.PatientsToolStripMenuItem.Image = global::Clinic.Properties.Resources.patient;
+            this.PatientsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.PatientsToolStripMenuItem.Name = "PatientsToolStripMenuItem";
+            this.PatientsToolStripMenuItem.Size = new System.Drawing.Size(148, 68);
+            this.PatientsToolStripMenuItem.Text = "Patients";
+            this.PatientsToolStripMenuItem.Click += new System.EventHandler(this.PatientsToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // DoctorsStripMenuItem1
             // 
-            this.toolStripMenuItem1.Image = global::Clinic.Properties.Resources.doctor;
-            this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 68);
-            this.toolStripMenuItem1.Text = "Doctors";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.DoctorsStripMenuItem1.Image = global::Clinic.Properties.Resources.doctor;
+            this.DoctorsStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DoctorsStripMenuItem1.Name = "DoctorsStripMenuItem1";
+            this.DoctorsStripMenuItem1.Size = new System.Drawing.Size(145, 68);
+            this.DoctorsStripMenuItem1.Text = "Doctors";
+            this.DoctorsStripMenuItem1.Click += new System.EventHandler(this.DoctorsStripMenuItem1_Click);
             // 
-            // employeesToolStripMenuItem
+            // UsersToolStripMenuItem
             // 
-            this.employeesToolStripMenuItem.Image = global::Clinic.Properties.Resources.User_Options_64;
-            this.employeesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(127, 68);
-            this.employeesToolStripMenuItem.Text = "Users";
-            this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
+            this.UsersToolStripMenuItem.Image = global::Clinic.Properties.Resources.User_Options_64;
+            this.UsersToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.UsersToolStripMenuItem.Name = "UsersToolStripMenuItem";
+            this.UsersToolStripMenuItem.Size = new System.Drawing.Size(127, 68);
+            this.UsersToolStripMenuItem.Text = "Users";
+            this.UsersToolStripMenuItem.Click += new System.EventHandler(this.UsersToolStripMenuItem_Click);
             // 
-            // closeToolStripMenuItem
+            // accountSettingsToolStripMenuItem
             // 
-            this.closeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
+            this.accountSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MangementStripMenuItem,
+            this.UserOptiontoolStripMenuItem,
             this.toolStripSeparator4,
             this.signOutToolStripMenuItem});
-            this.closeToolStripMenuItem.Image = global::Clinic.Properties.Resources.Account_Setttings_64;
-            this.closeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(215, 68);
-            this.closeToolStripMenuItem.Text = "Account Settings";
+            this.accountSettingsToolStripMenuItem.Image = global::Clinic.Properties.Resources.Account_Setttings_64;
+            this.accountSettingsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.accountSettingsToolStripMenuItem.Name = "accountSettingsToolStripMenuItem";
+            this.accountSettingsToolStripMenuItem.Size = new System.Drawing.Size(215, 68);
+            this.accountSettingsToolStripMenuItem.Text = "Account Settings";
             // 
-            // toolStripMenuItem3
+            // MangementStripMenuItem
             // 
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MangementStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageServicesToolStripMenuItem,
             this.mangeAppointmentTypeToolStripMenuItem});
-            this.toolStripMenuItem3.Image = global::Clinic.Properties.Resources.mange_32;
-            this.toolStripMenuItem3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(189, 38);
-            this.toolStripMenuItem3.Text = "Mangement";
+            this.MangementStripMenuItem.Image = global::Clinic.Properties.Resources.mange_32;
+            this.MangementStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.MangementStripMenuItem.Name = "MangementStripMenuItem";
+            this.MangementStripMenuItem.Size = new System.Drawing.Size(189, 38);
+            this.MangementStripMenuItem.Text = "Mangement";
             // 
             // manageServicesToolStripMenuItem
             // 
@@ -229,16 +229,16 @@
             this.mangeAppointmentTypeToolStripMenuItem.Text = "Mange Appointment Type";
             this.mangeAppointmentTypeToolStripMenuItem.Click += new System.EventHandler(this.mangeAppointmentTypeToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem4
+            // UserOptiontoolStripMenuItem
             // 
-            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserOptiontoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.currentUserInfoToolStripMenuItem1,
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem});
-            this.toolStripMenuItem4.Image = global::Clinic.Properties.Resources.User_Options_32;
-            this.toolStripMenuItem4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(189, 38);
-            this.toolStripMenuItem4.Text = "UserOption";
+            this.Password32ToolStripMenuItem});
+            this.UserOptiontoolStripMenuItem.Image = global::Clinic.Properties.Resources.User_Options_32;
+            this.UserOptiontoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.UserOptiontoolStripMenuItem.Name = "UserOptiontoolStripMenuItem";
+            this.UserOptiontoolStripMenuItem.Size = new System.Drawing.Size(189, 38);
+            this.UserOptiontoolStripMenuItem.Text = "UserOption";
             // 
             // currentUserInfoToolStripMenuItem1
             // 
@@ -249,14 +249,14 @@
             this.currentUserInfoToolStripMenuItem1.Text = "&Current User Info";
             this.currentUserInfoToolStripMenuItem1.Click += new System.EventHandler(this.currentUserInfoToolStripMenuItem_Click);
             // 
-            // clinicPropertiesResourcesPassword32ToolStripMenuItem
+            // Password32ToolStripMenuItem
             // 
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.Image = global::Clinic.Properties.Resources.Password_32;
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.Name = "clinicPropertiesResourcesPassword32ToolStripMenuItem";
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.Text = "Change Password";
-            this.clinicPropertiesResourcesPassword32ToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            this.Password32ToolStripMenuItem.Image = global::Clinic.Properties.Resources.Password_32;
+            this.Password32ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Password32ToolStripMenuItem.Name = "Password32ToolStripMenuItem";
+            this.Password32ToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
+            this.Password32ToolStripMenuItem.Text = "Change Password";
+            this.Password32ToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -280,7 +280,7 @@
             this.pictureBox1.Image = global::Clinic.Properties.Resources.ClinicWallpaper;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1908, 1022);
+            this.pictureBox1.Size = new System.Drawing.Size(1924, 1061);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -289,7 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1908, 1022);
+            this.ClientSize = new System.Drawing.Size(1924, 1061);
             this.Controls.Add(this.lblLoggedInUser);
             this.Controls.Add(this.msMainMenue);
             this.Controls.Add(this.pictureBox1);
@@ -298,6 +298,7 @@
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.msMainMenue.ResumeLayout(false);
             this.msMainMenue.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -310,25 +311,25 @@
 
         private System.Windows.Forms.Label lblLoggedInUser;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accountSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem driversToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UsersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PatientsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem peopleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem servicesToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMainMenue;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem DoctorsStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem appointmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visitsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prescriptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem FinancialstoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageBillsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem MangementStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UserOptiontoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem currentUserInfoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem clinicPropertiesResourcesPassword32ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Password32ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageServicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mangeAppointmentTypeToolStripMenuItem;
     }

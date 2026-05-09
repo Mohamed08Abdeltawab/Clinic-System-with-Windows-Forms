@@ -135,7 +135,7 @@
             // 
             this.llSetImage.AutoSize = true;
             this.llSetImage.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.llSetImage.Location = new System.Drawing.Point(785, 275);
+            this.llSetImage.Location = new System.Drawing.Point(780, 231);
             this.llSetImage.Name = "llSetImage";
             this.llSetImage.Size = new System.Drawing.Size(71, 19);
             this.llSetImage.TabIndex = 13;

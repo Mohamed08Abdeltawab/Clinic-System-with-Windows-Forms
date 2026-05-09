@@ -1,4 +1,7 @@
 ﻿using Clinic.Appointment;
+using Clinic.Doctor;
+using Clinic.Global_Classes;
+using Clinic.Patient;
 using Clinic.People;
 using Clinicbusiness;
 using System;
@@ -30,7 +33,7 @@ namespace Clinic.Medical_Services.Visit
         private void _RefreshVisitList()
         {
             _dtAllVisits = clsVisit.GetAllVisits();
-            _dtVists = _dtAllVisits.DefaultView.ToTable(false, "VisitID", "AppointmentID", "PatientName", "DoctorName", "VisitDate", "Diagnosis");
+            _dtVists = _dtAllVisits.DefaultView.ToTable(false, "VisitID","PatientID","DoctorID", "AppointmentID", "PatientName", "DoctorName", "VisitDate", "Diagnosis");
 
             dgvVisit.DataSource = _dtVists;
             lblRecordsCount.Text = dgvVisit.Rows.Count.ToString();
@@ -38,6 +41,11 @@ namespace Clinic.Medical_Services.Visit
 
         private void frmListVisits_Load(object sender, EventArgs e)
         {
+            if(clsGlobal.CheckIsReceptionist())
+            {
+                editToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+            }
             _RefreshVisitList();
             cbFilterBy.SelectedIndex = 0;
             lblRecordsCount.Text = dgvVisit.Rows.Count.ToString();
@@ -47,22 +55,23 @@ namespace Clinic.Medical_Services.Visit
                 dgvVisit.Columns[0].HeaderText = "Visit ID";
                 dgvVisit.Columns[0].Width = 110;
 
+                dgvVisit.Columns[1].Visible = false; //PatientID
+                dgvVisit.Columns[2].Visible = false; //DoctorID
 
-                dgvVisit.Columns[1].HeaderText = "Appointment ID";
-                dgvVisit.Columns[1].Width = 110;
+                dgvVisit.Columns[3].HeaderText = "Appointment ID";
+                dgvVisit.Columns[3].Width = 110;
 
-                dgvVisit.Columns[2].HeaderText = "Patient Name";
-                dgvVisit.Columns[2].Width = 260;
+                dgvVisit.Columns[4].HeaderText = "Patient Name";
+                dgvVisit.Columns[4].Width = 260;
 
-                dgvVisit.Columns[3].HeaderText = "Docotr Name";
-                dgvVisit.Columns[3].Width = 260;
-
-                dgvVisit.Columns[4].HeaderText = "Visit Date";
-                dgvVisit.Columns[4].Width = 200;
-
-                dgvVisit.Columns[5].HeaderText = "Diagnosis";
+                dgvVisit.Columns[5].HeaderText = "Doctor Name";
                 dgvVisit.Columns[5].Width = 260;
 
+                dgvVisit.Columns[6].HeaderText = "Visit Date";
+                dgvVisit.Columns[6].Width = 200;
+
+                dgvVisit.Columns[7].HeaderText = "Diagnosis";
+                dgvVisit.Columns[7].Width = 260;
             }
         }
 
@@ -169,12 +178,22 @@ namespace Clinic.Medical_Services.Visit
 
         private void showPatientDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int patientID = (int)dgvVisit.CurrentRow.Cells[1].Value;
+            frmPatientInfo frm = new frmPatientInfo(patientID);
+            frm.ShowDialog();
         }
 
         private void showDoctorDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int DoctorID = (int)dgvVisit.CurrentRow.Cells[2].Value;
+            frmDoctorInfo frm = new frmDoctorInfo(DoctorID);
+            frm.ShowDialog();
+        }
 
+        private void ShowVisitDetailstoolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmShowVisitInfo frm = new frmShowVisitInfo((int)dgvVisit.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
         }
     }
 }

@@ -93,7 +93,6 @@ namespace Clinic.Global_Classes
         {
             if (clsGlobal.CurrentUser.Role != clsUser.enRole.Admin)
             {
-                MessageBox.Show("Error, This Username not have Access, must be an Admin!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             return true;
@@ -103,7 +102,6 @@ namespace Clinic.Global_Classes
         {
             if (clsGlobal.CurrentUser.Role != clsUser.enRole.Doctor)
             {
-                MessageBox.Show("Error, This Username not have Access, must be a Doctor!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             return true;
@@ -113,7 +111,6 @@ namespace Clinic.Global_Classes
         {
             if (clsGlobal.CurrentUser.Role != clsUser.enRole.Receptionist)
             {
-                MessageBox.Show("Error, This Username not have Access, must be a Receptionist!", "Invalid Option", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             return true;

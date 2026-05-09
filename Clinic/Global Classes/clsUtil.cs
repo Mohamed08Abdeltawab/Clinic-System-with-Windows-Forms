@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Clinic.Global_Classes
 {
-    public class util
+    public class clsUtil
     {
         //steps to generate unique name for image to avoid name conflicts when saving images to the same folder
         //step1: generate a GUID (Globally Unique Identifier) which is a 128-bit integer that can be used to uniquely identify something
@@ -58,7 +58,7 @@ namespace Clinic.Global_Classes
         }
 
 
-        public static bool CopyImageToProjectImages(ref string sourceFile)
+        public static bool CopyImageToProjectImagesFolder(ref string sourceFile)
         {
             //define the FolderDestination to save the image in the project folder
             string FolderDestination = @"C:\ClinicSystem-People-Images\";

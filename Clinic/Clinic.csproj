@@ -127,7 +127,7 @@
     <Compile Include="Global Classes\clsFormat.cs" />
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsValidation.cs" />
-    <Compile Include="Global Classes\util.cs" />
+    <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

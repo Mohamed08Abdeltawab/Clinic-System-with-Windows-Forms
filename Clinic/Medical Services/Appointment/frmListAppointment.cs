@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Clinic.Doctor;
+using Clinic.Global_Classes;
+using Clinic.Medical_Services.Visit;
+using Clinic.Patient;
+using Clinicbusiness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clinic.Doctor;
-using Clinic.Medical_Services.Visit;
-using Clinic.Patient;
-using Clinicbusiness;
 
 namespace Clinic.Appointment
 {
@@ -27,6 +28,11 @@ namespace Clinic.Appointment
 
         private void frmListAppointment_Load(object sender, EventArgs e)
         {
+            if (clsGlobal.CheckIsReceptionist())
+            {
+                editVisitToolStripMenuItem.Enabled = false;
+                startVisitToolStripMenuItem.Enabled = false;
+            }
             _dtAppointments = clsAppointment.GetAllAppointments();
             dgvAppointment.DataSource = _dtAppointments;
             cbFilterBy.SelectedIndex = 0;

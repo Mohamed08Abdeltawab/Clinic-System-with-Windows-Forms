@@ -171,5 +171,12 @@ namespace Clinic.Financials.Manage_Bills
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
         }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int BillID = int.Parse(dgvBills.CurrentRow.Cells["BillID"].Value.ToString());
+            frmBillDetails frm = new frmBillDetails(BillID);
+            frm.ShowDialog();
+        }
     }
 }

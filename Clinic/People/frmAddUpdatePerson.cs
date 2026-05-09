@@ -105,9 +105,14 @@ namespace Clinic.People
             else
                 rbFemale.Checked = true;
 
+            if (_Person.ImagePath != "")
+            {
+                pbPersonImage.ImageLocation = _Person.ImagePath;
 
-            llRemoveImage.Visible = (!string.IsNullOrEmpty(_Person.ImagePath));
+            }
 
+            //hide/show the remove linke incase there is no image for the person.
+            llRemoveImage.Visible = (_Person.ImagePath != "");
         }
 
         private void frmAddUpdatePerson_Load(object sender, EventArgs e)
@@ -120,31 +125,31 @@ namespace Clinic.People
         //handel image person
         private bool _HandlePersonImage()
         {
-            //step1: check if the new image is same image will be true don't compelete
-            if(pbPersonImage.ImageLocation != _Person.ImagePath)
+            if (_Person.ImagePath != pbPersonImage.ImageLocation)
             {
-                //step2: we need to delete the image check if exist
-                if(_Person.ImagePath != "")
+                if (_Person.ImagePath != "")
                 {
+                    //first we delete the old image from the folder in case there is any.
+
                     try
                     {
                         File.Delete(_Person.ImagePath);
                     }
-                    catch (Exception)
+                    catch (IOException)
                     {
-
+                        // We could not delete the file.
+                        //log it later   
                     }
                 }
 
-                //step3: update new image 
-                if(pbPersonImage.ImageLocation != null)
+                if (pbPersonImage.ImageLocation != null)
                 {
-                    //assign source file path to equal the imagelocation
-                    string sourceFilePath = pbPersonImage.ImageLocation.ToString();
+                    //then we copy the new image to the image folder after we rename it
+                    string SourceImageFile = pbPersonImage.ImageLocation.ToString();
 
-                    if(util.CopyImageToProjectImages(ref sourceFilePath))
+                    if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
                     {
-                        pbPersonImage.ImageLocation = sourceFilePath;
+                        pbPersonImage.ImageLocation = SourceImageFile;
                         return true;
                     }
                     else
@@ -153,20 +158,9 @@ namespace Clinic.People
                         return false;
                     }
                 }
+
             }
-
             return true;
-        }
-
-        private void _LoadInfo()
-        {
-            //change photo to default if no image path is set
-            if (rbMale.Checked)
-                pbPersonImage.Image = Resources.Male_512;
-            else
-                pbPersonImage.Image = Resources.Female_512;
-
-            llRemoveImage.Visible = (_Person.ImagePath != "");//show remove image link only if there is an image to remove
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -226,11 +220,26 @@ namespace Clinic.People
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Process the selected file
-                string selectedFilePath = openFileDialog1.FileName;
-                pbPersonImage.Load(selectedFilePath);
-                llRemoveImage.Visible = true;
-                // ...
+                try
+                {
+                    // Process the selected file
+                    string selectedFilePath = openFileDialog1.FileName;
+
+                    // Attempt to load the image
+                    pbPersonImage.Load(selectedFilePath);
+
+                    llRemoveImage.Visible = true;
+                }
+                catch (ArgumentException)
+                {
+                    // Handle cases where the file is not a valid image or corrupted
+                    MessageBox.Show("The selected file is not a valid image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    // Handle any other unexpected errors
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
