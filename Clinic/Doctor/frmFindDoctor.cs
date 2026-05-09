@@ -25,5 +25,6 @@ namespace Clinic.Doctor
             DataBack.Invoke(this, ctrlDoctorCardWithFilter1.DoctorID);
             this.Close();
         }
+
     }
 }

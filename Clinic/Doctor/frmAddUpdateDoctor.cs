@@ -54,6 +54,7 @@ namespace Clinic.Doctor
                 lblTitle.Text = "Update Doctor";
                 this.Text = "Update Doctor";
 
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
                 tpDoctorInfo.Enabled = true;
                 btnSave.Enabled = true;
             }
@@ -104,7 +105,6 @@ namespace Clinic.Doctor
 
         private void _LoadData()
         {
-            ctrlPersonCardWithFilter1.FilterEnabled = false;
             _Doctor = clsDoctor.Find(_DoctorID);
 
             if (_Doctor == null)

@@ -25,9 +25,9 @@ namespace Clinic.Doctor
         {
             if (!clsGlobal.CheckIsAdmin())
             {
-                btnAddDoctor.Visible = false;
-                editToolStripMenuItem.Visible = false;
-                deleteToolStripMenuItem.Visible = false;
+                btnAddDoctor.Enabled = false;
+                editToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
             }
             _dtDoctors = clsDoctor.GetAllDoctors();
             dgvDoctors.DataSource = _dtDoctors;
